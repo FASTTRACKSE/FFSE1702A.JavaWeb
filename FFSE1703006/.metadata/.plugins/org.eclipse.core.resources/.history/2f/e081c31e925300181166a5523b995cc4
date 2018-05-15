@@ -1,0 +1,71 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Users List</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js"></script>
+	<%@page import="namdv.model.UserModel,namdv.model.*,java.util.*"%>  
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>  
+</head>
+<body>
+<div class="container">
+		<h3 style="width: 50%; float: left">Users list</h3>
+		<p style="width: 50%; float: right; text-align: right">
+			<a href="addUser.jsp"><button type="button" class="btn btn-success">Add New User</button></a>
+		</p>
+		<table class="table table-striped">
+		  <thead>
+		    <tr>
+		      <th scope="col">#</th>
+		      <th scope="col">Username</th>
+		      <th scope="col">Email</th>
+		      <th scope="col">Sex</th>
+		      <th scope="col">Country</th>
+		      <th scope="col">Action</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		 	<%-- <%  
+			List<User> list=UserModel.getAllRecords();
+			request.setAttribute("list",list);  
+			%>
+			<c:forEach items="${list}" var="u">  
+				<tr>
+					<td>${u.getId()}</td>
+					<td>${u.getName()}</td>
+					<td>${u.getEmail()}</td>  
+					<td>${u.getSex()}</td>
+					<td>${u.getCountry()}</td>
+					<th style="color:#377bb5; letter-spacing: 5px;">
+				      <a href="editUser.jsp?id=${u.getId()}"><i class="fa fa-pencil"></i></a>
+				      <a href="deleteUser.jsp?id=${u.getId()}"><i class="fa fa-trash"></i></a>
+				    </th>
+				</tr>  
+			</c:forEach> --%>
+			<%
+			List<User> list=UserModel.getAllRecords();
+			for (User u : list) {
+			%>
+				<tr>
+					<td>${u.getId()}</td>
+					<td>${u.getName()}</td>
+					<td>${u.getEmail()}</td>  
+					<td>${u.getSex()}</td>
+					<td>${u.getCountry()}</td>
+					<th style="color:#377bb5; letter-spacing: 5px;">
+				      <a href="editUser.jsp?id=${u.getId()}"><i class="fa fa-pencil"></i></a>
+				      <a href="deleteUser.jsp?id=${u.getId()}"><i class="fa fa-trash"></i></a>
+				    </th>
+				</tr>
+			<%} %>
+		  </tbody>
+		</table>
+	</div>
+</body>
+</html>
