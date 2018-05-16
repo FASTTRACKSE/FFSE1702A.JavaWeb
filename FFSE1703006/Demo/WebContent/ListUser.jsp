@@ -8,6 +8,7 @@
 		<p style="width: 50%; float: right; text-align: right">
 			<a href="UserController?action=insert"><button type="button" class="btn btn-success">Add New User</button></a>
 		</p>
+		
 		<table class="table table-striped">
 		  <thead>
 		    <tr>
@@ -35,16 +36,18 @@
 			</c:forEach>
 		  </tbody>
 		</table>
-		<%-- <h1>${lastPage}</h1> --%>
 		<div style="margin: 0 auto;">
 			<nav aria-label="Page navigation example">
-			  <ul class="pagination">
+			  <ul class="pagination justify-content-center">
 			    <li class="page-item">
-			      <a class="page-link" href="<%= request.getContextPath() %>/UserController?page=1" aria-label="Frist">
-			        <span aria-hidden="true">&laquo;</span>
+			      <a class="page-link" href="<%= request.getContextPath() %>/UserController" aria-label="Frist">
+			        <span aria-hidden="true">&laquo; First Page</span>
 			        <span class="sr-only">Frist</span>
 			      </a>
 			    </li>
+			    <c:if test="${currentPage > 2}">
+			   		<li class="page-item"><a class="page-link" href="<%= request.getContextPath() %>/UserController?page=${currentPage-2}">${currentPage-2}</a></li>
+			    </c:if>
 			    <c:if test="${currentPage != 1}">
 			   		<li class="page-item"><a class="page-link" href="<%= request.getContextPath() %>/UserController?page=${currentPage-1}">${currentPage-1}</a></li>
 			    </c:if>
@@ -52,9 +55,12 @@
 			    <c:if test="${currentPage != lastPage}">
 			    	<li class="page-item"><a class="page-link" href="<%= request.getContextPath() %>/UserController?page=${currentPage+1}">${currentPage+1}</a></li>
 			    </c:if>
+			    <c:if test="${currentPage < lastPage - 1}">
+			    	<li class="page-item"><a class="page-link" href="<%= request.getContextPath() %>/UserController?page=${currentPage+2}">${currentPage+2}</a></li>
+			    </c:if>
 			    <li class="page-item">
 			      <a class="page-link" href="<%= request.getContextPath() %>/UserController?page=${lastPage}" aria-label="Last">
-			        <span aria-hidden="true">&raquo;</span>
+			        <span aria-hidden="true">Last Page &raquo;</span>
 			        <span class="sr-only">Last</span>
 			      </a>
 			    </li>

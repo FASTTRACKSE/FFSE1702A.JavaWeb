@@ -32,7 +32,7 @@ public class UserController extends HttpServlet {
 				spageid = "1";
 			}
 			int pageid = Integer.parseInt(spageid);
-			int total = 5;
+			int total = 10;
 			if (pageid != 1) {
 				pageid = pageid - 1;
 				pageid = pageid * total + 1;
