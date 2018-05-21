@@ -7,7 +7,7 @@
 <%@ page import="java.util.HashMap"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <% Map<String,String> showLangguage = new UserDao().vietnameseLanguage();
-	String lang =(String) session.getAttribute("lang");
+	String lang =(String) request.getAttribute("lang");
 if(lang!=null){
 	if(lang.equals("Vietnamese")){
 		showLangguage = new UserDao().vietnameseLanguage();
@@ -17,9 +17,15 @@ if(lang!=null){
 }
 %>
 <body>
-
+<br>
 	<div class="container">
-		<div class="row" style="float: right;">
+		<div class="row" style="float: right; .dropdown-menu>li>a {
+    display: block;
+    padding: 3px 20px;
+
+    color: #333;
+    white-space: nowrap;
+}">
 			<div class="dropdown">
 				<button class="btn btn-primary dropdown-toggle" type="button"
 					data-toggle="dropdown">
@@ -32,7 +38,14 @@ if(lang!=null){
 				</ul>
 			</div>
 		</div>
+		<br>
 		<h3 style="width: 50%; float: left"><%= showLangguage.get("ListUser.TieuDe") %></h3>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
 		<table class="table table-striped">
 			<thead>
 				<tr>
