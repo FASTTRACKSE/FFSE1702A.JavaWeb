@@ -19,17 +19,11 @@ if(lang!=null){
 <body>
 <br>
 	<div class="container">
-		<div class="row" style="float: right; .dropdown-menu>li>a {
-    display: block;
-    padding: 3px 20px;
-
-    color: #333;
-    white-space: nowrap;
-}">
+		<div class="row" style="float: right; ">
 			<div class="dropdown">
 				<button class="btn btn-primary dropdown-toggle" type="button"
 					data-toggle="dropdown">
-					Ngôn Ngữ <span class="caret"></span>
+					<%= showLangguage.get("ListUser.Language") %> <span class="caret"></span>
 				</button>
 				<ul class="dropdown-menu">
 					<li><a href="DaNgonNgu?lang=Vietnamese">Vietnamese</a></li>
@@ -68,7 +62,7 @@ if(lang!=null){
 						<td>${u.getSex()}</td>
 						<td>${u.getCountry()}</td>
 						<th style="color: #377bb5; letter-spacing: 5px;"><a
-							href="UserController?action=edit&userId=${u.getId()}"><i
+							href="UserController?lang=<%=request.getParameter("lang") %>&action=edit&userId=${u.getId()}"><i
 								class="fa fa-pencil"></i></a> <a
 							href="UserController?action=delete&userId=${u.getId()}"><i
 								class="fa fa-trash"></i></a></th>
@@ -77,8 +71,8 @@ if(lang!=null){
 			</tbody>
 		</table>
 		<p style="width: 50%; float: right; text-align: right">
-			<a href="UserController?action=insert"><button type="button"
-					class="btn btn-success">Add New User</button></a>
+			<a href="UserController?lang=<%=request.getParameter("lang") %>&action=insert"><button type="button"
+					class="btn btn-success"><%= showLangguage.get("ListUser.Add") %></button></a>
 		</p>
 		<%-- <h1>${lastPage}</h1> --%>
 		<div style="margin: 0 auto;">

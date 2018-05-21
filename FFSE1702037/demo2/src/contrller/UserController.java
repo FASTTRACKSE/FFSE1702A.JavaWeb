@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import java2.UserDao;
 import model.User;
 @WebServlet("/DaNgonNgu")
+@SuppressWarnings("serial")
 public class UserController extends HttpServlet {
-	private static final long serialVersionUID = 1L;
 	private static String insert_or_edit = "/User.jsp";
 	private static String list_user = "/ListUser.jsp";
 
@@ -26,9 +26,6 @@ public class UserController extends HttpServlet {
 		String lang="";
 		if(request.getParameter("lang")!=null) {
 		lang = request.getParameter("lang").toString();
-		//HttpSession session = request.getSession();
-		
-		//response.sendRedirect("ListUser");
 		}
 		request.setAttribute("lang",lang);
 		String forward = list_user;
@@ -72,6 +69,8 @@ public class UserController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		User u = new User();
+		request.setCharacterEncoding("UTF-8");
+
 		u.setName(request.getParameter("username"));
 		u.setYear(request.getParameter("year"));
 		u.setClassroom(request.getParameter("classroom"));

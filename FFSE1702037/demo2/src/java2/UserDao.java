@@ -136,6 +136,7 @@ public class UserDao {
 		}
 		return u;
 	}
+	//Language
 	public Map<String, String> englishLanguage(){
 		Map<String, String> map = new HashMap<>();
 		map.put("ListUser.TieuDe","User List");
@@ -145,18 +146,30 @@ public class UserDao {
 		map.put("ListUser.Sex","Sex");
 		map.put("ListUser.Country","Country");
 		map.put("ListUser.Action","Action");
+		map.put("ListUser.Add","Add New User");
+		map.put("ListUser.Language","language");
+		map.put("ListUser.Boy","Male");
+		map.put("ListUser.Girl","Nữ");
+		map.put("ListUser.Submit","Submit");
+		map.put("ListUser.Cancel","Cancel");
 		return map;
 		
 	}
 	public Map<String, String> vietnameseLanguage(){
 		Map<String, String> map = new HashMap<>();
-		map.put("ListUser.TieuDe","Danh sách");
+		map.put("ListUser.TieuDe","Danh Sách");
 		map.put("ListUser.Name","Tên");
-		map.put("ListUser.Year","Năm sinh");
+		map.put("ListUser.Year","Năm Sinh");
 		map.put("ListUser.Class","Lớp");
-		map.put("ListUser.Sex","Giới tính");
+		map.put("ListUser.Sex","Giới Tính");
 		map.put("ListUser.Country","Quốc Tịch");
-		map.put("ListUser.Action","Hành động");
+		map.put("ListUser.Action","Hành Động");
+		map.put("ListUser.Add","Thêm Sinh Viên");
+		map.put("ListUser.Language","Ngôn Ngữ");
+		map.put("ListUser.Boy","Nam");
+		map.put("ListUser.Girl","Nữ");
+		map.put("ListUser.Submit","Gửi");
+		map.put("ListUser.Cancel","Hủy");
 		return map;
 		
 	}
