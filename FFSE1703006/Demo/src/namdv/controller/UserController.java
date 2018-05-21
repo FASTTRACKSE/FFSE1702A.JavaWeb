@@ -38,10 +38,10 @@ public class UserController extends HttpServlet {
 				pageid = pageid * total + 1;
 			}
 			List<User> list = UserDAO.getRecords(pageid, total);
-			//request.setAttribute("users", UserDAO.getAllRecords());
+			// request.setAttribute("users", UserDAO.getAllRecords());
 			request.setAttribute("users", list);
-			
-			int lastPage = (UserDAO.countRecords() / total) + 1;
+
+			int lastPage = Math.round(UserDAO.countRecords() / total);
 			request.setAttribute("currentPage", spageid);
 			request.setAttribute("lastPage", lastPage);
 		} else if (action.equalsIgnoreCase("delete")) {
@@ -57,6 +57,13 @@ public class UserController extends HttpServlet {
 			request.setAttribute("user", u);
 		} else {
 			forward = insert_or_edit;
+		}
+
+		String lang = request.getParameter("lang");
+		if (lang == null || lang.equals("en")) {
+			request.setAttribute("messages", "namdv.lang.messages_en");
+		} else {
+			request.setAttribute("messages", "namdv.lang.messages_vi");
 		}
 
 		if (action != null && action.equalsIgnoreCase("delete")) {
