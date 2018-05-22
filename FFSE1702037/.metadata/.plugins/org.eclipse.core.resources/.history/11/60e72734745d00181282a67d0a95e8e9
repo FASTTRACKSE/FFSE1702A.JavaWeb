@@ -96,8 +96,7 @@ if(lang!=null){
 							href="<%= request.getContextPath() %>/UserController?page=${currentPage+1}">${currentPage+1}</a></li>
 						
 					</c:if>
-					<c:if test="${lastPage - currentPage >=2}">
-					
+					<c:if test="${currentPage - lastPage >=2}">
 					<li class="page-item"><a class="page-link"
 							href="<%= request.getContextPath() %>/UserController?page=${currentPage+2}">${currentPage+2}</a></li>
 						
@@ -106,7 +105,6 @@ if(lang!=null){
 						href="<%= request.getContextPath() %>/UserController?page=${lastPage}"
 						aria-label="Last"> <span aria-hidden="true">&raquo;</span>
 					</a></li>
-					
 				</ul>
 			</nav>
 		</div>

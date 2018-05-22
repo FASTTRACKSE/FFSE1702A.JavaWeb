@@ -17,14 +17,13 @@ if(lang!=null){
 }
 %>
 <body>
-	<br>
+<br>
 	<div class="container">
-		<div class="row" style="float: right;">
+		<div class="row" style="float: right; ">
 			<div class="dropdown">
 				<button class="btn btn-primary dropdown-toggle" type="button"
 					data-toggle="dropdown">
-					<%= showLangguage.get("ListUser.Language") %>
-					<span class="caret"></span>
+					<%= showLangguage.get("ListUser.Language") %> <span class="caret"></span>
 				</button>
 				<ul class="dropdown-menu">
 					<li><a href="DaNgonNgu?lang=Vietnamese">Vietnamese</a></li>
@@ -35,7 +34,12 @@ if(lang!=null){
 		</div>
 		<br>
 		<h3 style="width: 50%; float: left"><%= showLangguage.get("ListUser.TieuDe") %></h3>
-		<br> <br> <br> <br> <br> <br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
 		<table class="table table-striped">
 			<thead>
 				<tr>
@@ -67,9 +71,8 @@ if(lang!=null){
 			</tbody>
 		</table>
 		<p style="width: 50%; float: right; text-align: right">
-			<a
-				href="UserController?lang=<%=request.getParameter("lang") %>&action=insert"><button
-					type="button" class="btn btn-success"><%= showLangguage.get("ListUser.Add") %></button></a>
+			<a href="UserController?lang=<%=request.getParameter("lang") %>&action=insert"><button type="button"
+					class="btn btn-success"><%= showLangguage.get("ListUser.Add") %></button></a>
 		</p>
 		<%-- <h1>${lastPage}</h1> --%>
 		<div style="margin: 0 auto;">
@@ -79,34 +82,20 @@ if(lang!=null){
 						href="<%=request.getContextPath()%>/UserController?page=1"
 						aria-label="Frist"> <span aria-hidden="true">&laquo;</span>
 					</a></li>
-					<c:if test="${currentPage >=3 }">
-						<li class="page-item"><a class="page-link"
-							href="<%= request.getContextPath() %>/UserController?page=${currentPage-2}">${currentPage-2}</a></li>
-					</c:if>
 					<c:if test="${currentPage != 1}">
-
 						<li class="page-item"><a class="page-link"
 							href="<%= request.getContextPath() %>/UserController?page=${currentPage-1}">${currentPage-1}</a></li>
-
 					</c:if>
 					<li class="page-item active"><a class="page-link"
 						href="<%= request.getContextPath() %>/UserController?page=${currentPage}">${currentPage}</a></li>
 					<c:if test="${currentPage != lastPage}">
-					<li class="page-item"><a class="page-link"
+						<li class="page-item"><a class="page-link"
 							href="<%= request.getContextPath() %>/UserController?page=${currentPage+1}">${currentPage+1}</a></li>
-						
-					</c:if>
-					<c:if test="${lastPage - currentPage >=2}">
-					
-					<li class="page-item"><a class="page-link"
-							href="<%= request.getContextPath() %>/UserController?page=${currentPage+2}">${currentPage+2}</a></li>
-						
 					</c:if>
 					<li class="page-item"><a class="page-link"
 						href="<%= request.getContextPath() %>/UserController?page=${lastPage}"
 						aria-label="Last"> <span aria-hidden="true">&raquo;</span>
 					</a></li>
-					
 				</ul>
 			</nav>
 		</div>
