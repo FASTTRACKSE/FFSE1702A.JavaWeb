@@ -47,7 +47,13 @@ public class Viewusers extends HttpServlet {
 		List<User> list = UserDao.getRecords(pageid, total);
 		request.setAttribute("users", list);
 		
-		int lastPage = (UserDao.countRecords() / total) + 1;
+		int lastPage = 0;
+		if(total%2==0) {
+			lastPage = (UserDao.countRecords() / total) + 1;
+		}else {
+			lastPage = (UserDao.countRecords() / total);
+		}
+		
 		request.setAttribute("currentPage", spageid);
 		request.setAttribute("lastPage", lastPage);
 		RequestDispatcher rd = request.getRequestDispatcher("viewusers.jsp");
