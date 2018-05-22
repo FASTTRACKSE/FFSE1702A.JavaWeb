@@ -13,7 +13,7 @@
 
 	<h1>Users List</h1>
 
-	
+
 
 	<table border="1" width="90%">
 		<tr>
@@ -41,29 +41,33 @@
 	</table>
 	<nav aria-label="Page navigation">
 		<ul class="pagination">
-			<li><a href="<%=request.getContextPath()%>/Viewusers">
-					First Page </a></li>
+			<li><a href="<%=request.getContextPath()%>/Viewusers"> First
+					Page </a></li>
 			<c:if test="${currentPage > 2}">
-			   		<li class="page-item"><a class="page-link" href="<%= request.getContextPath() %>/Viewusers?page=${currentPage-2}">${currentPage-2}</a></li>
-			    </c:if>
-			    <c:if test="${currentPage != 1}">
-			   		<li class="page-item"><a class="page-link" href="<%= request.getContextPath() %>/Viewusers?page=${currentPage-1}">${currentPage-1}</a></li>
-			    </c:if>
-			    <li class="page-item active"><a class="page-link" href="<%= request.getContextPath() %>/Viewusers?page=${currentPage}">${currentPage}</a></li>
-			    <c:if test="${currentPage != lastPage}">
-			    	<li class="page-item"><a class="page-link" href="<%= request.getContextPath() %>/Viewusers?page=${currentPage+1}">${currentPage+1}</a></li>
-			    </c:if>
-			    <c:if test="${currentPage < lastPage - 1}">
-			    	<li class="page-item"><a class="page-link" href="<%= request.getContextPath() %>/Viewusers?page=${currentPage+2}">${currentPage+2}</a></li>
-			    </c:if>
+				<li><a
+					href="Viewusers?page=${currentPage-2}">${currentPage-2}</a></li>
+			</c:if>
+			<c:if test="${currentPage != 1}">
+				<li><a
+					href="Viewusers?page=${currentPage-1}">${currentPage-1}</a></li>
+			</c:if>
+			<li class="active"><a
+				href="Viewusers?page=${currentPage}">${currentPage}</a></li>
+			<c:if test="${currentPage != lastPage}">
+				<li><a
+					href="Viewusers?page=${currentPage+1}">${currentPage+1}</a></li>
+			</c:if>
+			<c:if test="${currentPage < lastPage - 1}">
+				<li><a
+					href="Viewusers?page=${currentPage+2}">${currentPage+2}</a></li>
+			</c:if>
 			<li><a
-				href="<%= request.getContextPath() %>/Viewusers?page=${lastPage}">
+				href="Viewusers?page=${lastPage}">
 					Last Page </a></li>
 		</ul>
 	</nav>
 	<br />
 	<a href="Adduserform">Add New User</a>
-
 	<script src="assets/jquery-3.2.1.min.js"></script>
 	<script src="assets/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 </body>
