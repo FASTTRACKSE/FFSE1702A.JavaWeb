@@ -28,11 +28,9 @@ if(lang!=null){
 				</button>
 				<ul class="dropdown-menu">
 					<li><a href="DaNgonNgu?lang=Vietnamese<%if(request.getParameter("page")!=null){
-						out.print("&page="+request.getParameter("page").toString());
+						out.print("&page="+request.getAttribute("page"));
 					}%>">Vietnamese</a></li>
-					<li><a href="DaNgonNgu?lang=English<%if(request.getParameter("page")!=null){
-						out.print("&page="+request.getParameter("page").toString());
-					}%>">English</a></li>
+					<li><a href="DaNgonNgu?lang=English">English</a></li>
 
 				</ul>
 			</div>
