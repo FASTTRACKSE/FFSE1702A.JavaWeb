@@ -1,4 +1,4 @@
-package con.ffse.controller;
+package com.ffse.controller;
 
 import java.io.IOException;
 import java.sql.ResultSet;
@@ -8,35 +8,38 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import con.ffse.model.DBUser_Model;
 
-@WebServlet("/AddUser")
-public class AddUser extends HttpServlet {
+import com.ffse.model.DBStudent_Model;
+
+@WebServlet("/EditStudent")
+public class EditStudent extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-    public AddUser() {
+    public EditStudent() {
         super();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		request.setAttribute("addResult", 0);
-		if(request.getParameter("adduser") != null) {
-			String userCode = request.getParameter("usercode");
-			String userName = request.getParameter("username");
-			String sex = request.getParameter("sex");
+		request.setAttribute("editResult", 0);
+		String id = request.getParameter("id");
+		DBStudent_Model dbUser = new DBStudent_Model();
+		ResultSet result = dbUser.getUser(id);
+		request.setAttribute("viewUser", result);
+		if(request.getParameter("update") != null) {
+			String UserCode = request.getParameter("Usercode");
+			String UserName = request.getParameter("Username");
 			String addr = request.getParameter("address");
 			String email = request.getParameter("email");
 			String classes = request.getParameter("class");
-			DBUser_Model dbUser = new DBUser_Model();
-			int x = dbUser.addUser(userCode, userName, sex, addr, email, classes);
-			request.setAttribute("addResult", x);
+			int x = dbUser.editUser(UserCode, UserName, addr, email, classes, id);
+			request.setAttribute("editResult", x);
 		} else if(request.getParameter("cancel") != null) {
-			String site = new String("http://localhost:8080/FFSE1702011/DisplayUser");
+			String site = new String("http://localhost:8080/StudentManagement/DisplayStudent");
 			response.setStatus(response.SC_MOVED_TEMPORARILY);
 			response.setHeader("Location", site);
 		}
-		request.getRequestDispatcher("AddUser.jsp").forward(request, response);
+		request.getRequestDispatcher("EditStudent.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

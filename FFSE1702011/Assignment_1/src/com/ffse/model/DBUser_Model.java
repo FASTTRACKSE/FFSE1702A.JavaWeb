@@ -1,4 +1,4 @@
-package con.ffse.model;
+package com.ffse.model;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

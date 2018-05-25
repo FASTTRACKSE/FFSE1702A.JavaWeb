@@ -1,4 +1,4 @@
-package con.ffse.controller;
+package com.ffse.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import con.ffse.model.DBUser_Model;
+import com.ffse.model.DBUser_Model;
 
 @WebServlet("/DelUser")
 public class DelUser extends HttpServlet {
