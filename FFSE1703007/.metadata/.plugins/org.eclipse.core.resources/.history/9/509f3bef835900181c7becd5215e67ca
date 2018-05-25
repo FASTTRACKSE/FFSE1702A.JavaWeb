@@ -1,0 +1,16 @@
+<%@page import="crud.dao.UserDao"%>
+<jsp:useBean id="u" class="crud.bean.User"></jsp:useBean>
+<jsp:setProperty property="*" name="u" />
+
+<%
+	int i = UserDao.save(u);
+	if (i > 0) {
+		response.setContentType("text/html");
+		RequestDispatcher rd = request.getRequestDispatcher("adduser-success.jsp");
+		rd.forward(request, response);
+	} else {
+		response.setContentType("text/html");
+		RequestDispatcher rd = request.getRequestDispatcher("adduser-error.jsp");
+		rd.forward(request, response);
+	}
+%>

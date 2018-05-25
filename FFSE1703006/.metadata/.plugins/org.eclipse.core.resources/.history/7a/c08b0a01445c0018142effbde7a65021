@@ -1,0 +1,14 @@
+users_list = Danh sách user
+add_new_user = Add new user
+username = Tên \u0111\u0103ng nh\u1EADp
+password = Password
+sex = Sex
+male = Male
+female = Female
+country = Country
+action = Action
+first_page = Trang \u0111\u1EA7u
+last_page = Trang cu\u1ED1i
+choose = L\u01B\u1EF1a ch\u1ECDn
+submit = G\u01B\u1EEDi
+cancel = H\u1EE7y

@@ -1,0 +1,7 @@
+127.0.0.1 - - [21/May/2018:09:12:06 +0700] "GET / HTTP/1.1" 404 1073
+0:0:0:0:0:0:0:1 - - [21/May/2018:09:12:07 +0700] "GET /Demo/UserController HTTP/1.1" 200 6978
+0:0:0:0:0:0:0:1 - - [21/May/2018:11:14:23 +0700] "GET /Demo/UserController?lang=vi HTTP/1.1" 200 7021
+0:0:0:0:0:0:0:1 - - [21/May/2018:11:14:30 +0700] "GET /Demo/UserController?lang=en HTTP/1.1" 200 6978
+0:0:0:0:0:0:0:1 - - [21/May/2018:11:15:04 +0700] "GET /Demo/UserController?lang=en&action=edit&userId=1 HTTP/1.1" 200 2577
+0:0:0:0:0:0:0:1 - - [21/May/2018:11:15:06 +0700] "GET /Demo?lang=en HTTP/1.1" 302 -
+0:0:0:0:0:0:0:1 - - [21/May/2018:11:15:06 +0700] "GET /Demo/?lang=en HTTP/1.1" 200 6978

@@ -1,0 +1,14 @@
+users_list = Danh sách user
+add_new_user = Thêm m\u1EDBi user
+username = Tên \u0111\u0103ng nh\u1EADp
+password = Password
+sex = Sex
+male = Nam
+female = Female
+country = Country
+action = Action
+first_page = First Page
+last_page = Last Page
+choose = Choose
+submit = Submit
+cancel = Cancel
