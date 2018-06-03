@@ -9,12 +9,14 @@
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="" key="selection"/>
+		<item value="&lt;c:out value=&quot;${pageContext.request.contextPath}&quot; /&gt;" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="&lt;%= request.getContextPath() %&gt;"/>
+			<item value="UserController"/>
 			<item value="UserModel"/>
 			<item value="userDAO"/>
 			<item value="Listuser"/>
@@ -24,12 +26,13 @@
 			<item value="getConnection"/>
 		</list>
 		<list key="replacehistory">
+			<item value="&lt;c:out value=&quot;${pageContext.request.contextPath}&quot; /&gt;"/>
+			<item value="user"/>
 			<item value="UserDAO"/>
 			<item value="ListUser"/>
 			<item value="listuser"/>
 			<item value="list"/>
 			<item value="index"/>
-			<item value="user"/>
 			<item value="userDAO"/>
 			<item value="ConnectDB.getConnect"/>
 		</list>
