@@ -1,10 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html>
 <%@ page import="net.roseindia.bean.UserBean"%>
 <%@ page import="net.roseindia.dao.UserDao"%>
 <%@ page import="java.util.*"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>  
+<c:choose>
+    <c:when test="${not empty param.theLocale}">
+        <c:set var="theLocale" value="${param.theLocale}" scope="session" /> 
+    </c:when>    
+    <c:otherwise>
+		<c:if test="${empty theLocale}">
+		    <c:set var="theLocale" value="${pageContext.request.locale}" scope="session" />
+		</c:if>
+    </c:otherwise>
+</c:choose>
+
+<fmt:setLocale value="${theLocale}" />
+
+<fmt:setBundle basename="myLanguages.myLanguage" />
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
@@ -88,18 +103,18 @@ margin-bottom: 20px;
 		//Iterator<UserBean> itr = userList.iterator();
 	%>
 	<h1>
-		Users List: <a href="UserHandler?action=insert"><input
+		<fmt:message key="title"/> <a href="UserHandler?action=insert"><input
 			style="font-size: 20px; color: white; text-align: center; background-color: limegreen;"
-			type="submit" value="Add New User" readonly /></a>
+			type="submit" value="<fmt:message key="add"/>" readonly /></a>
 	</h1>
 	<table>
 		<tr>
 			<th>ID</th>
-			<th>Fist Name</th>
-			<th>Last Name</th>
-			<th>Age</th>
-			<th>Gender</th>
-			<th>Action</th>
+			<th><fmt:message key="firstname"/></th>
+			<th><fmt:message key="lastname"/></th>
+			<th><fmt:message key="age"/></th>
+			<th><fmt:message key="gender"/></th>
+			<th><fmt:message key="action"/></th>
 		</tr>
 		<tr>
 		<c:forEach items="${users}" var="u">
@@ -139,14 +154,15 @@ margin-bottom: 20px;
 	</div>
 	<div style="text-align: left; margin-left:40px;">
 	<h1>
-		Language: 
+		<fmt:message key="select"/> 
 		<!-- <a href="#"><input style="font-size: 20px; color: white; text-align: center; background-color: limegreen;width:140px" type="text" value="Language" readonly /></a> -->
-			 <select name="lang">
- 		 <option value="English">English</option>
- 		 <option value="Vietnamese">Tiếng Việt</option>
+	 <select onchange="location = this.value;">
+		 <option value="" disabled selected hidden><fmt:message key="language"/></option>
+	 	<option value="<%= request.getContextPath() %>/UserHandler?action=listUser&page=${currentPage}&theLocale=vi_VN"><fmt:message key="vi_VN"/></option>
+ 		<option value="<%= request.getContextPath() %>/UserHandler?action=listUser&page=${currentPage}&theLocale=en_US"><fmt:message key="en_US"/></option>
 	</select><br><br>
-		
 	</h1>
 	</div>
+
 </body>
 </html>
