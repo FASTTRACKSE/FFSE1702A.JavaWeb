@@ -62,6 +62,7 @@ public class UserHandler extends HttpServlet {
         	dao.addUser(user);
         	List<UserBean> list = UserDao.getRecords(start, total);
  			request.setAttribute("users", list);  
+ 			redirect = UserRecord;
            	System.out.println("Record Added Successfully");
         }
         else if (action.equalsIgnoreCase("delete")){
@@ -92,7 +93,6 @@ public class UserHandler extends HttpServlet {
          } else if (action == null || action.equalsIgnoreCase("listUser")) {
  			List<UserBean> list = UserDao.getRecords(start, total);
  			request.setAttribute("users", list);
-
  			redirect = UserRecord;
          } else {
             redirect = INSERT;
