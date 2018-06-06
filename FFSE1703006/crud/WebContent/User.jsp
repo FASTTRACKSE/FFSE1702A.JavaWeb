@@ -10,13 +10,7 @@
 
 <body>
 	<div class="container">
-		<c:if test="${user != null}">
-			<c:set var="action" value="do_update?id=${user.id}" />
-		</c:if>
-		<c:if test="${user == null}">
-			<c:set var="action" value="do_add" />
-		</c:if>
-		<form action="<c:out value="${action}" />" method='POST' enctype="multipart/form-data">
+		<form action="" method='POST' enctype="multipart/form-data">
 		  <div class="form-group">
 		    <h5><fmt:message key="username"/></h5>
 		    <input type="text" class="form-control" name="username" value="<c:out value="${user.name}" />" required>
