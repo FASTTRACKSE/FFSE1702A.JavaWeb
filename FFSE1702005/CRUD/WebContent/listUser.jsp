@@ -121,6 +121,7 @@ margin-bottom: 20px;
 			<th><fmt:message key="lastname"/></th>
 			<th><fmt:message key="age"/></th>
 			<th><fmt:message key="gender"/></th>
+			<th><fmt:message key="image"/></th>
 			<th><fmt:message key="action"/></th>
 		</tr>
 		<tr>
@@ -131,6 +132,7 @@ margin-bottom: 20px;
 						<td>${u.getlName()}</td>
 						<td>${u.getage()}</td>
 						<td>${u.getgender()}</td>
+						<td><img src="<c:out value="${pageContext.request.contextPath}" />/upload/UsersPCPicturesRyan.png" height="100" width="150"></td>
 						<td><a
 				href="UpdateUser?action=editform&userId=${u.getId()}"><img
 					src="https://png.icons8.com/windows/1600/0063B1/edit"
