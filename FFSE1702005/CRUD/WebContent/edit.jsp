@@ -29,7 +29,7 @@ option {
 <%
 	UserDao dao = new UserDao();
 %>
-  <form method="POST" action='UserHandler' name="frmEditUser"><input
+  <form method="POST" action='UpdateUser' name="frmEditUser" enctype="multipart/form-data"><input
 	type="hidden" name="action" value="edit" /> <%
  	String uid = request.getParameter("userId");
  	if (!((uid) == null)) {
@@ -50,7 +50,9 @@ option {
     	 <option value="" disabled selected hidden><%=user.getgender()%></option>
  		 <option value="Male">Male</option>
  		 <option value="Female">Female</option>
-	</select><br><br>
+	</select><br>
+	<h2>Image</h2>
+        <input type="file" name="uploadFile"><br><br>
         <input style="font-size: 20px ; color: white ;text-align: center;background-color:#5caceb;width:100px;" type = "submit" value="Submit" name="Submit"/>
         <a href="ListUsers?action=listUser"><input style="font-size: 20px ; color: black ;text-align: center;background-color: white;width:100px;border-width:0.5px;border-color:lightgray"  value="Cancel" type = "button" readonly/></a>
     </form>

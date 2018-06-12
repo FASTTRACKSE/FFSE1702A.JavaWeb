@@ -12,7 +12,7 @@
 <body style="margin-left:50px;">
     <h1 style="border-bottom: 0.5px solid;padding-bottom:30px;border-color:lightgray;">Create New User</h1>
     <p style=" font-size:20px;">Please fill this form and submit to add new user record to the database</p>
-<form method="POST" action='UserHandler' name="frmAddUser"><input
+<form method="POST" action='AddUser' name="frmAddUser"><input
 	type="hidden" name="action" value="insert" />
     <h2>ID</h2>
         <input type="text" name="userid" style="width:300px;" placeholder=" Nhập ID" required/><br>  

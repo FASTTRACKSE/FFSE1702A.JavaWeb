@@ -34,6 +34,7 @@ public class UserDao {
             ps.setString(5, userBean.getgender());
             ps.executeUpdate();
    
+       
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
