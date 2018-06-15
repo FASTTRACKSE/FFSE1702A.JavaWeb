@@ -161,15 +161,15 @@ margin-bottom: 20px;
 					</c:if>
 					<a class="page" href="<%= request.getContextPath() %>/ListUsers?action=listUser&page=${lastPage}"><fmt:message key="end"/></a>		
 	</div>
-	<a href="<%= request.getContextPath() %>/ListUsers?action=listUser&page=${currentPage}&theLocale=vi_VN"><img src="assets/flags/blank.gif" class="flag flag-vn" alt="Tiếng Việt" /></a>
-	<a href="<%= request.getContextPath() %>/ListUsers?action=listUser&page=${currentPage}&theLocale=en_US"><img src="assets/flags/blank.gif" class="flag flag-us" alt="English" /></a>
+	<a href="<%= request.getContextPath() %>/ListUsers?action=listUser&theLocale=vi_VN"><img src="assets/flags/blank.gif" class="flag flag-vn" alt="Tiếng Việt" /></a>
+	<a href="<%= request.getContextPath() %>/ListUsers?action=listUser&theLocale=en_US"><img src="assets/flags/blank.gif" class="flag flag-us" alt="English" /></a>
 	<div style="text-align: left; margin-left:40px;">
 	<h1>
 		<fmt:message key="select"/> 
 	 <select onchange="location = this.value;">
 		<option value="" disabled selected hidden><fmt:message key="language"/></option>
-	 	<option style="img:url(https://static.appvn.com/a/uploads/thumbnails/092017/oreo-8-icon-pack_icon.png);width: 30px;" value="<%= request.getContextPath() %>/ListUsers?action=listUser&page=${currentPage}&theLocale=vi_VN"><fmt:message key="vi_VN"/></option>
- 		<option value="<%= request.getContextPath() %>/ListUsers?action=listUser&page=${currentPage}&theLocale=en_US"><fmt:message key="en_US"/></option>
+	 	<option value="<%= request.getContextPath() %>/ListUsers?action=listUser&theLocale=vi_VN"><fmt:message key="vi_VN"/></option>
+ 		<option value="<%= request.getContextPath() %>/ListUsers?action=listUser&theLocale=en_US"><fmt:message key="en_US"/></option>
 	</select><br><br>
 	</h1>
 	</div>
