@@ -36,7 +36,7 @@
 	<title>Thêm Sinh viên</title>
 </head>
 <body>
-	<form method = "post">
+	<form method = "post" enctype="multipart/form-data" action="">
 		<table>
         <tr>
             <td>Mã SV:</td>
@@ -53,6 +53,10 @@
 				<input type='radio' name='sex' value='Nữ'/>Nữ
             </td>
         </tr>
+        <tr>
+		    <td>Chọn hình ảnh: </td>
+		    <td><input type="file" name="photo" size="50"/></td>
+	  	</tr>
         <tr>
             <td>Địa chỉ:</td>
             <td><input type="text" name="address"></td>
@@ -79,17 +83,4 @@
     </table>
 	</form>
 </body>
-	<%
-		int addResult = (int) request.getAttribute("addResult");
-		if(addResult > 0) {
-	%>
-			<h2 style = "color: red;"><%out.println("Bạn đã thêm thành công!");%></h2>
-			<META http-equiv="refresh" content="1;URL=DisplayUser">
-	<%
-		} else if(addResult < 0) {
-	%>
-			<h2 style = "color: red;"><%out.println("Thêm thất bại!");%></h2>
-	<%
-		}
-	%>
 </html>
