@@ -1,0 +1,5 @@
+package bean.copy;
+
+public class UserBean {
+
+}

@@ -149,7 +149,7 @@
              Note: The pattern used is equivalent to using pattern="common" -->
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
 
-      <Context docBase="C:\Users\Nam\Documents\GitHub\FFSE1702A.JavaWeb\FFSE1703007\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\ROOT" path="" reloadable="false"/><Context docBase="C:\Users\Nam\Documents\GitHub\FFSE1702A.JavaWeb\FFSE1703007\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\demo" path="/demo" reloadable="true" source="org.eclipse.jst.jee.server:demo"/></Host>
+      <Context docBase="C:\Users\nam\eclipse-workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\ROOT" path="" reloadable="false"/><Context docBase="C:\Users\nam\eclipse-workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\demo" path="/demo" reloadable="true" source="org.eclipse.jst.jee.server:demo"/><Context docBase="C:\Users\nam\eclipse-workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\demo-jsf" path="/demo-jsf" reloadable="true" source="org.eclipse.jst.jee.server:demo-jsf"/></Host>
     </Engine>
   </Service>
 </Server>
