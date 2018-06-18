@@ -23,6 +23,7 @@
 <html>
 <head>
 <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+<link href="assets/flags/flags.css" rel=stylesheet type="text/css">
 <title>All User</title>
 <style>
 input {
@@ -93,6 +94,12 @@ margin-bottom: 20px;
     color: #f0f0f0;
     text-shadow: 0px 0px 3px rgba(0,0,0, .5);
 }
+	select.icon-menu option {
+	background-repeat:no-repeat;
+	background-position:bottom left;
+	padding-left:30px;
+	}
+
 </style>
 </head>
 <body style="text-align: center">
@@ -109,11 +116,12 @@ margin-bottom: 20px;
 	</h1>
 	<table>
 		<tr>
-			<th>ID</th>
+			<th><fmt:message key="id"/></th>
 			<th><fmt:message key="firstname"/></th>
 			<th><fmt:message key="lastname"/></th>
 			<th><fmt:message key="age"/></th>
 			<th><fmt:message key="gender"/></th>
+			<th><fmt:message key="image"/></th>
 			<th><fmt:message key="action"/></th>
 		</tr>
 		<tr>
@@ -124,6 +132,7 @@ margin-bottom: 20px;
 						<td>${u.getlName()}</td>
 						<td>${u.getage()}</td>
 						<td>${u.getgender()}</td>
+						<td><img src="<c:out value="${pageContext.request.contextPath}" />/upload/UsersPCPicturesRyan.png" height="100" width="150"></td>
 						<td><a
 				href="UpdateUser?action=editform&userId=${u.getId()}"><img
 					src="https://png.icons8.com/windows/1600/0063B1/edit"
@@ -139,7 +148,7 @@ margin-bottom: 20px;
 
 	</table>
 	<div class="pagination">
-					<a class="page" href="<%=request.getContextPath() %>/ListUsers?action=listUser&page=1">Start</a>
+					<a class="page" href="<%=request.getContextPath() %>/ListUsers?action=listUser&page=1"><fmt:message key="start"/></a>
 					<c:if test="${currentPage != 1}">
 					<a class="page" href="<%= request.getContextPath() %>/ListUsers?action=listUser&page=${currentPage-1}">${currentPage-1}</a>
 					</c:if>
@@ -150,16 +159,17 @@ margin-bottom: 20px;
 					<c:if test="${lastPage - currentPage >=2}">				
 					<a class="page" href="<%= request.getContextPath() %>/ListUsers?action=listUser&page=${currentPage+2}">${currentPage+2}</a>				
 					</c:if>
-					<a class="page" href="<%= request.getContextPath() %>/ListUsers?action=listUser&page=${lastPage}">End</a>		
+					<a class="page" href="<%= request.getContextPath() %>/ListUsers?action=listUser&page=${lastPage}"><fmt:message key="end"/></a>		
 	</div>
+	<a href="<%= request.getContextPath() %>/ListUsers?action=listUser&theLocale=vi_VN"><img src="assets/flags/blank.gif" class="flag flag-vn" alt="Tiếng Việt" /></a>
+	<a href="<%= request.getContextPath() %>/ListUsers?action=listUser&theLocale=en_US"><img src="assets/flags/blank.gif" class="flag flag-us" alt="English" /></a>
 	<div style="text-align: left; margin-left:40px;">
 	<h1>
 		<fmt:message key="select"/> 
-		<!-- <a href="#"><input style="font-size: 20px; color: white; text-align: center; background-color: limegreen;width:140px" type="text" value="Language" readonly /></a> -->
 	 <select onchange="location = this.value;">
-		 <option value="" disabled selected hidden><fmt:message key="language"/></option>
-	 	<option value="<%= request.getContextPath() %>/ListUsers?action=listUser&page=${currentPage}&theLocale=vi_VN"><fmt:message key="vi_VN"/></option>
- 		<option value="<%= request.getContextPath() %>/ListUsers?action=listUser&page=${currentPage}&theLocale=en_US"><fmt:message key="en_US"/></option>
+		<option value="" disabled selected hidden><fmt:message key="language"/></option>
+	 	<option value="<%= request.getContextPath() %>/ListUsers?action=listUser&theLocale=vi_VN"><fmt:message key="vi_VN"/></option>
+ 		<option value="<%= request.getContextPath() %>/ListUsers?action=listUser&theLocale=en_US"><fmt:message key="en_US"/></option>
 	</select><br><br>
 	</h1>
 	</div>

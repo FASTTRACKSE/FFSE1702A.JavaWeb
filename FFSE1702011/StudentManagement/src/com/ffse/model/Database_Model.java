@@ -2,7 +2,6 @@ package com.ffse.model;
 
 import java.sql.*;
 
-import javax.security.auth.message.callback.PrivateKeyCallback.Request;
 
 public class Database_Model {
 	Connection conn;

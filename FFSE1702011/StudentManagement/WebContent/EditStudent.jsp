@@ -48,36 +48,34 @@
 	<title>Chỉnh sửa</title>
 </head>
 <body>
-	<%
-	Student viewStudent = (Student) request.getAttribute("viewStudent");
-	%>
+	<h2>${err}</h2>
 	<form method="post">
     <table>
         <tr>
             <td>Mã SV:</td>
-            <td><input type="text" name="usercode"  value="<%=viewStudent.getMaSV() %>"></td>
+            <td><input type="text" name="usercode"  value="${viewStudent.maSV }"></td>
         </tr>
         <tr>
             <td>Tên SV:</td>
-            <td><input type="text" name="username"  value="<%=viewStudent.getTenSV() %>"></td>
+            <td><input type="text" name="username"  value="${viewStudent.tenSV }"></td>
         </tr>
         <tr>
             <td>Địa chỉ:</td>
-            <td><input type="text" name="address"  value="<%=viewStudent.getDiaChi() %>"></td>
+            <td><input type="text" name="address"  value="${viewStudent.diaChi }"></td>
         </tr>
         <tr>
             <td>Email:</td>
-            <td><input type="text" name="email" value="<%=viewStudent.getEmail() %>"></td>
+            <td><input type="text" name="email" value="${viewStudent.email }"></td>
         </tr>
         <tr>
             <td>Lớp:</td>
             <td>
-            	<%String classes = viewStudent.getLop(); %>
+            	
 				<select id="classId" name="class">
-            		<option value="FFSE1701" <%if(classes.equals("FFSE1701")) { %>selected<% } %>>FFSE1701</option>
-            		<option value="FFSE1702" <%if(classes.equals("FFSE1702")) { %>selected<% } %>>FFSE1702</option>
-            		<option value="FFSE1703" <%if(classes.equals("FFSE1703")) { %>selected<% } %>>FFSE1703</option>
-            		<option value="FFSE1704" <%if(classes.equals("FFSE1704")) { %>selected<% } %>>FFSE1704</option>
+            		<option value="FFSE1701" <c:if test="${viewStudent.lop == 'FFSE1701'}">selected</c:if>>FFSE1701</option>
+            		<option value="FFSE1702" <c:if test="${viewStudent.lop == 'FFSE1702'}">selected</c:if>>FFSE1702</option>
+            		<option value="FFSE1703" <c:if test="${viewStudent.lop == 'FFSE1703'}">selected</c:if>>FFSE1703</option>
+            		<option value="FFSE1704" <c:if test="${viewStudent.lop == 'FFSE1704'}">selected</c:if>>FFSE1704</option>
             	</select>
 			</td>
         </tr>
@@ -88,17 +86,4 @@
     </table>
   </form>
 </body>
-	<%-- <%
-		int editResult = (int) request.getAttribute("viewStudent");
-		if(editResult > 0) {
-	%>
-			<h2 style = "color: red;"><%out.println("Bạn đã chỉnh sửa thành công!");%></h2>
-			<META http-equiv="refresh" content="1;URL=list">
-	<%
-		} else if(editResult < 0) {
-	%>
-			<h2 style = "color: red;"><%out.println("Chỉnh sửa thất bại!");%></h2>
-	<%
-		}
-	%> --%>
 </html>

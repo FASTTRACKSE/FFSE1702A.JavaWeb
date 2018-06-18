@@ -41,33 +41,30 @@
 	<title>Thông tin sinh viên</title>
 </head>
 <body>
-	<%
-	Student viewStudent = (Student) request.getAttribute("viewStudent");
-	%>
 	<table style="margin-bottom: 20px;">
     	<tr>
     		<th>Mã SV</th>
-    		<td><%=viewStudent.getMaSV() %></td>
+    		<td>${viewStudent.maSV }</td>
     	</tr>
     	<tr>
     		<th>Tên SV</th>
-    		<td><%=viewStudent.getTenSV() %></td>
+    		<td>${viewStudent.tenSV }</td>
     	</tr>
     	<tr>
     		<th>Giới tính</th>
-    		<td><%=viewStudent.getGioiTinh() %></td>
+    		<td>${viewStudent.gioiTinh }</td>
     	</tr>
     	<tr>
     		<th>Địa chỉ</th>
-    		<td><%=viewStudent.getDiaChi() %></td>
+    		<td>${viewStudent.diaChi }</td>
     	</tr>
     	<tr>
     		<th>Email</th>
-    		<td><%=viewStudent.getEmail() %></td>
+    		<td>${viewStudent.email }</td>
     	</tr>
     	<tr>
     		<th>Lớp</th>
-    		<td><%=viewStudent.getLop() %></td>
+    		<td>${viewStudent.lop }</td>
     	</tr>
     </table>
    	<a style="background-color: #3c8dbc; border-radius: 5px; padding: 10px 15px; color:#fff; border: 1px solid #fff;" href="list"><span class="glyphicon glyphicon-arrow-left"></span></a>

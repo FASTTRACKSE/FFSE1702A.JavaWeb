@@ -1,24 +1,31 @@
 package controller.user;
 
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 
 import model.dao.UserDao;
 import model.bean.UserBean;
 
 @WebServlet("/UpdateUser")
+@MultipartConfig
 public class UpdateUser extends HttpServlet {
-	private static String INSERT = "/user.jsp";
 	private static String Edit = "/edit.jsp";
 	private static String UserRecord = "/listUser.jsp";
 	private UserDao dao;
+
+	private static final long serialVersionUID = 1L;
+	private static final String SAVE_DIR = "upload";
 
 	public UpdateUser() {
 		super();
@@ -45,7 +52,7 @@ public class UpdateUser extends HttpServlet {
 		}
 		int lastPage = (UserDao.countRecords() / total) + 1;
 		request.setAttribute("currentPage", startid);
-		request.setAttribute("lastPage", lastPage);
+		request.setAttribute("lastPage", lastPage);		
 
 		if (action.equalsIgnoreCase("editform")) {
 			redirect = Edit;
@@ -60,16 +67,37 @@ public class UpdateUser extends HttpServlet {
 			user.setage(age);
 			user.setgender(request.getParameter("gender"));
 			dao.editUser(user);
+			doAdd(request, response);
 			List<UserBean> list = UserDao.getRecords(start, total);
 			request.setAttribute("users", list);
 			redirect = UserRecord;
 			System.out.println("Record updated Successfully");
-		} else {
-			redirect = INSERT;
 		}
 
 		RequestDispatcher rd = request.getRequestDispatcher(redirect);
 		rd.forward(request, response);
+	}
+	
+	private void doAdd(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+		
+		// gets absolute path of the web application
+				String appPath = request.getServletContext().getRealPath("");
+
+				// constructs path of the directory to save uploaded file
+				String savePath = appPath + File.separator + SAVE_DIR;
+				System.out.println(savePath);
+
+				// creates the save directory if it does not exists
+				File fileSaveDir = new File(savePath);
+				if (!fileSaveDir.exists()) {
+					fileSaveDir.mkdir();
+				}
+
+				Part filePart = request.getPart("uploadFile");
+				String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
+
+				filePart.write(savePath + File.separator + fileName);
+
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

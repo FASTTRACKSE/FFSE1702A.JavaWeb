@@ -1,10 +1,6 @@
 package controller.user;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -33,8 +29,6 @@ public class ListUsers extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
 		String redirect = "";
-		String uId = request.getParameter("userid");
-		String uAge = request.getParameter("age");
 		String action = request.getParameter("action");
 
 		String startid = request.getParameter("page");

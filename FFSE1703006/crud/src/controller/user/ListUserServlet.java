@@ -47,6 +47,7 @@ public class ListUserServlet extends HttpServlet {
 		List<User> listUser = userDAO.getRecords(search, pageid, total);
 		request.setAttribute("listUser", listUser);
 
+		// tổng - (số trang * 10) | nếu > 0 thì + 1 (ép kiểu double)
 		int lastPage = Math.round(userDAO.countRecords(search) / total) + 1;
 		request.setAttribute("currentPage", spageid);
 		request.setAttribute("lastPage", lastPage);

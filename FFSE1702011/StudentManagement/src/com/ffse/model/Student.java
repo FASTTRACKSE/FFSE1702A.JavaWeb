@@ -8,16 +8,10 @@ public class Student {
 	private String diaChi;
 	private String email;
 	private String lop;
-	
+	private String hinhAnh;
+
 	public Student() {
 		super();
-		this.id = id;
-		this.maSV = maSV;
-		this.tenSV = tenSV;
-		this.gioiTinh = gioiTinh;
-		this.diaChi = diaChi;
-		this.email = email;
-		this.lop = lop;
 	}
 
 	public int getId() {
@@ -63,5 +57,11 @@ public class Student {
 		this.lop = lop;
 	}
 	
-	
+	public String getHinhAnh() {
+		return hinhAnh;
+	}
+
+	public void setHinhAnh(String hinhAnh) {
+		this.hinhAnh = hinhAnh;
+	}
 }

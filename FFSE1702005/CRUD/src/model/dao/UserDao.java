@@ -4,11 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-
-import org.apache.tomcat.jni.User;
 
 import model.bean.UserBean;
 import model.connection.ConnectionProvider;
@@ -34,6 +31,7 @@ public class UserDao {
             ps.setString(5, userBean.getgender());
             ps.executeUpdate();
    
+       
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
