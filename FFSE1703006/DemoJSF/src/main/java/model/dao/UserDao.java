@@ -41,6 +41,7 @@ public class UserDao {
 	}
 
 	public List<User> getAllRecords() {
+		System.out.println("get data");
 		List<User> list = new ArrayList<User>();
 
 		try {
@@ -157,4 +158,42 @@ public class UserDao {
 		return "/usersList.xhtml?faces-redirect=true";
 	}
 
+	public int countRecords() {
+		try {
+			connect();
+			PreparedStatement ps = jdbcConnection.prepareStatement("select count(*) from testcrud");
+			ResultSet rs = ps.executeQuery();
+			rs.next();
+			int count = rs.getInt("count(*)");
+			disconnect();
+			return count;
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return 0;
+	}
+
+	public List<User> getRecords(int start, int total) {
+		List<User> list = new ArrayList<User>();
+		try {
+			connect();
+			PreparedStatement ps = jdbcConnection
+					.prepareStatement("select * from testcrud limit " + (start) + "," + total);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				User u = new User();
+				u.setId(rs.getString("id"));
+				u.setName(rs.getString("name"));
+				u.setPassword(rs.getString("password"));
+				u.setEmail(rs.getString("email"));
+				u.setSex(rs.getString("sex"));
+				u.setCountry(rs.getString("country"));
+				list.add(u);
+			}
+			disconnect();
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return list;
+	}
 }
