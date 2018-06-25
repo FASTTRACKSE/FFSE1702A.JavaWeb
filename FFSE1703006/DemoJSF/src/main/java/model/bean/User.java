@@ -1,39 +1,75 @@
 package model.bean;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 
+import model.bo.Paginator;
 import model.dao.UserDao;
 
 @SuppressWarnings("restriction")
 @ManagedBean
-@RequestScoped
-public class User {
+@SessionScoped
+public class User implements Serializable {
+	private static final long serialVersionUID = 1L;
 	private String id, name, password, email, sex, country;
 	private List<User> usersList;
 
 	@ManagedProperty(value = "#{userDao}")
 	private UserDao userDao;
 
+	@ManagedProperty(value = "#{paginator}")
+	private Paginator paginator;
+
 	@PostConstruct
 	public void init() {
-		usersList = userDao.getAllRecords();
+		int countRecords = userDao.countRecords();
+		paginator.setUserList(countRecords);
+		setUsersList();
 	}
 
 	public List<User> usersList() {
 		return usersList;
 	}
 
+	// Pagination
+	public void next() {
+		paginator.next();
+		setUsersList();
+	}
+
+	public void prev() {
+		paginator.prev();
+		setUsersList();
+	}
+
+	public void firstPage() {
+		paginator.firstPage();
+		setUsersList();
+	}
+
+	public void lastPage() {
+		paginator.lastPage();
+		setUsersList();
+	}
+
+	public void setUsersList() {
+		this.usersList = userDao.getRecords(paginator.getFromIndex(), paginator.getRecords());
+	}
+
+	// CRUD
 	public String returnIndex() {
 		return "/usersList.xhtml?faces-redirect=true";
 	}
 
 	public String addUser(User u) {
-		return userDao.addUser(u);
+		String rs = userDao.addUser(u);
+		init();
+		return rs;
 	}
 
 	public String showUpdateUser(String userId) {
@@ -41,7 +77,9 @@ public class User {
 	}
 
 	public String doUpdateUser(User u) {
-		return userDao.doUpdateUser(u);
+		String rs = userDao.doUpdateUser(u);
+		init();
+		return rs;
 	}
 
 	public String deleteUser(String userId) {
@@ -117,4 +155,13 @@ public class User {
 	public void setUserDao(UserDao userDao) {
 		this.userDao = userDao;
 	}
+
+	public Paginator getPaginator() {
+		return paginator;
+	}
+
+	public void setPaginator(Paginator paginator) {
+		this.paginator = paginator;
+	}
+
 }
