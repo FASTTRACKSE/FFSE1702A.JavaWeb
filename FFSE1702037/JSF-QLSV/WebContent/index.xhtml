@@ -1,0 +1,65 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:h="http://java.sun.com/jsf/html" 
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+	<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1" http-equiv="X-UA-Conpatible" />
+	<title>Thêm mới</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css"></link>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js"></script>
+	 <style type="text/css">
+        .tableUpdated {
+        	width: 90% !important;
+        	margin: 17px 58px 0 !important;
+        }
+        .btnSpace {
+        	margin: 17px;
+        }     
+    </style>
+	</h:head>	
+	<h:body>
+		<center><h2><h:outputText value="Danh sách sinh viên"/></h2></center>
+		<h:form id="studentForm">
+			<h:dataTable id="studentTable"  value="#{studentBean.studentList()}" var="studentBean" class="table table-striped table-hover table-bordered tableUpdated">
+            <h:column>
+            	<f:facet name="header">ID</f:facet>
+            	<h:outputText value="#{studentBean.id}"/>
+            </h:column>
+            <h:column>
+            	<f:facet name="header">Name</f:facet>
+            	<h:outputText value="#{studentBean.name}"/>
+            </h:column>
+            <h:column>
+            	<f:facet name="header">Email</f:facet>
+            	<h:outputText value="#{studentBean.getEmail()}"/>
+            </h:column>
+            <h:column>
+            	<f:facet name="header">Password</f:facet>
+            	<h:outputText value="#{studentBean.password}"/>
+            </h:column>
+            <h:column>
+            	<f:facet name="header">Gender</f:facet>
+            	<h:outputText value="#{studentBean.gender}"/>
+            </h:column>
+            <h:column>
+            	<f:facet name="header">Address</f:facet>
+            	<h:outputText value="#{studentBean.address}"/>
+            </h:column>
+            <h:column>
+            	<f:facet name="edit">edit</f:facet>
+            	<h:commandButton action="#{studentBean.getById(studentBean.id)}" value="Edit" class="btn btn-primary"/>
+            </h:column>
+            <h:column>
+            	<f:facet name="header">Delete</f:facet>
+            	<h:commandButton action="#{studentBean.delete(studentBean.id)}" value="Delete" class="btn btn-danger"/>
+            </h:column>
+            </h:dataTable>
+            <center>
+            <h:commandButton action="create.xhtml?faces-redirect=true" value="Create" class="btn btn-success btnSpace" />
+        </center>
+		</h:form>
+	</h:body>
+</html>	

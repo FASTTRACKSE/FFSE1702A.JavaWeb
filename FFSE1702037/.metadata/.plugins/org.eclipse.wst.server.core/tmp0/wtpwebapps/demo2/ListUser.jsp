@@ -3,7 +3,7 @@
 	pageEncoding="UTF-8"%>
 <%@ page import="model.*,java.util.*"%>
 <%@ page import="java.util.Map"%>
-<%@ page import="java2.UserDao"%>
+<%@ page import="dao.UserDao"%>
 <%@ page import="java.util.HashMap"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <% Map<String,String> showLangguage = new UserDao().vietnameseLanguage();
@@ -49,6 +49,7 @@ if(lang!=null){
 					<th scope="col"><%= showLangguage.get("ListUser.Class") %></th>
 					<th scope="col"><%= showLangguage.get("ListUser.Sex") %></th>
 					<th scope="col"><%= showLangguage.get("ListUser.Country") %></th>
+					<th scope="col"><%= showLangguage.get("ListUser.Image") %></th>
 					<th scope="col"><%= showLangguage.get("ListUser.Action") %></th>
 				</tr>
 			</thead>
@@ -61,11 +62,12 @@ if(lang!=null){
 						<td>${u.getClassroom()}</td>
 						<td>${u.getSex()}</td>
 						<td>${u.getCountry()}</td>
+						<td><img src="images/${u.getImage()}" width="120" height="150"></td>
 						<th style="color: #377bb5; letter-spacing: 5px;"><a
 							href="UserController?lang=<%=request.getParameter("lang") %>&action=edit&userId=${u.getId()}"><i
 								class="fa fa-pencil"></i></a> <a
-							href="UserController?action=delete&userId=${u.getId()}"><i
-								class="fa fa-trash"></i></a></th>
+							href="UserController?action=delete&page=<%=request.getParameter("page") %>&userId=${u.getId()}"><i
+								class="fa fa-trash"></i></a> </th>
 					</tr>
 				</c:forEach>
 			</tbody>
