@@ -2,7 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page import="model.*,java.util.*"%>
-<%@ page import="java2.UserDao"%>
+<%@ page import="dao.UserDao"%>
 <% Map<String,String> showLangguage = new UserDao().vietnameseLanguage();
 	String lang =(String) request.getAttribute("lang");
 if(lang!=null){
@@ -15,7 +15,7 @@ if(lang!=null){
 %>
 <body>
 	<div class="container">
-		<form action="UserController" method='POST'>
+		<form action="UserController" method='POST'  enctype="multipart/form-data">
 		<% String action = request.getParameter("action"); 
 		// User u = (User) request.getAttribute("user");%>
 		<% if (action.equalsIgnoreCase("edit")) {%>
@@ -28,6 +28,10 @@ if(lang!=null){
 		  <div class="form-group">
 		    <h5><%= showLangguage.get("ListUser.Name") %></h5>
 		    <input type="text" class="form-control" name="username" value="<c:out value="${user.name}" />" required>
+		  </div>
+		  <div class="form-group">
+		    <h5><%= showLangguage.get("ListUser.Image") %></h5>
+		    <input type="file" class="form-control" name="userimage" value="<c:out value="${user.image}" />" required>
 		  </div>
 		  <div class="form-group">
 		    <h5><%= showLangguage.get("ListUser.Year") %></h5>
@@ -70,4 +74,3 @@ if(lang!=null){
 	</div>
 	
 </body>
-</html>

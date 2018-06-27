@@ -4,6 +4,7 @@ PLUGINS_NOT_ACTIVATED_ON_STARTUP=;org.eclipse.m2e.discovery;
 REMOTE_COMMANDS_VIEW_FONT=1|Consolas|12.0|0|WINDOWS|1|0|0|0|0|0|0|0|0|1|0|0|0|0|Consolas;
 com.essiembre.eclipse.rbe.ui.preferences.fontDefinition=1|Consolas|12.0|0|WINDOWS|1|0|0|0|0|0|0|0|0|1|0|0|0|0|Consolas;
 eclipse.preferences.version=1
+findBugsEclipsePlugin.consoleFont=1|Consolas|12.0|0|WINDOWS|1|0|0|0|0|0|0|0|0|1|0|0|0|0|Consolas;
 org.eclipse.compare.contentmergeviewer.TextMergeViewer=1|Consolas|12.0|0|WINDOWS|1|0|0|0|0|0|0|0|0|1|0|0|0|0|Consolas;
 org.eclipse.debug.ui.DetailPaneFont=1|Consolas|12.0|0|WINDOWS|1|0|0|0|0|0|0|0|0|1|0|0|0|0|Consolas;
 org.eclipse.debug.ui.MemoryViewTableFont=1|Consolas|12.0|0|WINDOWS|1|0|0|0|0|0|0|0|0|1|0|0|0|0|Consolas;

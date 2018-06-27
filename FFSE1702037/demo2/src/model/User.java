@@ -1,13 +1,13 @@
 package model;
 
 public class User {
-	private String id, name, year, classroom, sex, country;
+	private String id, name, year, classroom, sex, country,image;
 
 	public User() {
 		super();
 	}
 
-	public User(String id, String name, String year, String classroom, String sex, String country) {
+	public User(String id, String name, String year, String classroom, String sex, String country, String image) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -15,6 +15,7 @@ public class User {
 		this.classroom = classroom;
 		this.sex = sex;
 		this.country = country;
+		this.image = image;
 	}
 
 	public String getId() {
@@ -64,7 +65,13 @@ public class User {
 	public void setCountry(String country) {
 		this.country = country;
 	}
+	public String getImage() {
+		return image;
+	}
 
+	public void setImage(String image) {
+		this.image = image;
+	}
 	
 	
 }
