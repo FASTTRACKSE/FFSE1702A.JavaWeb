@@ -1,16 +1,20 @@
 package bean;
 
+import java.io.Serializable;
 import java.util.List;
 
-
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 
 import bean.dao.*;
+import bean.pagination.*;
 
 @ManagedBean
 @RequestScoped
-public class StudentBean {
+public class StudentBean implements Serializable {
+	private static final long serialVersionUID = 1L;
 	private int id;
 	private String name;
 	private String email;
@@ -18,15 +22,50 @@ public class StudentBean {
 	private String gender;
 	private String address;
 	private List<StudentBean> studentList;
-	private studentDao studentDao=new studentDao();
-	
 
+	@ManagedProperty(value = "#{studentDao}")
+	private studentDao studentDao;
+
+	@ManagedProperty(value = "#{pagination}")
+	private Pagination pagination;
+
+	@PostConstruct
+	public void init() {
+		int countRecords = studentDao.countRecords();
+		pagination.setStudentList(countRecords);
+		setStudentList();
+	}
 
 	public List<StudentBean> studentList() {
-	
-		studentList = studentDao.getAllRecords();
 		return studentList;
 	}
+
+	// Pagination
+	public void next() {
+		pagination.next();
+		setStudentList();
+	}
+
+	public void prev() {
+		pagination.prev();
+		setStudentList();
+	}
+
+	public void firstPage() {
+		pagination.firstPage();
+		setStudentList();
+	}
+
+	public void lastPage() {
+		pagination.lastPage();
+		setStudentList();
+	}
+
+	public void setStudentList() {
+		this.studentList = studentDao.getRecords(pagination.getFromIndex(), pagination.getRecords());
+	}
+
+	// CRUD
 
 	public String index() {
 		return "/index.xhtml?faces-redirect=true";
@@ -36,23 +75,23 @@ public class StudentBean {
 		return studentDao.addNew(u);
 	}
 
-	public String getById(String Id) {
+	public String getById(int Id) {
 		return studentDao.getById(Id);
-		
+
 	}
 
 	public String Update(StudentBean u) {
 		return studentDao.Update(u);
 	}
 
-	public String delete(String Id) {
-		return studentDao.deleteUser(Id);
+	public String delete(int Id) {
+		return studentDao.delete(Id);
 	}
 
 	public StudentBean() {
 		super();
 	}
-	
+
 	public StudentBean(int id, String name, String email, String password, String gender, String address) {
 		super();
 		this.id = id;
@@ -62,7 +101,6 @@ public class StudentBean {
 		this.gender = gender;
 		this.address = address;
 	}
-
 
 	public int getId() {
 		return id;
@@ -118,5 +156,13 @@ public class StudentBean {
 
 	public void setStudentDao(studentDao studentDao) {
 		this.studentDao = studentDao;
+	}
+
+	public Pagination getPagination() {
+		return pagination;
+	}
+
+	public void setPagination(Pagination pagination) {
+		this.pagination = pagination;
 	}
 }

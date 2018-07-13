@@ -15,45 +15,52 @@
 			<div class="form-group">
 				<h:outputLabel for="username">User Name</h:outputLabel>
 				<h:inputText id="username" value="#{userBean.name}"
-					class="form-control" validatorMessage="User name is required">
-					<f:validateRequired />
+					class="form-control" required="true"
+					requiredMessage="Username is required">
 				</h:inputText>
+				<h:message for="username"></h:message>
 			</div>
 			<div class="form-group">
 				<h:outputLabel for="email">Email</h:outputLabel>
 				<h:inputText id="email" value="#{userBean.email}"
-					class="form-control" validatorMessage="Email Id is required">
-					<f:validateRequired />
+					class="form-control" required="true"
+					requiredMessage="Email is required">
 				</h:inputText>
+				<h:message for="email"></h:message>
 			</div>
 			<div class="form-group">
 				<h:outputLabel for="password">Password</h:outputLabel>
 				<h:inputSecret id="password" value="#{userBean.password}"
-					class="form-control" validatorMessage="Password is required">
-					<f:validateRequired />
+					class="form-control"
+					required="true"
+					requiredMessage="Password is required">
 				</h:inputSecret>
+				<h:message for="password"></h:message>
 			</div>
 			<div class="form-group">
 				<h:outputLabel for="gender">Gender</h:outputLabel>
 				<h:selectOneRadio id="gender" value="#{userBean.gender}"
-					validatorMessage="Gender is required">
+					required="true"
+					requiredMessage="Gender is required">
 					<f:selectItem itemValue="M" itemLabel="Male" />
 					<f:selectItem itemValue="F" itemLabel="Female" />
-					<f:validateRequired />
 				</h:selectOneRadio>
+				<h:message for="gender"></h:message>
 			</div>
 			<div class="form-group">
 				<h:outputLabel for="country">Country</h:outputLabel>
-				<h:selectOneMenu id="country" value="#{userBean.country}">
+				<h:selectOneMenu id="country" value="#{userBean.country}" required="true"
+					requiredMessage="Country is required">
 					<f:selectItem itemValue="vietnam" itemLabel="Việt Nam" />
 					<f:selectItem itemValue="lao" itemLabel="Lào" />
 					<f:selectItem itemValue="cpc" itemLabel="Cambodia" />
 					<f:selectItem itemValue="thai" itemLabel="Thái Lan" />
 				</h:selectOneMenu>
+				<h:message for="country"></h:message>
 			</div>
 			<h:commandButton value="Save" action="#{userBean.save()}"
 				class="btn btn-success"></h:commandButton>
-			<h:link outcome="viewusers" value="View Users Record List"
+			<h:link outcome="paging" value="View Users Record List"
 				class="btn btn-primary" />
 		</h:form>
 		</div>

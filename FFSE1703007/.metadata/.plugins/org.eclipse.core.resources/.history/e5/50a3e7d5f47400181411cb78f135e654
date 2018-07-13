@@ -1,0 +1,42 @@
+package paging;
+
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import com.mysql.jdbc.Connection;
+import com.mysql.jdbc.PreparedStatement;
+
+public class Paging {
+	Connection connection;
+
+	public Connection getConnection() {
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			connection = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/demo_test", "root", "");
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return connection;
+	}
+
+	public int getLastpage() {
+
+	}
+
+	public int numberOfRecord() throws SQLException {
+		Connection con = getConnection();
+		try {
+			PreparedStatement ps = (PreparedStatement) con.prepareStatement("select count(*) from users");
+			ResultSet rs = ps.executeQuery();
+			rs.next();
+			return rs.getInt("count(*)");
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			con.close();
+		}
+		return 0;
+	}
+
+}

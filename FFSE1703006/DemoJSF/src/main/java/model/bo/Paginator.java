@@ -21,7 +21,11 @@ public class Paginator {
 
 		if (records > 0) {
 			pages = records <= 0 ? 1 : recordsTotal / records;
-
+			// if (records <= 0) {
+			// pages = 1;
+			// } else {
+			// pages = recordsTotal / records;
+			// }
 			if (recordsTotal % records > 0) {
 				pages++;
 			}

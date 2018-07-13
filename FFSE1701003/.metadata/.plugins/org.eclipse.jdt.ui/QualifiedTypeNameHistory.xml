@@ -8,4 +8,5 @@
 <fullyQualifiedTypeName name="Hello"/>
 <fullyQualifiedTypeName name="CallBack"/>
 <fullyQualifiedTypeName name="model.bean.User"/>
+<fullyQualifiedTypeName name="javax.annotation.processing.ProcessingEnvironment"/>
 </qualifiedTypeNameHistroy>

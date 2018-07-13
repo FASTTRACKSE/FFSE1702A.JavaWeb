@@ -70,12 +70,14 @@ public class StudentBean {
 	
 	/* Method Will Avoid Multiple Calls To DB For Fetching The Students Records. If This Is Not Used & Data Is Fetched From Getter Method, JSF DataTable Will Make Multiple Calls To DB*/
 	@PostConstruct
+
 	public void init() {
-		studentsListFromDB = DatabaseOperation.getStudentsListFromDB();
+		
 	}
 
 	/* Method Used To Fetch All Records From The Database */
-	public ArrayList<StudentBean> studentsList() {
+	public ArrayList<StudentBean> studentsList(int page, int psize) {
+		studentsListFromDB = DatabaseOperation.getStudentsListFromDB(page,psize);
 		return studentsListFromDB;
 	}
 	
