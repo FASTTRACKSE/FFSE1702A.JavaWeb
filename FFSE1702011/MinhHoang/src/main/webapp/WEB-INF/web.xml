@@ -15,5 +15,6 @@
 	<servlet-mapping>
 		<servlet-name>studentDispatcher</servlet-name>
 		<url-pattern>/</url-pattern>
+		
 	</servlet-mapping>
 </web-app>

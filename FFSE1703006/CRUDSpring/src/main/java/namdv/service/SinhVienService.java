@@ -9,7 +9,7 @@ public interface SinhVienService {
 
 	public void updateSinhVien(SinhVien sv);
 
-	public List<SinhVien> listSinhVien();
+	public List<SinhVien> getAllSinhVien();
 
 	public SinhVien getSinhVienById(int id);
 
