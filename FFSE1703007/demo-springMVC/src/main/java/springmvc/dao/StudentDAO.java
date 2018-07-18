@@ -7,6 +7,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.transaction.annotation.Transactional;
 
+import springmvc.entity.Course;
 import springmvc.entity.Student;
 
 @Transactional(rollbackFor = Exception.class)
@@ -34,7 +35,7 @@ public class StudentDAO {
 		
 		Session session = sessionFactory.openSession();
 		
-		ArrayList<Student> list = (ArrayList<Student>) session.createQuery("from Student").list();
+		List<Student> list = session.createQuery("from Student").list();
 		return list;
 	}
 
@@ -47,5 +48,12 @@ public class StudentDAO {
 	public void delete(int id) {
 		Session session = this.sessionFactory.getCurrentSession();
 		session.delete(findById(id));
+	}
+	
+	
+	public List<Course> loadAllCourse(){
+		Session session = sessionFactory.openSession();
+		List<Course> list = session.createQuery("from Course").list();
+		return list;
 	}
 }
