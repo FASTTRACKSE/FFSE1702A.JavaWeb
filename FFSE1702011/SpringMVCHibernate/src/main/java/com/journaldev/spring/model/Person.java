@@ -1,5 +1,7 @@
 package com.journaldev.spring.model;
 
+import java.io.Serializable;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -20,7 +22,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "SinhVien")
-public class Person {
+public class Person implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -54,16 +56,16 @@ public class Person {
 	@Column(name="MaLop")
 	private String maLop;
 
-	@ManyToOne(cascade = CascadeType.ALL)
-	private LopHoc lopHoc;
-
-	public LopHoc getLopHoc() {
-		return lopHoc;
-	}
-
-	public void setLopHoc(LopHoc lopHoc) {
-		this.lopHoc = lopHoc;
-	}
+//	@ManyToOne(cascade = CascadeType.ALL)
+//	private LopHoc lopHoc;
+//
+//	public LopHoc getLopHoc() {
+//		return lopHoc;
+//	}
+//
+//	public void setLopHoc(LopHoc lopHoc) {
+//		this.lopHoc = lopHoc;
+//	}
 
 	public int getId() {
 		return id;

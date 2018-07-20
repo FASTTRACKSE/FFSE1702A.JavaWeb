@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Projections;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
@@ -35,16 +36,16 @@ public class PersonDAOImpl implements PersonDAO {
 		logger.info("Person updated successfully, Person Details="+p);
 	}
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<Person> listPersons() {
-		Session session = this.sessionFactory.getCurrentSession();
-		List<Person> personsList = session.createQuery("from Person").list();
-		for(Person p : personsList){
-			logger.info("Person List::"+p);
-		}
-		return personsList;
-	}
+//	@SuppressWarnings("unchecked")
+//	@Override
+//	public List<Person> listPersons() {
+//		Session session = this.sessionFactory.getCurrentSession();
+//		List<Person> personsList = session.createQuery("from Person").list();
+//		for(Person p : personsList){
+//			logger.info("Person List::"+p);
+//		}
+//		return personsList;
+//	}
 
 	@Override
 	public Person getPersonById(int id) {
@@ -63,5 +64,22 @@ public class PersonDAOImpl implements PersonDAO {
 		}
 		logger.info("Person deleted successfully, person details="+p);
 	}
+	
+	@SuppressWarnings("unchecked")
+    public List<Person> findAll(Integer offset, Integer maxResults) {
+        return sessionFactory.openSession()
+                .createCriteria(Person.class)
+                .setFirstResult(offset!=null?offset:0)
+                .setMaxResults(maxResults!=null?maxResults:2)
+                .list();
+    }
+
+    @SuppressWarnings("unchecked")
+    public Long count() {
+        return (Long)sessionFactory.openSession()
+                .createCriteria(Person.class)
+                .setProjection(Projections.rowCount())
+                .uniqueResult();
+    }
 
 }
