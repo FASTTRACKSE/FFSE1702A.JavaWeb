@@ -27,9 +27,11 @@ public class SinhVienController {
 	private LopHocService lopHocService;
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String getAllSinhVien(Model model) {
+	public String getAllSinhVien(Model model, Integer offset, Integer maxResult) {
 
-		model.addAttribute("list", this.sinhVienService.getAllSinhVien());
+		model.addAttribute("count", this.sinhVienService.count());
+		model.addAttribute("offset", offset);
+		model.addAttribute("list", this.sinhVienService.getAllSinhVien(offset, maxResult));
 		return "sinhvien/SinhVienList";
 	}
 

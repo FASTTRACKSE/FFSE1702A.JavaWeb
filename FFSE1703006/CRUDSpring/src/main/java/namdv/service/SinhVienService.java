@@ -9,7 +9,9 @@ public interface SinhVienService {
 
 	public void updateSinhVien(SinhVien sv);
 
-	public List<SinhVien> getAllSinhVien();
+	public List<SinhVien> getAllSinhVien(Integer offset, Integer maxResult);
+
+	public Long count();
 
 	public SinhVien getSinhVienById(int id);
 
