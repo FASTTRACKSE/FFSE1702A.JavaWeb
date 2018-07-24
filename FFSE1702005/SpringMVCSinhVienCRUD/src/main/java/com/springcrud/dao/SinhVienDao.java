@@ -3,6 +3,7 @@ package com.springcrud.dao;
 import java.util.List;
 
 import com.springcrud.entity.SinhVienEntity;
+import com.springcrud.entity.LopHocEntity;
 
 public interface SinhVienDao {
 	
@@ -15,5 +16,9 @@ public interface SinhVienDao {
     public void xoaSinhVien(int id);
    
     public List<SinhVienEntity> danhSachSinhVien();
+    
+    public List<LopHocEntity> danhSachLop();
+    
+    public LopHocEntity layMaLop(int id);
 
 }

@@ -6,7 +6,7 @@
 <%@ page session="false" %>
 <html>
 <head>
-	<title>Employee Page</title>
+	<title>Trang Sinh Viên</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<link href="<c:url value="/resources/bootstrap.min.css" />" rel="stylesheet">
 	<link href="<c:url value="/assets/flags/flags.css"/>" rel=stylesheet type="text/css">
@@ -87,6 +87,7 @@
 		<td>
 			<form:radiobutton path="gioiTinh" value="Nam"/><spring:message code="nam"/>
 			<form:radiobutton path="gioiTinh" value="Nữ"/><spring:message code="nu"/> 
+			<form:radiobutton path="gioiTinh" value="Khác"/><spring:message code="khac"/> 
 		</td>
 	</tr>
 	<tr>
@@ -121,16 +122,16 @@
 	</tr>
 	<tr>
 		<td>
-			<form:label path="maLop">
+			<form:label path="lophoc.maLop">
 				<spring:message code="malop"/>
 			</form:label>
 		</td>
 		<td>
 			 <div class="form-group">
-    			  <form:select path="maLop" class="form-control" id="sel1">
-    			  <c:forEach items="${danhSachSinhVien}" var="sv">
-      			  <form:option value="${sv.maLop}" label="${sv.tenLop}"/>
-   				  </c:forEach>
+    			  <form:select path="lophoc.maLop" class="form-control" id="sel1">  	
+    			  <c:forEach items="${danhSachLop}" var="lop">		  
+      			  <form:option value="${lop.maLop}" label="${lop.tenLop}"/>
+      			  </c:forEach>
      			  </form:select>
      		 </div>
 		</td>
@@ -175,7 +176,7 @@
 			<td>${sv.email}</td>
 			<td>${sv.SDT}</td>
 			<td>${sv.diaChi}</td>
-			<td>${sv.maLop}</td>
+			<td>${sv.lophoc.tenLop}</td>
 			<td><a href="<c:url value='/danhsach/suasv/${sv.id}' />" ><spring:message code="sua"/></a></td>
 			<td><a href="<c:url value='/danhsach/xoasv/${sv.id}' />" ><spring:message code="xoa"/></a></td>
 		</tr>

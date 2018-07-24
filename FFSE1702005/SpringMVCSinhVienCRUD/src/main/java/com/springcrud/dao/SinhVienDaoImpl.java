@@ -11,7 +11,8 @@ import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
- 
+
+import com.springcrud.entity.LopHocEntity;
 import com.springcrud.entity.SinhVienEntity;
 
 @Repository
@@ -33,12 +34,12 @@ public class SinhVienDaoImpl implements SinhVienDao{
    }
 
 //   @SuppressWarnings("unchecked")
-   @Override
 //   public List<SinhVienEntity> danhSachSinhVien() {
 //       Session session = sessionFactory.getCurrentSession();
 //	List<SinhVienEntity> DanhSanhSinhVien = session.createQuery("FROM SinhVienEntity").getResultList();
 //       return DanhSanhSinhVien;
 //   }
+   @Override
    public List<SinhVienEntity> danhSachSinhVien() {
 	      Session session = sessionFactory.getCurrentSession();
 	      CriteriaBuilder cb = session.getCriteriaBuilder();
@@ -48,11 +49,29 @@ public class SinhVienDaoImpl implements SinhVienDao{
 	      Query<SinhVienEntity> query = session.createQuery(cq);
 	      return query.getResultList();
 	   }
+   
+   @Override
+   public List<LopHocEntity> danhSachLop() {
+	      Session session = sessionFactory.getCurrentSession();
+	      CriteriaBuilder cb = session.getCriteriaBuilder();
+	      CriteriaQuery<LopHocEntity> cq = cb.createQuery(LopHocEntity.class);
+	      Root<LopHocEntity> root = cq.from(LopHocEntity.class);
+	      cq.select(root);
+	      Query<LopHocEntity> query = session.createQuery(cq);
+	      return query.getResultList();
+	   }
 
    @Override
    public SinhVienEntity layID(int id) {
        Session session = sessionFactory.getCurrentSession();      
        SinhVienEntity  entity = (SinhVienEntity) session.get(SinhVienEntity.class, new Integer(id));
+       return  entity;
+   }
+   
+   @Override
+   public LopHocEntity layMaLop(int id) {
+       Session session = sessionFactory.getCurrentSession();      
+       LopHocEntity  entity = (LopHocEntity) session.get(LopHocEntity.class, new Integer(id));
        return  entity;
    }
 

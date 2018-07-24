@@ -49,6 +49,7 @@
 		<property name="annotatedClasses">
 			<list>
 				<value>com.springcrud.entity.SinhVienEntity</value>
+				<value>com.springcrud.entity.LopHocEntity</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">

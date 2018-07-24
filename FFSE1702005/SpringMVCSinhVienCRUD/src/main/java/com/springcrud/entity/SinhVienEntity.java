@@ -1,19 +1,17 @@
 package com.springcrud.entity;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinTable;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.JoinColumn;
 
 @Entity
 @Table(name = "SinhVien")
-public class SinhVienEntity {
+public class SinhVienEntity{
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	@Column(name = "SV_ID")
@@ -40,11 +38,17 @@ public class SinhVienEntity {
 	@Column(name = "DiaChi")
 	private String DiaChi;
 
-	@Column(name = "MaLop")
-	private String MaLop;
+	@ManyToOne
+	@JoinColumn(name = "MaLop")
+	private LopHocEntity lophoc;
 
-	@OneToMany(cascade = CascadeType.ALL)
-	@JoinTable(name = "SinhVien_LopHoc", joinColumns = @JoinColumn(name = "MaLop"), inverseJoinColumns = @JoinColumn(name = "MaLop"))
+	public LopHocEntity getLophoc() {
+		return lophoc;
+	}
+
+	public void setLophoc(LopHocEntity lophoc) {
+		this.lophoc = lophoc;
+	}
 
 	public Integer getId() {
 		return id;
@@ -108,14 +112,6 @@ public class SinhVienEntity {
 
 	public void setDiaChi(String diaChi) {
 		DiaChi = diaChi;
-	}
-
-	public String getMaLop() {
-		return MaLop;
-	}
-
-	public void setMaLop(String maLop) {
-		MaLop = maLop;
 	}
 
 }

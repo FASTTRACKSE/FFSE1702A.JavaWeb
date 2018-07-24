@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.springcrud.dao.SinhVienDao;
 
 import com.springcrud.entity.SinhVienEntity;
+import com.springcrud.entity.LopHocEntity;
 
 @Service
 public class SinhVienServiceImpl implements SinhVienService{
@@ -36,11 +37,23 @@ public class SinhVienServiceImpl implements SinhVienService{
 	    public List<SinhVienEntity> danhSachSinhVien() {
 	        return this.Dao.danhSachSinhVien();
 	    }
+	    
+	    @Override
+	    @Transactional
+	    public List<LopHocEntity> danhSachLop() {
+	        return this.Dao.danhSachLop();
+	    }
 	 
 	    @Override
 	    @Transactional
 	    public SinhVienEntity layID(int id) {
 	        return Dao.layID(id);
+	    }
+	    
+	    @Override
+	    @Transactional
+	    public LopHocEntity layMaLop(int id) {
+	        return Dao.layMaLop(id);
 	    }
 	 
 	    @Override
