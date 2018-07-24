@@ -143,7 +143,9 @@
 		</td>
 		<td>
 			<form:select path="maLop">
-				<form:option value="01">FFSE1701</form:option>
+				<c:forEach items="${listLopHoc }" var="lophoc">
+					<form:option value="${lophoc.id }">${lophoc.tenLop }</form:option>
+				</c:forEach>
 			</form:select>
 		</td> 
 	</tr>
@@ -197,7 +199,7 @@
 		</tr>
 	</c:forEach>
 	</table>
-	<tag:paginate max="2" offset="${offset}" count="${count}" uri="/persons" next="&raquo;" previous="&laquo;"/>
+	<tag:paginate max="2" offset="${offset}" count="${count}" uri="persons" next="&raquo;" previous="&laquo;"/>
 </c:if>
 </div>
 </body>

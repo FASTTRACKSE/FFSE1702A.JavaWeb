@@ -11,26 +11,27 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
 import com.journaldev.spring.model.LopHoc;
 import com.journaldev.spring.model.Person;
+import com.journaldev.spring.service.LopHocService;
 import com.journaldev.spring.service.PersonService;
 
 @Controller
 public class PersonController {
-	
+
+	@Autowired(required=true)
 	private PersonService personService;
 	
+
 	@Autowired(required=true)
-	@Qualifier(value="personService")
-	public void setPersonService(PersonService ps){
-		this.personService = ps;
-	}
+	private LopHocService lophocService;
 	
 	@RequestMapping(value = {"/persons","/"}, method = RequestMethod.GET)
 	public String findAll(Model model, Integer offset, Integer maxResults) {
 		List<Person> list = personService.findAll(offset, maxResults);
+		List<LopHoc> listLopHoc = lophocService.listLopHoc();
 		model.addAttribute("person", new Person());
+		model.addAttribute("listLopHoc", listLopHoc);
 		model.addAttribute("count", personService.count());
 		model.addAttribute("offset", offset);
         model.addAttribute("listPersons", list);

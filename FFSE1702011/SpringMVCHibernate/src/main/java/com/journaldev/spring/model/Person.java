@@ -1,28 +1,18 @@
 package com.journaldev.spring.model;
 
-import java.io.Serializable;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-/**
- * Entity bean with JPA annotations Hibernate provides JPA implementation
- * 
- * @author pankaj
- *
- */
+
 @Entity
 @Table(name = "SinhVien")
-public class Person implements Serializable {
+public class Person {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -52,20 +42,10 @@ public class Person implements Serializable {
 	
 	@Column(name="DiaChi")
 	private String diaChi;
-	
-	@Column(name="MaLop")
-	private String maLop;
 
-//	@ManyToOne(cascade = CascadeType.ALL)
-//	private LopHoc lopHoc;
-//
-//	public LopHoc getLopHoc() {
-//		return lopHoc;
-//	}
-//
-//	public void setLopHoc(LopHoc lopHoc) {
-//		this.lopHoc = lopHoc;
-//	}
+	@ManyToOne
+	@JoinColumn(name = "MaLop", nullable = false)
+	private LopHoc lopHoc;
 
 	public int getId() {
 		return id;
@@ -139,18 +119,18 @@ public class Person implements Serializable {
 		this.diaChi = diaChi;
 	}
 
-	public String getMaLop() {
-		return maLop;
+	public LopHoc getLopHoc() {
+		return lopHoc;
 	}
 
-	public void setMaLop(String maLop) {
-		this.maLop = maLop;
+	public void setLopHoc(LopHoc lopHoc) {
+		this.lopHoc = lopHoc;
 	}
 
 	@Override
 	public String toString() {
 		return "id=" + id + ", maSV=" + maSV + ", hoSV=" + hoSV + ", tenSV=" + tenSV + ", namSinh=" + namSinh
 				+ ", gioiTinh=" + gioiTinh + ", email=" + email + ", dienThoai=" + dienThoai + ", diaChi=" + diaChi
-				+ ", maLop=" + maLop;
+				+ ", lopHoc=" + lopHoc;
 	}
 }

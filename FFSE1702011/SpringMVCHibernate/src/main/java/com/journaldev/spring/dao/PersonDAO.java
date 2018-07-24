@@ -1,10 +1,9 @@
 package com.journaldev.spring.dao;
 
 import java.util.List;
-import java.io.Serializable;
 import com.journaldev.spring.model.Person;
 
-public interface PersonDAO extends Serializable {
+public interface PersonDAO {
 
 	public void addPerson(Person p);
 	public void updatePerson(Person p);
