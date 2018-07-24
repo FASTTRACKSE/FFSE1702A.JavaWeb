@@ -9,12 +9,17 @@
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="hibernateProperties" key="selection"/>
+		<item value="offset" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="steps"/>
+			<item value="offset"/>
+			<item value="max"/>
+			<item value="&lt;li"/>
+			<item value="utf"/>
 			<item value="hibernateProperties"/>
 			<item value="Model "/>
 			<item value="maLop"/>
@@ -25,11 +30,6 @@
 			<item value=" user"/>
 			<item value="user"/>
 			<item value="Emp"/>
-			<item value="p."/>
-			<item value="Emp p"/>
-			<item value="paginator."/>
-			<item value="setPageIndex"/>
-			<item value="lastPage"/>
 		</list>
 		<list key="replacehistory">
 			<item value="ModelMap "/>

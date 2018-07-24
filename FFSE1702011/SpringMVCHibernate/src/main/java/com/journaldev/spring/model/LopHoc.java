@@ -37,17 +37,6 @@ public class LopHoc {
 	@Column(name="TenLop")
 	private String tenLop;
 	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "lopHoc")
-	private Set<Person> person = new HashSet<Person>();
-	
-	public Set<Person> getPerson() {
-		return person;
-	}
-
-	public void setPerson(Set<Person> person) {
-		this.person = person;
-	}
-
 	public int getId() {
 		return id;
 	}

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Projections;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,13 +35,20 @@ public class SinhVienDAOImpl implements SinhVienDAO {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<SinhVien> getAllSinhVien() {
-		Session session = this.sessionFactory.getCurrentSession();
-		List<SinhVien> sinhVienList = session.createQuery("from SinhVien").list();
+	public List<SinhVien> getAllSinhVien(Integer offset, Integer maxResult) {
+		// Session session = this.sessionFactory.getCurrentSession();
+		List<SinhVien> sinhVienList = sessionFactory.openSession().createCriteria(SinhVien.class)
+				.setFirstResult(offset != null ? offset : 0).setMaxResults(maxResult != null ? maxResult : 10).list();
 		for (SinhVien sv : sinhVienList) {
 			logger.info("Person List::" + sv);
 		}
 		return sinhVienList;
+	}
+
+	@Override
+	public Long count() {
+		return (Long) sessionFactory.openSession().createCriteria(SinhVien.class).setProjection(Projections.rowCount())
+				.uniqueResult();
 	}
 
 	@Override

@@ -15,6 +15,7 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="tag" uri="/WEB-INF/taglibs/customTaglib.tld" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>  
@@ -75,6 +76,7 @@
 			</c:forEach>
 		  </tbody>
 		</table>
+		<tag:paginate offset="${offset}" count="${count}" uri="/CRUDSpring" next="&raquo;" previous="&laquo;"/>
 	</div>
 </body>
 </html>

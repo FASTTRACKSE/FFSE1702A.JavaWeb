@@ -29,11 +29,11 @@ public class PersonServiceImpl implements PersonService {
 		this.personDAO.updatePerson(p);
 	}
 
-	@Override
-	@Transactional
-	public List<Person> listPersons() {
-		return this.personDAO.listPersons();
-	}
+//	@Override
+//	@Transactional
+//	public List<Person> listPersons() {
+//		return this.personDAO.listPersons();
+//	}
 
 	@Override
 	@Transactional
@@ -46,5 +46,13 @@ public class PersonServiceImpl implements PersonService {
 	public void removePerson(int id) {
 		this.personDAO.removePerson(id);
 	}
+	
+	public List<Person> findAll(Integer offset, Integer maxResult) {
+        return personDAO.findAll(offset, maxResult);
+    }
+
+    public Long count() {
+        return personDAO.count();
+    }
 
 }
