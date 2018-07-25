@@ -24,6 +24,13 @@ public class SinhVienController {
 	public String danhSachSinhVien(Model model) {
 		model.addAttribute("sinhvien", new SinhVienEntity());
 		model.addAttribute("danhSachSinhVien", Service.danhSachSinhVien());
+		return "danhsach";
+	}
+	
+	@RequestMapping(value = {"/themsv"}, method = RequestMethod.GET, produces="application/x-www-form-urlencoded;charset=UTF-8")
+	public String themSinhVien(Model model) {
+		model.addAttribute("sinhvien", new SinhVienEntity());
+		model.addAttribute("danhSachSinhVien", Service.danhSachSinhVien());
 		return "sinhvien";
 	}
 

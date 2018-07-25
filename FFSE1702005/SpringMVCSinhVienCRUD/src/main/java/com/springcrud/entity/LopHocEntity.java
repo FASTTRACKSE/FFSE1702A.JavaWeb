@@ -11,7 +11,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "LopHoc")
+@Table(name= "LopHoc")
 public class LopHocEntity{
 
 	@OneToMany(mappedBy = "lophoc")
