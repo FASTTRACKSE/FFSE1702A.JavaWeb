@@ -9,8 +9,7 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 
 import bean.dao.*;
-import bean.pagination.*;
-
+import bean.pagination.Pagination;
 @ManagedBean
 @RequestScoped
 public class StudentBean implements Serializable {

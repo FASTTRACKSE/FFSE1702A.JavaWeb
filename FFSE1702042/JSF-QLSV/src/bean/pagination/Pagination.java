@@ -25,10 +25,11 @@ public class Pagination {
 			if (pages == 0) {
 				pages = 1;
 			}
-		} else {
-			records = 1;
-			pages = 1;
-		}
+} 
+//		else {
+//			records = 1;
+//			pages = 1;
+//		}
 	}
 
 	public void next() {
