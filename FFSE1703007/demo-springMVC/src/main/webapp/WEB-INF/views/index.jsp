@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -43,11 +43,38 @@
 				<td>${list.phone}</td>
 				<td>${list.address}</td>
 				<td>${list.course.name}</td>
-				<td><button class="btn btn-success">Edit</button>
-				<a href="delete/${list.id }"><button class="btn btn-danger">Delete</button></a></td>
+				<td><a href="edit-view/${list.id }"><button
+							class="btn btn-success">Edit</button></a> <a
+					href="delete/${list.id }"><button class="btn btn-danger">Delete</button></a></td>
 			</tr>
 		</c:forEach>
 	</table>
+
+	<nav aria-label="Page navigation example">
+	<ul class="pagination">
+		<li class="page-item"><a class="page-link" href="?page=1">First
+				Page</a></li>
+		<c:if test="${currentPage > 2}">
+				<li class="page-item"><a class="page-link"
+					href="?page=${currentPage-2}">${currentPage-2}</a></li>
+			</c:if>
+			<c:if test="${currentPage > 1}">
+				<li class="page-item"><a class="page-link"
+					href="?page=${currentPage-1}">${currentPage-1}</a></li>
+			</c:if>
+			<li class="page-item active"><a class="page-link"
+				href="?page=${currentPage}">${currentPage}</a></li>
+			<c:if test="${currentPage != lastPage}">
+				<li class="page-item"><a class="page-link"
+					href="?page=${currentPage+1}">${currentPage+1}</a></li>
+			</c:if>
+			<c:if test="${currentPage < lastPage - 1}">
+				<li class="page-item"><a class="page-link"
+					href="?page=${currentPage+2}">${currentPage+2}</a></li>
+			</c:if>
+		<li class="page-item"><a class="page-link" href="?page=${lastPage }">Last Page</a></li>
+	</ul>
+	</nav>
 
 	<a href="create-view">Create student</a>
 </body>

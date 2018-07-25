@@ -24,8 +24,8 @@
 		</property>
 	</bean>
 	<bean id="sessionFactory"
-		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
-		<property name="dataSource" ref="dataSource"></property>
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource" ref="myDataSource"></property>
 		<property name="packagesToScan" value="springmvc.entity" />
 		<property name="hibernateProperties">
 			<props>
@@ -41,19 +41,47 @@
 		<property name="driverClassName"
 			value="com.mysql.jdbc.Driver" />
 		<property name="url"
-			value="jdbc:mysql://localhost:3306/demo_test" />
+			value="jdbc:mysql://localhost:3306/demo_test?characterEncoding=utf8" />
 		<property name="username" value="root" />
 		<property name="password" value="" />
 	</bean>
+	
+	<bean id="myDataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+
+          destroy-method="close">
+
+        <property name="driverClass" value="com.mysql.jdbc.Driver" />
+
+        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/demo_test?characterEncoding=utf8" />
+
+        <property name="user" value="root" />
+
+        <property name="password" value="" />
+
+ 
+
+        <!-- these are connection pool properties for C3P0 -->
+
+        <property name="minPoolSize" value="1" />
+
+        <property name="maxPoolSize" value="3" />
+
+        <property name="maxIdleTime" value="30000" />
+
+</bean> 
 
 	<tx:annotation-driven
 		transaction-manager="transactionManager" />
 	<bean id="transactionManager"
-		class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 
-	<bean id="studentDAO" class="springmvc.dao.StudentDAO">
+	<bean id="studentDAO" class="springmvc.dao.StudentDAOimpl">
 		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<bean id="studentService" class="springmvc.service.StudentServiceImpl">
+	<property name="studentDAO" ref="studentDAO"/>
 	</bean>
 </beans>

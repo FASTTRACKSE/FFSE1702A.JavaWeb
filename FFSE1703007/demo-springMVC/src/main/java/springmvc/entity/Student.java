@@ -39,7 +39,7 @@ public class Student {
 	@Column(name="address")
 	String address;
 	
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name="courseID")
 	Course course;
 
