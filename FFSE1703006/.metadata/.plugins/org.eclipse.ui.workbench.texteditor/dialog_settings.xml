@@ -9,44 +9,44 @@
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="setPageIndex" key="selection"/>
+		<item value="offset" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
-			<item value="paginator."/>
-			<item value="setPageIndex"/>
-			<item value="lastPage"/>
-			<item value="currentPage"/>
-			<item value="pages"/>
-			<item value="records"/>
-			<item value="getFirst"/>
-			<item value="&#x09;&#x09;&#x09;&#x09;&#x09;"/>
-			<item value="&#x09;            "/>
-			<item value="testBean"/>
-			<item value="RepeatPaginator"/>
-			<item value="List&lt;?&gt;"/>
-			<item value="h:column"/>
-			<item value="editRecordObj"/>
-			<item value="#{editRecordObj.country}"/>
+			<item value="steps"/>
+			<item value="offset"/>
+			<item value="max"/>
+			<item value="&lt;li"/>
+			<item value="utf"/>
+			<item value="hibernateProperties"/>
+			<item value="Model "/>
+			<item value="maLop"/>
+			<item value="test"/>
+			<item value="empform"/>
+			<item value="emp"/>
+			<item value="@ModelAttribute"/>
+			<item value=" user"/>
+			<item value="user"/>
+			<item value="Emp"/>
 		</list>
 		<list key="replacehistory">
+			<item value="ModelMap "/>
+			<item value="user"/>
+			<item value=" u"/>
+			<item value="u"/>
+			<item value="User"/>
+			<item value="user."/>
+			<item value="User user"/>
 			<item value="user.paginator.pages"/>
 			<item value="user.paginator.pageIndex"/>
 			<item value="&#x09;        "/>
 			<item value="&#x09;            "/>
-			<item value="user"/>
 			<item value="Paginator"/>
 			<item value="List&lt;User&gt;"/>
 			<item value="p:column"/>
 			<item value=""/>
-			<item value="&lt;c:out value=&quot;${pageContext.request.contextPath}&quot; /&gt;"/>
-			<item value="UserDAO"/>
-			<item value="ListUser"/>
-			<item value="listuser"/>
-			<item value="list"/>
-			<item value="index"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">

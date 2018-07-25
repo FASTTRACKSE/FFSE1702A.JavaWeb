@@ -1,25 +1,42 @@
 package user.model.bean;
 
+import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Map;
+import java.util.List;
+
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
-
 import user.model.dao.ConnectDB;
+import user.pagination.Pagination;
 
 @ManagedBean
 @RequestScoped
-public class User {
+
+public class User implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	@ManagedProperty(value = "#{pagination}")
+	private Pagination pagination;
+	private List<User> userList;
 	private int id;
 	private int count = 0;
 	private String username;
 	private String userfullname;
 	private String userpassword;
+
+	public List<User> UserList() {
+		return userList;
+	}
 
 	public int getId() {
 		return id;
@@ -59,6 +76,47 @@ public class User {
 
 	public void setSessionMap(Map<String, Object> sessionMap) {
 		this.sessionMap = sessionMap;
+	}
+
+	public Pagination getPagination() {
+		return pagination;
+	}
+
+	public void setPagination(Pagination pagination) {
+		this.pagination = pagination;
+	}
+
+	@PostConstruct
+
+	public void init() {
+		int countRecords = getCount();
+		pagination.setUserList(countRecords);
+		setUserList();
+	}
+
+	// Pagination
+	public void next() {
+		pagination.next();
+		setUserList();
+	}
+
+	public void prev() {
+		pagination.prev();
+		setUserList();
+	}
+
+	public void firstPage() {
+		pagination.firstPage();
+		setUserList();
+	}
+
+	public void lastPage() {
+		pagination.lastPage();
+		setUserList();
+	}
+
+	public void setUserList() {
+		this.userList = getUser(pagination.getFromIndex(), pagination.getRecords());
 	}
 
 	private Map<String, Object> sessionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
@@ -136,15 +194,14 @@ public class User {
 		return count;
 	}
 
-	public ArrayList<User> getAllUser() throws Exception {
-		getCount();
-		ArrayList<User> listUser = new ArrayList<User>();
+	public List<User> getUser(int fromIndex, int records) {
+		List<User> listUser = new ArrayList<User>();
 		Connection connection = null;
 		try {
 			ConnectDB obj_DB_connection = new ConnectDB();
 			connection = obj_DB_connection.get_connection();
 			Statement st = connection.createStatement();
-			ResultSet rs = st.executeQuery("SELECT * FROM user");
+			ResultSet rs = st.executeQuery("select * from user limit " + (fromIndex) + "," + records);
 			while (rs.next()) {
 				User user = new User();
 				user.setId(rs.getInt("id"));
@@ -156,14 +213,12 @@ public class User {
 		} catch (Exception e) {
 			System.out.println(e);
 		} finally {
-			if (connection != null) {
-				connection.close();
-			}
+			
 		}
 		return listUser;
 	}
 
-	public  void addUser() {
+	public void addUser() {
 		try {
 			Connection connection = null;
 			ConnectDB conn = new ConnectDB();
@@ -175,8 +230,7 @@ public class User {
 		} catch (Exception e) {
 			System.out.println(e);
 		}
-	
-	}
 
+	}
 
 }

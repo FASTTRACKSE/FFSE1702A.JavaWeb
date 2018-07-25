@@ -190,6 +190,7 @@ public class UserDao {
 				u.setCountry(rs.getString("country"));
 				list.add(u);
 			}
+			System.out.println(list.size());
 			disconnect();
 		} catch (Exception e) {
 			System.out.println(e);
