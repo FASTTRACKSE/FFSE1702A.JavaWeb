@@ -2,6 +2,7 @@ package com.journaldev.spring.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -11,11 +12,8 @@ import com.journaldev.spring.model.Person;
 @Service
 public class PersonServiceImpl implements PersonService {
 	
+	@Autowired
 	private PersonDAO personDAO;
-
-	public void setPersonDAO(PersonDAO personDAO) {
-		this.personDAO = personDAO;
-	}
 
 	@Override
 	@Transactional
@@ -29,11 +27,11 @@ public class PersonServiceImpl implements PersonService {
 		this.personDAO.updatePerson(p);
 	}
 
-	@Override
-	@Transactional
-	public List<Person> listPersons() {
-		return this.personDAO.listPersons();
-	}
+//	@Override
+//	@Transactional
+//	public List<Person> listPersons() {
+//		return this.personDAO.listPersons();
+//	}
 
 	@Override
 	@Transactional
@@ -46,5 +44,13 @@ public class PersonServiceImpl implements PersonService {
 	public void removePerson(int id) {
 		this.personDAO.removePerson(id);
 	}
+	
+	public List<Person> findAll(Integer offset, Integer maxResult) {
+        return personDAO.findAll(offset, maxResult);
+    }
+
+    public Long count() {
+        return personDAO.count();
+    }
 
 }

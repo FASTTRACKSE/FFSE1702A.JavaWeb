@@ -2,6 +2,7 @@ package namdv.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -10,11 +11,9 @@ import namdv.model.entities.SinhVien;
 
 @Service
 public class SinhVienServiceImpl implements SinhVienService {
-	private SinhVienDAO sinhVienDAO;
 
-	public void setSinhVienDAO(SinhVienDAO sinhVienDAO) {
-		this.sinhVienDAO = sinhVienDAO;
-	}
+	@Autowired
+	private SinhVienDAO sinhVienDAO;
 
 	@Override
 	@Transactional
@@ -30,8 +29,14 @@ public class SinhVienServiceImpl implements SinhVienService {
 
 	@Override
 	@Transactional
-	public List<SinhVien> listSinhVien() {
-		return this.sinhVienDAO.listSinhVien();
+	public List<SinhVien> getAllSinhVien(Integer offset, Integer maxResult) {
+		return this.sinhVienDAO.getAllSinhVien(offset, maxResult);
+	}
+
+	@Override
+	@Transactional
+	public Long count() {
+		return this.sinhVienDAO.count();
 	}
 
 	@Override

@@ -1,31 +1,37 @@
 package namdv.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
+import namdv.model.entities.LopHoc;
 import namdv.model.entities.SinhVien;
+import namdv.service.LopHocService;
 import namdv.service.SinhVienService;
 
 @Controller
+@SessionAttributes("lopHoc")
 public class SinhVienController {
+
+	@Autowired
 	private SinhVienService sinhVienService;
 
-	@Autowired(required = true)
-	@Qualifier(value = "sinhVienService")
-	public void setSinhVienService(SinhVienService ss) {
-		this.sinhVienService = ss;
-	}
+	@Autowired
+	private LopHocService lopHocService;
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String listSinhVien(Model model) {
+	public String getAllSinhVien(Model model, Integer offset, Integer maxResult) {
 
-		model.addAttribute("list", this.sinhVienService.listSinhVien());
+		model.addAttribute("count", this.sinhVienService.count());
+		model.addAttribute("offset", offset);
+		model.addAttribute("list", this.sinhVienService.getAllSinhVien(offset, maxResult));
 		return "sinhvien/SinhVienList";
 	}
 
@@ -43,15 +49,16 @@ public class SinhVienController {
 		return "sinhvien/SinhVienForm";
 	}
 
-	// For add and update person both
+	// For add and update sv both
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	public String saveSinhVien(@ModelAttribute("sinhVien") SinhVien sv) {
 
 		if (sv.getMaSinhVien() == 0) {
-			// new person, add it
+			// new sv, add it
+
 			this.sinhVienService.addSinhVien(sv);
 		} else {
-			// existing person, call update
+			// existing sv, call update
 			this.sinhVienService.updateSinhVien(sv);
 		}
 
@@ -63,5 +70,10 @@ public class SinhVienController {
 
 		this.sinhVienService.deleteSinhVien(id);
 		return "redirect:/";
+	}
+
+	@ModelAttribute("lopHoc")
+	public List<LopHoc> initializeLopHoc() {
+		return this.lopHocService.getAllLopHoc();
 	}
 }

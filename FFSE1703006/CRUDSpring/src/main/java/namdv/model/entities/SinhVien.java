@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
@@ -25,9 +27,6 @@ public class SinhVien implements Serializable {
 	@Column(name = "ma_sinh_vien", unique = true, nullable = false)
 	private int maSinhVien;
 
-	@Column(name = "dia_chi", nullable = false, length = 64)
-	private String diaChi;
-
 	@Column(name = "dien_thoai", nullable = false)
 	private int dienThoai;
 
@@ -40,14 +39,27 @@ public class SinhVien implements Serializable {
 	@Column(name = "ho_dem", nullable = false, length = 64)
 	private String hoDem;
 
-	@Column(name = "ma_lop", nullable = false, length = 16)
-	private String maLop;
-
 	@Column(name = "nam_sinh", nullable = false)
 	private int namSinh;
 
 	@Column(nullable = false, length = 32)
 	private String ten;
+
+	@Column(name = "dia_chi", nullable = false, length = 64)
+	private String diaChi;
+
+	public String getDiaChi() {
+		return diaChi;
+	}
+
+	public void setDiaChi(String diaChi) {
+		this.diaChi = diaChi;
+	}
+
+	// bi-directional many-to-one association to LopHoc
+	@ManyToOne
+	@JoinColumn(name = "ma_lop", nullable = false)
+	private LopHoc lopHoc;
 
 	public SinhVien() {
 	}
@@ -58,14 +70,6 @@ public class SinhVien implements Serializable {
 
 	public void setMaSinhVien(int maSinhVien) {
 		this.maSinhVien = maSinhVien;
-	}
-
-	public String getDiaChi() {
-		return this.diaChi;
-	}
-
-	public void setDiaChi(String diaChi) {
-		this.diaChi = diaChi;
 	}
 
 	public int getDienThoai() {
@@ -100,14 +104,6 @@ public class SinhVien implements Serializable {
 		this.hoDem = hoDem;
 	}
 
-	public String getMaLop() {
-		return this.maLop;
-	}
-
-	public void setMaLop(String maLop) {
-		this.maLop = maLop;
-	}
-
 	public int getNamSinh() {
 		return this.namSinh;
 	}
@@ -124,11 +120,19 @@ public class SinhVien implements Serializable {
 		this.ten = ten;
 	}
 
+	public LopHoc getLopHoc() {
+		return this.lopHoc;
+	}
+
+	public void setLopHoc(LopHoc lopHoc) {
+		this.lopHoc = lopHoc;
+	}
+
 	@Override
 	public String toString() {
-		return "SinhVien [maSinhVien=" + maSinhVien + ", diaChi=" + diaChi + ", dienThoai=" + dienThoai + ", email="
-				+ email + ", gioiTinh=" + gioiTinh + ", hoDem=" + hoDem + ", maLop=" + maLop + ", namSinh=" + namSinh
-				+ ", ten=" + ten + "]";
+		return "SinhVien [maSinhVien=" + maSinhVien + ", dienThoai=" + dienThoai + ", email=" + email + ", gioiTinh="
+				+ gioiTinh + ", hoDem=" + hoDem + ", namSinh=" + namSinh + ", ten=" + ten + ", diaChi=" + diaChi
+				+ ", lopHoc=" + lopHoc + "]";
 	}
 
 }
