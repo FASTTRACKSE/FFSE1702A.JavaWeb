@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+		<item value="D:\Code\Github\FFSE1702A.JavaWeb\FFSE1703006\JSPServletCRUD"/>
+		<item value="D:\Code\Github\FFSE1702A.JavaWeb\FFSE1703006"/>
 		<item value="D:\Code\Java\SpringMVCHibernateManyToManyCRUDExample.zip"/>
 		<item value="D:\Code\Java\J2E-workspace\JSPCrud"/>
 	</list>

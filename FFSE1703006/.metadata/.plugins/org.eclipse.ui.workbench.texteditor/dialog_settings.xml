@@ -9,12 +9,14 @@
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="cssClass=&quot;invalid-feedback d-block&quot;" key="selection"/>
+		<item value="" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="crud"/>
+			<item value="crudspring"/>
 			<item value="cssClass=&quot;error&quot;"/>
 			<item value="error"/>
 			<item value="sinhvien.email.invalid"/>
@@ -28,8 +30,6 @@
 			<item value="&lt;li"/>
 			<item value="utf"/>
 			<item value="hibernateProperties"/>
-			<item value="Model "/>
-			<item value="maLop"/>
 		</list>
 		<list key="replacehistory">
 			<item value="cssClass=&quot;invalid-feedback d-block&quot;"/>
