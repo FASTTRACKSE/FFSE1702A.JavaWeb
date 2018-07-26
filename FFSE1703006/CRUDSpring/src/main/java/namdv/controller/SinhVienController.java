@@ -2,13 +2,17 @@ package namdv.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import namdv.model.entities.LopHoc;
@@ -27,8 +31,9 @@ public class SinhVienController {
 	private LopHocService lopHocService;
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String getAllSinhVien(Model model, Integer offset, Integer maxResult) {
-
+	public String getAllSinhVien(Model model, @RequestParam(value = "page", defaultValue = "1") Integer page,
+			Integer maxResult) {
+		Integer offset = (page - 1) * 10;
 		model.addAttribute("count", this.sinhVienService.count());
 		model.addAttribute("offset", offset);
 		model.addAttribute("list", this.sinhVienService.getAllSinhVien(offset, maxResult));
@@ -51,11 +56,14 @@ public class SinhVienController {
 
 	// For add and update sv both
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	public String saveSinhVien(@ModelAttribute("sinhVien") SinhVien sv) {
+	public String saveSinhVien(@ModelAttribute("sinhVien") @Valid SinhVien sv, BindingResult bindingResult) {
 
-		if (sv.getMaSinhVien() == 0) {
+		if (bindingResult.hasErrors()) {
+			return "sinhvien/SinhVienForm";
+		}
+
+		if (sv.getMaSinhVien() == null) {
 			// new sv, add it
-
 			this.sinhVienService.addSinhVien(sv);
 		} else {
 			// existing sv, call update

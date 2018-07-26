@@ -9,12 +9,19 @@
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="offset" key="selection"/>
+		<item value="cssClass=&quot;invalid-feedback d-block&quot;" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="cssClass=&quot;error&quot;"/>
+			<item value="error"/>
+			<item value="sinhvien.email.invalid"/>
+			<item value="valid"/>
+			<item value="&quot;id"/>
+			<item value="id"/>
+			<item value="mvc"/>
 			<item value="steps"/>
 			<item value="offset"/>
 			<item value="max"/>
@@ -23,15 +30,14 @@
 			<item value="hibernateProperties"/>
 			<item value="Model "/>
 			<item value="maLop"/>
-			<item value="test"/>
-			<item value="empform"/>
-			<item value="emp"/>
-			<item value="@ModelAttribute"/>
-			<item value=" user"/>
-			<item value="user"/>
-			<item value="Emp"/>
 		</list>
 		<list key="replacehistory">
+			<item value="cssClass=&quot;invalid-feedback d-block&quot;"/>
+			<item value="cssClass=&quot;error&quot;"/>
+			<item value="cssClass=&quot;invalid-feedback&quot;"/>
+			<item value="invalid-feedback"/>
+			<item value="&quot;maSinhVien"/>
+			<item value="maSinhVien"/>
 			<item value="ModelMap "/>
 			<item value="user"/>
 			<item value=" u"/>
@@ -41,12 +47,6 @@
 			<item value="User user"/>
 			<item value="user.paginator.pages"/>
 			<item value="user.paginator.pageIndex"/>
-			<item value="&#x09;        "/>
-			<item value="&#x09;            "/>
-			<item value="Paginator"/>
-			<item value="List&lt;User&gt;"/>
-			<item value="p:column"/>
-			<item value=""/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">

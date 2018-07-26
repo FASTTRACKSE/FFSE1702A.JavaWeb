@@ -15,6 +15,20 @@
 		<hibernate.version>4.3.5.Final</hibernate.version>
 	</properties>
 	<dependencies>
+		<!-- Form Validation using Annotations -->  
+		<dependency>
+			<groupId>javax.validation</groupId>
+			<artifactId>validation-api</artifactId>
+			<version>1.1.0.Final</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.hibernate.validator/hibernate-validator -->
+		<dependency>
+	     <groupId>org.hibernate</groupId>
+	     <artifactId>hibernate-validator</artifactId>
+	     <version>5.2.4.Final</version>
+	   </dependency>
+		
+	
 		<!-- Spring -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -153,6 +167,13 @@
 			<artifactId>junit</artifactId>
 			<version>4.7</version>
 			<scope>test</scope>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.springframework.data/spring-data-commons -->
+		<dependency>
+		    <groupId>org.springframework.data</groupId>
+		    <artifactId>spring-data-commons</artifactId>
+		    <version>1.13.7.RELEASE</version>
 		</dependency>
 
 	</dependencies>

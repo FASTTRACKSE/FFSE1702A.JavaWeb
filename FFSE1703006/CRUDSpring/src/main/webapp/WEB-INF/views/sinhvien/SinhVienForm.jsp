@@ -17,12 +17,12 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>  
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%> 
 
 <body>
 	<div class="container">
 		<form:form method="POST" action="/CRUDSpring/save" commandName="sinhVien">
-		<c:if test="${!empty sinhVien.hoDem}">
+		<c:if test="${!empty sinhVien.maSinhVien}">
 			<div class="form-group">
 			  <h5><spring:message code="label.student_id" /></h5>
 			  <form:input class="form-control" path="maSinhVien" readonly="true" disabled="true" />
@@ -32,14 +32,17 @@
 		    <div class="form-group">
 		      <h5><spring:message code="label.firstname" /></h5>
 		      <form:input class="form-control" path="hoDem"/>
+		      <form:errors path="hoDem" cssClass="invalid-feedback d-block" />
 		    </div>
 		    <div class="form-group">
 		      <h5><spring:message code="label.lastname" /></h5>
 		      <form:input class="form-control" path="ten"/>
+		      <form:errors path="ten" cssClass="invalid-feedback d-block" />
 		    </div>
 		    <div class="form-group">
 		      <h5><spring:message code="label.birth_year" /></h5>
-		      <form:input class="form-control" path="namSinh"/>
+		      <form:input class="form-control" path="namSinh" value=""/>
+		      <form:errors path="namSinh" cssClass="invalid-feedback d-block" />
 		    </div>
 		    <div class="form-group">
 		      <h5><spring:message code="label.sex" /></h5>
@@ -49,22 +52,27 @@
 	          <div class="custom-control custom-radio custom-control-inline">
 	            <form:radiobutton class="form-check-input" path="gioiTinh" value="Nữ"/><spring:message code="label.female" />
 	          </div>
+		      <div><form:errors path="gioiTinh" cssClass="invalid-feedback d-block" /></div>
 		    </div>
 		    <div class="form-group">
 		      <h5><spring:message code="label.email" /></h5>
 		      <form:input class="form-control" path="email"/>
+		      <form:errors path="email" cssClass="invalid-feedback d-block" />
 		    </div>
 		    <div class="form-group">
 		      <h5><spring:message code="label.phone" /></h5>
-		      <form:input class="form-control" path="dienThoai"/>
+		      <form:input class="form-control" path="dienThoai" value=""/>
+		      <form:errors path="dienThoai" cssClass="invalid-feedback d-block" />
 		    </div>
 		    <div class="form-group">
 		      <h5><spring:message code="label.address" /></h5>
 		      <form:input class="form-control" path="diaChi"/>
+		      <form:errors path="diaChi" cssClass="invalid-feedback d-block" />
 		    </div>
 		    <div class="form-group">
 		      <h5><spring:message code="label.class" /></h5>
 		      <form:select path="lopHoc.maLop" items="${lopHoc}" multiple="true" itemValue="maLop" itemLabel="tenLop" class="form-control" />
+		      <form:errors path="lopHoc.maLop" cssClass="invalid-feedback d-block" />
 		    </div>
 		  <button type="submit" name="submit" class="btn btn-primary"><spring:message code="label.submit" /></button>
 		  <a href="/CRUDSpring"><button type="button" class="btn btn-outline-secondary"><spring:message code="label.cancel" /></button></a>
