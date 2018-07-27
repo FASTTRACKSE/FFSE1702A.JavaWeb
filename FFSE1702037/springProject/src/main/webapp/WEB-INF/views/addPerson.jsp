@@ -87,12 +87,9 @@
 						<spring:message code="Class" text="default text" />
 
 					</form:label></td>
-				<td><form:select path="lop.id">
-						<form:option value="1">FFSE1701</form:option>
-						<form:option value="2">FFSE1702</form:option>
-						<form:option value="3">FFSE1703</form:option>
-						<form:option value="4">FFSE1704</form:option>
-				</form:select></td>
+				<td>
+				 <form:select path="lop.id" items="${listLop}" multiple="true" itemValue="id" itemLabel="tenLop" class="form-control" />
+				</td>
 			</tr>
 			<tr>
 				<td><form:label path="namSinh">

@@ -104,7 +104,7 @@
 				<tr>
 					<td>${person.id}</td>
 					<td>${person.maSV}</td>
-					<td>${person.hoDem }${person.ten }</td>
+					<td>${person.hoDem}&nbsp;${ person.ten }</td>
 					<td>${person.lop.tenLop}</td>
 					<td>${person.namSinh}</td>
 					<td>${person.diaChi}</td>
@@ -117,6 +117,11 @@
 			</c:forEach>
 		</table>
 	</c:if>
+	<h1>Danh sách lớp</h1>
+<c:forEach items="${listLop}" var="lop">
+<a href="<c:url value='/listLop/${lop.id}'  />">${lop.tenLop}</a>
+</c:forEach>
+
 
 	<div class="pagination">
 		<a href="">&laquo;</a> 

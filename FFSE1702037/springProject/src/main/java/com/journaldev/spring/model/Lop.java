@@ -35,6 +35,16 @@ public class Lop {
 	private Set<Person> person=new HashSet<Person>(0);
 
 	
+	public Set<Person> getPerson() {
+		return person;
+	}
+
+
+	public void setPerson(Set<Person> person) {
+		this.person = person;
+	}
+
+
 	public int getId() {
 		return id;
 	}

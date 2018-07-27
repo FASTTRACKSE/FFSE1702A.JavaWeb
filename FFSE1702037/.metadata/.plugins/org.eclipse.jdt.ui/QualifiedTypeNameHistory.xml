@@ -12,4 +12,6 @@
 <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.ResponseBody"/>
 <fullyQualifiedTypeName name="java.io.Serializable"/>
 <fullyQualifiedTypeName name="org.springframework.context.annotation.EnableLoadTimeWeaving"/>
+<fullyQualifiedTypeName name="com.journaldev.spring.model.Lop"/>
+<fullyQualifiedTypeName name="com.journaldev.spring.service.LopService"/>
 </qualifiedTypeNameHistroy>
