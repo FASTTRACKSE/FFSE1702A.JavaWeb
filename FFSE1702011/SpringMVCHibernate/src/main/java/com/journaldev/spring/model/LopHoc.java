@@ -20,9 +20,9 @@ public class LopHoc {
 	@Column(name="TenLop")
 	private String tenLop;
 	
-	// bi-directional many-to-one association to SinhVien
-	@OneToMany(mappedBy = "lopHoc")
-	private List<Person> sinhViens;
+//	// bi-directional many-to-one association to SinhVien
+//	@OneToMany(mappedBy = "lopHoc")
+//	private List<Person> sinhViens;
 	
 	public int getId() {
 		return id;
@@ -40,13 +40,13 @@ public class LopHoc {
 		this.tenLop = tenLop;
 	}
 
-	public List<Person> getSinhViens() {
-		return sinhViens;
-	}
-
-	public void setSinhViens(List<Person> sinhViens) {
-		this.sinhViens = sinhViens;
-	}
+//	public List<Person> getSinhViens() {
+//		return sinhViens;
+//	}
+//
+//	public void setSinhViens(List<Person> sinhViens) {
+//		this.sinhViens = sinhViens;
+//	}
 
 	@Override
 	public String toString(){

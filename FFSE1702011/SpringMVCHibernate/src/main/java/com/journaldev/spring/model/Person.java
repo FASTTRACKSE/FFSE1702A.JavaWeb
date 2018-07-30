@@ -43,9 +43,21 @@ public class Person {
 	@Column(name="DiaChi")
 	private String diaChi;
 
-	@ManyToOne
-	@JoinColumn(name = "MaLop", nullable = false)
-	private LopHoc lopHoc;
+//	@ManyToOne
+//	@JoinColumn(name = "MaLop", nullable = false)
+//	private LopHoc lopHoc;
+	
+	@Column(name="MaLop")
+	private int maLop;
+	
+
+	public int getMaLop() {
+		return maLop;
+	}
+
+	public void setMaLop(int maLop) {
+		this.maLop = maLop;
+	}
 
 	public int getId() {
 		return id;
@@ -119,18 +131,18 @@ public class Person {
 		this.diaChi = diaChi;
 	}
 
-	public LopHoc getLopHoc() {
-		return lopHoc;
-	}
-
-	public void setLopHoc(LopHoc lopHoc) {
-		this.lopHoc = lopHoc;
-	}
-
-	@Override
-	public String toString() {
-		return "id=" + id + ", maSV=" + maSV + ", hoSV=" + hoSV + ", tenSV=" + tenSV + ", namSinh=" + namSinh
-				+ ", gioiTinh=" + gioiTinh + ", email=" + email + ", dienThoai=" + dienThoai + ", diaChi=" + diaChi
-				+ ", lopHoc=" + lopHoc;
-	}
+//	public LopHoc getLopHoc() {
+//		return lopHoc;
+//	}
+//
+//	public void setLopHoc(LopHoc lopHoc) {
+//		this.lopHoc = lopHoc;
+//	}
+//
+//	@Override
+//	public String toString() {
+//		return "id=" + id + ", maSV=" + maSV + ", hoSV=" + hoSV + ", tenSV=" + tenSV + ", namSinh=" + namSinh
+//				+ ", gioiTinh=" + gioiTinh + ", email=" + email + ", dienThoai=" + dienThoai + ", diaChi=" + diaChi
+//				+ ", lopHoc=" + lopHoc;
+//	}
 }
