@@ -3,12 +3,12 @@ package controller.users;
 import java.io.IOException;
 import java.sql.SQLException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 
 import model.bean.User;
 import model.dao.UserDao;
@@ -24,13 +24,23 @@ public class EditUserServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
+		
 		int id = Integer.parseInt(request.getParameter("id"));
-		User existingUser;
+		String name = request.getParameter("name");
+		String email = request.getParameter("email");
+		String sex = request.getParameter("sex");
+		String country = request.getParameter("country");
+		
+		User u = new User(id, name, email, sex, country);
 		try {
-			existingUser = userDao.getRecordById(id);
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/users");
-			request.setAttribute("user", existingUser);
-			dispatcher.forward(request, response);
+			int i = userDao.update(u);
+			if(i == 1) {
+				response.sendRedirect("/JSPServlet/users");
+			}else {
+				response.sendRedirect("/JSPServlet/users/ViewError");
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
