@@ -64,20 +64,31 @@ td {
       </c:forEach>
     </c:if>
   </table>
-  <nav aria-label="...">
-  <ul class="pagination">
-    <li class="page-item disabled">
-      <a class="page-link" href="#" tabindex="-1">Previous</a>
-    </li>
-    <li class="page-item"><a class="page-link" href="#">1</a></li>
-    <li class="page-item active">
-      <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
-    </li>
-    <li class="page-item"><a class="page-link" href="#">3</a></li>
-    <li class="page-item">
-      <a class="page-link" href="#">Next</a>
-    </li>
-  </ul>
-</nav>
+  <!-- pagitation -->
+  <ul class="pagination pagination-circle pg-blue mb-0" style="margin-left:58px;">
+		<c:if test="${currentPage != 1}">
+			<li class="page-link ${currentPage == 1 ? 'd-none' : ''}"><a
+				class="page"
+				href="<%=request.getContextPath()%>/index?page=${currentPage-1}">&laquo;</a>
+			</li>
+		</c:if>
+		<li class="page-link"><a
+			href="<%=request.getContextPath()%>/index?page=${currentPage}">${currentPage}</a>
+		</li>
+		<c:if test="${currentPage != lastPage}">
+			<li class="page-link ${currentPage == lastPage ? 'd-none' : ''}">
+				<a
+				href="<%=request.getContextPath()%>/index?page=${currentPage+1}">${currentPage+1}</a>
+			</li>
+		</c:if>
+		<c:if test="${lastPage - currentPage >=2}">
+			<li class="page-link ${currentPage == lastPage ? 'd-none' : ''}">
+				<a
+				href="<%=request.getContextPath()%>/index?page=${currentPage+2}">${currentPage+2}</a>
+		</c:if>
+		<li class="page-link ${currentPage == lastPage ? 'd-none' : ''}">
+			<a href="<%=request.getContextPath()%>/index?page=${lastPage}">&raquo;</a>
+		</li>
+	</ul>
 </body>
 </html>

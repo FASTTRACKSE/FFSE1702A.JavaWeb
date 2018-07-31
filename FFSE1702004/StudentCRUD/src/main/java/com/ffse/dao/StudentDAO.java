@@ -12,5 +12,7 @@ public interface StudentDAO {
 	public List<StudentClass> listclass();
 	public void update(final Student student);
 	public void delete(final int id );
+	public List<Student> getAll(int page);
+	public long totalRecords();
 
 }

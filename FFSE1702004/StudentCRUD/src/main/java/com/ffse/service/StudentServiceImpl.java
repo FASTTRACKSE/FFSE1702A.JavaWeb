@@ -18,6 +18,12 @@ public class StudentServiceImpl implements StudentService{
 	public List<Student> findAll() {
 		return studentDAO.findAll();
 	}
+	public List<Student> getAll(int page){
+		return studentDAO.getAll(page);
+	}
+	public long totalRecords() {
+		return studentDAO.totalRecords();
+	}
 	public void save(Student student) {
 		studentDAO.save(student);
 	}

@@ -8,6 +8,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+
 import com.ffse.entities.Student;
 import com.ffse.entities.StudentClass;
 import com.ffse.service.StudentService;
@@ -19,11 +22,23 @@ public class StudentController {
 	@Autowired
 	private StudentService studentService;
 	//list
+	@RequestMapping(value = {"/", "/index" }, method = RequestMethod.GET)
+	public String index(Model model,@RequestParam(value="page",required=false,defaultValue="1") int page ) {
+		model.addAttribute("listStudent", studentService.getAll(page));
+		
+		int lastPage = (int) Math.ceil(studentService.totalRecords()/3.0); 
+		model.addAttribute("currentPage",page);
+		model.addAttribute("lastPage", lastPage);
+		return "index";
+		
+	}
+	/*
 	@RequestMapping(value = { "/", "/index" })
 	public String index(Model model) {
+		
 		model.addAttribute("listStudent", studentService.findAll());
 		return "index";
-	}
+	}*/
 	//insert
 	@RequestMapping("/studentInsert")
 	public String insert(Model model) {
