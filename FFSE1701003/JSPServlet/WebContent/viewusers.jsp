@@ -32,7 +32,7 @@
 
 	<h1>Users List</h1>
 
-	<table class="table table-striped">
+	<table class="table table-striped table-bordered">
 		<tr>
 			<th>Id</th>
 			<th>Name</th>
@@ -52,7 +52,7 @@
 				<td>${u.getSex()}</td>
 				<td>${u.getCountry()}</td>
 				<td><a href="users/ViewEditUserServlet?id=${u.getId()}">Edit</a></td>
-				<td><a href="users/DeleteUserServlet?id=${u.getId()}">Delete</a></td>
+				<td><a href="users/DeleteUserServlet?id=${u.getId()}" onclick="return confirm('Bạn có chắc muốn xóa ?')">Delete</a></td>
 			</tr>
 		</c:forEach>
 	</table>
