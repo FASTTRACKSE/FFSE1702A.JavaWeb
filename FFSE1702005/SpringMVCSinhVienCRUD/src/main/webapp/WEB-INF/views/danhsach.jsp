@@ -24,13 +24,14 @@
 }
 </style>
 </head>
-<body style="font-size: 18px;">
+<body style="font-size: 17px;">
 	<div style="text-align: center; margin-top: 40px;">
 		<a href="<%=request.getContextPath()%>/themsv"><input
 			class="btn btn-primary"
 			style="font-size: 20px; background-color: limegreen;" type="submit"
 			value="<spring:message code="them" />" readonly /></a>
-	</div> <br>
+	</div>
+	<br>
 	<div style="text-align: center;">
 		<a href="<%=request.getContextPath()%>/danhsach?language=vi"><img
 			src="<c:url value="/assets/flags/blank.gif"/>" class="flag flag-vn"
@@ -48,7 +49,6 @@
 			style="text-align: center;">
 			<tr>
 				<th width="80">STT</th>
-				<th width="80">ID</th>
 				<th width="120"><spring:message code="ho" /></th>
 				<th width="120"><spring:message code="ten" /></th>
 				<th width="120"><spring:message code="namsinh" /></th>
@@ -63,21 +63,53 @@
 			<c:forEach items="${danhSachSinhVien}" var="sv" varStatus="stt">
 				<tr>
 					<td>${stt.count}</td>
-					<td>${sv.id}</td>
 					<td>${sv.ho}</td>
 					<td>${sv.ten}</td>
 					<td>${sv.namSinh}</td>
 					<td>${sv.gioiTinh}</td>
 					<td>${sv.email}</td>
-					<td>${sv.SDT}</td>
+					<td>${sv.sdt}</td>
 					<td>${sv.diaChi}</td>
 					<td>${sv.lophoc.tenLop}</td>
-					
-					<td><a href="<c:url value='/danhsach/suasv/${sv.id}' />"><input type="button" value="<spring:message code="sua" />" class="btn btn-primary"/></a></td>
-					<td><a href="<c:url value='/danhsach/xoasv/${sv.id}' />"><input style="background-color: limegreen;" type="button" value="<spring:message code="xoa" />" class="btn btn-primary"/></a></td>
+					<td><a href="<c:url value='/danhsach/suasv/${sv.id}' />"><input
+							type="button" value="<spring:message code="sua" />"
+							class="btn btn-primary" /></a></td>
+					<td><a href="<c:url value='/danhsach/xoasv/${sv.id}' />"><input
+							style="background-color: limegreen;" type="button"
+							value="<spring:message code="xoa" />" class="btn btn-primary" /></a></td>
 				</tr>
 			</c:forEach>
 		</table>
 	</c:if>
+	<ul class="pagination pagination-circle pg-blue mb-0" style="margin-left:58px;">
+		<c:if test="${currentPage != 1}">
+			<li class="page-link ${currentPage == 1 ? 'd-none' : ''}"><a
+				class="page"
+				href="<%=request.getContextPath()%>/danhsach?page=1">&laquo;</a>
+			</li>
+		</c:if>
+		<c:if test="${currentPage != 1}">
+		<li class="page-link"><a
+			href="<%=request.getContextPath()%>/danhsach?page=${currentPage-1}">${currentPage-1}</a>
+		</li>
+		</c:if>
+		<li class="page-link"><a
+			href="<%=request.getContextPath()%>/danhsach?page=${currentPage}">${currentPage}</a>
+		</li>
+		<c:if test="${currentPage != lastPage}">
+			<li class="page-link ${currentPage == lastPage ? 'd-none' : ''}">
+				<a
+				href="<%=request.getContextPath()%>/danhsach?page=${currentPage+1}">${currentPage+1}</a>
+			</li>
+		</c:if>
+		<c:if test="${lastPage - currentPage >=2}">
+			<li class="page-link ${currentPage == lastPage ? 'd-none' : ''}">
+				<a
+				href="<%=request.getContextPath()%>/danhsach?page=${currentPage+2}">${currentPage+2}</a>
+		</c:if>
+		<li class="page-link ${currentPage == lastPage ? 'd-none' : ''}">
+			<a href="<%=request.getContextPath()%>/danhsach?page=${lastPage}">&raquo;</a>
+		</li>
+	</ul>
 </body>
 </html>

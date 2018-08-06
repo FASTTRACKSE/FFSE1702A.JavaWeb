@@ -15,7 +15,9 @@ public interface SinhVienService {
    
     public void xoaSinhVien(int id);
    
-    public List<SinhVienEntity> danhSachSinhVien();
+    public List<SinhVienEntity> danhSachSinhVien(int page);
+    
+    public long totalRecords();
     
     public List<LopHocEntity> danhSachLop();
     

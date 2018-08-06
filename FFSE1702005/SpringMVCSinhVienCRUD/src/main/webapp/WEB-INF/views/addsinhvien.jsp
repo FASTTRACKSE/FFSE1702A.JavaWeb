@@ -19,6 +19,9 @@
 .btnSpace {
 	margin: 17px;
 }
+  .error {
+    color: red;
+  }
 </style>
 </head>
 <body>
@@ -52,46 +55,49 @@
 				<td style="width: 250px;"><form:label path="ho">
 						<spring:message code="ho" />
 					</form:label></td>
-				<td><form:input path="ho" class="form-control" /></td>
+				<td><form:input path="ho" class="form-control"/><form:errors path="ho" cssClass="error"/></td>		
 			</tr>
 			<tr>
 				<td><form:label path="ten">
 						<spring:message code="ten" />
 					</form:label></td>
-				<td><form:input path="ten" class="form-control" /></td>
+				<td><form:input path="ten" class="form-control"/><form:errors path="ten" cssClass="error"/></td>
 			</tr>
 			<tr>
 				<td><form:label path="namSinh">
 						<spring:message code="namsinh" />
 					</form:label></td>
-				<td><form:input path="namSinh" class="form-control" /></td>
+				<td><form:input type="number" path="namSinh" class="form-control"/><form:errors path="namSinh" cssClass="error"/></td>
 			</tr>
 			<tr>
 				<td><form:label path="gioiTinh">
 						<spring:message code="gioitinh" />
 					</form:label></td>
-				<td><form:radiobutton path="gioiTinh" value="Nam" /> <spring:message
-						code="nam" /> <form:radiobutton path="gioiTinh" value="Nữ" /> <spring:message
-						code="nu" /> <form:radiobutton path="gioiTinh" value="Khác" /> <spring:message
-						code="khac" /></td>
+				<td>
+				<form:radiobutton path="gioiTinh" value="Nam" checked="checked"/> 
+				<spring:message code="nam" /> 
+				<form:radiobutton path="gioiTinh" value="Nữ" /> 
+				<spring:message code="nu" /> 
+				<form:radiobutton path="gioiTinh" value="Khác" /> 
+				<spring:message code="khac" /></td>
 			</tr>
 			<tr>
 				<td><form:label path="email">
 						<spring:message code="email" />
 					</form:label></td>
-				<td><form:input path="email" class="form-control" /></td>
+				<td><form:input path="email" class="form-control"/><form:errors path="email" cssClass="error"/></td>
 			</tr>
 			<tr>
-				<td><form:label path="SDT">
+				<td><form:label path="sdt">
 						<spring:message code="sdt" />
 					</form:label></td>
-				<td><form:input path="SDT" class="form-control" /></td>
+				<td><form:input type="number" path="sdt" class="form-control"/><form:errors path="sdt" cssClass="error"/></td>
 			</tr>
 			<tr>
 				<td><form:label path="diaChi">
 						<spring:message code="diachi" />
 					</form:label></td>
-				<td><form:input path="diaChi" class="form-control" /></td>
+				<td><form:input path="diaChi" class="form-control"/><form:errors path="diaChi" cssClass="error"/></td>
 			</tr>
 			<tr>
 				<td><form:label path="lophoc.maLop">
@@ -126,8 +132,9 @@
 	</form:form>
 	<br>
 	<div style="text-align: center;">
-		<a href="<%=request.getContextPath()%>/danhsach"><input style="background-color: limegreen;"
-			class="btn btn-primary" style="font-size: 20px;" type="submit"
+		<a href="<%=request.getContextPath()%>/danhsach"><input
+			class="btn btn-primary"
+			style="font-size: 20px; background-color: limegreen;" type="button"
 			value="<spring:message code="danhsach" />" readonly /></a>
 	</div>
 

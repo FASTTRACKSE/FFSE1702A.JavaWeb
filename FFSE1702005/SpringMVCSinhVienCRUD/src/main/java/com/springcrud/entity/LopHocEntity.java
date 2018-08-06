@@ -27,12 +27,12 @@ public class LopHocEntity{
 	}
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "MaLop")
 	private Integer maLop;
 
 	@Column(name = "TenLop")
-	private String TenLop;
+	private String tenLop;
 
 	public Integer getMaLop() {
 		return maLop;
@@ -43,11 +43,11 @@ public class LopHocEntity{
 	}
 
 	public String getTenLop() {
-		return TenLop;
+		return tenLop;
 	}
 
 	public void setTenLop(String tenLop) {
-		TenLop = tenLop;
+		this.tenLop = tenLop;
 	}
 
 }

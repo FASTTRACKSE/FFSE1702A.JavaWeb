@@ -40,15 +40,25 @@ public class SinhVienDaoImpl implements SinhVienDao{
 //       return DanhSanhSinhVien;
 //   }
    @Override
-   public List<SinhVienEntity> danhSachSinhVien() {
+   public List<SinhVienEntity> danhSachSinhVien(int page) {
 	      Session session = sessionFactory.getCurrentSession();
 	      CriteriaBuilder cb = session.getCriteriaBuilder();
 	      CriteriaQuery<SinhVienEntity> cq = cb.createQuery(SinhVienEntity.class);
 	      Root<SinhVienEntity> root = cq.from(SinhVienEntity.class);
 	      cq.select(root);
 	      Query<SinhVienEntity> query = session.createQuery(cq);
+	      query.setFirstResult((page-1)*5);
+	      query.setMaxResults(5);
 	      return query.getResultList();
 	   }
+   
+   @SuppressWarnings("deprecation")
+   public long totalRecords() {
+		Session session = this.sessionFactory.getCurrentSession();
+		String queryString = "SELECT count(*) FROM SinhVienEntity";
+		Query<?> query = session.createQuery(queryString); 
+		return (Long) query.uniqueResult();
+	}
    
    @Override
    public List<LopHocEntity> danhSachLop() {

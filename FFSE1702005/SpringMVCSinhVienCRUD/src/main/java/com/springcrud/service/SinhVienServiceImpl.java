@@ -34,8 +34,14 @@ public class SinhVienServiceImpl implements SinhVienService{
 	 
 	    @Override
 	    @Transactional
-	    public List<SinhVienEntity> danhSachSinhVien() {
-	        return this.Dao.danhSachSinhVien();
+	    public List<SinhVienEntity> danhSachSinhVien(int page) {
+	        return this.Dao.danhSachSinhVien(page);
+	    }
+	    
+	    @Override
+	    @Transactional
+	    public long totalRecords() {
+	        return this.Dao.totalRecords();
 	    }
 	    
 	    @Override
