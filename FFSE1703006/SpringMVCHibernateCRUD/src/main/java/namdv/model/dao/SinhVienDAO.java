@@ -10,7 +10,7 @@ public interface SinhVienDAO {
 
 	public void updateSinhVien(SinhVien sv);
 
-	public List<SinhVien> getAllSinhVien(Integer offset, Integer maxResult);
+	public List<SinhVien> getAllSinhVien(Integer offset, Integer step);
 
 	public Long count();
 

@@ -39,9 +39,9 @@
             <type>int</type>
         </attribute>
         <attribute>
-            <name>max</name>
+            <name>step</name>
             <rtexprvalue>true</rtexprvalue>
-            <type>int</type>
+            <type>float</type>
         </attribute>
     </tag>
 </taglib>

@@ -36,9 +36,9 @@ public class SinhVienDAOImpl implements SinhVienDAO {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<SinhVien> getAllSinhVien(Integer offset, Integer maxResult) {
+	public List<SinhVien> getAllSinhVien(Integer offset, Integer step) {
 		List<SinhVien> sinhVienList = sessionFactory.getCurrentSession().createCriteria(SinhVien.class)
-				.setFirstResult(offset != null ? offset : 0).setMaxResults(maxResult != null ? maxResult : 10)
+				.setFirstResult(offset != null ? offset : 0).setMaxResults(step != null ? step : 10)
 				.addOrder(Order.asc("maSinhVien")).list();
 		for (SinhVien sv : sinhVienList) {
 			logger.info("Person List::" + sv);

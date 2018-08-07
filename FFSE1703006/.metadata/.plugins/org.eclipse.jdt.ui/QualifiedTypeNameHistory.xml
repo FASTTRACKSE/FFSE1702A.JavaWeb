@@ -29,7 +29,6 @@
 <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Qualifier"/>
 <fullyQualifiedTypeName name="namdv.model.entities.LopHoc"/>
 <fullyQualifiedTypeName name="namdv.service.LopHocService"/>
-<fullyQualifiedTypeName name="java.util.List"/>
 <fullyQualifiedTypeName name="org.springframework.data.domain.Sort.Order"/>
 <fullyQualifiedTypeName name="org.hibernate.criterion.Order"/>
 <fullyQualifiedTypeName name="namdv.model.entities.SinhVien"/>
@@ -37,4 +36,6 @@
 <fullyQualifiedTypeName name="org.hibernate.validator.constraints.NotEmpty"/>
 <fullyQualifiedTypeName name="org.hibernate.validator.constraints.Email"/>
 <fullyQualifiedTypeName name="org.hamcrest.core.IsNull"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="namdv.model.entities.ListSinhVien"/>
 </qualifiedTypeNameHistroy>

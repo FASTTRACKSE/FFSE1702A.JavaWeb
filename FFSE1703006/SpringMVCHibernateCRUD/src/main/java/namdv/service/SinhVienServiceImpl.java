@@ -29,8 +29,8 @@ public class SinhVienServiceImpl implements SinhVienService {
 
 	@Override
 	@Transactional
-	public List<SinhVien> getAllSinhVien(Integer offset, Integer maxResult) {
-		return this.sinhVienDAO.getAllSinhVien(offset, maxResult);
+	public List<SinhVien> getAllSinhVien(Integer offset, Integer step) {
+		return this.sinhVienDAO.getAllSinhVien(offset, step);
 	}
 
 	@Override

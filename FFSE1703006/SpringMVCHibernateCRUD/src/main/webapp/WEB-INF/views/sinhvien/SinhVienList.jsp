@@ -76,7 +76,7 @@
 			</c:forEach>
 		  </tbody>
 		</table>
-		<tag:paginate offset="${offset}" count="${count}" uri="/CRUDSpring" next="&raquo;" previous="&laquo;"/>
+		<tag:paginate step="${step}" offset="${offset}" count="${count}" uri="/CRUDSpring" next="&raquo;" previous="&laquo;"/>
 	</div>
 </body>
 </html>

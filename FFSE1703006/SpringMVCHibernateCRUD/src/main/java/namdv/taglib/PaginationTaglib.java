@@ -8,13 +8,12 @@ import javax.servlet.jsp.tagext.SimpleTagSupport;
 
 public class PaginationTaglib extends SimpleTagSupport {
 
+	private float step = 10;
 	private String uri;
 	private int offset;
-	private int page;
 	private int count;
-	private int steps = 10;
-	private String previous = "Previous";
-	private String next = "Next";
+	private String previous;
+	private String next;
 
 	private Writer getWriter() {
 		JspWriter out = getJspContext().getOut();
@@ -25,31 +24,34 @@ public class PaginationTaglib extends SimpleTagSupport {
 	public void doTag() throws JspException {
 		Writer out = getWriter();
 
+		int c_page = (int) (offset / step) + 1;
+		int l_page = (int) Math.ceil(count / step);
+
 		try {
 			out.write("<nav>");
 			out.write("<ul class=\"pagination justify-content-center\">");
 
-			if (offset < steps)
+			if (c_page == 1)
 				out.write(constructLink(1, previous, "disabled", true));
 			else
 				out.write(constructLink(1, previous, null, false));
 
-			for (int itr = offset - 2 * steps; itr <= offset + 2 * steps; itr += steps) {
-				if (itr >= 0 && itr <= count) {
-					if (offset == itr)
-						out.write(constructLink(itr / 10 + 1, String.valueOf(itr / 10 + 1), "active", true));
+			for (int page = c_page - 2; page <= c_page + 2; page++) {
+				if (page > 0 && page <= l_page) {
+					if (page == c_page)
+						out.write(constructLink(c_page, String.valueOf(c_page), "active", true));
 					else
-						out.write(constructLink(itr / 10 + 1, String.valueOf(itr / 10 + 1), null, false));
+						out.write(constructLink(page, String.valueOf(page), null, false));
 				}
-				if (itr > count) {
+				if (page >= l_page) {
 					break;
 				}
 			}
 
-			if (offset + steps >= count)
-				out.write(constructLink(offset + steps, next, "disabled", true));
+			if (c_page == l_page)
+				out.write(constructLink(l_page, next, "disabled", true));
 			else
-				out.write(constructLink((int) Math.ceil(count / 10.0), next, null, false));
+				out.write(constructLink(l_page, next, null, false));
 
 			out.write("</ul>");
 			out.write("</nav>");
@@ -59,6 +61,10 @@ public class PaginationTaglib extends SimpleTagSupport {
 	}
 
 	private String constructLink(int page, String text, String className, boolean disabled) {
+		String s_step = "";
+		if (step != 10) {
+			s_step = "&step=" + (int) step;
+		}
 		StringBuilder link = new StringBuilder("<li");
 		if (className != null) {
 			link.append(" class=\"page-item ");
@@ -68,17 +74,9 @@ public class PaginationTaglib extends SimpleTagSupport {
 		if (disabled)
 			link.append(">").append("<a class=\"page-link\" href=\"javascript:void(0);\">" + text + "</a></li>");
 		else
-			link.append(">")
-					.append("<a class=\"page-link\" href=\"" + uri + "?page=" + page + "\">" + text + "</a></li>");
+			link.append(">").append(
+					"<a class=\"page-link\" href=\"" + uri + "?page=" + page + s_step + "\">" + text + "</a></li>");
 		return link.toString();
-	}
-
-	public int getPage() {
-		return page;
-	}
-
-	public void setPage(int page) {
-		this.page = page;
 	}
 
 	public int getOffset() {
@@ -121,12 +119,12 @@ public class PaginationTaglib extends SimpleTagSupport {
 		this.next = next;
 	}
 
-	public int getSteps() {
-		return steps;
+	public float getstep() {
+		return step;
 	}
 
-	public void setSteps(int steps) {
-		this.steps = steps;
+	public void setstep(float step) {
+		this.step = step;
 	}
 
 }
