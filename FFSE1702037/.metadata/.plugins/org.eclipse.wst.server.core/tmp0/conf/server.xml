@@ -149,7 +149,7 @@
              Note: The pattern used is equivalent to using pattern="common" -->
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
 
-      <Context docBase="C:\Users\PC\Documents\GitHub\FFSE1702A.JavaWeb\FFSE1702037\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\ROOT" path="" reloadable="false"/><Context docBase="C:\Users\PC\Documents\GitHub\FFSE1702A.JavaWeb\FFSE1702037\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\demo2" path="/demo2" reloadable="true" source="org.eclipse.jst.jee.server:demo2"/><Context docBase="C:\Users\PC\Documents\GitHub\FFSE1702A.JavaWeb\FFSE1702037\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\Student" path="/Student" reloadable="true" source="org.eclipse.jst.jee.server:Student"/><Context docBase="C:\Users\PC\Documents\GitHub\FFSE1702A.JavaWeb\FFSE1702037\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\JSF-QLSV" path="/JSF-QLSV" reloadable="true" source="org.eclipse.jst.jee.server:JSF-QLSV"/></Host>
+      <Context docBase="C:\Users\PC\Documents\GitHub\FFSE1702A.JavaWeb\FFSE1702037\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\ROOT" path="" reloadable="false"/><Context docBase="C:\Users\PC\Documents\GitHub\FFSE1702A.JavaWeb\FFSE1702037\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\springProject" path="/springProject" reloadable="true" source="org.eclipse.jst.jee.server:springProject"/></Host>
     </Engine>
   </Service>
 </Server>

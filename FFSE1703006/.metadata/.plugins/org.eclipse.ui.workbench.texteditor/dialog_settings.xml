@@ -9,44 +9,44 @@
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="setPageIndex" key="selection"/>
+		<item value="resources" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
-			<item value="paginator."/>
-			<item value="setPageIndex"/>
-			<item value="lastPage"/>
-			<item value="currentPage"/>
-			<item value="pages"/>
-			<item value="records"/>
-			<item value="getFirst"/>
-			<item value="&#x09;&#x09;&#x09;&#x09;&#x09;"/>
-			<item value="&#x09;            "/>
-			<item value="testBean"/>
-			<item value="RepeatPaginator"/>
-			<item value="List&lt;?&gt;"/>
-			<item value="h:column"/>
-			<item value="editRecordObj"/>
-			<item value="#{editRecordObj.country}"/>
+			<item value="../../../app-assets"/>
+			<item value="app-assets/"/>
+			<item value="app-"/>
+			<item value="stack-admin/"/>
+			<item value=" /resources"/>
+			<item value="&lt;web-app xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns=&quot;http://xmlns.jcp.org/xml/ns/javaee&quot; xsi:schemaLocation=&quot;http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd&quot; id=&quot;WebApp_ID&quot; version=&quot;3.1&quot;&gt;"/>
+			<item value="timeout"/>
+			<item value="time"/>
+			<item value="itemStyle"/>
+			<item value="[0, 50]"/>
+			<item value=" [0, 50]"/>
+			<item value="radius: [0, 50]"/>
+			<item value="radius  [0, 50]"/>
+			<item value="radius : [0, 50]"/>
+			<item value="radius : [0, 50],"/>
 		</list>
 		<list key="replacehistory">
-			<item value="user.paginator.pages"/>
-			<item value="user.paginator.pageIndex"/>
-			<item value="&#x09;        "/>
-			<item value="&#x09;            "/>
-			<item value="user"/>
-			<item value="Paginator"/>
-			<item value="List&lt;User&gt;"/>
-			<item value="p:column"/>
+			<item value="resources"/>
 			<item value=""/>
-			<item value="&lt;c:out value=&quot;${pageContext.request.contextPath}&quot; /&gt;"/>
-			<item value="UserDAO"/>
-			<item value="ListUser"/>
-			<item value="listuser"/>
-			<item value="list"/>
-			<item value="index"/>
+			<item value="/resources"/>
+			<item value="step"/>
+			<item value="path=&quot;listSinhVien[0]."/>
+			<item value="path=&quot;listSinhVien.listSinhVien0"/>
+			<item value="path=&quot;listSinhVien0"/>
+			<item value="path=&quot;listSinhVien"/>
+			<item value="path=&quot;sinhVien[${status.index}]"/>
+			<item value="path=&quot;sinhVien."/>
+			<item value="path=&quot;listSinhVien."/>
+			<item value="cssClass=&quot;invalid-feedback d-block&quot;"/>
+			<item value="cssClass=&quot;error&quot;"/>
+			<item value="cssClass=&quot;invalid-feedback&quot;"/>
+			<item value="invalid-feedback"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">

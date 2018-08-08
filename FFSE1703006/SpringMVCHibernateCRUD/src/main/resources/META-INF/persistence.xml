@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+	<persistence-unit name="CRUDSpring">
+		<class>namdv.model.entities.LopHoc</class>
+		<class>namdv.model.entities.SinhVien</class>
+		<class>namdv.model.entities.ChucDanh</class>
+		<class>namdv.model.entities.DuAn</class>
+		<class>namdv.model.entities.HoSoNhanVien</class>
+		<class>namdv.model.entities.HopDong</class>
+		<class>namdv.model.entities.LoaiHopDong</class>
+		<class>namdv.model.entities.PhongBan</class>
+		<class>namdv.model.entities.QuocTich</class>
+		<class>namdv.model.entities.ThongTinBangCap</class>
+		<class>namdv.model.entities.ThongTinGiaDinh</class>
+		<class>namdv.model.entities.TinhTrangHonNhan</class>
+	</persistence-unit>
+</persistence>

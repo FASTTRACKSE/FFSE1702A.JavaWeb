@@ -1,0 +1,1 @@
+<% response.sendRedirect("ns/chuc_danh"); %>

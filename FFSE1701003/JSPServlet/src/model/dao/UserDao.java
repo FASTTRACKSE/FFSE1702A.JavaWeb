@@ -32,25 +32,13 @@ public class UserDao {
 		int status = 0;
 		Connection con = DbConnection.getConnection();
 		PreparedStatement ps = con
-				.prepareStatement("update register set name=?,password=?,email=?,sex=?,country=? where id=?");
+				.prepareStatement("update register set name=?,email=?,sex=?,country=? where id=?");
 		ps.setString(1, u.getName());
-		ps.setString(2, u.getPassword());
-		ps.setString(3, u.getEmail());
-		ps.setString(4, u.getSex());
-		ps.setString(5, u.getCountry());
-		ps.setInt(6, u.getId());
+		ps.setString(2, u.getEmail());
+		ps.setString(3, u.getSex());
+		ps.setString(4, u.getCountry());
+		ps.setInt(5, u.getId());
 		status = ps.executeUpdate();
-
-		return status;
-	}
-
-	public int delete(User u) throws SQLException {
-		int status = 0;
-		Connection con = DbConnection.getConnection();
-		PreparedStatement ps = con.prepareStatement("delete from register where id=?");
-		ps.setInt(1, u.getId());
-		status = ps.executeUpdate();
-
 		return status;
 	}
 
@@ -120,7 +108,6 @@ public class UserDao {
 	}
 
 	public List<User> listAllUsers() throws SQLException {
-		//System.out.println("kshdkjfhdsk");
 		List<User> listUser = new ArrayList<>();
 
 		String sql = "SELECT * FROM user";
@@ -190,7 +177,7 @@ public class UserDao {
 	}
 
 	public boolean deleteUser(User user) throws SQLException {
-		String sql = "DELETE FROM user where id = ?";
+		String sql = "DELETE FROM register where id = ?";
 
 		DbConnection.connect();
 
@@ -198,6 +185,7 @@ public class UserDao {
 		statement.setInt(1, user.getId());
 
 		boolean rowDeleted = statement.executeUpdate() > 0;
+		
 		statement.close();
 		DbConnection.disconnect();
 		return rowDeleted;

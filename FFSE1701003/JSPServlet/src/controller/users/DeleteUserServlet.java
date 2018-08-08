@@ -23,13 +23,13 @@ public class DeleteUserServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		int id = Integer.parseInt(request.getParameter("id"));
-		User newUser = new User(id);
+		User u = new User(id);
 		UserDao user = new UserDao();
 		try {
-			if(user.insertUser(newUser)) {
-				response.sendRedirect("/JSPServlet/users/ViewAddUserSuccess");
+			if(user.deleteUser(u) ) {
+				response.sendRedirect("/JSPServlet/users");
 			}else {
-				response.sendRedirect("/JSPServlet/users/viewAddUserError");
+				response.sendRedirect("/JSPServlet/users/ViewError");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

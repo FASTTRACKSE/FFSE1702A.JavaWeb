@@ -1,4 +1,5 @@
 <%@include file="admin/layout/header_view.jsp"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <div class="container">
 	<div id="path">
 		<ol class="breadcrumb">
@@ -41,8 +42,8 @@
 								<option value="Thụy Sỹ">Thụy Sỹ</option>
 						</select></td>
 					</tr>
-					<tr>
-						<td colspan="2"><input type="submit" value="Add User" /></td>
+					<tr></br>
+						<td colspan="2"><input type="submit" class="btn btn-primary" value="Add User" /></td>
 					</tr>
 				</table>
 			</form>

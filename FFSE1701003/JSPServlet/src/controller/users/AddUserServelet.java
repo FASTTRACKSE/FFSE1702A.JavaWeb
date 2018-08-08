@@ -34,7 +34,7 @@ public class AddUserServelet extends HttpServlet {
 			if(user.insertUser(newUser)) {
 				response.sendRedirect("/JSPServlet/users/ViewAddUserSuccess");
 			}else {
-				response.sendRedirect("/JSPServlet/users/viewAddUserError");
+				response.sendRedirect("/JSPServlet/users/ViewError");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
