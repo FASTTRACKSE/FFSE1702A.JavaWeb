@@ -22,6 +22,12 @@ public class QuanLyChucDanhController {
 		List<ChucDanh> list = quanlychucdanhService.listChucDanh();
 		model.addAttribute("chucdanh", new ChucDanh());
 		model.addAttribute("listChucDanh", list);
-		return "QuanLyNhanSu/QuanLyChucDanh/chucdanh";
+		return "QuanLyNhanSu/QuanLyChucDanh/ChucDanh";
+	}
+	
+	@RequestMapping(value = "/ns/chuc_danh/add", method = RequestMethod.GET)
+	public String addChucDanh(Model model) {
+		
+		return "QuanLyNhanSu/QuanLyChucDanh/FormChucDanh";
 	}
 }

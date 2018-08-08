@@ -24,7 +24,7 @@
             </div>
             <div class="content-header-right col-md-6 col-xs-12">
                <div role="group" aria-label="Button group with nested dropdown" class="btn-group float-md-right" id="add-new">
-                  <a href="#" class="btn btn-primary"><span class="fa fa-plus"></span> Add New</a>
+                  <a href="chuc_danh/add" class="btn btn-primary"><span class="fa fa-plus"></span> Thêm Mới</a>
                </div>
             </div>
          </div>
