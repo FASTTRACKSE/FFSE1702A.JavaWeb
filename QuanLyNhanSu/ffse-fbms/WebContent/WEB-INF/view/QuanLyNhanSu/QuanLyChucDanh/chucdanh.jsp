@@ -57,16 +57,18 @@
                                     </tr>
                                  </thead>
                                  <tbody>
+                                 <c:forEach items="${listChucDanh}" var="chucdanh" varStatus="stt">
                                     <tr>
-                                       <td>1</td>
-                                       <td>Name</td>
-                                       <td>Thumb</td>
+                                       <td>${stt.count }</td>
+                                       <td>${chucdanh.maChucDanh }</td>
+                                       <td>${chucdanh.tenChucDanh }</td>
                                        <td style="letter-spacing: 5px; min-width: 75px;">
                                           <a href="#"><i class="fa fa-eye"></i></a>
                                           <a href="#"><i class="fa fa-pencil"></i></a>
                                           <a href="javascript:void(0);" data-toggle="modal" data-target="#confirm-delete" data-href="#"><i class="fa fa-trash"></i></a>
                                        </td>
                                     </tr>
+                                    </c:forEach>
                                     <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                        <div class="modal-dialog">
                                           <div class="modal-content">
