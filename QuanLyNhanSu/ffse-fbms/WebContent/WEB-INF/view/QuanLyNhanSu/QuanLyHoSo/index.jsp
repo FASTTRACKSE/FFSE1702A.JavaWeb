@@ -6,15 +6,17 @@
       <div class="content-wrapper">
          <div class="content-header row">
             <div class="content-header-left col-md-6 col-xs-12 mb-2">
-               <h3 class="content-header-title mb-0">Data Products</h3>
+               <h3 class="content-header-title mb-0">Quản lý hồ sơ</h3>
                <div class="row breadcrumbs-top">
                   <div class="breadcrumb-wrapper col-xs-12">
                      <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#">Home</a>
+                        <li class="breadcrumb-item"><a href="#">Trang chủ</a>
                         </li>
-                        <li class="breadcrumb-item"><a href="#">Manage Products</a>
+                        <li class="breadcrumb-item"><a href="#">Quản lý nhân sự</a>
                         </li>
-                        <li class="breadcrumb-item active">Data Products
+                        <li class="breadcrumb-item"><a href="#">Quản lý hồ sơ</a>
+                        </li>
+                        <li class="breadcrumb-item active">Danh sách hồ sơ
                         </li>
                      </ol>
                   </div>
@@ -22,7 +24,7 @@
             </div>
             <div class="content-header-right col-md-6 col-xs-12">
                <div role="group" aria-label="Button group with nested dropdown" class="btn-group float-md-right" id="add-new">
-                  <a href="#" class="btn btn-primary"><span class="fa fa-plus"></span> Add New</a>
+                  <a href="#" class="btn btn-primary"><span class="fa fa-plus"></span> Thêm hồ sơ</a>
                </div>
             </div>
          </div>
@@ -34,14 +36,14 @@
                      <div class="card">
                         <div class="card-header">
                            <h4 class="card-title">Datatable</h4>
-                           <div style="margin-top: 1.5rem">
+                           <%-- <div style="margin-top: 1.5rem">
                               <div style="margin: 0 auto!important; <?php echo isset($_SESSION['success_msg']) ? 'display:block' : 'display:none'; ?>" class="alert alert-icon-left alert-success alert-dismissible mb-2" role="alert">
                                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                     <span aria-hidden="true">×</span>
                                  </button>
                                  xxxxxxxxxxxxxxxxxxxxxxx
                               </div>
-                           </div>
+                           </div> --%>
                            <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
                            <div class="heading-elements">
                               <ul class="list-inline mb-0">
@@ -56,26 +58,30 @@
                                  <thead>
                                     <tr>
                                        <th>#</th>
-                                       <th>Name</th>
-                                       <th>Thumb</th>
-                                       <th>Info</th>
-                                       <th>Action</th>
+                                       <th>Mã nhân viên</th>
+                                       <th>Phòng ban</th>
+                                       <th>Chức danh</th>
+                                       <th>Họ đệm</th>
+                                       <th>Tên</th>
+                                       <th>Năm sinh</th>
+                                       <th>Giới tính</th>
+                                       <th>Quê quán</th>
+                                       <th>Ảnh đại diện</th>
+                                       <th>Hành động</th>
                                     </tr>
                                  </thead>
                                  <tbody>
                                     <tr>
-                                       <td>
-                                          1
-                                       </td>
-                                       <td>
-                                          Name
-                                       </td>
-                                       <td>
-                                          Thumb
-                                       </td>
-                                       <td>
-                                          Info
-                                       </td>
+                                       <td>#</td>
+                                       <td>Mã nhân viên</td>
+                                       <td>Phòng ban</td>
+                                       <td>Chức danh</td>
+                                       <td>Họ đệm</td>
+                                       <td>Tên</td>
+                                       <td>Năm sinh</td>
+                                       <td>Giới tính</td>
+                                       <td>Quê quán</td>
+                                       <td>Ảnh đại diện</td>
                                        <td style="letter-spacing: 5px; min-width: 75px;">
                                           <a href="#"><i class="fa fa-eye"></i></a>
                                           <a href="#"><i class="fa fa-pencil"></i></a>
