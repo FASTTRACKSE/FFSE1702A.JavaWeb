@@ -54,7 +54,7 @@ td {
 		<table
 			class="table table-striped table-hover table-bordered tableUpdated">
 			<tr>
-				<th>ID</th>
+				<th>STT</th>
 				<th>First Name</th>
 				<th>Last Name</th>
 				<th>Birth year</th>
@@ -65,9 +65,9 @@ td {
 				<th>Class</th>
 				<th>Action</th>
 			</tr>
-			<c:forEach var="list" items="${list}">
+			<c:forEach var="list" items="${list}" varStatus="stt">
 				<tr>
-					<td>${list.id}</td>
+					<td>${stt.count}</td>
 					<td>${list.firstName}</td>
 					<td>${list.lastName}</td>
 					<td>${list.birthYear}</td>

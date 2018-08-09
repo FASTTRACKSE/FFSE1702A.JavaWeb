@@ -28,10 +28,10 @@ public class SinhvienDAO {
 	public List<sinhvien> getAll(int page) {
 	
 		Session session = this.sessionFactory.getCurrentSession();
-		Query query=session.createQuery("from sinhvien");
+		Query<?> query=session.createQuery("from sinhvien");
 		query.setFirstResult((page-1)*3);
 		query.setMaxResults(3);
-		List<sinhvien> list = query.list();
+		List<sinhvien> list = (List<sinhvien>) query.list();
 		System.out.print(page);
 		return list;
 	}
@@ -39,7 +39,7 @@ public class SinhvienDAO {
 	public long totalRecords() {
 		Session session = this.sessionFactory.getCurrentSession();
 		String queryString = "SELECT count(*) FROM sinhvien";
-		Query query = session.createQuery(queryString); 
+		Query<?> query = session.createQuery(queryString); 
 		return (Long) query.uniqueResult();
 	}
 	
