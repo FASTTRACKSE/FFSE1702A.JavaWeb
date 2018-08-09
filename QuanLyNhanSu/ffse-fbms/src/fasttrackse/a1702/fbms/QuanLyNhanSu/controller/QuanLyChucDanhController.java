@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -28,6 +29,23 @@ public class QuanLyChucDanhController {
 	@RequestMapping(value = "/ns/chuc_danh/add", method = RequestMethod.GET)
 	public String addChucDanh(Model model) {
 		
+		model.addAttribute("chucdanh", new ChucDanh());
 		return "QuanLyNhanSu/QuanLyChucDanh/FormChucDanh";
+	}
+	
+	//For add and update person both
+	@RequestMapping(value= "/ns/chuc_danh/save", method = RequestMethod.POST)
+	public String addPerson(@ModelAttribute("chucdanh") ChucDanh p){
+		
+		if(p.getMaChucDanh() == null){
+			//new person, add it
+			this.quanlychucdanhService.addChucDanh(p);
+		}else{
+			//existing person, call update
+			this.quanlychucdanhService.updateChucDanh(p);
+		}
+		
+		return "redirect:/ns/chuc_danh";
+		
 	}
 }

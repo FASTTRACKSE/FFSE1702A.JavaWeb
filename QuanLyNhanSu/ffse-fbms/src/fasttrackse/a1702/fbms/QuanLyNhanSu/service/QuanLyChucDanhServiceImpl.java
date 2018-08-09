@@ -21,4 +21,22 @@ public class QuanLyChucDanhServiceImpl implements QuanLyChucDanhService {
 	public List<ChucDanh> listChucDanh() {
 		return this.quanlychucdanhDAO.listChucDanh();
 	}
+	
+	@Override
+	@Transactional
+	public void addChucDanh(ChucDanh p) {
+		this.quanlychucdanhDAO.addChucDanh(p);;
+	}
+
+	@Override
+	@Transactional
+	public void updateChucDanh(ChucDanh p) {
+		this.quanlychucdanhDAO.updateChucDanh(p);
+	}
+	
+	@Override
+	@Transactional
+	public void getChucDanhByMa(String maChucDanh) {
+		this.quanlychucdanhDAO.getChucDanhByMa(maChucDanh);
+	}
 }
