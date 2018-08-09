@@ -6,16 +6,28 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
+
 @Entity
 @Table(name="framework")
 public class Framework {
 	@Id
 	@Column(name="ma_framework")
 	@NotEmpty
+	
 	private String maFramework;
-	@NotEmpty
 	@Column(name="ten_framework")
+	@NotEmpty
 	private String tenFramework;
+	
+	
+	public Framework() {
+		super();
+	}
+	public Framework(String maFramework, String tenFramework) {
+		super();
+		this.maFramework = maFramework;
+		this.tenFramework = tenFramework;
+	}
 	public String getMaFramework() {
 		return maFramework;
 	}
@@ -28,4 +40,5 @@ public class Framework {
 	public void setTenFramework(String tenFramework) {
 		this.tenFramework = tenFramework;
 	}
+	
 }
