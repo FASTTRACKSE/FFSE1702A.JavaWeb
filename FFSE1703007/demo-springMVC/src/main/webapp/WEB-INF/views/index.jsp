@@ -43,7 +43,7 @@
 				<td>${list.phone}</td>
 				<td>${list.address}</td>
 				<td>${list.course.name}</td>
-				<td><a href="edit-view/${list.id }"><button
+				<td><a href="edit/${list.id }"><button
 							class="btn btn-success">Edit</button></a> <a
 					href="delete/${list.id }"><button class="btn btn-danger">Delete</button></a></td>
 			</tr>
@@ -64,7 +64,7 @@
 			</c:if>
 			<li class="page-item active"><a class="page-link"
 				href="?page=${currentPage}">${currentPage}</a></li>
-			<c:if test="${currentPage != lastPage}">
+			<c:if test="${currentPage < lastPage}">
 				<li class="page-item"><a class="page-link"
 					href="?page=${currentPage+1}">${currentPage+1}</a></li>
 			</c:if>
@@ -76,6 +76,6 @@
 	</ul>
 	</nav>
 
-	<a href="create-view">Create student</a>
+	<a href="create">Create student</a>
 </body>
 </html>
