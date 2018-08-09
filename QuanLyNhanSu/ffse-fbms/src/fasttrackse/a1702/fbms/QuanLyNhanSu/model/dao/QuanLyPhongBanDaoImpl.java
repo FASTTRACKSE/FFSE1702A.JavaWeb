@@ -29,13 +29,14 @@ public class QuanLyPhongBanDaoImpl implements QuanLyPhongBanDao {
 		Session session = this.sessionFactory.getCurrentSession();
 		session.update(p);
 	}
+
 	@Override
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public List<PhongBan> listPhongBan() {
 		Session session = this.sessionFactory.getCurrentSession();
 		Query query = session.createQuery("from PhongBan");
 		List<PhongBan> PhongBanList = query.list();
-		
+
 		return PhongBanList;
 	}
 
@@ -43,7 +44,10 @@ public class QuanLyPhongBanDaoImpl implements QuanLyPhongBanDao {
 	public PhongBan getMaPhongBan(String id) {
 		Session session = this.sessionFactory.getCurrentSession();
 		PhongBan p = (PhongBan) session.get(PhongBan.class, id);
+<<<<<<< HEAD
 	
+=======
+>>>>>>> 00b84380abc48565c1f8f2324dc9652990ac6801
 		return p;
 	}
 

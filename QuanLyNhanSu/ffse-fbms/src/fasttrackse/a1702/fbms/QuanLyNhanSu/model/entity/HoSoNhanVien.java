@@ -41,7 +41,7 @@ public class HoSoNhanVien implements Serializable {
 	private String email;
 
 	@Column(name = "gioi_tinh", nullable = false)
-	private byte gioiTinh;
+	private int gioiTinh;
 
 	@Column(name = "ho_dem", nullable = false, length = 50)
 	private String hoDem;
@@ -66,11 +66,14 @@ public class HoSoNhanVien implements Serializable {
 	@Column(name = "so_cmnd", nullable = false, length = 50)
 	private String soCmnd;
 
-	@Column(name = "so_dien_thoai", nullable = false)
-	private int soDienThoai;
+	@Column(name = "so_dien_thoai", nullable = false, length = 11)
+	private String soDienThoai;
 
 	@Column(nullable = false, length = 20)
 	private String ten;
+
+	@Column(name = "trang_thai", nullable = false)
+	private int trangThai;
 
 	// bi-directional many-to-one association to PhongBan
 	@ManyToOne
@@ -143,11 +146,11 @@ public class HoSoNhanVien implements Serializable {
 		this.email = email;
 	}
 
-	public byte getGioiTinh() {
+	public int getGioiTinh() {
 		return this.gioiTinh;
 	}
 
-	public void setGioiTinh(byte gioiTinh) {
+	public void setGioiTinh(int gioiTinh) {
 		this.gioiTinh = gioiTinh;
 	}
 
@@ -207,11 +210,11 @@ public class HoSoNhanVien implements Serializable {
 		this.soCmnd = soCmnd;
 	}
 
-	public int getSoDienThoai() {
+	public String getSoDienThoai() {
 		return this.soDienThoai;
 	}
 
-	public void setSoDienThoai(int soDienThoai) {
+	public void setSoDienThoai(String soDienThoai) {
 		this.soDienThoai = soDienThoai;
 	}
 
@@ -253,6 +256,14 @@ public class HoSoNhanVien implements Serializable {
 
 	public void setTinhTrangHonNhan(TinhTrangHonNhan tinhTrangHonNhan) {
 		this.tinhTrangHonNhan = tinhTrangHonNhan;
+	}
+
+	public int getTrangThai() {
+		return trangThai;
+	}
+
+	public void setTrangThai(int trangThai) {
+		this.trangThai = trangThai;
 	}
 
 	public List<HopDong> getHopDongs() {

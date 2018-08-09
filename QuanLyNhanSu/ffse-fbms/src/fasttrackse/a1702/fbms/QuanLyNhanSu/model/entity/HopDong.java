@@ -29,7 +29,7 @@ public class HopDong implements Serializable {
 	private String maHopDong;
 
 	@Column(name = "luong_thang_13", nullable = false)
-	private byte luongThang13;
+	private int luongThang13;
 
 	@Temporal(TemporalType.DATE)
 	@Column(name = "ngay_ket_thuc", nullable = false)
@@ -43,7 +43,7 @@ public class HopDong implements Serializable {
 	private int soNgayPhep;
 
 	@Column(name = "trang_thai", nullable = false)
-	private byte trangThai;
+	private int trangThai;
 
 	// bi-directional many-to-one association to HoSoNhanVien
 	@ManyToOne
@@ -66,11 +66,11 @@ public class HopDong implements Serializable {
 		this.maHopDong = maHopDong;
 	}
 
-	public byte getLuongThang13() {
+	public int getLuongThang13() {
 		return this.luongThang13;
 	}
 
-	public void setLuongThang13(byte luongThang13) {
+	public void setLuongThang13(int luongThang13) {
 		this.luongThang13 = luongThang13;
 	}
 
@@ -98,7 +98,7 @@ public class HopDong implements Serializable {
 		this.soNgayPhep = soNgayPhep;
 	}
 
-	public byte getTrangThai() {
+	public int getTrangThai() {
 		return this.trangThai;
 	}
 

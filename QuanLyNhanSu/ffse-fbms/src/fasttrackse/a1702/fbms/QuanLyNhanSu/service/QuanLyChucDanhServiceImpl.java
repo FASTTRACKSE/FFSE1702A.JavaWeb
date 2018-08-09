@@ -12,20 +12,21 @@ import fasttrackse.a1702.fbms.QuanLyNhanSu.model.entity.ChucDanh;
 
 @Service
 public class QuanLyChucDanhServiceImpl implements QuanLyChucDanhService {
-	
+
 	@Autowired
 	private QuanLyChucDanhDAO quanlychucdanhDAO;
-	
+
 	@Override
 	@Transactional
 	public List<ChucDanh> listChucDanh() {
 		return this.quanlychucdanhDAO.listChucDanh();
 	}
-	
+
 	@Override
 	@Transactional
 	public void addChucDanh(ChucDanh p) {
-		this.quanlychucdanhDAO.addChucDanh(p);;
+		this.quanlychucdanhDAO.addChucDanh(p);
+		;
 	}
 
 	@Override
@@ -33,10 +34,10 @@ public class QuanLyChucDanhServiceImpl implements QuanLyChucDanhService {
 	public void updateChucDanh(ChucDanh p) {
 		this.quanlychucdanhDAO.updateChucDanh(p);
 	}
-	
+
 	@Override
 	@Transactional
-	public void getChucDanhByMa(String maChucDanh) {
-		this.quanlychucdanhDAO.getChucDanhByMa(maChucDanh);
+	public ChucDanh getChucDanhByMa(String maChucDanh) {
+		return this.quanlychucdanhDAO.getChucDanhByMa(maChucDanh);
 	}
 }

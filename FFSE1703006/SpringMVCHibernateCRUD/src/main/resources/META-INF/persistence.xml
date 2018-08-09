@@ -5,7 +5,6 @@
 		<class>namdv.model.entities.SinhVien</class>
 		<class>namdv.model.entities.ChucDanh</class>
 		<class>namdv.model.entities.DuAn</class>
-		<class>namdv.model.entities.HoSoNhanVien</class>
 		<class>namdv.model.entities.HopDong</class>
 		<class>namdv.model.entities.LoaiHopDong</class>
 		<class>namdv.model.entities.PhongBan</class>
@@ -13,5 +12,6 @@
 		<class>namdv.model.entities.ThongTinBangCap</class>
 		<class>namdv.model.entities.ThongTinGiaDinh</class>
 		<class>namdv.model.entities.TinhTrangHonNhan</class>
+		<class>namdv.model.entities.HoSoNhanVien</class>
 	</persistence-unit>
 </persistence>

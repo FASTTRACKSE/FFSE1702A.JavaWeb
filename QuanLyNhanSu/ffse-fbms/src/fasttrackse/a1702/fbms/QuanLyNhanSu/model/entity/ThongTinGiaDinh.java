@@ -29,7 +29,7 @@ public class ThongTinGiaDinh implements Serializable {
 	private int id;
 
 	@Column(name = "gioi_tinh", nullable = false)
-	private byte gioiTinh;
+	private int gioiTinh;
 
 	@Column(name = "ho_dem", nullable = false, length = 100)
 	private String hoDem;
@@ -66,11 +66,11 @@ public class ThongTinGiaDinh implements Serializable {
 		this.id = id;
 	}
 
-	public byte getGioiTinh() {
+	public int getGioiTinh() {
 		return this.gioiTinh;
 	}
 
-	public void setGioiTinh(byte gioiTinh) {
+	public void setGioiTinh(int gioiTinh) {
 		this.gioiTinh = gioiTinh;
 	}
 
