@@ -1,4 +1,5 @@
 package fasttrackse.a1702.fbms.QuanLyNhanSu.controller;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +15,7 @@ import fasttrackse.a1702.fbms.QuanLyNhanSu.service.QuanLyPhongBanService;
 public class QuanLyPhongBanController {
 	@Autowired
 	private QuanLyPhongBanService quanlyphongbanService;
+
 	@RequestMapping(value = "/ns/phong_ban", method = RequestMethod.GET)
 
 	public String listPhongBan(Model model) {
@@ -21,41 +23,42 @@ public class QuanLyPhongBanController {
 		model.addAttribute("listPhongBan", this.quanlyphongbanService.listPhongBan());
 		return "QuanLyNhanSu/QuanLyPhongBan/PhongBan";
 	}
+
 	@RequestMapping(value = "/ns/phong_ban/add", method = RequestMethod.GET)
 	public String addPhongBanForm(Model model) {
 
 		model.addAttribute("phongBan", new PhongBan());
 		return "QuanLyNhanSu/QuanLyPhongBan/FormPhongBan";
 	}
-	
-	//For add and update person both
-	@RequestMapping(value= "/save", method = RequestMethod.POST)
-	public String addPhongBan(@ModelAttribute("phongBan") PhongBan p){
+
+	// For add and update person both
+	@RequestMapping(value = "/ns/phong_ban/save", method = RequestMethod.POST)
+	public String addPhongBan(@ModelAttribute("phongBan") PhongBan p) {
 		PhongBan pb = this.quanlyphongbanService.getMaPhongBan(p.getMaPhongBan());
-		System.out.println("pb: " + pb);
-		if(pb == null){
-			//new person, add it
+
+		if (pb == null) {
+			// new person, add it
 			this.quanlyphongbanService.addPhongBan(p);
-		}else{
-			//existing person, call update
+		} else {
+			// existing person, call update
 			this.quanlyphongbanService.updatePhongBan(p);
 		}
-		
+
 		return "redirect:/ns/phong_ban";
-		
+
 	}
-	
+
 	@RequestMapping("/remove/{maPhongBan}")
-    public String removePhongBan(@PathVariable("maPhongBan") String id){
-		
-        this.quanlyphongbanService.removePhongBan(id);
-        return "redirect:/ns/phong_ban";
-    }
- 
-    @RequestMapping("/edit/{maPhongBan}")
-    public String editPhongBan(@PathVariable("maPhongBan") String id, Model model){
-        model.addAttribute("phongBan", this.quanlyphongbanService.getMaPhongBan(id));
-        return "QuanLyNhanSu/QuanLyPhongBan/FormPhongBan";
-    }
+	public String removePhongBan(@PathVariable("maPhongBan") String id) {
+
+		this.quanlyphongbanService.removePhongBan(id);
+		return "redirect:/ns/phong_ban";
+	}
+
+	@RequestMapping("/edit/{maPhongBan}")
+	public String editPhongBan(@PathVariable("maPhongBan") String id, Model model) {
+		model.addAttribute("phongBan", this.quanlyphongbanService.getMaPhongBan(id));
+		return "QuanLyNhanSu/QuanLyPhongBan/FormPhongBan";
+	}
 
 }

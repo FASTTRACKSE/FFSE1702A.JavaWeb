@@ -19,7 +19,7 @@ public class QuanLyPhongBanDaoImpl implements QuanLyPhongBanDao {
 	@Override
 	public void addPhongBan(PhongBan p) {
 		Session session = this.sessionFactory.getCurrentSession();
-		session.persist(p);
+		session.save(p);
 	}
 
 	@Override
@@ -27,29 +27,28 @@ public class QuanLyPhongBanDaoImpl implements QuanLyPhongBanDao {
 		Session session = this.sessionFactory.getCurrentSession();
 		session.update(p);
 	}
+
 	@Override
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public List<PhongBan> listPhongBan() {
 		Session session = this.sessionFactory.getCurrentSession();
 		Query query = session.createQuery("from PhongBan");
 		List<PhongBan> PhongBanList = query.list();
-		
+
 		return PhongBanList;
 	}
 
 	@Override
 	public PhongBan getMaPhongBan(String id) {
 		Session session = this.sessionFactory.getCurrentSession();
-		PhongBan p = (PhongBan) session.load(PhongBan.class, id);
-	
+		PhongBan p = (PhongBan) session.get(PhongBan.class, id);
 		return p;
 	}
 
 	@Override
 	public void removePhongBan(String id) {
 		Session session = this.sessionFactory.getCurrentSession();
-		@SuppressWarnings("deprecation")
-		PhongBan p = (PhongBan) session.load(PhongBan.class, new Integer(id));
+		PhongBan p = (PhongBan) session.load(PhongBan.class, id);
 		if (null != p) {
 			session.delete(p);
 		}

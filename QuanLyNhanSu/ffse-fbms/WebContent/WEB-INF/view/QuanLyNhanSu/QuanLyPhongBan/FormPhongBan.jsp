@@ -46,7 +46,7 @@
 		                  <div class="card-block">
 		                    <div class="card-text">
 		                    </div>
-		                    <c:url var="addAction" value="/save"></c:url>
+		                    <c:url var="addAction" value="/ns/phong_ban/save"></c:url>
 		                   <form:form action="${addAction}" modelAttribute="phongBan">
 		                      <div class="row">
 		                        <div class="col-md-6 offset-md-3">
