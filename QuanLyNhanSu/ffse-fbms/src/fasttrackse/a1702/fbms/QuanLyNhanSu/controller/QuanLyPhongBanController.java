@@ -29,20 +29,20 @@ public class QuanLyPhongBanController {
 	}
 	
 	//For add and update person both
-	@RequestMapping(value= "/save", method = RequestMethod.POST)
-	public String addPhongBan(@ModelAttribute("phongBan") PhongBan p){
+	@RequestMapping(value = "/ns/phong_ban/save", method = RequestMethod.POST)
+	public String addPhongBan(@ModelAttribute("phongBan") PhongBan p) {
 		PhongBan pb = this.quanlyphongbanService.getMaPhongBan(p.getMaPhongBan());
-		System.out.println("pb: " + pb);
-		if(pb == null){
-			//new person, add it
+
+		if (pb == null) {
+			// new person, add it
 			this.quanlyphongbanService.addPhongBan(p);
-		}else{
-			//existing person, call update
+		} else {
+			// existing person, call update
 			this.quanlyphongbanService.updatePhongBan(p);
 		}
-		
+
 		return "redirect:/ns/phong_ban";
-		
+
 	}
 	
 	@RequestMapping("/remove/{maPhongBan}")

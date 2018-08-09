@@ -9,16 +9,15 @@
 	<div class="content-wrapper">
 		<div class="content-header row">
 			<div class="content-header-left col-md-6 col-xs-12 mb-2">
-				<h3 class="content-header-title mb-0">QUẢN LÝ PHÒNG BAN</h3>
+				<h3 class="content-header-title mb-0">QUẢN LÝ HỢP ĐỒNG</h3>
 				<div class="row breadcrumbs-top">
 					<div class="breadcrumb-wrapper col-xs-12">
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item"><a href="#">TRANG CHỦ</a></li>
 							<li class="breadcrumb-item"><a href="#">QUẢN LÝ NHÂN SỰ</a>
 							</li>
-							<li class="breadcrumb-item"><a href="#">QUẢN LÝ PHÒNG
-									BAN</a></li>
-							<li class="breadcrumb-item active">DANH SÁCH PHÒNG BAN</li>
+							<li class="breadcrumb-item"><a href="#">QUẢN LÝ HỢP ĐỒNG</a></li>
+							<li class="breadcrumb-item active">DANH SÁCH HỢP ĐỒNG</li>
 						</ol>
 					</div>
 				</div>
@@ -27,7 +26,7 @@
 				<div role="group" aria-label="Button group with nested dropdown"
 					class="btn-group float-md-right" id="add-new">
 					<a  href="<c:url value="/ns/phong_ban/add" />" class="btn btn-primary"><span class="fa fa-plus"></span>
-						Thêm phòng ban</a>
+						Thêm Hợp Đồng</a>
 				</div>
 			</div>
 		</div>
@@ -55,14 +54,26 @@
 										class="table table-striped table-bordered zero-configuration">
 										<thead>
 											<tr>
-												<th>Mã phòng ban</th>
-												<th>Tên phòng ban</th>
-												<th>Hành động</th>
+												<th>Mã hợp đồng</th>
+												<th>Tên nhân viên</th>
+												<th>Tên hợp đồng</th>
+												<th>Lương tháng 13</th>
+												<th>Số ngày phép</th>
+												<th>Ngày ký hợp đồng</th>
+												<th>Ngày kết thúc</th>
+												<th>Trạng thái</th>
+												<th>Hành Động</th>
 											</tr>
 										</thead>
 										<tbody>
 											<c:forEach items="${listPhongBan}" var="phongban">
 												<tr>
+													<td>${phongban.maPhongBan}</td>
+													<td>${phongban.tenPhongBan}</td>
+													<td>${phongban.maPhongBan}</td>
+													<td>${phongban.tenPhongBan}</td>
+													<td>${phongban.maPhongBan}</td>
+													<td>${phongban.tenPhongBan}</td>
 													<td>${phongban.maPhongBan}</td>
 													<td>${phongban.tenPhongBan}</td>
 													<td style="letter-spacing: 5px; min-width: 75px;">

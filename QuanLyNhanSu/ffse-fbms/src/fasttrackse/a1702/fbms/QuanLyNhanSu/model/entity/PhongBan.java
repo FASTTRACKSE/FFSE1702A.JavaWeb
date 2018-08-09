@@ -22,7 +22,7 @@ public class PhongBan implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	//@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ma_phong_ban", unique = true, nullable = false, length = 30)
 	private String maPhongBan;
 

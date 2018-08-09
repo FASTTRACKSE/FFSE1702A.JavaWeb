@@ -7,10 +7,12 @@ import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import fasttrackse.a1702.fbms.QuanLyNhanSu.model.entity.PhongBan;
 
 @Repository
+@Transactional
 public class QuanLyPhongBanDaoImpl implements QuanLyPhongBanDao {
 
 	@Autowired
@@ -19,7 +21,7 @@ public class QuanLyPhongBanDaoImpl implements QuanLyPhongBanDao {
 	@Override
 	public void addPhongBan(PhongBan p) {
 		Session session = this.sessionFactory.getCurrentSession();
-		session.persist(p);
+		session.save(p);
 	}
 
 	@Override
@@ -40,7 +42,7 @@ public class QuanLyPhongBanDaoImpl implements QuanLyPhongBanDao {
 	@Override
 	public PhongBan getMaPhongBan(String id) {
 		Session session = this.sessionFactory.getCurrentSession();
-		PhongBan p = (PhongBan) session.load(PhongBan.class, id);
+		PhongBan p = (PhongBan) session.get(PhongBan.class, id);
 	
 		return p;
 	}
@@ -48,8 +50,7 @@ public class QuanLyPhongBanDaoImpl implements QuanLyPhongBanDao {
 	@Override
 	public void removePhongBan(String id) {
 		Session session = this.sessionFactory.getCurrentSession();
-		@SuppressWarnings("deprecation")
-		PhongBan p = (PhongBan) session.load(PhongBan.class, new Integer(id));
+		PhongBan p = (PhongBan) session.load(PhongBan.class, id);
 		if (null != p) {
 			session.delete(p);
 		}
