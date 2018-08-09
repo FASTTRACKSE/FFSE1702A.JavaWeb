@@ -2,13 +2,16 @@ package springmvc.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.Valid;
+
+import org.hibernate.validator.constraints.NotEmpty;
+
 
 @Entity
 @Table(name="students")
@@ -19,28 +22,36 @@ public class Student {
 	int id;
 	
 	@Column(name="firstname")
+	@NotEmpty
 	String firstName;
-	
+		
 	@Column(name="lastname")
+	@NotEmpty
 	String lastName;
-	
+		
 	@Column(name="birthyear")
+	@NotEmpty
 	String birthYear;
-	
+		
 	@Column(name="gender")
+	@NotEmpty
 	String gender;
-	
+		
 	@Column(name="email")
+	@NotEmpty
 	String email;
 	
 	@Column(name="phone")
+	@NotEmpty
 	String phone;
-	
+		
 	@Column(name="address")
+	@NotEmpty
 	String address;
 	
 	@ManyToOne
 	@JoinColumn(name="courseID")
+	@Valid
 	Course course;
 
 	public Student() {
