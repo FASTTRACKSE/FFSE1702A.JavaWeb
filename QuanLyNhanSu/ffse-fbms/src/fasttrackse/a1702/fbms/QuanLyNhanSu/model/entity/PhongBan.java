@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -29,7 +30,7 @@ public class PhongBan implements Serializable {
 	private String tenPhongBan;
 
 	// bi-directional many-to-one association to HoSoNhanVien
-	@OneToMany(mappedBy = "phongBan")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "phongBan")
 	private List<HoSoNhanVien> hoSoNhanViens;
 
 	public PhongBan() {
@@ -57,20 +58,6 @@ public class PhongBan implements Serializable {
 
 	public void setHoSoNhanViens(List<HoSoNhanVien> hoSoNhanViens) {
 		this.hoSoNhanViens = hoSoNhanViens;
-	}
-
-	public HoSoNhanVien addHoSoNhanVien(HoSoNhanVien hoSoNhanVien) {
-		getHoSoNhanViens().add(hoSoNhanVien);
-		hoSoNhanVien.setPhongBan(this);
-
-		return hoSoNhanVien;
-	}
-
-	public HoSoNhanVien removeHoSoNhanVien(HoSoNhanVien hoSoNhanVien) {
-		getHoSoNhanViens().remove(hoSoNhanVien);
-		hoSoNhanVien.setPhongBan(null);
-
-		return hoSoNhanVien;
 	}
 
 }
