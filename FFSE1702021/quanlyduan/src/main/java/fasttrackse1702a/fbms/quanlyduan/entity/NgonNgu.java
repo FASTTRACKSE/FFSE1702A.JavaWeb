@@ -1,15 +1,24 @@
 package fasttrackse1702a.fbms.quanlyduan.entity;
 
+import java.io.Serializable;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name="ngon_ngu")
-public class NgonNgu {
+public class NgonNgu implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Id
 	@Column(name="ma_ngon_ngu")
 	@NotEmpty
@@ -17,16 +26,11 @@ public class NgonNgu {
 	@NotEmpty
 	@Column(name="ten_ngon_ngu")
 	private String tenNgonNgu;
+	@ManyToMany(targetEntity = DuAn.class, mappedBy = "ngonNgu", fetch = FetchType.EAGER)
+	private List<DuAn> duAn;
 	public NgonNgu() {
 		super();
 	}
-	
-	public NgonNgu(String maNgonNgu, String tenNgonNgu) {
-		super();
-		this.maNgonNgu = maNgonNgu;
-		this.tenNgonNgu = tenNgonNgu;
-	}
-
 	public String getMaNgonNgu() {
 		return maNgonNgu;
 	}
@@ -39,5 +43,15 @@ public class NgonNgu {
 	public void setTenNgonNgu(String tenNgonNgu) {
 		this.tenNgonNgu = tenNgonNgu;
 	}
+	public List<DuAn> getDuAn() {
+		return duAn;
+	}
+	public void setDuAn(List<DuAn> duAn) {
+		this.duAn = duAn;
+	}
+	
+	
+	
+	
 
 }

@@ -1,33 +1,50 @@
 package fasttrackse1702a.fbms.quanlyduan.entity;
 
-import javax.persistence.Column;
+import java.io.Serializable;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="ngon_ngu")
-public class DuAn_NgonNgu {
+@Table(name="ngon_ngu_du_an")
+public class DuAn_NgonNgu implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Id
-	@Column(name="ma_ngon_ngu")
-	private String ma_ngon_ngu;
-	@Column(name="ten_ngon_ngu")
-	private String ten_ngon_ngu;
+	@ManyToOne(fetch = FetchType.EAGER,cascade= CascadeType.MERGE)
+	@JoinColumn(name="ma_du_an",referencedColumnName="ma_du_an", insertable=true, updatable=true)
+	private DuAn duAn ;
+	@Id
+	@ManyToOne(fetch = FetchType.EAGER,cascade= CascadeType.MERGE)
+	@JoinColumn(name="ma_ngon_ngu",referencedColumnName="ma_ngon_ngu", insertable=true, updatable=true)
+	private NgonNgu ngonNgu ;
 	
 	public DuAn_NgonNgu(){
 		
 	}
+
+	public DuAn getDuAn() {
+		return duAn;
+	}
+
+	public void setDuAn(DuAn duAn) {
+		this.duAn = duAn;
+	}
+
+	public NgonNgu getNgonNgu() {
+		return ngonNgu;
+	}
+
+	public void setNgonNgu(NgonNgu ngonNgu) {
+		this.ngonNgu = ngonNgu;
+	}
 	
-	public String getMa_ngon_ngu() {
-		return ma_ngon_ngu;
-	}
-	public void setMa_ngon_ngu(String ma_ngon_ngu) {
-		this.ma_ngon_ngu = ma_ngon_ngu;
-	}
-	public String getTen_ngon_ngu() {
-		return ten_ngon_ngu;
-	}
-	public void setTen_ngon_ngu(String ten_ngon_ngu) {
-		this.ten_ngon_ngu = ten_ngon_ngu;
-	}
+	
 }
