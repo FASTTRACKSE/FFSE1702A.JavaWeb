@@ -2,9 +2,6 @@ package springmvc.dao;
 
 import java.util.List;
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.jpa.repository.JpaRepository;
-
 import springmvc.entity.Course;
 import springmvc.entity.Student;
 
