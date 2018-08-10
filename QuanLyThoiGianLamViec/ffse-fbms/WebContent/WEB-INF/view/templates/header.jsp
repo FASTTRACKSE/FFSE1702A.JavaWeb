@@ -1,4 +1,6 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
 
@@ -43,7 +45,7 @@
          <div class="navbar-header">
             <ul class="nav navbar-nav">
                <li class="nav-item mobile-menu hidden-md-up float-xs-left"><a href="#" class="nav-link nav-menu-main menu-toggle hidden-xs"><i class="ft-menu font-large-1"></i></a></li>
-               <li class="nav-item"><a href="index.html" class="navbar-brand"><img alt="stack admin logo" src="resources/images/logo/stack-logo.png" class="brand-logo" />
+               <li class="nav-item"><a href="index.html" class="navbar-brand"><img alt="stack admin logo" src="<c:url value="/resources/images/logo/stack-logo.png"/>" class="brand-logo" />
                      <h2 class="brand-text">Stack</h2></a></li>
                <li class="nav-item hidden-md-up float-xs-right"><a data-toggle="collapse" data-target="#navbar-mobile" class="nav-link open-navbar-container"><i class="fa fa-ellipsis-v"></i></a></li>
             </ul>
@@ -57,7 +59,7 @@
                         <li class="col-md-2">
                            <h6 class="dropdown-menu-header text-uppercase mb-1"><i class="fa fa-newspaper-o"></i> News</h6>
                            <div id="mega-menu-carousel-example">
-                              <div><img src="resources/images/slider/slider-2.png" alt="First slide" class="rounded img-fluid mb-1"><a href="#" class="news-title mb-0">Poster Frame PSD</a>
+                              <div><img src="<c:url value="/resources/images/slider/slider-2.png"/>" alt="First slide" class="rounded img-fluid mb-1"><a href="#" class="news-title mb-0">Poster Frame PSD</a>
                                  <p class="news-content"><span class="font-small-2">January 26, 2016</span></p>
                               </div>
                            </div>
@@ -110,7 +112,7 @@
                                  <div id="headingThree" role="tab" class="card-header p-0 pb-2 no-border"><a data-toggle="collapse" data-parent="#accordionWrap" href="#accordionThree" aria-expanded="false" aria-controls="accordionThree" class="collapsed">Accordion Item #3</a></div>
                                  <div id="accordionThree" role="tabpanel" aria-labelledby="headingThree" aria-expanded="false" class="card-collapse collapse">
                                     <div class="card-body">
-                                       <p class="accordion-text">Candy cupcake sugar plum oat cake wafer marzipan jujubes lollipop macaroon. Cake dragée jujubes donut chocolate bar chocolate cake cupcake chocolate topping.</p>
+                                       <p class="accordion-text">Candy cupcake sugar plum oat cake wafer marzipan jujubes lollipop macaroon. Cake dragÃ©e jujubes donut chocolate bar chocolate cake cupcake chocolate topping.</p>
                                     </div>
                                  </div>
                               </div>
@@ -223,7 +225,7 @@
                         </li>
                         <li class="list-group scrollable-container"><a href="javascript:void(0)" class="list-group-item">
                               <div class="media">
-                                 <div class="media-left"><span class="avatar avatar-sm avatar-online rounded-circle"><img src="resources/images/portrait/small/avatar-s-1.png" alt="avatar"><i></i></span></div>
+                                 <div class="media-left"><span class="avatar avatar-sm avatar-online rounded-circle"><img src="<c:url value="/resources/images/portrait/small/avatar-s-1.png"/>" alt="avatar"><i></i></span></div>
                                  <div class="media-body">
                                     <h6 class="media-heading">Margaret Govan</h6>
                                     <p class="notification-text font-small-3 text-muted">I like your portfolio, let's start the project.</p><small>
@@ -232,7 +234,7 @@
                               </div>
                            </a><a href="javascript:void(0)" class="list-group-item">
                               <div class="media">
-                                 <div class="media-left"><span class="avatar avatar-sm avatar-busy rounded-circle"><img src="resources/images/portrait/small/avatar-s-2.png" alt="avatar"><i></i></span></div>
+                                 <div class="media-left"><span class="avatar avatar-sm avatar-busy rounded-circle"><img src="<c:url value="/resources/images/portrait/small/avatar-s-2.png"/>" alt="avatar"><i></i></span></div>
                                  <div class="media-body">
                                     <h6 class="media-heading">Bret Lezama</h6>
                                     <p class="notification-text font-small-3 text-muted">I have seen your work, there is</p><small>
@@ -241,7 +243,7 @@
                               </div>
                            </a><a href="javascript:void(0)" class="list-group-item">
                               <div class="media">
-                                 <div class="media-left"><span class="avatar avatar-sm avatar-online rounded-circle"><img src="resources/images/portrait/small/avatar-s-3.png" alt="avatar"><i></i></span></div>
+                                 <div class="media-left"><span class="avatar avatar-sm avatar-online rounded-circle"><img src="<c:url value="/resources/images/portrait/small/avatar-s-3.png"/>" alt="avatar"><i></i></span></div>
                                  <div class="media-body">
                                     <h6 class="media-heading">Carie Berra</h6>
                                     <p class="notification-text font-small-3 text-muted">Can we have call in this week ?</p><small>
@@ -250,7 +252,7 @@
                               </div>
                            </a><a href="javascript:void(0)" class="list-group-item">
                               <div class="media">
-                                 <div class="media-left"><span class="avatar avatar-sm avatar-away rounded-circle"><img src="resources/images/portrait/small/avatar-s-6.png" alt="avatar"><i></i></span></div>
+                                 <div class="media-left"><span class="avatar avatar-sm avatar-away rounded-circle"><img src="<c:url value="/resources/images/portrait/small/avatar-s-6.png"/>" alt="avatar"><i></i></span></div>
                                  <div class="media-body">
                                     <h6 class="media-heading">Eric Alsobrook</h6>
                                     <p class="notification-text font-small-3 text-muted">We have project party this saturday night.</p><small>
@@ -261,7 +263,7 @@
                         <li class="dropdown-menu-footer"><a href="javascript:void(0)" class="dropdown-item text-muted text-xs-center">Read all messages</a></li>
                      </ul>
                   </li>
-                  <li class="dropdown dropdown-user nav-item"><a href="#" data-toggle="dropdown" class="dropdown-toggle nav-link dropdown-user-link"><span class="avatar avatar-online"><img src="resources/images/portrait/small/avatar-s-1.png" alt="avatar"><i></i></span><span class="user-name">John Doe</span></a>
+                  <li class="dropdown dropdown-user nav-item"><a href="#" data-toggle="dropdown" class="dropdown-toggle nav-link dropdown-user-link"><span class="avatar avatar-online"><img src="<c:url value="/resources/images/portrait/small/avatar-s-1.png"/>" alt="avatar"><i></i></span><span class="user-name">John Doe</span></a>
                      <div class="dropdown-menu dropdown-menu-right"><a href="#" class="dropdown-item"><i class="ft-user"></i> Edit Profile</a><a href="#" class="dropdown-item"><i class="ft-mail"></i> My Inbox</a><a href="#" class="dropdown-item"><i class="ft-check-square"></i> Task</a><a href="#" class="dropdown-item"><i class="ft-message-square"></i> Chats</a>
                         <div class="dropdown-divider"></div><a href="#" class="dropdown-item"><i class="ft-power"></i> Logout</a>
                      </div>
