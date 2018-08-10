@@ -90,7 +90,10 @@
                         </div>
                         
             <!-- Table header styling end -->
-        
+        	</div>
+        	</div>
+        	</div>
+        	</div>
          </div>
       </div>
    </div>

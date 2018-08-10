@@ -32,6 +32,123 @@
    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/core/menu/menu-types/vertical-overlay-menu.css "/>">
    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/core/colors/palette-gradient.css "/>">
    <!-- END Page Level CSS-->
+   
+   <script type="text/javascript">
+          $(':radio').change(function() {
+            console.log('New star rating: ' + this.value);
+          });
+        </script>
+         <style type="text/css">
+        .form-control-label{
+          font-size: 15px;
+        }
+        .rating {
+          display: inline-block;
+          position: relative;
+          height: 30px;
+          line-height: 30px;
+          font-size: 30px;
+          left: 10px;
+        }
+
+        .rating label {
+          position: absolute;
+          top: 0;
+          left: 0;
+          height: 100%;
+          cursor: pointer;
+
+        }
+
+        .rating label:last-child {
+          position: static;
+        }
+
+        .rating label:nth-child(1) {
+          z-index: 5;
+        }
+
+        .rating label:nth-child(2) {
+          z-index: 4;
+        }
+
+        .rating label:nth-child(3) {
+          z-index: 3;
+        }
+
+        .rating label:nth-child(4) {
+          z-index: 2;
+        }
+
+        .rating label:nth-child(5) {
+          z-index: 1;
+        }
+
+        .rating label input {
+          position: absolute;
+          top: 0;
+          left: 0;
+          opacity: 0;
+        }
+
+        .rating label .icon {
+          float: left;
+          color: transparent;
+        }
+
+        .rating label:last-child .icon {
+          color: gray;
+        }
+
+        .rating:not(:hover) label input:checked ~ .icon,
+        .rating:hover label:hover input ~ .icon {
+          color: #ffcc00;
+        }
+
+        .rating label input:focus:not(:checked) ~ .icon:last-child {
+          color: #000;
+          text-shadow: 0 0 5px #09f;
+        }
+
+        }
+        
+        .dropdown-menu>li>a {
+    display: block;
+    padding: 3px 20px;
+    clear: both;
+    font-weight: 200;
+    line-height: 1.42857143;
+    color: #333;
+    white-space: nowrap;
+}
+.button1{
+    font-size:15px;
+    background:orange;
+    padding:0.5em 0.9em;
+    border:none;
+    border-radius:6px;
+    transition:0.5s;
+}
+.button1 span{
+    position:relative;
+    display:inline-block;
+    cursor:pointer;
+    transition:0.5s;
+}
+.button1 span:after{
+    content:"\00bb";
+    position:absolute;
+    right:-15px;
+    transition:0.5s;
+    opacity:0; 
+}
+.button1:hover span{
+    padding-right:20px;
+}
+.button1:hover span:after{
+    opacity:1;
+    right:0;
+      </style>
 </head>
 
 <body data-open="click" data-menu="vertical-menu" data-col="2-columns" class="vertical-layout vertical-menu 2-columns   menu-expanded fixed-navbar">
