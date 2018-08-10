@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class Test {
 	@RequestMapping(value = "/test", method = RequestMethod.GET)
 	public String TestList(Model model) {
-
-		return "list";
+		return "QuanTriNhanSu/HoSoTongQuat/index";
 	}
 }
