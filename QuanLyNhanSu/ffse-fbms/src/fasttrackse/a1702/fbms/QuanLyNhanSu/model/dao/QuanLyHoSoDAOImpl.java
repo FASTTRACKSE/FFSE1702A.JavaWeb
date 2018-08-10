@@ -21,6 +21,7 @@ public class QuanLyHoSoDAOImpl implements QuanLyHoSoDAO {
 	public HoSoNhanVien getHoSoNhanVienById(int maNhanVien) {
 		Session session = this.sessionFactory.getCurrentSession();
 		HoSoNhanVien hsnv = (HoSoNhanVien) session.load(HoSoNhanVien.class, new Integer(maNhanVien));
+		System.out.println(hsnv);
 		return hsnv;
 	}
 
@@ -28,8 +29,7 @@ public class QuanLyHoSoDAOImpl implements QuanLyHoSoDAO {
 	@Override
 	public List<HoSoNhanVien> getAllHoSo() {
 		Session session = this.sessionFactory.getCurrentSession();
-		List<HoSoNhanVien> listHoSo = session
-				.createQuery("from HoSoNhanVien order by trang_thai desc, ma_nhan_vien desc").list();
+		List<HoSoNhanVien> listHoSo = session.createQuery("from HoSoNhanVien").list();
 		return listHoSo;
 	}
 
@@ -57,9 +57,20 @@ public class QuanLyHoSoDAOImpl implements QuanLyHoSoDAO {
 	@Override
 	public void deleteHoSoNhanVien(int maNhanVien) {
 		Session session = this.sessionFactory.getCurrentSession();
-		Query query = session.createQuery("update HoSoNhanVien set trang_thai = 0 where ma_nhan_vien = :maNhanVien");
+		Query query = session.createQuery("update HoSoNhanVien set trang_thai = 2 where ma_nhan_vien = :maNhanVien");
 		query.setParameter("maNhanVien", maNhanVien);
 		query.executeUpdate();
+	}
+
+	@SuppressWarnings("rawtypes")
+	@Override
+	public String getAutoId() {
+		Session session = this.sessionFactory.getCurrentSession();
+		Query query = session.createSQLQuery(
+				"SELECT `AUTO_INCREMENT` FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'ffse1702a' AND TABLE_NAME = 'ho_so_nhan_vien'");
+		;
+		String index = query.getParameter(0).toString();
+		return index;
 	}
 
 }
