@@ -32,7 +32,12 @@
                   <div class="col-xs-12">
                      <div class="card">
 		                <div class="card-header">
+		                <c:if test="${empty chucdanh.maChucDanh}">
 		                  <center><h4 class="card-title" id="basic-layout-form-center"><i class="ft-user"></i>THÊM CHỨC DANH</h4></center>
+		                </c:if>
+		                <c:if test="${!empty chucdanh.maChucDanh}">
+		                  <center><h4 class="card-title" id="basic-layout-form-center"><i class="ft-user"></i>SỬA CHỨC DANH</h4></center>
+		                </c:if>
 		                  <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
 		                  <div class="heading-elements">
 		                    <ul class="list-inline mb-0">
@@ -63,7 +68,12 @@
 		                      </div>
 		                      <div class="form-actions center">
 		                        <a href="/ffse-fbms/ns/chuc_danh"><button type="button" class="btn btn-warning mr-1"><i class="ft-x"></i> Quay lại</button></a>
+		                        <c:if test="${empty chucdanh.maChucDanh}">
 						 		<button type="submit" class="btn btn-primary"><i class="fa fa-check-square-o"></i> Thêm</button>
+						 		</c:if>
+						 		<c:if test="${!empty chucdanh.maChucDanh}">
+						 		<button type="submit" class="btn btn-primary"><i class="fa fa-check-square-o"></i> Sửa</button>
+						 		</c:if>
 		                      </div>
 		                    </form:form>
 		                  </div>

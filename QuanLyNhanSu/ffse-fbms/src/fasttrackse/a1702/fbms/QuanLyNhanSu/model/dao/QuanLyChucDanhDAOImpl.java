@@ -41,4 +41,13 @@ public class QuanLyChucDanhDAOImpl implements QuanLyChucDanhDAO {
 		ChucDanh p = (ChucDanh) session.get(ChucDanh.class, maChucDanh);
 		return p;
 	}
+	
+	@Override
+	public void removeChucDanh(String maChucDanh) {
+		Session session = this.sessionFactory.getCurrentSession();
+		ChucDanh remove = (ChucDanh) session.load(ChucDanh.class, maChucDanh);
+		if(null != remove) {
+			session.delete(remove);
+		}
+	}
 }
