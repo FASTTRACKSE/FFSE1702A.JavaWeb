@@ -8,4 +8,5 @@ public interface QuanLyChucDanhDAO {
 	public void addChucDanh(ChucDanh p);
 	public void updateChucDanh(ChucDanh p);
 	public ChucDanh getChucDanhByMa(String maChucDanh);
+	public void removeChucDanh(String maChucDanh);
 }

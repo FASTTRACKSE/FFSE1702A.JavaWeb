@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <jsp:include page="/WEB-INF/view/templates/header.jsp" />
 
 <div class="app-content content container-fluid">
@@ -65,7 +67,7 @@
 													<td>${phongban.tenPhongBan}</td>
 													<td style="letter-spacing: 5px; min-width: 75px;">
 													<a href="<c:url value='/edit/${phongban.maPhongBan}' />"><i class="fa fa-pencil"></i></a> 
-													<a href="<c:url value='/delete/${phongban.maPhongBan}' />"><i class="fa fa-trash"></i></a> </td>
+													<a href="<c:url value='/remove/${phongban.maPhongBan}' />"><i class="fa fa-trash"></i></a> </td>
 												
 												</tr>
 											</c:forEach>

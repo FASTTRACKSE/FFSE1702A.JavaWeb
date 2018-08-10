@@ -26,7 +26,6 @@ public class QuanLyChucDanhServiceImpl implements QuanLyChucDanhService {
 	@Transactional
 	public void addChucDanh(ChucDanh p) {
 		this.quanlychucdanhDAO.addChucDanh(p);
-		;
 	}
 
 	@Override
@@ -39,5 +38,11 @@ public class QuanLyChucDanhServiceImpl implements QuanLyChucDanhService {
 	@Transactional
 	public ChucDanh getChucDanhByMa(String maChucDanh) {
 		return this.quanlychucdanhDAO.getChucDanhByMa(maChucDanh);
+	}
+	
+	@Override
+	@Transactional
+	public void removeChucDanh(String maChucDanh) {
+		this.quanlychucdanhDAO.removeChucDanh(maChucDanh);
 	}
 }

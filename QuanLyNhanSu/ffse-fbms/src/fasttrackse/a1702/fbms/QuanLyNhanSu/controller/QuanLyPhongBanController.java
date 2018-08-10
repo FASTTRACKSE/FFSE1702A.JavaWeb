@@ -31,7 +31,6 @@ public class QuanLyPhongBanController {
 		return "QuanLyNhanSu/QuanLyPhongBan/FormPhongBan";
 	}
 
-	// For add and update person both
 	@RequestMapping(value = "/ns/phong_ban/save", method = RequestMethod.POST)
 	public String addPhongBan(@ModelAttribute("phongBan") PhongBan p) {
 		PhongBan pb = this.quanlyphongbanService.getMaPhongBan(p.getMaPhongBan());

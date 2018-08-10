@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -35,18 +36,31 @@ public class QuanLyChucDanhController {
 
 	// For add and update person both
 	@RequestMapping(value = "/ns/chuc_danh/save", method = RequestMethod.POST)
-	public String addPerson(@ModelAttribute("chucdanh") ChucDanh c) {
-		ChucDanh cd = this.quanlychucdanhService.getChucDanhByMa(c.getMaChucDanh());
+	public String addPerson(@ModelAttribute("chucdanh") ChucDanh p) {
+		ChucDanh cd = this.quanlychucdanhService.getChucDanhByMa(p.getMaChucDanh());
 
 		if (cd == null) {
 			// new person, add it
-			this.quanlychucdanhService.addChucDanh(c);
+			this.quanlychucdanhService.addChucDanh(p);
 		} else {
 			// existing person, call update
-			this.quanlychucdanhService.updateChucDanh(c);
+			this.quanlychucdanhService.updateChucDanh(p);
 		}
 
 		return "redirect:/ns/chuc_danh";
 
 	}
+	
+	@RequestMapping("/ns/chuc_danh/edit/{maChucDanh}")
+	public String editChucDanh(@PathVariable("maChucDanh") String maChucDanh, Model model){
+		model.addAttribute("chucdanh", this.quanlychucdanhService.getChucDanhByMa(maChucDanh));
+		return "QuanLyNhanSu/QuanLyChucDanh/FormChucDanh";
+	}
+	
+	@RequestMapping("/ns/chuc_danh/remove/{maChucDanh}")
+    public String removeChucDanh(@PathVariable("maChucDanh") String maChucDanh){
+		
+        this.quanlychucdanhService.removeChucDanh(maChucDanh);
+        return "redirect:/ns/chuc_danh";
+    }
 }

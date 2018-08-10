@@ -63,9 +63,8 @@
                                        <td>${chucdanh.maChucDanh }</td>
                                        <td>${chucdanh.tenChucDanh }</td>
                                        <td style="letter-spacing: 5px; min-width: 75px;">
-                                          <a href="#"><i class="fa fa-eye"></i></a>
-                                          <a href="#"><i class="fa fa-pencil"></i></a>
-                                          <a href="javascript:void(0);" data-toggle="modal" data-target="#confirm-delete" data-href="#"><i class="fa fa-trash"></i></a>
+                                          <a href="<c:url value='/ns/chuc_danh/edit/${chucdanh.maChucDanh }' />"><i class="fa fa-pencil"></i></a>
+                                          <a href="javascript:void(0);" data-toggle="modal" data-target="#confirm-delete" data-href="<c:url value='/ns/chuc_danh/remove/${chucdanh.maChucDanh }' />"><i class="fa fa-trash"></i></a>
                                        </td>
                                     </tr>
                                     </c:forEach>
@@ -75,30 +74,28 @@
       
                                              <div class="modal-header">
                                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                <h4 class="modal-title" id="myModalLabel">Confirm Delete</h4>
+                                                <h4 class="modal-title" id="myModalLabel">Xác Nhận Xoá</h4>
                                              </div>
       
                                              <div class="modal-body">
-                                                <p>You are about to delete one product, this procedure is irreversible.</p>
-                                                <p>Do you want to proceed?</p>
+                                                <p>Bạn chuẩn bị xoá một thông tin, quy trình này không thể đảo ngược.</p>
+                                                <p>Bạn vẫn muốn thực hiện?</p>
                                                 <p class="debug-url"></p>
                                              </div>
       
                                              <div class="modal-footer">
-                                                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                                                <a class="btn btn-danger btn-ok">Delete</a>
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Quay lại</button>
+                                                <a class="btn btn-danger btn-ok">Xoá</a>
                                              </div>
                                           </div>
                                        </div>
                                     </div>
                                     <script>
-                                       $('#confirm-delete')
-                                          .on('show.bs.modal', function (e) {
-                                             $(this)
-                                                .find('.btn-ok')
-                                                .attr('href', $(e.relatedTarget)
-                                                   .data('href'));
-                                          });
+	                                    window.onload = function(){
+	                                		$('#confirm-delete').on('show.bs.modal', function(e) {
+		                                        $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
+		                                    });
+	                                	};
                                     </script>
                                  </tbody>
                               </table>
