@@ -6,13 +6,13 @@
 	<div class="content-wrapper">
 		<div class="content-header row">
 			<div class="content-header-left col-md-6 col-xs-12 mb-2">
-				<h3 class="content-header-title mb-0">Form Basic Elements</h3>
+				<h3 class="content-header-title mb-0">Tự đánh giá</h3>
 				<div class="row breadcrumbs-top">
 					<div class="breadcrumb-wrapper col-xs-12">
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item"><a href="index.html">Home</a></li>
 							<li class="breadcrumb-item"><a href="#">Form</a></li>
-							<li class="breadcrumb-item active">Basic Elements</li>
+							<li class="breadcrumb-item active">Tự đánh giá</li>
 						</ol>
 					</div>
 				</div>
@@ -38,6 +38,7 @@
 				</div>
 			</div>
 		</div>
+		</div>
 		<div class="content-body">
 			<!-- Basic Elements start -->
 			<section class="basic-elements">
@@ -45,14 +46,14 @@
 					<div class="col-md-12">
 						<div class="card">
 							<div class="card-header">
-								<h4 class="card-title">Basic Elements</h4>
+								<h4 class="card-title">Nhân viên tự đánh giá</h4>
 							</div>
 							<div class="card-body">
 								<div class="card-block">
 									<div class="row">
 										<div class="col-xl-4 col-lg-6 col-md-12 mb-1">
 											<fieldset class="form-group">
-												<label for="helpInputTop">with help</label>
+												<label for="helpInputTop">Kỷ luật</label>
 												<form class="rating" style="position: relative; top: 15px;">
 
 													<label> <input type="radio" name="stars" value="1" />
@@ -77,7 +78,7 @@
 										</div>
 										<div class="col-xl-4 col-lg-6 col-md-12 mb-1">
 											<fieldset class="form-group">
-												<label for="helpInputTop">Input text with help</label>
+												<label for="helpInputTop">Tinh thần làm việc</label>
 												<form class="rating" style="position: relative; top: 15px;">
 
 													<label> <input type="radio" name="stars" value="1" />
@@ -102,7 +103,7 @@
 										</div>
 										<div class="col-xl-4 col-lg-6 col-md-12 mb-1">
 											<fieldset class="form-group">
-												<label for="disabledInput">Disabled Input</label>
+												<label for="disabledInput">Khối lượng công việc</label>
 												<form class="rating" style="position: relative; top: 15px;">
 
 													<label> <input type="radio" name="stars" value="1" />
@@ -128,7 +129,7 @@
 										</div>
 										<div class="col-xl-4 col-lg-6 col-md-12 mb-1">
 											<fieldset class="form-group">
-												<label for="helpInputTop">with help</label>
+												<label for="helpInputTop">Kết quả công việc</label>
 												<form class="rating" style="position: relative; top: 15px;">
 
 													<label> <input type="radio" name="stars" value="1" />
@@ -153,7 +154,7 @@
 										</div>
 										<div class="col-xl-4 col-lg-6 col-md-12 mb-1">
 											<fieldset class="form-group">
-												<label for="helpInputTop">Input text with help</label>
+												<label for="helpInputTop">Kỹ năng tích lũy</label>
 												<form class="rating" style="position: relative; top: 15px;">
 
 													<label> <input type="radio" name="stars" value="1" />
@@ -178,7 +179,7 @@
 										</div>
 										<div class="col-xl-4 col-lg-6 col-md-12 mb-1">
 											<fieldset class="form-group">
-												<label for="disabledInput">Disabled Input</label>
+												<label for="disabledInput">Định hướng</label>
 												<form class="rating" style="position: relative; top: 15px;">
 
 													<label> <input type="radio" name="stars" value="1" />
@@ -204,7 +205,7 @@
 										</div>
 										<div class="col-xl-4 col-lg-6 col-md-12 mb-1">
 											<fieldset class="form-group">
-												<label for="helpInputTop">with help</label>
+												<label for="helpInputTop">Đánh giá tổng thể</label>
 												<form class="rating" style="position: relative; top: 15px;">
 
 													<label> <input type="radio" name="stars" value="1" />
@@ -227,12 +228,15 @@
 											
 											</fieldset>
 										</div>
-
+										</div>
+										</div></div>
+										</div>
+										
 									</div>
 								</div>
 							</div>
 						</div>
 			</section>
 			<!-- ////////////////////////////////////////////////////////////////////////////-->
-
+			<button class="button1" type="submit"><span>Submit</span></button>
 			<jsp:include page="/WEB-INF/view/templates/footer.jsp" />
