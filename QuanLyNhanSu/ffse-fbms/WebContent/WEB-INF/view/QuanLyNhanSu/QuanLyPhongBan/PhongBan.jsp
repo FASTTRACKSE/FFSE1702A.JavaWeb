@@ -67,47 +67,39 @@
 													<td>${phongban.tenPhongBan}</td>
 													<td style="letter-spacing: 5px; min-width: 75px;">
 													<a href="<c:url value='/edit/${phongban.maPhongBan}' />"><i class="fa fa-pencil"></i></a> 
-													<a href="<c:url value='/remove/${phongban.maPhongBan}' />"><i class="fa fa-trash"></i></a> </td>
+													<a href="javascript:void(0);" data-toggle="modal" data-target="#confirm-delete" data-href="<c:url value='/remove/${phongban.maPhongBan}' />"><i class="fa fa-trash"></i></a> </td>
 												
 												</tr>
 											</c:forEach>
 									
-											<div class="modal fade" id="confirm-delete" tabindex="-1"
-												role="dialog" aria-labelledby="myModalLabel"
-												aria-hidden="true">
-												<div class="modal-dialog">
-													<div class="modal-content">
-
-														<div class="modal-header">
-															<button type="button" class="close" data-dismiss="modal"
-																aria-hidden="true">&times;</button>
-															<h4 class="modal-title" id="myModalLabel">Confirm
-																Delete</h4>
-														</div>
-
-														<div class="modal-body">
-															<p>You are about to delete one product, this
-																procedure is irreversible.</p>
-															<p>Do you want to proceed?</p>
-															<p class="debug-url"></p>
-														</div>
-
-														<div class="modal-footer">
-															<button type="button" class="btn btn-default"
-																data-dismiss="modal">Cancel</button>
-															<a class="btn btn-danger btn-ok">Delete</a>
-														</div>
-													</div>
-												</div>
-											</div>
+											 <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                       <div class="modal-dialog">
+                                          <div class="modal-content">
+      
+                                             <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                <h4 class="modal-title" id="myModalLabel">Xác Nhận Xoá</h4>
+                                             </div>
+      
+                                             <div class="modal-body">
+                                                <p>Bạn chuẩn bị xoá một thông tin, quy trình này không thể đảo ngược.</p>
+                                                <p>Bạn vẫn muốn thực hiện?</p>
+                                                <p class="debug-url"></p>
+                                             </div>
+      
+                                             <div class="modal-footer">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Quay lại</button>
+                                                <a class="btn btn-danger btn-ok">Xoá</a>
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div>
 											<script>
-                                       $('#confirm-delete')
-                                          .on('show.bs.modal', function (e) {
-                                             $(this)
-                                                .find('.btn-ok')
-                                                .attr('href', $(e.relatedTarget)
-                                                   .data('href'));
-                                          });
+											 window.onload = function(){
+			                                		$('#confirm-delete').on('show.bs.modal', function(e) {
+				                                        $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
+				                                    });
+			                                	};
                                     </script>
 										</tbody>
 									</table>

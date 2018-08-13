@@ -15,4 +15,23 @@ public class NhiemVu {
 	private String maNhanVien;
 	@Column(name="ma_vai_tro")
 	private String maVaiTro;
+	public String getMaDuAn() {
+		return maDuAn;
+	}
+	public void setMaDuAn(String maDuAn) {
+		this.maDuAn = maDuAn;
+	}
+	public String getMaNhanVien() {
+		return maNhanVien;
+	}
+	public void setMaNhanVien(String maNhanVien) {
+		this.maNhanVien = maNhanVien;
+	}
+	public String getMaVaiTro() {
+		return maVaiTro;
+	}
+	public void setMaVaiTro(String maVaiTro) {
+		this.maVaiTro = maVaiTro;
+	}
+	
 }
