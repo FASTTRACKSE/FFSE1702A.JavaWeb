@@ -30,6 +30,13 @@ public class ThongTinGiaDinhController {
 	public String editThongTinGiaDinh(@PathVariable("maNhanVien") int maNhanVien, Model model) {
 		HoSoNhanVien hsnv = this.quanLyHoSoService.getHoSoNhanVienById(maNhanVien);
 		ThongTinGiaDinhForm thongTinGiaDinhForm = new ThongTinGiaDinhForm(hsnv.getThongTinGiaDinhs());
+		List<ThongTinGiaDinh> listThongTinGiaDinh = thongTinGiaDinhForm.getListThongTinGiaDinh();
+		if (listThongTinGiaDinh.size() == 0) {
+			ThongTinGiaDinh ttgd = new ThongTinGiaDinh();
+			ttgd.setHoSoNhanVien(hsnv);
+			listThongTinGiaDinh.add(ttgd);
+			thongTinGiaDinhForm.setListThongTinGiaDinh(listThongTinGiaDinh);
+		}
 		model.addAttribute("hoSoNhanVien", hsnv);
 		model.addAttribute("thongTinGiaDinhForm", thongTinGiaDinhForm);
 		return "QuanLyNhanSu/QuanLyHoSo/ThongTinGiaDinhForm";
@@ -45,8 +52,8 @@ public class ThongTinGiaDinhController {
 				int id = ttgd.getId();
 				if (id == 0) {
 					this.thongTinGiaDinhService.addThongTinGiaDinh(ttgd);
-				} else if (id == -1) {
-					System.err.println("xóa");
+				} else if (id < 0) {
+					this.thongTinGiaDinhService.deleteThongTinGiaDinh(Math.abs(id));
 				} else {
 					this.thongTinGiaDinhService.updateThongTinGiaDinh(ttgd);
 				}

@@ -23,4 +23,13 @@ public class ThongTinGiaDinhDAOImpl implements ThongTinGiaDinhDAO {
 		Session session = this.sessionFactory.getCurrentSession();
 		session.update(ttgd);
 	}
+
+	@Override
+	public void deleteThongTinGiaDinh(int id) {
+		Session session = this.sessionFactory.getCurrentSession();
+		ThongTinGiaDinh ttgd = (ThongTinGiaDinh) session.load(ThongTinGiaDinh.class, id);
+		if (null != ttgd) {
+			session.delete(ttgd);
+		}
+	}
 }

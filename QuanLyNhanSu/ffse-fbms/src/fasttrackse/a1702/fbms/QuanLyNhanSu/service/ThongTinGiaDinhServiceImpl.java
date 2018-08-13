@@ -24,4 +24,10 @@ public class ThongTinGiaDinhServiceImpl implements ThongTinGiaDinhService {
 		this.thongTinGiaDinhDAO.updateThongTinGiaDinh(ttgd);
 	}
 
+	@Override
+	@Transactional
+	public void deleteThongTinGiaDinh(int id) {
+		this.thongTinGiaDinhDAO.deleteThongTinGiaDinh(id);
+	}
+
 }

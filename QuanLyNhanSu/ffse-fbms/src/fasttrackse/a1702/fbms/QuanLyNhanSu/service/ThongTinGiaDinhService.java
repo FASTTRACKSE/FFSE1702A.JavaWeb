@@ -7,4 +7,6 @@ public interface ThongTinGiaDinhService {
 
 	public void updateThongTinGiaDinh(ThongTinGiaDinh ttgd);
 
+	public void deleteThongTinGiaDinh(int id);
+
 }
