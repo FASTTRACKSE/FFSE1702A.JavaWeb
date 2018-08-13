@@ -9,6 +9,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class Test {
 	@RequestMapping(value = "/test", method = RequestMethod.GET)
 	public String testList(Model model) {
-		return "QuanLyNhanSu/QuanLyHopDong/HopDong";
+		return "QuanLyNhanSu/QuanLyHopDong/QuanLyHopDongForm";
 	}
 }
