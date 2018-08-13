@@ -1,4 +1,4 @@
-package fasttrackse.a1702.fbms.QuanLyNhanSu.service;
+package fasttrackse.a1702.fbms.QuanLyNhanSu.service.impl;
 
 import java.io.File;
 import java.io.IOException;
@@ -11,6 +11,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.context.ServletContextAware;
 import org.springframework.web.multipart.MultipartFile;
+
+import fasttrackse.a1702.fbms.QuanLyNhanSu.service.UploadImageService;
 
 @Service
 public class UploadImageServiceImpl implements UploadImageService, ServletContextAware {

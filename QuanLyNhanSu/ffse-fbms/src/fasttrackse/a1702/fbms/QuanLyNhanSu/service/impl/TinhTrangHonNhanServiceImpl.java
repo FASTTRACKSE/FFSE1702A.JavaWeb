@@ -1,4 +1,4 @@
-package fasttrackse.a1702.fbms.QuanLyNhanSu.service;
+package fasttrackse.a1702.fbms.QuanLyNhanSu.service.impl;
 
 import java.util.List;
 
@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import fasttrackse.a1702.fbms.QuanLyNhanSu.model.dao.TinhTrangHonNhanDao;
 import fasttrackse.a1702.fbms.QuanLyNhanSu.model.entity.TinhTrangHonNhan;
+import fasttrackse.a1702.fbms.QuanLyNhanSu.service.TinhTrangHonNhanService;
 
 @Service
 public class TinhTrangHonNhanServiceImpl implements TinhTrangHonNhanService {

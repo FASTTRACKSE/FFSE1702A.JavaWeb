@@ -1,4 +1,4 @@
-package fasttrackse.a1702.fbms.QuanLyNhanSu.service;
+package fasttrackse.a1702.fbms.QuanLyNhanSu.service.impl;
 
 import java.util.List;
 
@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import fasttrackse.a1702.fbms.QuanLyNhanSu.model.dao.*;
 import fasttrackse.a1702.fbms.QuanLyNhanSu.model.entity.*;
+import fasttrackse.a1702.fbms.QuanLyNhanSu.service.QuanLyPhongBanService;
 
 @Service
 public class QuanLyPhongBanServiceImpl implements QuanLyPhongBanService {

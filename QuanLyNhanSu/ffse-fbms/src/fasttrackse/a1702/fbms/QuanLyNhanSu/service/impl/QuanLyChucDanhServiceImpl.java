@@ -1,4 +1,4 @@
-package fasttrackse.a1702.fbms.QuanLyNhanSu.service;
+package fasttrackse.a1702.fbms.QuanLyNhanSu.service.impl;
 
 import java.util.List;
 
@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import fasttrackse.a1702.fbms.QuanLyNhanSu.model.dao.QuanLyChucDanhDAO;
 import fasttrackse.a1702.fbms.QuanLyNhanSu.model.entity.ChucDanh;
+import fasttrackse.a1702.fbms.QuanLyNhanSu.service.QuanLyChucDanhService;
 
 @Service
 public class QuanLyChucDanhServiceImpl implements QuanLyChucDanhService {
