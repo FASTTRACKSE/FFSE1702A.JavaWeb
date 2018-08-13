@@ -52,4 +52,9 @@ public class QuanLyHoSoServiceImpl implements QuanLyHoSoService {
 		this.quanLyHoSoDAO.deleteHoSoNhanVien(maNhanVien);
 	}
 
+	@Override
+	@Transactional
+	public String getAutoId() {
+		return this.quanLyHoSoDAO.getAutoId();
+	}
 }

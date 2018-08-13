@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 
 <jsp:include page="/WEB-INF/view/templates/header.jsp" /> 
 
@@ -65,38 +66,32 @@
 						</style>
                         <div class="card-body collapse in">
                            <div class="card-block card-dashboard">
-                              <table class="table table-striped table-bordered zero-configuration">
+                              <table id="datatable" class="table table-striped table-bordered zero-configuration">
                                  <thead>
                                     <tr>
-                                       <th>#</th>
-                                       <th>Mã</th>
-                                       <th>Phòng ban</th>
-                                       <th>Chức danh</th>
+                                       <th>Mã NV</th>
+                                       <th>Ảnh đại diện</th>
                                        <th>Họ đệm</th>
                                        <th>Tên</th>
-                                       <th>Năm sinh</th>
                                        <th>Giới tính</th>
-                                       <th>Quê quán</th>
-                                       <th>Ảnh đại diện</th>
+                                       <th>Phòng ban</th>
+                                       <th>Chức danh</th>
                                        <th>Trạng thái</th>
-                                       <th>Hành động</th>
+                                       <th></th>
                                     </tr>
                                  </thead>
                                  <tbody>
                                  	<c:forEach items="${listHoSo}" var="hsnv" varStatus="loop">
                                     <tr>
-                                       <td>${count + loop.count}</td>
-                                       <td>${String.format("%05d", hsnv.maNhanVien)}</td>
-                                       <td><a href="<c:url value = "/${hsnv.phongBan.maPhongBan}/ho_so"/>">${hsnv.phongBan.tenPhongBan}</a></td>
-                                       <td>${hsnv.chucDanh.tenChucDanh}</td>
+                                       <td><fmt:formatNumber type="number" minIntegerDigits="5" groupingUsed="false" value="${hsnv.maNhanVien}" /></td>
+                                       <td style="text-align: center !important;"><img width="75px" height="75px" src="<c:url value="/resources/images/nhan-vien/${hsnv.anhDaiDien}"/>"></td>
                                        <td>${hsnv.hoDem}</td>
                                        <td>${hsnv.ten}</td>
-                                       <td>${hsnv.namSinh}</td>
-                                       <td>${hsnv.gioiTinh == 0 ? "Nữ" : "Nam"}</td>
-                                       <td>${fn:substringAfter(fn:substringAfter(hsnv.queQuan,", "),", ")}</td>
-                                       <td><img width="75px" height="75px" src="<c:url value="/resources/images/nhan-vien/${hsnv.anhDaiDien}"/>"></td>
-                                       <td>${hsnv.trangThai == 0 ? "Nghỉ việc" : "Đang làm việc"}</td>
-                                       <td style="letter-spacing: 5px; min-width: 75px;">
+                                       <td>${hsnv.gioiTinh == 1 ? "Nam" : "Nữ"}</td>
+                                       <td><a href="<c:url value = "/${hsnv.phongBan.maPhongBan}/ho_so"/>">${hsnv.phongBan.tenPhongBan}</a></td>
+                                       <td>${hsnv.chucDanh.tenChucDanh}</td>
+                                       <td>${hsnv.trangThai == 1 ? "Đang làm việc" : "Nghỉ việc"}</td>
+                                       <td style="letter-spacing: 5px; min-width: 75px;text-align: center !important;">
                                           <a href="<c:url value = "/ns/ho_so/${hsnv.maNhanVien}"/>"><i class="fa fa-eye"></i></a>
                                           <a href="<c:url value = "/ns/ho_so/edit/${hsnv.maNhanVien}"/>"><i class="fa fa-pencil"></i></a>
                                           <a href="javascript:void(0);" data-toggle="modal" data-target="#confirm-delete" data-href="<c:url value = "/ns/ho_so/delete/${hsnv.maNhanVien}"/>"><i class="fa fa-trash"></i></a>
@@ -130,6 +125,10 @@
                                     		$('#confirm-delete').on('show.bs.modal', function(e) {
     	                                        $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
     	                                    });
+                                    		$("#datatable").DataTable({
+                                    			destroy: true,
+                                    	        "order": [[7 , "desc" ], [0, "desc"]],
+                                    	    });
                                     	};
                                     </script>
                                  </tbody>

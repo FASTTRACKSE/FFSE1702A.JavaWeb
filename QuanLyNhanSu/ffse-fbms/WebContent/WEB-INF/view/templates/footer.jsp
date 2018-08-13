@@ -13,11 +13,7 @@
    <!-- BEGIN PAGE VENDOR JS-->
    <script src="<c:url value="/resources/vendors/js/tables/jquery.dataTables.min.js"/>" type="text/javascript"></script>
    <script src="<c:url value="/resources/vendors/js/tables/datatable/dataTables.bootstrap4.min.js"/>" type="text/javascript"></script>
-   <script src="<c:url value="/resources/vendors/js/forms/extended/typeahead/typeahead.bundle.min.js"/>" type="text/javascript"></script>
-   <script src="<c:url value="/resources/vendors/js/forms/extended/typeahead/bloodhound.min.js"/>" type="text/javascript"></script>
-   <script src="<c:url value="/resources/vendors/js/forms/extended/typeahead/handlebars.js"/>" type="text/javascript"></script>
-   <script src="<c:url value="/resources/vendors/js/forms/extended/inputmask/jquery.inputmask.bundle.min.js"/>" type="text/javascript"></script>>
-   <script src="<c:url value="/resources/vendors/js/forms/extended/maxlength/bootstrap-maxlength.js"/>" type="text/javascript"></script>
+   <script src="<c:url value="/resources/vendors/js/forms/repeater/jquery.repeater.min.js"/>" type="text/javascript"></script>
    <!-- END PAGE VENDOR JS-->
    <!-- BEGIN STACK JS-->
    <script type="text/javascript" src="<c:url value="/resources/js/core/app-menu.js"/> "></script>
@@ -25,9 +21,7 @@
    <!-- END STACK JS-->
    <!-- BEGIN PAGE LEVEL JS-->
    <script src="<c:url value="/resources/js/scripts/tables/datatables/datatable-basic.js"/>" type="text/javascript"></script>
-   <script src="<c:url value="/resources/js/scripts/forms/extended/form-inputmask.js"/>" type="text/javascript"></script>
-   <script src="<c:url value="/resources/js/scripts/forms/extended/form-typeahead.js"/>" type="text/javascript"></script>
-   <script src="<c:url value="/resources/js/scripts/forms/extended/form-maxlength.js"/>" type="text/javascript"></script>
+   <script src="<c:url value="/resources/js/scripts/forms/form-repeater.min.js"/>" type="text/javascript"></script>
    <!-- END PAGE LEVEL JS-->
 </body>
 

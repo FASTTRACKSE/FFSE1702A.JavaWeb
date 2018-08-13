@@ -5,8 +5,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class MainController {
-	@RequestMapping("/")
-	public String create() {
+	@RequestMapping("/logwork/list")
+	public String list() {
 		return "/logwork/list";
+	}
+	
+	@RequestMapping("/logwork/create")
+	public String create() {
+		return "/logwork/create";
 	}
 }

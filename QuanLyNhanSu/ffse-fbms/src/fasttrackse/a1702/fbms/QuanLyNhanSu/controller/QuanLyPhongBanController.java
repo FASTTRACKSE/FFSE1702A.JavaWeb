@@ -30,7 +30,11 @@ public class QuanLyPhongBanController {
 		model.addAttribute("phongBan", new PhongBan());
 		return "QuanLyNhanSu/QuanLyPhongBan/FormPhongBan";
 	}
+<<<<<<< HEAD
 	
+=======
+
+>>>>>>> fd907905c9c53147a1863daddc82a3d00268cabe
 	@RequestMapping(value = "/ns/phong_ban/save", method = RequestMethod.POST)
 	public String addPhongBan(@ModelAttribute("phongBan") PhongBan p) {
 		PhongBan pb = this.quanlyphongbanService.getMaPhongBan(p.getMaPhongBan());
