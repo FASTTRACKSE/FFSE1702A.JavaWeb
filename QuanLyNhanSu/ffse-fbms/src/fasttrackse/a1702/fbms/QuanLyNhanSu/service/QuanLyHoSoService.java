@@ -18,4 +18,6 @@ public interface QuanLyHoSoService {
 
 	public void deleteHoSoNhanVien(int maNhanVien);
 
+	public String getAutoId();
+
 }

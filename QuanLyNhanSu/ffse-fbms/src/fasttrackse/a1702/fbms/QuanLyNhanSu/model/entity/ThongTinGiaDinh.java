@@ -14,6 +14,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 /**
  * The persistent class for the thong_tin_gia_dinh database table.
  * 
@@ -35,6 +37,7 @@ public class ThongTinGiaDinh implements Serializable {
 	private String hoDem;
 
 	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "nam_sinh", nullable = false)
 	private Date namSinh;
 
@@ -44,8 +47,8 @@ public class ThongTinGiaDinh implements Serializable {
 	@Column(name = "que_quan", nullable = false, length = 250)
 	private String queQuan;
 
-	@Column(name = "so_dien_thoai", nullable = false)
-	private int soDienThoai;
+	@Column(name = "so_dien_thoai", nullable = false, length = 11)
+	private String soDienThoai;
 
 	@Column(nullable = false, length = 20)
 	private String ten;
@@ -106,11 +109,11 @@ public class ThongTinGiaDinh implements Serializable {
 		this.queQuan = queQuan;
 	}
 
-	public int getSoDienThoai() {
+	public String getSoDienThoai() {
 		return this.soDienThoai;
 	}
 
-	public void setSoDienThoai(int soDienThoai) {
+	public void setSoDienThoai(String soDienThoai) {
 		this.soDienThoai = soDienThoai;
 	}
 

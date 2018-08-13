@@ -62,8 +62,10 @@ public class QuanLyHoSoController {
 
 	@RequestMapping(value = "/ns/ho_so/add", method = RequestMethod.GET)
 	public String addHoSoNhanVien(Model model) {
-
-		model.addAttribute("hoSoNhanVien", new HoSoNhanVien());
+		model.addAttribute("add", "add");
+		HoSoNhanVien hsnv = new HoSoNhanVien();
+		hsnv.setMaNhanVien(Integer.valueOf(this.quanLyHoSoService.getAutoId()));
+		model.addAttribute("hoSoNhanVien", hsnv);
 		return "QuanLyNhanSu/QuanLyHoSo/QuanLyHoSoForm";
 	}
 
@@ -85,7 +87,8 @@ public class QuanLyHoSoController {
 		}
 		if (hsnv.getMaNhanVien() == 0) {
 			// thêm
-
+			hsnv.setAnhDaiDien(filename);
+			this.quanLyHoSoService.addHoSoNhanVien(hsnv);
 		} else {
 			// sửa
 			if (filename != null) {

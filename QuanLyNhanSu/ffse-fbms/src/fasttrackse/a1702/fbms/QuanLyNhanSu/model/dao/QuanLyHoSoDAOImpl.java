@@ -69,7 +69,7 @@ public class QuanLyHoSoDAOImpl implements QuanLyHoSoDAO {
 		Query query = session.createSQLQuery(
 				"SELECT `AUTO_INCREMENT` FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'ffse1702a' AND TABLE_NAME = 'ho_so_nhan_vien'");
 		;
-		String index = query.getParameter(0).toString();
+		String index = query.getSingleResult().toString();
 		return index;
 	}
 

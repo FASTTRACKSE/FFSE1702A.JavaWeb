@@ -5,10 +5,10 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%> 
 
 <jsp:include page="/WEB-INF/view/templates/header.jsp" /> 
-<c:if test="${hoSoNhanVien.maNhanVien != 0}">
+<c:if test="${empty add}">
 	<c:set var="titleHeader" value="Sửa hồ sơ"/>
 </c:if>
-<c:if test="${hoSoNhanVien.maNhanVien == 0}">
+<c:if test="${!empty add}">
 	<c:set var="titleHeader" value="Thêm hồ sơ"/>
 </c:if>
    <div class="app-content content container-fluid">
@@ -79,8 +79,11 @@
 								         		<div class="col-md-6">
 									         		<div class="form-group">
 										               <label>Mã nhân viên</label>
-										               <form:input class="form-control" path="maNhanVien" readonly="true" disabled="true" placeholder="Mã nhân viên" />
-										               <form:hidden path="maNhanVien" />
+										               <fmt:formatNumber type="number" var="maNhanVienFormat" minIntegerDigits="5" groupingUsed="false" value="${hoSoNhanVien.maNhanVien}" />
+										               <form:input class="form-control" path="maNhanVien" value="${maNhanVienFormat}" readonly="true" disabled="true" placeholder="Mã nhân viên" />
+										               <c:if test="${empty add}">
+										               		<form:hidden path="maNhanVien" />
+										               </c:if>
 										            </div>
 								         		</div>
 								         		<div class="col-md-6">
@@ -115,9 +118,10 @@
 										         </div>
 								         	</div>
 								         </div>
-
 								      	 <div class="col-md-4" style="text-align: center !important;">
-									        <img width="175px" height="175px" src="/ffse-fbms/resources/images/nhan-vien/${hoSoNhanVien.anhDaiDien}">
+											<c:if test="${empty add}">
+									        	<img width="175px" height="175px" src="/ffse-fbms/resources/images/nhan-vien/${hoSoNhanVien.anhDaiDien}">
+											</c:if>
 								         </div>
 								      </div>
 								      <h4 class="form-section"><i class="ft-user"></i> Thông tin cơ bản</h4>
