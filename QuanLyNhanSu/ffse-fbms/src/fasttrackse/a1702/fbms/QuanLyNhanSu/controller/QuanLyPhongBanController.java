@@ -30,19 +30,14 @@ public class QuanLyPhongBanController {
 		model.addAttribute("phongBan", new PhongBan());
 		return "QuanLyNhanSu/QuanLyPhongBan/FormPhongBan";
 	}
-<<<<<<< HEAD
 	
-	//For add and update person both
-=======
-
-	// For add and update person both
->>>>>>> 00b84380abc48565c1f8f2324dc9652990ac6801
 	@RequestMapping(value = "/ns/phong_ban/save", method = RequestMethod.POST)
 	public String addPhongBan(@ModelAttribute("phongBan") PhongBan p) {
 		PhongBan pb = this.quanlyphongbanService.getMaPhongBan(p.getMaPhongBan());
 
 		if (pb == null) {
 			// new person, add it
+		//	hd.setMaHopDong(hd.getMaLoaiHopDong()+hd.getMaNhanVien())
 			this.quanlyphongbanService.addPhongBan(p);
 		} else {
 			// existing person, call update

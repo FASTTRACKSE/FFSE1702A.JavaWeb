@@ -20,10 +20,6 @@ public class PhongBan implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-<<<<<<< HEAD
-	//@GeneratedValue(strategy = GenerationType.IDENTITY)
-=======
->>>>>>> 00b84380abc48565c1f8f2324dc9652990ac6801
 	@Column(name = "ma_phong_ban", unique = true, nullable = false, length = 30)
 	private String maPhongBan;
 

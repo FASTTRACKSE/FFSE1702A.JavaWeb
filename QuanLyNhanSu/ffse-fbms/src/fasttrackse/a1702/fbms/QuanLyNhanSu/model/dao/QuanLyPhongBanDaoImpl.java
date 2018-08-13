@@ -44,10 +44,6 @@ public class QuanLyPhongBanDaoImpl implements QuanLyPhongBanDao {
 	public PhongBan getMaPhongBan(String id) {
 		Session session = this.sessionFactory.getCurrentSession();
 		PhongBan p = (PhongBan) session.get(PhongBan.class, id);
-<<<<<<< HEAD
-	
-=======
->>>>>>> 00b84380abc48565c1f8f2324dc9652990ac6801
 		return p;
 	}
 
