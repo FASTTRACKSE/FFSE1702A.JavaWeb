@@ -8,7 +8,7 @@
 		<div class="col-md-12">
 			<div class="card">
 				<div class="card-header">
-					<h4 class="card-title"><spring:message code="khachhang.add"></spring:message></h4>
+					<h4 class="card-title"><spring:message code="duan.add"></spring:message></h4>
 					<a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
         			<div class="heading-elements">
 						<ul class="list-inline mb-0">
@@ -27,7 +27,7 @@
 							<div class="row">
 								<div class="col-lg-6 col-md-12">
 									<div class="form-group">
-										<h5><spring:message code="khachhang.code"></spring:message></h5>
+										<h5><spring:message code="duan.code"></spring:message></h5>
 										<div class="controls">
 											<form:input path="maDuAn" cssClass="form-control"/>
 											<form:errors path="maDuAn" cssStyle="color: red"></form:errors>
@@ -35,7 +35,7 @@
 										
 									</div>
 									<div class="form-group">
-										<h5><spring:message code="khachhang.name"></spring:message></h5>
+										<h5><spring:message code="duan.name"></spring:message></h5>
 										<div class="controls">
 											<form:input path="tenDuAn" cssClass="form-control"/>
 											<form:errors path="tenDuAn" cssStyle="color: red"></form:errors>
@@ -43,7 +43,7 @@
 										
 									</div>
 									<div class="form-group">
-										<h5><spring:message code="khachhang.phone"></spring:message></h5>
+										<h5><spring:message code="duan.business"></spring:message></h5>
 										<div class="controls">
 											<form:input path="nghiepVu" cssClass="form-control"/>
 											<form:errors path="nghiepVu" cssStyle="color: red"></form:errors>
@@ -51,23 +51,16 @@
 										
 									</div>
 									<div class="form-group">
-										<h5><spring:message code="khachhang.email"></spring:message></h5>
+										<h5><spring:message code="duan.description"></spring:message></h5>
 										<div class="controls">
-											<form:input path="moTaDuAn" cssClass="form-control"/>
+											<form:textarea path="moTaDuAn" cssClass="form-control"/>
 											<form:errors path="moTaDuAn" cssStyle="color: red"></form:errors>
 										<div class="help-block"></div></div>
 										
 									</div>
+									
 									<div class="form-group">
-										<h5><spring:message code="khachhang.address"></spring:message></h5>
-										<div class="controls">
-											<form:input path="tinhTrang" cssClass="form-control"/>
-											<form:errors path="tinhTrang" cssStyle="color: red"></form:errors>
-										<div class="help-block"></div></div>
-										
-									</div>
-									<div class="form-group">
-										<h5><spring:message code="khachhang.address"></spring:message></h5>
+										<h5><spring:message code="duan.customer"></spring:message></h5>
 										<div class="controls">
 											<form:select path="khachHang" cssClass="form-control">
 												<c:forEach items="${khachhang }" var="kh">
@@ -79,7 +72,7 @@
 										
 									</div>
 									<div class="form-group">
-										<h5>Ngon Ngu</h5>
+										<h5><spring:message code="duan.language" /></h5>
 										<div class="controls">
 											<form:select path="ngonNgu" cssClass="form-control"  mutiple="true" items="${ngonngu }" itemValue="maNgonNgu" itemLabel="tenNgonNgu">
 												<%-- <c:forEach items="${ngonngu }" var="nn">
@@ -87,6 +80,80 @@
 												</c:forEach> --%>
 											</form:select>
 											<form:errors path="ngonNgu" cssStyle="color: red"></form:errors>
+										<div class="help-block"></div></div>
+										
+									</div>
+									<div class="form-group">
+										<h5><spring:message code="duan.database" /></h5>
+										<div class="controls">
+											<form:select path="database" cssClass="form-control"  mutiple="true" items="${database }" itemValue="maDatabase" itemLabel="tenDatabase">
+												<%-- <c:forEach items="${ngonngu }" var="nn">
+													<option value="${nn.maNgonNgu }">${nn.tenNgonNgu }</option>
+												</c:forEach> --%>
+											</form:select>
+											<form:errors path="database" cssStyle="color: red"></form:errors>
+										<div class="help-block"></div></div>
+										
+									</div>
+									<div class="form-group">
+										<h5><spring:message code="duan.framework" /></h5>
+										<div class="controls">
+											<form:select path="framework" cssClass="form-control"  mutiple="true" items="${framework }" itemValue="maFramework" itemLabel="tenFramework">
+												<%-- <c:forEach items="${ngonngu }" var="nn">
+													<option value="${nn.maNgonNgu }">${nn.tenNgonNgu }</option>
+												</c:forEach> --%>
+											</form:select>
+											<form:errors path="framework" cssStyle="color: red"></form:errors>
+										<div class="help-block"></div></div>
+										
+									</div>
+									<div class="form-group">
+										<h5><spring:message code="duan.employee" /></h5>
+										<div class="controls">
+											<form:select path="hoSoNhanVien" cssClass="form-control"  mutiple="true" >
+												 <c:forEach items="${nhanvien }" var="nv">
+													<option value="${nv.maNhanVien }">${nv.hoDem } ${nv.ten } </option>
+												</c:forEach> 
+											</form:select>
+											<form:errors path="hoSoNhanVien" cssStyle="color: red"></form:errors>
+										<div class="help-block"></div></div>
+										
+									</div>
+									<div class="form-group">
+										<h5><spring:message code="duan.employee" /></h5>
+										<div class="controls">
+											<form:select path="hoSoNhanVien" cssClass="form-control"  mutiple="true" >
+												 <c:forEach items="${nhanvien }" var="nv">
+													<option value="${nv.maNhanVien }">${nv.hoDem } ${nv.ten } </option>
+												</c:forEach> 
+											</form:select>
+											<form:errors path="hoSoNhanVien" cssStyle="color: red"></form:errors>
+										<div class="help-block"></div></div>
+										
+									</div>
+									
+									<div class="form-group">
+										<h5><spring:message code="duan.vaitro" /></h5>
+										<div class="controls">
+											<form:select path="vaiTro" cssClass="form-control"  mutiple="true" items="${vaitro }" itemValue="maVaiTro" itemLabel="tenVaiTro">
+												<%-- <c:forEach items="${ngonngu }" var="nn">
+													<option value="${nn.maNgonNgu }">${nn.tenNgonNgu }</option>
+												</c:forEach> --%>
+											</form:select>
+											<form:errors path="vaiTro" cssStyle="color: red"></form:errors>
+										<div class="help-block"></div></div>
+										
+									</div>
+									
+									<div class="form-group">
+										<h5><spring:message code="duan.status" /></h5>
+										<div class="controls">
+											<form:select path="tinhTrang" cssClass="form-control">
+												<c:forEach items="${tinhtrang }" var="tt">
+													<option value="${tt.maTinhTrang }" <c:if test="${tt.maTinhTrang ==stt }" >selected="selected"</c:if> >${tt.tenTinhTrang }</option>
+												</c:forEach>
+											</form:select>
+											<form:errors path="tinhTrang" cssStyle="color: red"></form:errors>
 										<div class="help-block"></div></div>
 										
 									</div>
@@ -100,61 +167,8 @@
 								
 							</div>
 							
-							<!-- select -->
-							<!-- <div class="row">
-                            <div class="col-xl-4 col-lg-6 col-md-12">
-                                <fieldset class="form-group">
-                                    <label for="basicSelect">Basic Select</label>
-                                    <select class="form-control" id="basicSelect">
-                                      <option>Select Option</option>
-                                      <option>Option 1</option>
-                                      <option>Option 2</option>
-                                      <option>Option 3</option>
-                                      <option>Option 4</option>
-                                      <option>Option 5</option>
-                                    </select>
-                                </fieldset>                                
-                            </div>
-                            <div class="col-xl-4 col-lg-6 col-md-12">
-                                <fieldset class="form-group">
-                                    <label for="customSelect">Custom select</label>
-                                    <select class="custom-select block" id="customSelect">
-                                        <option selected="">Open this select menu</option>
-                                        <option value="1">One</option>
-                                        <option value="2">Two</option>
-                                        <option value="3">Three</option>
-                                    </select>
-                                </fieldset>                                
-                            </div>
-                            <div class="col-xl-4 col-lg-6 col-md-12">
-                                <fieldset class="form-group">
-                                    <label for="countrySelect">Multiple select</label>
-                                    <select class="form-control" id="countrySelect" multiple="multiple">
-                                        <option selected="selected">United States</option>
-                                        <option>Canada</option>
-                                        <option selected="selected">United Kingdom</option>
-                                        <option>Japan</option>
-                                        <option>Australia</option>
-                                        <option>Germany</option>
-                                        <option selected="selected">India</option>
-                                        <option>Italy</option>
-                                        <option>Sweden</option>
-                                        <option>France</option>
-                                        <option>New Zealand</option>
-                                        <option>Switzerland</option>
-                                        <option>Russia</option>
-                                        <option>England</option>
-                                        <option>Norway</option>
-                                        <option>Greece</option>
-                                        <option>Philippines</option>
-                                        <option>Ireland</option>
-                                        <option>China</option>
-                                        <option>South Korea</option>
-                                    </select>
-                                </fieldset>                                
-                            </div>
-                        </div>
-					 -->	</form:form>
+							
+						</form:form>
 					</div>
 				</div>
 			</div>

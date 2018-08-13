@@ -7,7 +7,7 @@
     <div class="col-xs-12">
         <div class="card">
             <div class="card-header">
-                <h4 class="card-title"><spring:message code="khachhang.list" /></h4>
+                <h4 class="card-title"><spring:message code="duan.list" /></h4>
                 <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
                 <div class="heading-elements">
                     <ul class="list-inline mb-0">
@@ -28,12 +28,8 @@
                                 <tr>
                                     <th>#</th>
                                     
-                                    <th><spring:message code="khachhang.code" /></th>
-                                    <th><spring:message code="khachhang.name" /></th>
-                                    <th><spring:message code="khachhang.phone" /></th>
-                                    <th><spring:message code="khachhang.email" /></th>
-                                    <th><spring:message code="khachhang.business" /></th>
-                                    <th><spring:message code="khachhang.address" /></th>
+                                    <th><spring:message code="duan.code" /></th>
+                                    <th><spring:message code="duan.name" /></th>
                                     <th><spring:message code="ngonngu.action" /></th>
                                 </tr>
                             </thead>
@@ -41,12 +37,9 @@
                             <c:forEach var="khachhang" items="${list }" varStatus="count"   >
                                 <tr>
                                     <th scope="row">${count.count  }</th>
-                                    <td>${khachhang.maKhachHang }</td>
-                                    <td>${khachhang.tenKhachHang }</td>
-                                    <td>${khachhang.phoneNumber }</td>
-                                    <td>${khachhang.email }</td>
-                                    <td>${khachhang.nghiepVu }</td>
-                                    <td>${khachhang.diaChi }</td>
+                                    <td>${duan.maDuAn }</td>
+                                    <td>${duan.tenDuAn }</td>
+                                    
                                     <td>Test</td>
                                 </tr>
                               </c:forEach>  

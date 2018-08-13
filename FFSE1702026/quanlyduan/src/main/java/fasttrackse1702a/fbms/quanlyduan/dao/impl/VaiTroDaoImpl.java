@@ -19,8 +19,7 @@ public class VaiTroDaoImpl implements VaiTroDao {
 	@Override
 	public void save(VaiTro vaitro) {
 		Session session=sessionFactory.getCurrentSession();
-		session.save(vaitro);
-		
+		session.save(vaitro);	
 	}
 	@Override
 	public VaiTro getById(String maVaiTro) {
