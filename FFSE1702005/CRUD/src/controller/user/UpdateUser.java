@@ -81,22 +81,22 @@ public class UpdateUser extends HttpServlet {
 	private void doAdd(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		
 		// gets absolute path of the web application
-				String appPath = request.getServletContext().getRealPath("");
-
-				// constructs path of the directory to save uploaded file
-				String savePath = appPath + File.separator + SAVE_DIR;
-				System.out.println(savePath);
-
-				// creates the save directory if it does not exists
-				File fileSaveDir = new File(savePath);
-				if (!fileSaveDir.exists()) {
-					fileSaveDir.mkdir();
-				}
-
-				Part filePart = request.getPart("uploadFile");
-				String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
-
-				filePart.write(savePath + File.separator + fileName);
+//				String appPath = request.getServletContext().getRealPath("");
+//
+//				// constructs path of the directory to save uploaded file
+//				String savePath = appPath + File.separator + SAVE_DIR;
+//				System.out.println(savePath);
+//
+//				// creates the save directory if it does not exists
+//				File fileSaveDir = new File(savePath);
+//				if (!fileSaveDir.exists()) {
+//					fileSaveDir.mkdir();
+//				}
+//
+//				Part filePart = request.getPart("uploadFile");
+//				String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
+//
+//				filePart.write(savePath + File.separator + fileName);
 
 	}
 

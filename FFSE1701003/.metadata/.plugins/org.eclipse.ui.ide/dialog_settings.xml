@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+		<item value="E:\Java\FFSE1702A.JavaWeb\FFSE1701003\SpringMVC"/>
+		<item value="E:\Java\FFSE1702A.JavaWeb\FFSE1703006\ffse-fbms"/>
+		<item value="E:\Java\FFSE1702A.JavaWeb\FFSE1701003\FFSE1702A"/>
 		<item value="E:\Java\FFSE1702A.JavaWeb\FFSE1701003\SpringHibernateExample"/>
 		<item value="E:\Java\FFSE1702A.JavaWeb\FFSE1701003\demo-jsf"/>
 		<item value="E:\Java\FFSE1702A.JavaWeb\FFSE1701003\bookstore"/>
@@ -21,7 +24,7 @@
 	<section name="org.eclipse.ui.dialogs.FilteredResourcesSelectionDialog">
 		<item value="false" key="FilterByLocation"/>
 		<item value="true" key="ShowStatusLine"/>
-		<item value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#x0D;&#x0A;&lt;History&gt;&#x0D;&#x0A;&lt;historyRootNode&gt;&#x0D;&#x0A;&lt;infoNode path=&quot;/SpringMVC/src/main/webapp/WEB-INF/applicationContext.xml&quot; type=&quot;1&quot;/&gt;&#x0D;&#x0A;&lt;infoNode path=&quot;/JSPServlet/WebContent/assets/plugins/ckfinder/core/connector/php/vendor/aws/aws-sdk-php/src/Aws/Common/Waiter/ResourceWaiterInterface.php&quot; type=&quot;1&quot;/&gt;&#x0D;&#x0A;&lt;infoNode path=&quot;/SpringMVC/src/main/webapp/resources/layout/head.jsp&quot; type=&quot;1&quot;/&gt;&#x0D;&#x0A;&lt;/historyRootNode&gt;&#x0D;&#x0A;&lt;/History&gt;" key="History"/>
+		<item value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#x0D;&#x0A;&lt;History&gt;&#x0D;&#x0A;&lt;historyRootNode&gt;&#x0D;&#x0A;&lt;infoNode path=&quot;/JSPServlet/WebContent/assets/plugins/ckfinder/core/connector/php/vendor/aws/aws-sdk-php/src/Aws/Common/Waiter/ResourceWaiterInterface.php&quot; type=&quot;1&quot;/&gt;&#x0D;&#x0A;&lt;infoNode path=&quot;/ffse-fbms/src/fasttrackse/a1702/fbms/chucnang/model/dao/ChucNangDaoImpl.java&quot; type=&quot;1&quot;/&gt;&#x0D;&#x0A;&lt;/historyRootNode&gt;&#x0D;&#x0A;&lt;/History&gt;" key="History"/>
 		<item value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#x0D;&#x0A;&lt;workingSet workingSetName=&quot;&quot;/&gt;" key="WorkingSet"/>
 		<item value="false" key="ShowDerived"/>
 		<section name="DialogBoundsSettings">

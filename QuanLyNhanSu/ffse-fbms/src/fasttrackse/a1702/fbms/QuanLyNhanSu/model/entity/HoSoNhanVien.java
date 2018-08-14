@@ -17,6 +17,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 /**
  * The persistent class for the ho_so_nhan_vien database table.
  * 
@@ -24,6 +26,17 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name = "ho_so_nhan_vien")
 public class HoSoNhanVien implements Serializable {
+	@Override
+	public String toString() {
+		return "HoSoNhanVien [maNhanVien=" + maNhanVien + ", anhDaiDien=" + anhDaiDien + ", danToc=" + danToc
+				+ ", email=" + email + ", gioiTinh=" + gioiTinh + ", hoDem=" + hoDem + ", namSinh=" + namSinh
+				+ ", ngayCap=" + ngayCap + ", noiCap=" + noiCap + ", noiTamTru=" + noiTamTru + ", queQuan=" + queQuan
+				+ ", soCmnd=" + soCmnd + ", soDienThoai=" + soDienThoai + ", ten=" + ten + ", trangThai=" + trangThai
+				+ ", phongBan=" + phongBan + ", chucDanh=" + chucDanh + ", quocTich=" + quocTich + ", tinhTrangHonNhan="
+				+ tinhTrangHonNhan + ", hopDongs=" + hopDongs + ", duAns=" + duAns + ", thongTinBangCaps="
+				+ thongTinBangCaps + ", thongTinGiaDinhs=" + thongTinGiaDinhs + "]";
+	}
+
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -47,10 +60,12 @@ public class HoSoNhanVien implements Serializable {
 	private String hoDem;
 
 	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "nam_sinh", nullable = false)
 	private Date namSinh;
 
 	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "ngay_cap", nullable = false)
 	private Date ngayCap;
 

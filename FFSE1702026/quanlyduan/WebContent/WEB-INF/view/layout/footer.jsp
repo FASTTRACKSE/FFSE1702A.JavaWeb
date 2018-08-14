@@ -6,8 +6,8 @@
 				target="_blank" class="text-bold-800 grey darken-2">PIXINVENT </a>,
 				All rights reserved.
 			</span><span
-				class="float-md-right d-xs-block d-md-inline-block hidden-md-down">Hand-crafted
-				& Made with <i class="ft-heart pink"></i>
+				class="float-md-right d-xs-block d-md-inline-block hidden-md-down">Hand-crafted &&
+				 Made with <i class="ft-heart pink"></i>
 			</span>
 		</p>
 	</footer>

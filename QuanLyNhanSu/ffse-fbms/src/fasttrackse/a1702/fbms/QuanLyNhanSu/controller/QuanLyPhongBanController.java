@@ -37,6 +37,7 @@ public class QuanLyPhongBanController {
 
 		if (pb == null) {
 			// new person, add it
+		//	hd.setMaHopDong(hd.getMaLoaiHopDong()+hd.getMaNhanVien())
 			this.quanlyphongbanService.addPhongBan(p);
 		} else {
 			// existing person, call update
