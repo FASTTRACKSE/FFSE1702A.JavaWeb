@@ -34,20 +34,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Entity
 @Table(name = "ho_so_nhan_vien")
 public class HoSoNhanVien implements Serializable {
-<<<<<<< HEAD
-=======
-	@Override
-	public String toString() {
-		return "HoSoNhanVien [maNhanVien=" + maNhanVien + ", anhDaiDien=" + anhDaiDien + ", danToc=" + danToc
-				+ ", email=" + email + ", gioiTinh=" + gioiTinh + ", hoDem=" + hoDem + ", namSinh=" + namSinh
-				+ ", ngayCap=" + ngayCap + ", noiCap=" + noiCap + ", noiTamTru=" + noiTamTru + ", queQuan=" + queQuan
-				+ ", soCmnd=" + soCmnd + ", soDienThoai=" + soDienThoai + ", ten=" + ten + ", trangThai=" + trangThai
-				+ ", phongBan=" + phongBan + ", chucDanh=" + chucDanh + ", quocTich=" + quocTich + ", tinhTrangHonNhan="
-				+ tinhTrangHonNhan + ", hopDongs=" + hopDongs + ", thongTinBangCaps="
-				+ thongTinBangCaps + ", thongTinGiaDinhs=" + thongTinGiaDinhs + "]";
-	}
-
->>>>>>> e8ea98bf5f0f0c3737fb3d59c6b56bfc29e2362e
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -342,7 +328,6 @@ public class HoSoNhanVien implements Serializable {
 		return hopDong;
 	}
 
-
 	public List<ThongTinBangCap> getThongTinBangCaps() {
 		return this.thongTinBangCaps;
 	}
@@ -394,7 +379,7 @@ public class HoSoNhanVien implements Serializable {
 				+ ", ngayCap=" + ngayCap + ", noiCap=" + noiCap + ", noiTamTru=" + noiTamTru + ", queQuan=" + queQuan
 				+ ", soCmnd=" + soCmnd + ", soDienThoai=" + soDienThoai + ", ten=" + ten + ", trangThai=" + trangThai
 				+ ", phongBan=" + phongBan + ", chucDanh=" + chucDanh + ", quocTich=" + quocTich + ", tinhTrangHonNhan="
-				+ tinhTrangHonNhan + ", hopDongs=" + hopDongs + ", duAns=" + duAns + ", thongTinBangCaps="
+				+ tinhTrangHonNhan + ", hopDongs=" + hopDongs + ", duAns=" + duAn + ", thongTinBangCaps="
 				+ thongTinBangCaps + ", thongTinGiaDinhs=" + thongTinGiaDinhs + "]";
 	}
 

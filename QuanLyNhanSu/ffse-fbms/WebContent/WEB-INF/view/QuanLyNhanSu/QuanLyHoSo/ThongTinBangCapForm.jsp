@@ -52,7 +52,7 @@
 									code="label.thongTinBangCap" /></a> <a
 								href="<c:url value = "/ns/ho_so/gia_dinh/edit/${hoSoNhanVien.maNhanVien}"/>"
 								class="dropdown-item"><i class="fa fa-users"></i> <spring:message
-									code="label.thongTinBangCap" /></a> <a
+									code="label.thongTinGiaDinh" /></a> <a
 								href="<c:url value = "/ns/ho_so/kinh_nghiem/edit/${hoSoNhanVien.maNhanVien}"/>"
 								class="dropdown-item"><i class="fa fa-file-code-o"></i> <spring:message
 									code="label.thongTinKinhNghiem" /></a> <a
@@ -92,8 +92,7 @@
 								<div class="card-block">
 									<form:form class="form form-horizontal" method="POST"
 										action="/ffse-fbms/ns/ho_so/bang_cap/save"
-										modelAttribute="thongTinBangCapForm"
-										enctype="multipart/form-data">
+										modelAttribute="thongTinBangCapForm">
 										<div class="form-body">
 											<div class="row">
 												<div class="col-md-8">
@@ -160,17 +159,13 @@
 																<div class="col-md-6">
 																	<div class="form-group">
 																		<h1>tên bang cap</h1>
-																		<input class="form-control"
-																			
-																			placeholder="" />
+																		<form:input class="form-control" path="listThongTinBangCap[${status.index}].tenBangCap" placeholder=""/>
 																	</div>
 																</div>
 																<div class="col-md-6">
 																	<div class="form-group">
 																		<h1>loai bang cap</h1>
-																		<input class="form-control"
-																			
-																			placeholder="" />
+																		<form:input class="form-control" path="listThongTinBangCap[${status.index}].loaiBangCap" placeholder=""/>
 																	</div>
 																</div>
 															</div>
@@ -178,22 +173,20 @@
 																<div class="col-md-6">
 																	<div class="form-group">
 																		<h1>noi cap</h1>
-																		<input type="date" class="form-control"
-																			
-																			placeholder="" data-toggle="tooltip"
-																			data-trigger="hover" data-placement="top"
-																			data-title="Date Opened" />
+																		<form:input class="form-control" path="listThongTinBangCap[${status.index}].donViCap" placeholder=""/>
 																	</div>
 																</div>
-																<div class="col-md-6">
+																<div class="col-md-3">
 																	<div class="form-group">
 																		<h1>ngay cap</h1>
-																		<input type="date" class="form-control"
-																			placeholder="" data-toggle="tooltip"
-																			data-trigger="hover" data-placement="top"
-																			data-title="Date Opened" />
+																		<form:input type="date" class="form-control" path="listThongTinBangCap[${status.index}].ngayCap" placeholder="" data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="Date Opened" />
 																	</div>
 																</div>
+														         <div class="col-md-3">
+														            <div class="form-group mt-2" style=" text-align: center; ">
+														               <button type="button" class="btn btn-danger" id="listThongTinBangCap${status.index}-delete" data-onclick="#listThongTinBangCap${status.index}-delete" data-toggle="modal" data-target="#confirm-delete"> <i class="ft-x"></i> <spring:message code="label.xoa" /></button>
+														            </div>
+														         </div>
 															</div>
 
 															<div class="form-section"></div>
