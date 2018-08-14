@@ -16,7 +16,7 @@ public class QuanLyHopDongController {
 	@Autowired
 	private QuanLyHoSoService quanLyHoSoService;
 
-	@RequestMapping(value = "/ns/ho_so/hop_dong/edit/{maNhanVien}", method = RequestMethod.GET)
+	@RequestMapping(value = "/ns/hop_dong/edit/{maNhanVien}", method = RequestMethod.GET)
 	public String editQuanLyHopDong(@PathVariable("maNhanVien") int maNhanVien, Model model) {
 		HoSoNhanVien hsnv = this.quanLyHoSoService.getHoSoNhanVienById(maNhanVien);
 

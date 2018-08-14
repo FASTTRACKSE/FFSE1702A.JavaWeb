@@ -10,7 +10,7 @@
       <div class="content-wrapper">
          <div class="content-header row">
             <div class="content-header-left col-md-9 col-xs-12 mb-2">
-               <h3 class="content-header-title mb-0">Thông tin gia đình</h3>
+               <h3 class="content-header-title mb-0">Thông tin hợp đồng</h3>
                <div class="row breadcrumbs-top">
                   <div class="breadcrumb-wrapper col-xs-12">
                      <ol class="breadcrumb">
@@ -20,7 +20,7 @@
                         </li>
                         <li class="breadcrumb-item"><a href="#">Quản lý hồ sơ</a>
                         </li>
-                        <li class="breadcrumb-item active">Thông tin gia đình"/>
+                        <li class="breadcrumb-item active">Thông tin hợp đồng
                         </li>
                      </ol>
                   </div>
@@ -66,7 +66,7 @@
 	                     </div>
 	                     <div class="card-body collapse in">
 	                        <div class="card-block">
-								<form:form class="form form-horizontal" method="POST" action="/ffse-fbms/ns/ho_so/gia_dinh/save" modelAttribute="thongTinGiaDinhForm" enctype="multipart/form-data">
+								<form:form class="form form-horizontal" method="POST" action="/ffse-fbms/ns/ho_so/gia_dinh/save" modelAttribute="hopDong" enctype="multipart/form-data">
 								   <div class="form-body">
 								      <div class="row">
 								         <div class="col-md-8">
@@ -109,73 +109,6 @@
 								      	 <div class="col-md-4" style="text-align: center !important;">
 									        <img width="175px" height="175px" src="/ffse-fbms/resources/images/nhan-vien/${hoSoNhanVien.anhDaiDien}">
 								         </div>
-								      </div>
-								      <h4 class="form-section"><i class="ft-user"></i> Thông tin gia đình</h4>
-								      <div class="repeater-list">
-								      <c:forEach items="${thongTinGiaDinhForm.listThongTinGiaDinh}" var="thongTinGiaDinh" varStatus="status">
-								      	<div id="repeater-item${status.index}" class="repeater-item">
-									      <form:hidden path="listThongTinGiaDinh[${status.index}].id" />
-									      <form:hidden path="listThongTinGiaDinh[${status.index}].hoSoNhanVien.maNhanVien" />
-									      <div class="row" data-repeater-item>
-									         <div class="col-md-4">
-									            <div class="form-group">
-									               <label>Họ đệm</label>
-									               <form:input class="form-control" path="listThongTinGiaDinh[${status.index}].hoDem" placeholder="Họ đệm"/>
-									            </div>
-									         </div>
-									         <div class="col-md-4">
-									            <div class="form-group">
-									               <label>Tên</label>
-									               <form:input class="form-control" path="listThongTinGiaDinh[${status.index}].ten" placeholder="Tên"/>
-									            </div>
-									         </div>
-									         <div class="col-md-4">
-									            <div class="form-group">
-									               <label>Quan hệ</label>
-									               <form:input class="form-control" path="listThongTinGiaDinh[${status.index}].quanHe" placeholder="Quan hệ"/>
-									            </div>
-									         </div>
-									      </div>
-									      <div class="row">
-									         <div class="col-md-4">
-									            <div class="form-group">
-									               <label>Ngày sinh</label>
-									               <form:input type="date" class="form-control" path="listThongTinGiaDinh[${status.index}].namSinh" placeholder="Ngày sinh" data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="Date Opened" />
-									            </div>
-									         </div>
-									         <div class="col-md-4">
-									            <div class="form-group">
-									               <label>Giới tính</label>
-									               <form:select multiple="single" path="listThongTinGiaDinh[${status.index}].gioiTinh" class="form-control">
-											   		  <form:option selected = "true" disabled = "true" value="0" label="Chọn giới tính" />
-											   		  <form:option value="1" label="Nam" />
-											   		  <form:option value="2" label="Nữ" />
-												   </form:select>
-									            </div>
-									         </div>
-									         <div class="col-md-4">
-									            <div class="form-group">
-									               <label for="dienThoai">Điện thoại</label>
-									         	   <form:input class="form-control" path="listThongTinGiaDinh[${status.index}].soDienThoai" placeholder="Điện thoại"/>
-									            </div>
-									         </div>
-									      </div>
-									      <div class="row">
-									         <div class="col-md-8">
-									            <div class="form-group">
-									               <label for="queQuan">Quê quán</label>
-									               <form:input class="form-control" path="listThongTinGiaDinh[${status.index}].queQuan" placeholder="Quê quán"/>
-									            </div>
-									         </div>
-									         <div class="col-md-4">
-									            <div class="form-group mt-2" style=" text-align: center; ">
-									               <button type="button" class="btn btn-danger" id="listThongTinGiaDinh${status.index}-delete" onclick="delete_form('#listThongTinGiaDinh${status.index}-delete')"> <i class="ft-x"></i> Delete</button>
-									            </div>
-									         </div>
-									      </div>
-									      <div class="form-section"></div>
-									  	</div>
-								      </c:forEach>
 								      	  <h4 class="form-section"><i class="ft-user"></i> Thông tin hợp đồng</h4>
 								      <div class="row">
 								         <div class="col-md-4">
