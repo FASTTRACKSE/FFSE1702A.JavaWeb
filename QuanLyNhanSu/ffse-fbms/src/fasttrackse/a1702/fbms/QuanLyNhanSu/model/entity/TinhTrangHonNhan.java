@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 /**
  * The persistent class for the tinh_trang_hon_nhan database table.
@@ -23,7 +24,8 @@ public class TinhTrangHonNhan implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ma_tinh_trang_hon_nhan", unique = true, nullable = false)
-	private int maTinhTrangHonNhan;
+	@NotNull
+	private Integer maTinhTrangHonNhan;
 
 	@Column(name = "tinh_trang_hon_nhan", nullable = false, length = 50)
 	private String tinhTrangHonNhan;
@@ -35,11 +37,11 @@ public class TinhTrangHonNhan implements Serializable {
 	public TinhTrangHonNhan() {
 	}
 
-	public int getMaTinhTrangHonNhan() {
+	public Integer getMaTinhTrangHonNhan() {
 		return this.maTinhTrangHonNhan;
 	}
 
-	public void setMaTinhTrangHonNhan(int maTinhTrangHonNhan) {
+	public void setMaTinhTrangHonNhan(Integer maTinhTrangHonNhan) {
 		this.maTinhTrangHonNhan = maTinhTrangHonNhan;
 	}
 

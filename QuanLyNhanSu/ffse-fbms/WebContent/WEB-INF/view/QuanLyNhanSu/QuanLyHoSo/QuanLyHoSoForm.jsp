@@ -92,10 +92,11 @@
 										            <div class="form-group">
 										               <label><spring:message code="label.trangThai" /></label>
 										               <form:select multiple="single" path="trangThai" class="form-control">
-												   		  <form:option selected = "true" disabled = "true" value="0" label="Chọn trạng thái" />
+												   		  <form:option selected = "true" disabled = "true" value="" label="Chọn trạng thái" />
 												   		  <form:option value="1" label="Đang làm việc" />
 												   		  <form:option value="2" label="Nghỉ việc" />
 													   </form:select>
+													   <form:errors path="trangThai" cssClass="invalid-feedback d-block" />
 										            </div>
 								         		</div>
 								         	</div>
@@ -104,18 +105,20 @@
 										            <div class="form-group">
 										               <label><spring:message code="label.phongBan" /></label>
 										               <form:select multiple="single" path="phongBan.maPhongBan" class="form-control">
-												   		  <form:option selected = "true" disabled = "true" value="Chọn phòng ban" />
+												   		  <form:option selected = "true" disabled = "true" value="" label="Chọn phòng ban" />
 													   	  <form:options items="${phongBan}" itemValue="maPhongBan" itemLabel="tenPhongBan" />
 													   </form:select>
+													   <form:errors path="phongBan" cssClass="invalid-feedback d-block" />
 													</div>
 										         </div>
 										         <div class="col-md-6">
 										            <div class="form-group">
 										               <label><spring:message code="label.chucDanh" /></label>
 										               <form:select multiple="single" path="chucDanh.maChucDanh" class="form-control">
-												   		  <form:option selected = "true" disabled = "true" value="Chọn chức danh" />
+												   		  <form:option selected = "true" disabled = "true" value="" label="Chọn chức danh" />
 													   	  <form:options items="${chucDanh}" itemValue="maChucDanh" itemLabel="tenChucDanh" />
 													   </form:select>
+													   <form:errors path="chucDanh" cssClass="invalid-feedback d-block" />
 										            </div>
 										         </div>
 								         	</div>
@@ -132,22 +135,25 @@
 								            <div class="form-group">
 								               <label><spring:message code="label.hoDem" /></label>
 								               <form:input class="form-control" path="hoDem" placeholder=""/>
+											   <form:errors path="hoDem" cssClass="invalid-feedback d-block" />
 								            </div>
 								         </div>
-								         <div class="col-md-4">
+								         <div class="col-md-3">
 								            <div class="form-group">
 								               <label><spring:message code="label.ten" /></label>
 								               <form:input class="form-control" path="ten" placeholder=""/>
+											   <form:errors path="ten" cssClass="invalid-feedback d-block" />
 								            </div>
 								         </div>
-								         <div class="col-md-2">
+								         <div class="col-md-3">
 								            <div class="form-group">
 								               <label><spring:message code="label.gioiTinh" /></label>
 								               <form:select multiple="single" path="gioiTinh" class="form-control">
-										   		  <form:option selected = "true" disabled = "true" value="0" label="Chọn giới tính" />
+										   		  <form:option selected = "true" disabled = "true" value="" label="Chọn giới tính" />
 										   		  <form:option value="1" label="Nam" />
 										   		  <form:option value="2" label="Nữ" />
 											   </form:select>
+											   <form:errors path="gioiTinh" cssClass="invalid-feedback d-block" />
 								            </div>
 								         </div>
 								      </div>
@@ -156,30 +162,34 @@
 								            <div class="form-group">
 								               <label><spring:message code="label.ngaySinh" /></label>
 								               <form:input type="date" class="form-control" path="namSinh" placeholder="" data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="Date Opened" />
+								               <form:errors path="namSinh" cssClass="invalid-feedback d-block" />
 								            </div>
 								         </div>
 								         <div class="col-md-3">
 								            <div class="form-group">
 								               <label><spring:message code="label.tinhTrangHonNhan" /></label>
 								               <form:select multiple="single" path="tinhTrangHonNhan.maTinhTrangHonNhan" class="form-control">
-										   		  <form:option selected="true" disabled="true" value="-1" label="Chọn tình trạng" />
+										   		  <form:option selected="true" disabled="true" value="" label="Chọn tình trạng" />
 											   	  <form:options items="${tinhTrangHonNhan}" itemValue="maTinhTrangHonNhan" itemLabel="tinhTrangHonNhan" />
 											   </form:select>
+								               <form:errors path="tinhTrangHonNhan" cssClass="invalid-feedback d-block" />
 								            </div>
 								         </div>
-								         <div class="col-md-4">
+								         <div class="col-md-3">
 								            <div class="form-group">
 								               <label><spring:message code="label.quocTich" /></label>
 								               <form:select multiple="single" path="quocTich.maQuocTich" class="form-control">
-										   		  <form:option selected = "true" disabled = "true" value="Chọn quốc tịch" />
+										   		  <form:option selected = "true" disabled = "true" value="" label="Chọn quốc tịch" />
 											   	  <form:options items="${quocTich}" itemValue="maQuocTich" itemLabel="tenQuocTich" />
 											   </form:select>
+								               <form:errors path="quocTich" cssClass="invalid-feedback d-block" />
 								            </div>
 								         </div>
-								         <div class="col-md-2">
+								         <div class="col-md-3">
 								            <div class="form-group">
 								               <label><spring:message code="label.danToc" /></label>
 								               <form:input class="form-control" path="danToc" placeholder=""/>
+								               <form:errors path="danToc" cssClass="invalid-feedback d-block" />
 								            </div>
 								         </div>
 								      </div>
@@ -188,18 +198,21 @@
 								            <div class="form-group">
 								               <label><spring:message code="label.soCMND" /></label>
 								               <form:input class="form-control" path="soCmnd" placeholder=""/>
+								               <form:errors path="soCmnd" cssClass="invalid-feedback d-block" />
 								            </div>
 								         </div>
 								         <div class="col-md-4">
 								            <div class="form-group">
 								               <label for="noiCap"><spring:message code="label.noiCap" /></label>
 								               <form:input class="form-control" path="noiCap" placeholder=""/>
+								               <form:errors path="noiCap" cssClass="invalid-feedback d-block" />
 								            </div>
 								         </div>
 								         <div class="col-md-4">
 								            <div class="form-group">
 								               <label><spring:message code="label.ngayCap" /></label>
 								               <form:input type="date" class="form-control" path="ngayCap" placeholder="Ngày cấp" data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="Date Opened" />
+								               <form:errors path="ngayCap" cssClass="invalid-feedback d-block" />
 								            </div>
 								         </div>
 								      </div>
@@ -208,36 +221,43 @@
 									      <label class="file block">
 										  	<input type="file" id="image" name="image">
 										  	<form:hidden path="anhDaiDien" />
+								            <form:errors path="anhDaiDien" cssClass="invalid-feedback d-block" />
 										  </label>
 								      </div>
 								      <h4 class="form-section"><i class="fa fa-home"></i> <spring:message code="label.thongTinLienHe" /></h4>
 								      <div class="form-group">
 								         <label for="queQuan"><spring:message code="label.queQuan" /></label>
 								         <form:input class="form-control" path="queQuan" placeholder=""/>
+								         <form:errors path="queQuan" cssClass="invalid-feedback d-block" />
 								      </div>
 								      <div class="form-group">
 								         <label for="noiTamTru"><spring:message code="label.noiOHienNay" /></label>
 								         <form:input class="form-control" path="noiTamTru" placeholder=""/>
+								         <form:errors path="noiTamTru" cssClass="invalid-feedback d-block" />
 								      </div>
 								      <div class="row">
 								         <div class="col-md-6">
 								            <div class="form-group">
 								               <label for="email">Email</label>
 								         	   <form:input class="form-control" path="email" placeholder=""/>
+								         	   <form:errors path="email" cssClass="invalid-feedback d-block" />
 								            </div>
 								         </div>
 								         <div class="col-md-6">
 								            <div class="form-group">
 								               <label for="dienThoai"><spring:message code="label.dienThoai" /></label>
 								         	   <form:input class="form-control" path="soDienThoai" placeholder=""/>
+								         	   <form:errors path="soDienThoai" cssClass="invalid-feedback d-block" />
 								            </div>
 								         </div>
 								      </div>
 								   </div>
 								   <div class="form-actions center">
+								   	<a href="<c:url value = "/ns/ho_so"/>">
 								      <button type="button" class="btn btn-warning mr-1">
 								         <i class="ft-x"></i> <spring:message code="label.huy" />
 								      </button>
+								    </a>
 								      <button type="submit" class="btn btn-primary">
 								         <i class="fa fa-check-square-o"></i> <spring:message code="label.luu" />
 								      </button>

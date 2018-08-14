@@ -16,6 +16,10 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -26,17 +30,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Entity
 @Table(name = "ho_so_nhan_vien")
 public class HoSoNhanVien implements Serializable {
-	@Override
-	public String toString() {
-		return "HoSoNhanVien [maNhanVien=" + maNhanVien + ", anhDaiDien=" + anhDaiDien + ", danToc=" + danToc
-				+ ", email=" + email + ", gioiTinh=" + gioiTinh + ", hoDem=" + hoDem + ", namSinh=" + namSinh
-				+ ", ngayCap=" + ngayCap + ", noiCap=" + noiCap + ", noiTamTru=" + noiTamTru + ", queQuan=" + queQuan
-				+ ", soCmnd=" + soCmnd + ", soDienThoai=" + soDienThoai + ", ten=" + ten + ", trangThai=" + trangThai
-				+ ", phongBan=" + phongBan + ", chucDanh=" + chucDanh + ", quocTich=" + quocTich + ", tinhTrangHonNhan="
-				+ tinhTrangHonNhan + ", hopDongs=" + hopDongs + ", duAns=" + duAns + ", thongTinBangCaps="
-				+ thongTinBangCaps + ", thongTinGiaDinhs=" + thongTinGiaDinhs + "]";
-	}
-
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -45,69 +38,88 @@ public class HoSoNhanVien implements Serializable {
 	private int maNhanVien;
 
 	@Column(name = "anh_dai_dien", nullable = false, length = 100)
+	@NotEmpty
 	private String anhDaiDien;
 
 	@Column(name = "dan_toc", nullable = false, length = 50)
+	@NotEmpty
 	private String danToc;
 
 	@Column(nullable = false, length = 50)
+	@NotEmpty
+	@Email
 	private String email;
 
 	@Column(name = "gioi_tinh", nullable = false)
-	private int gioiTinh;
+	@NotNull
+	private Integer gioiTinh;
 
 	@Column(name = "ho_dem", nullable = false, length = 50)
+	@NotEmpty
 	private String hoDem;
 
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "nam_sinh", nullable = false)
+	@NotNull
 	private Date namSinh;
 
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "ngay_cap", nullable = false)
+	@NotNull
 	private Date ngayCap;
 
 	@Column(name = "noi_cap", nullable = false, length = 50)
+	@NotEmpty
 	private String noiCap;
 
 	@Column(name = "noi_tam_tru", nullable = false, length = 250)
+	@NotEmpty
 	private String noiTamTru;
 
 	@Column(name = "que_quan", nullable = false, length = 250)
+	@NotEmpty
 	private String queQuan;
 
-	@Column(name = "so_cmnd", nullable = false, length = 50)
+	@Column(name = "so_cmnd", nullable = false, length = 9)
+	@Size(min = 9, max = 9)
 	private String soCmnd;
 
 	@Column(name = "so_dien_thoai", nullable = false, length = 11)
+	@Size(min = 10, max = 11)
 	private String soDienThoai;
 
 	@Column(nullable = false, length = 20)
+	@NotEmpty
 	private String ten;
 
 	@Column(name = "trang_thai", nullable = false)
-	private int trangThai;
+	@NotNull
+	private Integer trangThai;
 
 	// bi-directional many-to-one association to PhongBan
 	@ManyToOne
 	@JoinColumn(name = "ma_phong_ban", nullable = false)
+	@NotNull
 	private PhongBan phongBan;
 
 	// bi-directional many-to-one association to ChucDanh
 	@ManyToOne
 	@JoinColumn(name = "ma_chuc_danh", nullable = false)
+	@NotNull
 	private ChucDanh chucDanh;
 
 	// bi-directional many-to-one association to QuocTich
 	@ManyToOne
 	@JoinColumn(name = "ma_quoc_tich", nullable = false)
+	@NotNull
 	private QuocTich quocTich;
 
 	// bi-directional many-to-one association to TinhTrangHonNhan
 	@ManyToOne
 	@JoinColumn(name = "ma_tinh_trang_hon_nhan", nullable = false)
+	@NotNull
 	private TinhTrangHonNhan tinhTrangHonNhan;
 
 	// bi-directional many-to-one association to HopDong
@@ -161,11 +173,11 @@ public class HoSoNhanVien implements Serializable {
 		this.email = email;
 	}
 
-	public int getGioiTinh() {
+	public Integer getGioiTinh() {
 		return this.gioiTinh;
 	}
 
-	public void setGioiTinh(int gioiTinh) {
+	public void setGioiTinh(Integer gioiTinh) {
 		this.gioiTinh = gioiTinh;
 	}
 
@@ -273,11 +285,11 @@ public class HoSoNhanVien implements Serializable {
 		this.tinhTrangHonNhan = tinhTrangHonNhan;
 	}
 
-	public int getTrangThai() {
+	public Integer getTrangThai() {
 		return trangThai;
 	}
 
-	public void setTrangThai(int trangThai) {
+	public void setTrangThai(Integer trangThai) {
 		this.trangThai = trangThai;
 	}
 
@@ -353,6 +365,17 @@ public class HoSoNhanVien implements Serializable {
 		thongTinGiaDinh.setHoSoNhanVien(null);
 
 		return thongTinGiaDinh;
+	}
+
+	@Override
+	public String toString() {
+		return "HoSoNhanVien [maNhanVien=" + maNhanVien + ", anhDaiDien=" + anhDaiDien + ", danToc=" + danToc
+				+ ", email=" + email + ", gioiTinh=" + gioiTinh + ", hoDem=" + hoDem + ", namSinh=" + namSinh
+				+ ", ngayCap=" + ngayCap + ", noiCap=" + noiCap + ", noiTamTru=" + noiTamTru + ", queQuan=" + queQuan
+				+ ", soCmnd=" + soCmnd + ", soDienThoai=" + soDienThoai + ", ten=" + ten + ", trangThai=" + trangThai
+				+ ", phongBan=" + phongBan + ", chucDanh=" + chucDanh + ", quocTich=" + quocTich + ", tinhTrangHonNhan="
+				+ tinhTrangHonNhan + ", hopDongs=" + hopDongs + ", duAns=" + duAns + ", thongTinBangCaps="
+				+ thongTinBangCaps + ", thongTinGiaDinhs=" + thongTinGiaDinhs + "]";
 	}
 
 }

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 
 <!DOCTYPE html>
 
@@ -37,6 +38,17 @@
    <!-- END Page Level CSS-->
    
    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+   <style>
+	   .invalid-feedback {
+	   	color: #DC3545;
+	   	padding-top: 10px;
+	   }
+	   .invalid-feedback::before {
+	   content: "•";
+	   padding-left: 10px;
+   	   padding-right: 10px;
+	   }
+   </style>
 </head>
 
 <body data-open="click" data-menu="vertical-menu" data-col="2-columns" class="vertical-layout vertical-menu 2-columns   menu-expanded fixed-navbar">
@@ -285,9 +297,9 @@
          <ul id="main-menu-navigation" data-menu="menu-navigation" class="navigation navigation-main">
             <li class=" navigation-header"><span>Nhân viên</span><i data-toggle="tooltip" data-placement="right" data-original-title="Apps" class=" ft-minus"></i>
             </li>
-            <li class=" nav-item"><a href="#"><i class="ft-mail"></i><span data-i18n="" class="menu-title">Hồ sơ bản thân</span></a>
+            <li class=" nav-item"><a href="#"><i class="ft-user"></i><span data-i18n="" class="menu-title"><spring:message code="label.hoSoBanThan" /></span></a>
             </li>
-            <li class=" nav-item"><a href="#"><i class="ft-message-square"></i><span data-i18n="" class="menu-title">Hợp đồng lao động</span></a>
+            <li class=" nav-item"><a href="#"><i class="ft-file-text"></i><span data-i18n="" class="menu-title">Hợp đồng lao động</span></a>
             </li>
             <li class=" nav-item"><a href="#"><i class="ft-airplay"></i><span data-i18n="" class="menu-title">Xem tất cả</span></a>
             </li>
@@ -301,7 +313,7 @@
                   </li>
                </ul>
             </li>
-            <li class=" nav-item"><a href="javascript:void(0)"><i class="ft-home"></i><span data-i18n="" class="menu-title">Quản lý chức danh</span></a>
+            <li class=" nav-item"><a href="javascript:void(0)"><i class="ft-award"></i><span data-i18n="" class="menu-title">Quản lý chức danh</span></a>
                <ul class="menu-content">
                   <li><a href="<c:url value = "/ns/chuc_danh"/>" class="menu-item">Danh sách chức danh</a>
                   </li>
@@ -309,7 +321,7 @@
                   </li>
                </ul>
             </li>
-            <li class=" nav-item"><a href="javascript:void(0)"><i class="ft-home"></i><span data-i18n="" class="menu-title">Quản lý hồ sơ</span></a>
+            <li class=" nav-item"><a href="javascript:void(0)"><i class="ft-users"></i><span data-i18n="" class="menu-title">Quản lý hồ sơ</span></a>
                <ul class="menu-content">
                   <li><a href="<c:url value = "/ns/ho_so"/>" class="menu-item">Danh sách hồ sơ</a>
                   </li>
@@ -317,7 +329,7 @@
                   </li>
                </ul>
             </li>
-            <li class=" nav-item"><a href="javascript:void(0)"><i class="ft-home"></i><span data-i18n="" class="menu-title">Quản lý hợp đồng</span></a>
+            <li class=" nav-item"><a href="javascript:void(0)"><i class="ft-file-text"></i><span data-i18n="" class="menu-title">Quản lý hợp đồng</span></a>
                <ul class="menu-content">
                   <li><a href="<c:url value = "/ns/hop_dong"/>" class="menu-item">Danh sách hợp đồng</a>
                   </li>

@@ -3,6 +3,7 @@ package fasttrackse.a1702.fbms.QuanLyNhanSu.controller;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -77,8 +78,16 @@ public class QuanLyHoSoController {
 	}
 
 	@RequestMapping(value = "/ns/ho_so/save", method = RequestMethod.POST)
-	public String saveHoSoNhanVien(@ModelAttribute("hoSoNhanVien") HoSoNhanVien hsnv, BindingResult bindingResult,
-			@RequestParam(value = "image", required = false) MultipartFile image, HttpServletRequest request) {
+	public String saveHoSoNhanVien(@ModelAttribute("hoSoNhanVien") @Valid HoSoNhanVien hsnv,
+			BindingResult bindingResult, @RequestParam(value = "image", required = false) MultipartFile image,
+			HttpServletRequest request, Model model) {
+
+		if (bindingResult.hasErrors()) {
+			System.out.println(hsnv);
+			model.addAttribute("add", "add");
+			hsnv.setMaNhanVien(Integer.valueOf(this.quanLyHoSoService.getAutoId()));
+			return "QuanLyNhanSu/QuanLyHoSo/QuanLyHoSoForm";
+		}
 
 		String referer = request.getHeader("Referer");
 		String filename = uploadImageService.checkImage(image, bindingResult, referer);

@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 
 /**
  * The persistent class for the quoc_tich database table.
@@ -20,6 +21,7 @@ public class QuocTich implements Serializable {
 
 	@Id
 	@Column(name = "ma_quoc_tich", unique = true, nullable = false, length = 50)
+	@NotEmpty
 	private String maQuocTich;
 
 	@Column(name = "ten_quoc_tich", nullable = false, length = 50)
