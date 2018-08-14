@@ -14,6 +14,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 /**
  * The persistent class for the thong_tin_bang_cap database table.
  * 
@@ -35,6 +37,7 @@ public class ThongTinBangCap implements Serializable {
 	private String loaiBangCap;
 
 	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "ngay_cap", nullable = false)
 	private Date ngayCap;
 

@@ -53,7 +53,7 @@
 								href="<c:url value = "/ns/ho_so/gia_dinh/edit/${hoSoNhanVien.maNhanVien}"/>"
 								class="dropdown-item"><i class="fa fa-users"></i> <spring:message
 									code="label.thongTinGiaDinh" /></a> <a
-								href="<c:url value = "/ns/ho_so/kinh_nghiem/edit/${hoSoNhanVien.maNhanVien}"/>"
+								href="<c:url value = "/ns/ho_so/kinh_nghiem/${hoSoNhanVien.maNhanVien}"/>"
 								class="dropdown-item"><i class="fa fa-file-code-o"></i> <spring:message
 									code="label.thongTinKinhNghiem" /></a> <a
 								href="<c:url value = "/ns/hop_dong/edit/${hoSoNhanVien.maNhanVien}"/>"

@@ -11,7 +11,7 @@
       <div class="content-wrapper">
          <div class="content-header row">
             <div class="content-header-left col-md-9 col-xs-12 mb-2">
-               <h3 class="content-header-title mb-0"><spring:message code="label.thongTinGiaDinh" /></h3>
+               <h3 class="content-header-title mb-0"><spring:message code="label.thongTinKinhNghiem" /></h3>
                <div class="row breadcrumbs-top">
                   <div class="breadcrumb-wrapper col-xs-12">
                      <ol class="breadcrumb">
@@ -21,7 +21,7 @@
                         </li>
                         <li class="breadcrumb-item"><a href="<c:url value = "/ns/ho_so"/>"><spring:message code="label.quanLyHoSo" /></a>
                         </li>
-                        <li class="breadcrumb-item active"><spring:message code="label.thongTinGiaDinh" />
+                        <li class="breadcrumb-item active"><spring:message code="label.thongTinKinhNghiem" />
                         </li>
                      </ol>
                   </div>
@@ -66,7 +66,7 @@
 	                     </div>
 	                     <div class="card-body collapse in">
 	                        <div class="card-block">
-								<form:form class="form form-horizontal" method="POST" action="/ffse-fbms/ns/ho_so/gia_dinh/save" modelAttribute="thongTinGiaDinhForm" enctype="multipart/form-data">
+								<form:form class="form form-horizontal" method="POST" action="/ffse-fbms/ns/ho_so/gia_dinh/save" modelAttribute="thongTinKinhNghiem">
 								   <div class="form-body">
 								      <div class="row">
 								         <div class="col-md-8">
@@ -74,15 +74,15 @@
 								         		<div class="col-md-6">
 									         		<div class="form-group">
 										               <label><spring:message code="label.maNhanVien" /></label>
-										               <fmt:formatNumber type="number" var="maNhanVienFormat" minIntegerDigits="5" groupingUsed="false" value="" />
-													   <input placeholder="" class="form-control" value="" disabled type="text">
+										               <fmt:formatNumber type="number" var="maNhanVienFormat" minIntegerDigits="5" groupingUsed="false" value="${hoSoNhanVien.maNhanVien}" />
+													   <input placeholder="" class="form-control" value="${maNhanVienFormat}" disabled type="text">
 										            </div>
 								         		</div>
 								         		<div class="col-md-6">
 										            <div class="form-group">
 										               <label><spring:message code="label.trangThai" /></label>
 										               <select class="form-control" disabled> 
-												   		  <option></option>
+												   		  <option>${hoSoNhanVien.trangThai == 1 ? "Đang làm việc" : "Nghỉ việc"}</option>
 													   </select>
 										            </div>
 								         		</div>
@@ -92,7 +92,7 @@
 										            <div class="form-group">
 										               <label><spring:message code="label.phongBan" /></label>
 										               <select class="form-control" disabled>
-												   		  <option></option>
+												   		  <option>${hoSoNhanVien.phongBan.tenPhongBan}</option>
 													   </select>
 													</div>
 										         </div>
@@ -100,162 +100,22 @@
 										            <div class="form-group">
 										               <label><spring:message code="label.chucDanh" /></label>
 										               <select class="form-control" disabled>
-												   		  <option></option>
+												   		  <option>${hoSoNhanVien.chucDanh.tenChucDanh}</option>
 													   </select>
 										            </div>
 										         </div>
 								         	</div>
 								         </div>
 								      	 <div class="col-md-4" style="text-align: center !important;">
-									        <img width="175px" height="175px" src="/ffse-fbms/resources/images/nhan-vien/">
+									        <img width="175px" height="175px" src="/ffse-fbms/resources/images/nhan-vien/${hoSoNhanVien.anhDaiDien}">
 								         </div>
 								      </div>
-								      <h4 class="form-section"><i class="ft-user"></i> <spring:message code="label.thongTinGiaDinh" /></h4>
-								      	<div class="thong-tin-gia-dinh">
-									      <div class="repeater-list">
-									      	<c:forEach items="" var="thongTinGiaDinh" varStatus="status">
-									      	<div id="repeater-item" class="repeater-item">
-										      <form:hidden path="listThongTinGiaDinh[].id" />
-										      <form:hidden path="listThongTinGiaDinh[].hoSoNhanVien.maNhanVien" />
-										      <div class="row" data-repeater-item>
-										         <div class="col-md-4">
-										            <div class="form-group">
-										               <label><spring:message code="label.hoDem" /></label>
-										               <form:input class="form-control" path="listThongTinGiaDinh[].hoDem" placeholder=""/>
-										            </div>
-										         </div>
-										         <div class="col-md-4">
-										            <div class="form-group">
-										               <label><spring:message code="label.ten" /></label>
-										               <form:input class="form-control" path="listThongTinGiaDinh[].ten" placeholder=""/>
-										            </div>
-										         </div>
-										         <div class="col-md-4">
-										            <div class="form-group">
-										               <label><spring:message code="label.quanHe" /></label>
-										               <form:input class="form-control" path="listThongTinGiaDinh[].quanHe" placeholder=""/>
-										            </div>
-										         </div>
-										      </div>
-										      <div class="row">
-										         <div class="col-md-4">
-										            <div class="form-group">
-										               <label><spring:message code="label.ngaySinh" /></label>
-										               <form:input type="date" class="form-control" path="listThongTinGiaDinh[].namSinh" placeholder="" data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="Date Opened" />
-										            </div>
-										         </div>
-										         <div class="col-md-4">
-										            <div class="form-group">
-										               <label><spring:message code="label.gioiTinh" /></label>
-										               <form:select multiple="single" path="listThongTinGiaDinh[].gioiTinh" class="form-control">
-												   		  <form:option selected = "true" disabled = "true" value="0" label="Chọn giới tính" />
-												   		  <form:option value="1" label="Nam" />
-												   		  <form:option value="2" label="Nữ" />
-													   </form:select>
-										            </div>
-										         </div>
-										         <div class="col-md-4">
-										            <div class="form-group">
-										               <label for="dienThoai"><spring:message code="label.dienThoai" /></label>
-										         	   <form:input class="form-control" path="listThongTinGiaDinh[].soDienThoai" placeholder=""/>
-										            </div>
-										         </div>
-										      </div>
-										      <div class="row">
-										         <div class="col-md-8">
-										            <div class="form-group">
-										               <label for="queQuan"><spring:message code="label.queQuan" /></label>
-										               <form:input class="form-control" path="listThongTinGiaDinh[].queQuan" placeholder=""/>
-										            </div>
-										         </div>
-										         <div class="col-md-4">
-										            <div class="form-group mt-2" style=" text-align: center; ">
-										               <button type="button" class="btn btn-danger" id="listThongTinGiaDinh-delete" data-onclick="#listThongTinGiaDinh-delete" data-toggle="modal" data-target="#confirm-delete"> <i class="ft-x"></i> <spring:message code="label.xoa" /></button>
-										            </div>
-										         </div>
-										      </div>
-										      <div class="form-section"></div>
-										  	</div>
-									      </c:forEach>
-									      	<div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-		                                       <div class="modal-dialog">
-		                                          <div class="modal-content">
-		      
-		                                             <div class="modal-header">
-		                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-		                                                <h4 class="modal-title" id="myModalLabel">Confirm Delete</h4>
-		                                             </div>
-		      
-		                                             <div class="modal-body">
-		                                                <p>You are about to delete one product, this procedure is irreversible.</p>
-		                                                <p>Do you want to proceed?</p>
-		                                                <p class="debug-url"></p>
-		                                             </div>
-		      
-		                                             <div class="modal-footer">
-		                                                <button type="button" class="btn btn-default" data-dismiss="modal"><spring:message code="label.huy" /></button>
-		                                                <a class="btn btn-danger btn-ok"><spring:message code="label.xoa" /></a>
-		                                             </div>
-		                                          </div>
-		                                       </div>
-		                                    </div>
-	                                    	<script>
-	                                    	window.onload = function(){
-	                                    		$('#confirm-delete').on('show.bs.modal', function(e) {
-	                                    			$(this).find('.btn-ok').click(function(){
-	                                    				delete_form($(e.relatedTarget).data('onclick'));
-	                                    				$('#confirm-delete .close').click();
-		                                    		});
-	    	                                    });
-	                                    	};
-	                                    	function add_form(ele) {
-	                                    		var countForm = $('.repeater-item').length;
-	                                    		
-	                                    		htmlForm = "<div class=\"repeater-item\" id=\"repeater-item" + countForm + "\">" + $(".repeater-item").html() + "</div>";
-	                                    		htmlForm = htmlForm.replace(/listThongTinGiaDinh0/gi, "listThongTinGiaDinh" + countForm);
-	                                    		htmlForm = htmlForm.replace(/listThongTinGiaDinh\[0\]/gi, "listThongTinGiaDinh[" + countForm + "]");
-	                                    		
-	                                            $(".repeater-list").append(htmlForm);
-	
-	                                    	    $(ele).find(':input').each(function() {
-	                                    	        switch(this.type) {
-	                                    	            case 'date':
-	                                    	            case 'password':
-	                                    	            case 'select-multiple':
-	                                    	            case 'text':
-	                                    	            case 'textarea':
-	                                    	                $(this).val('');
-	                                    	                break;
-	                                    	            case 'checkbox':
-	                                    	            case 'radio':
-	                                    	                this.checked = false;
-	                                    	                break;
-	                                    	            case 'select-one':
-	                                    	            	$(this).val('0');
-	                                    	                break;
-	                                    	        }
-	                                    	    });
-	                                    	    selectIdTTGD = "#listThongTinGiaDinh" + countForm + "\\.id";
-	                                    	    $(selectIdTTGD).val("NULL");
-	                                    	}
-	                                    	function delete_form(ele) {
-	                                        	index = ele.match(/\d+/);
-	                                        	ele = "#repeater-item" + index;
-	                                    		$(ele).hide();
-	                                    		selectIdTTGD = "#listThongTinGiaDinh" + index + "\\.id";
-	                                    	    
-	                                    	    if ($(selectIdTTGD).val() == "NULL") {
-	                                    	    	$(ele).remove();
-	                                        	} else {
-	                                        		$(selectIdTTGD).val("-"+$(selectIdTTGD).val());
-	                                            }
-	                                    	}
-	                                      	</script>
-									      </div>
-									      	<button class="btn btn-primary btn-lg" type="button" onclick="add_form('.repeater-item:last')">
-	                                        	<i class="icon-plus4"></i> <spring:message code="label.them" />
-	                                    	</button>
-									  </div>
+								      <h4 class="form-section"><i class="ft-user"></i> <spring:message code="label.thongTinKinhNghiem" /></h4>
+								      	<div class="thong-tin-kinh-nghiem">
+									      	<div class="repeater-list">
+									      	<!-- List kinh nghiệm ở đây -->
+									  		</div>
+								   		</div>
 								   </div>
 								   <div class="form-actions center">
 								      <button type="button" class="btn btn-warning mr-1">
