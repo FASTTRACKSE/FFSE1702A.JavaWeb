@@ -3,6 +3,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<c:url var="createlink" value="/duan/create" />
+<c:url var="updatelink" value="/duan/update/" />
+<c:url var="detaillink" value="/duan/detail/" />
 <div class="row">
     <div class="col-xs-12">
         <div class="card">
@@ -19,9 +22,8 @@
                 </div>
             </div>
             <div class="card-body collapse in">
-                <div class="card-block card-dashboard">
-                    
-                    <p><span class="text-bold-600"><spring:message code="khachhang.add" /></span> </p>
+                <div class="card-block card-dashboard">  
+                    <p><a href="${createlink }"><span class="text-bold-600"><spring:message code="duan.add" /></span> </a></p>
                     <div class="table-responsive">
                         <table class="table">
                             <thead>
@@ -34,20 +36,22 @@
                                 </tr>
                             </thead>
                             <tbody>
-                            <c:forEach var="khachhang" items="${list }" varStatus="count"   >
+                            <c:forEach var="duan" items="${list }" varStatus="count"   >
                                 <tr>
                                     <th scope="row">${count.count  }</th>
                                     <td>${duan.maDuAn }</td>
                                     <td>${duan.tenDuAn }</td>
-                                    
-                                    <td>Test</td>
+                                   	<td><a href="${detaillink }${duan.maDuAn }" data-toggle="tooltip" title="view!"><button type="button" class="btn btn-icon btn-outline-info"><i class="fa fa-eye"></i></button></a>
+                                   	<a href="${updatelink }${duan.maDuAn }" data-toggle="tooltip" title="edit!"><button type="button" class="btn btn-icon btn-outline-warning"><i class="fa fa-gavel"></i></button></a>
+                                   	</td>
+                               
                                 </tr>
                               </c:forEach>  
                             </tbody>
                         </table>
                     </div>
                 </div>
-                
+               
                 </div>
         </div>
     </div>

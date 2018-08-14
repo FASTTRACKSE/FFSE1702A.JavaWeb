@@ -8,5 +8,6 @@ public interface NhiemVuDao {
 	public void save(NhiemVu nhiemVu);
 	public void update(NhiemVu nhiemVu);
 	public List<NhiemVu> getAll();
-	public NhiemVu getById(String maNhiemVu);
+	public NhiemVu getById(String maDuAn,String maNhanVien);
+	public void delete(NhiemVu nhiemvu);
 }

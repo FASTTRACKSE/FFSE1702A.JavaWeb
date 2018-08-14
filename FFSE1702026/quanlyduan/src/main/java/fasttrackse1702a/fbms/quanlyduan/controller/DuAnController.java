@@ -55,11 +55,11 @@ public class DuAnController {
 	@Autowired
 	NhiemVuService nhiemVuService;
 	
-	@RequestMapping(value = { "/phancongnhiemvu/{maDuAn}" })
+	@RequestMapping(value = { "/phancongnhiemvu/create/{maDuAn}" })
 	public String phanCongNhiemVu(@PathVariable("maDuAn") String maDuAn,ModelMap mm) {
 		mm.put("duan", duAnService.getById(maDuAn));
 		mm.put("nhiemvu", new NhiemVu());
-		mm.put("view", "duan/phancongnhiemvu.jsp");
+		mm.put("view", "duan/phancongnhiemvu/create.jsp");
 		mm.put("nhanvien", hoSoNhanVienService.getAll());
 		mm.put("vaitro", vaiTroService.getAll());
 		return "layout";
@@ -67,15 +67,49 @@ public class DuAnController {
 	@RequestMapping(value = { "/phancongnhiemvu/create" }, method = RequestMethod.POST)
 	public String phanCongNhiemVu(ModelMap mm,@ModelAttribute("nhiemvu") @Validated NhiemVu nhiemvu, BindingResult result) {
 		
-		
+		String maDuAn=nhiemvu.getMaDuAn();
 		if(result.hasErrors()) {
-			mm.put("view", "duan/phancongnhiemvu.jsp");
-			mm.put("view", "duan/phancongnhiemvu.jsp");
+			mm.put("view", "duan/phancongnhiemvu/create.jsp");
 			mm.put("nhanvien", hoSoNhanVienService.getAll());
 			mm.put("vaitro", vaiTroService.getAll());
 			return "layout";
 		}
 		nhiemVuService.save(nhiemvu);
+		return "redirect:list/"+maDuAn;
+	}
+	@RequestMapping(value = { "/phancongnhiemvu/list/{maDuAn}" })
+	public String phanCongNhiemVuList(ModelMap mm,@PathVariable("maDuAn") String maDuAn) {
+		
+		mm.put("duan", duAnService.getById(maDuAn));
+		mm.put("view", "duan/phancongnhiemvu/danhsach.jsp");
+		return "layout";
+	}
+	@RequestMapping(value = { "/phancongnhiemvu/update/{maDuAn}/{maNhanVien}" })
+	public String phanCongNhiemVuUpdate(ModelMap mm,@PathVariable("maDuAn") String maDuAn, @PathVariable("maNhanVien") String maNhanVien) {
+		
+		mm.put("duan", duAnService.getById(maDuAn));
+		mm.put("nhiemvu", nhiemVuService.getById(maDuAn,maNhanVien));
+		mm.put("view", "duan/phancongnhiemvu/capnhat.jsp");
+		mm.put("vaitro", vaiTroService.getAll());
+		return "layout";
+	}
+	
+	@RequestMapping(value = { "/phancongnhiemvu/update" },method= RequestMethod.POST)
+	public String phanCongNhiemVuUpdate(ModelMap mm,@ModelAttribute("nhiemvu") @Validated NhiemVu nhiemvu, BindingResult result) {
+		String maDuAn=nhiemvu.getMaDuAn();
+		if(result.hasErrors()) {
+			mm.put("view", "duan/phancongnhiemvu/capnhat.jsp");
+			mm.put("vaitro", vaiTroService.getAll());
+			return "layout";
+		}
+		nhiemVuService.update(nhiemvu);
+		return "redirect:list/"+maDuAn;
+	}
+	
+	@RequestMapping(value = { "/phancongnhiemvu/delete/{maDuAn}/{maNhanVien}" })
+	public String phanCongNhiemVuDelete(ModelMap mm,@PathVariable("maDuAn") String maDuAn, @PathVariable("maNhanVien") String maNhanVien) {
+		nhiemVuService.delete(nhiemVuService.getById(maDuAn,maNhanVien));
+		
 		return "layout";
 	}
 	@RequestMapping(value = { "/create" })
@@ -97,7 +131,7 @@ public class DuAnController {
 			return "layout";
 		}
 		duAnService.save(duan);
-		return "layout";
+		return "redirect:list";
 	}
 	@RequestMapping(value = { "detail/{maDuAn}" })
 	public String detail(ModelMap mm,@PathVariable("maDuAn") String maDuAn) {
@@ -125,7 +159,7 @@ public class DuAnController {
 		if(result.hasErrors()) {
 			mm.put("view", "duan/capnhat.jsp");
 			getData(mm);
-			return "layout";
+			return "redirect:list";
 		}
 		duAnService.update(DuAn);
 		return "layout";
