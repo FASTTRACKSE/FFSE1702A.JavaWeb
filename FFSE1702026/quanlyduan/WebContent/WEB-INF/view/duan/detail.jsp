@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<c:url var="detailrolelink" value="/duan/phancongnhiemvu/list/" />
 <div class="row">
 	<div class="col-xs-12">
 		<div class="card">
@@ -25,7 +26,7 @@
 				<div class="card-block card-dashboard">
 
 					<p>
-						<span class="text-bold-600">
+						<span class="text-bold-600">${duan.tenDuAn }</span>
 					</p>
 					<div class="table-responsive">
 						<table class="table">
@@ -78,24 +79,7 @@
 								<tr>
 									<th ><spring:message code="duan.employee" /></th>
 									<td>
-									<table class="table" style="background:none">
-										<tr>
-											<th>Tên Nhân Viên</th>
-											<th> Vai Trò</th>
-										<tr>
-									<c:forEach items="${duan.hoSoNhanVien }" var="nv">
-									<tr>
-									<td>
-										${nv.hoDem } ${nv.ten } 
-										</td>
-										<td>
-										<c:forEach items="${nv.vaiTro }" var="vt">
-											${vt.tenVaiTro }
-										</c:forEach>
-										</td>
-										</tr>
-								</c:forEach>
-									</table>
+										<a href="${detailrolelink }${duan.maDuAn }"><spring:message code="duan.detailrole" /></a>
 									<td>
 								</tr>
 

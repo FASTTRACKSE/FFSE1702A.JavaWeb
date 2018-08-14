@@ -25,7 +25,6 @@ public class NhiemVuServiceImpl implements NhiemVuService {
 		this.nhiemVuDao.update(nhiemVu);
 		
 	}
-
 	@Override
 	public List<NhiemVu> getAll() {
 		
@@ -33,9 +32,15 @@ public class NhiemVuServiceImpl implements NhiemVuService {
 	}
 
 	@Override
-	public NhiemVu getById(String maNhiemVu) {
+	public NhiemVu getById(String maDuAn,String maNhanVien) {
 	
-		return this.nhiemVuDao.getById(maNhiemVu);
+		return this.nhiemVuDao.getById(maDuAn,maNhanVien);
+	}
+
+	@Override
+	public void delete(NhiemVu nhiemvu) {
+		this.nhiemVuDao.delete(nhiemvu);
+		
 	}
 
 }

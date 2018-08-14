@@ -3,6 +3,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<c:url var="createlink" value="/ngonngu/create" />
+<c:url var="updatelink" value="/ngonngu/update/" />
 <div class="row">
     <div class="col-xs-12">
         <div class="card">
@@ -21,7 +23,7 @@
             <div class="card-body collapse in">
                 <div class="card-block card-dashboard">
                     
-                    <p><span class="text-bold-600"><spring:message code="ngonngu.add" /></span> </p>
+                    <p><a href="${createlink }"><span class="text-bold-600"><spring:message code="ngonngu.add" /></span> </a></p>
                     <div class="table-responsive">
                         <table class="table">
                             <thead>
@@ -39,7 +41,7 @@
                                     <th scope="row">${count.count  }</th>
                                     <td>${ngonngu.maNgonNgu }</td>
                                     <td>${ngonngu.tenNgonNgu }</td>
-                                    <td>Test</td>
+                                    <td><a href="${updatelink }${framework.maFramework }" data-toggle="tooltip" title="edit!"><button type="button" class="btn btn-icon btn-outline-warning"><i class="fa fa-gavel"></i></button></a></td>
                                 </tr>
                               </c:forEach>  
                             </tbody>

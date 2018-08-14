@@ -3,13 +3,17 @@ package fasttrackse.a1702.fbms.QuanLyNhanSu.model.entity;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -30,6 +34,20 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Entity
 @Table(name = "ho_so_nhan_vien")
 public class HoSoNhanVien implements Serializable {
+<<<<<<< HEAD
+=======
+	@Override
+	public String toString() {
+		return "HoSoNhanVien [maNhanVien=" + maNhanVien + ", anhDaiDien=" + anhDaiDien + ", danToc=" + danToc
+				+ ", email=" + email + ", gioiTinh=" + gioiTinh + ", hoDem=" + hoDem + ", namSinh=" + namSinh
+				+ ", ngayCap=" + ngayCap + ", noiCap=" + noiCap + ", noiTamTru=" + noiTamTru + ", queQuan=" + queQuan
+				+ ", soCmnd=" + soCmnd + ", soDienThoai=" + soDienThoai + ", ten=" + ten + ", trangThai=" + trangThai
+				+ ", phongBan=" + phongBan + ", chucDanh=" + chucDanh + ", quocTich=" + quocTich + ", tinhTrangHonNhan="
+				+ tinhTrangHonNhan + ", hopDongs=" + hopDongs + ", thongTinBangCaps="
+				+ thongTinBangCaps + ", thongTinGiaDinhs=" + thongTinGiaDinhs + "]";
+	}
+
+>>>>>>> e8ea98bf5f0f0c3737fb3d59c6b56bfc29e2362e
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -127,8 +145,8 @@ public class HoSoNhanVien implements Serializable {
 	private List<HopDong> hopDongs;
 
 	// bi-directional many-to-many association to DuAn
-	@ManyToMany(mappedBy = "hoSoNhanViens")
-	private List<DuAn> duAns;
+	// @ManyToMany(mappedBy = "hoSoNhanViens")
+	// private List<DuAn> duAns;
 
 	// bi-directional many-to-one association to ThongTinBangCap
 	@OneToMany(mappedBy = "hoSoNhanVien")
@@ -137,6 +155,15 @@ public class HoSoNhanVien implements Serializable {
 	// bi-directional many-to-one association to ThongTinGiaDinh
 	@OneToMany(mappedBy = "hoSoNhanVien")
 	private List<ThongTinGiaDinh> thongTinGiaDinhs;
+
+	@ManyToMany(mappedBy = "hoSoNhanVien", fetch = FetchType.EAGER, targetEntity = DuAn.class)
+	private Set<DuAn> duAn;
+
+	@ManyToMany(targetEntity = VaiTro.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinTable(name = "nhiem_vu", joinColumns = {
+			@JoinColumn(name = "ma_nhan_vien", referencedColumnName = "ma_nhan_vien", updatable = true, insertable = true) }, inverseJoinColumns = {
+					@JoinColumn(name = "ma_vai_tro", referencedColumnName = "ma_vai_tro", nullable = true, updatable = false, insertable = true) })
+	private Set<VaiTro> vaiTro;
 
 	public HoSoNhanVien() {
 	}
@@ -315,13 +342,6 @@ public class HoSoNhanVien implements Serializable {
 		return hopDong;
 	}
 
-	public List<DuAn> getDuAns() {
-		return this.duAns;
-	}
-
-	public void setDuAns(List<DuAn> duAns) {
-		this.duAns = duAns;
-	}
 
 	public List<ThongTinBangCap> getThongTinBangCaps() {
 		return this.thongTinBangCaps;
