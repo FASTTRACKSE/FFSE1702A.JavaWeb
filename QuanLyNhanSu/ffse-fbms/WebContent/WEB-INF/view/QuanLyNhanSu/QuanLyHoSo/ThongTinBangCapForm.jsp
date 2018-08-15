@@ -158,13 +158,13 @@
 															<div class="row" data-repeater-item>
 																<div class="col-md-6">
 																	<div class="form-group">
-																		<h1>tên bang cap</h1>
+																		<label><spring:message code="label.tenBangCap" /></label>
 																		<form:input class="form-control" path="listThongTinBangCap[${status.index}].tenBangCap" placeholder=""/>
 																	</div>
 																</div>
 																<div class="col-md-6">
 																	<div class="form-group">
-																		<h1>loai bang cap</h1>
+																		<label><spring:message code="label.loaiBangCap" /></label>
 																		<form:input class="form-control" path="listThongTinBangCap[${status.index}].loaiBangCap" placeholder=""/>
 																	</div>
 																</div>
@@ -172,13 +172,13 @@
 															<div class="row">
 																<div class="col-md-6">
 																	<div class="form-group">
-																		<h1>noi cap</h1>
+																		<label><spring:message code="label.noiCapBang" /></label>
 																		<form:input class="form-control" path="listThongTinBangCap[${status.index}].donViCap" placeholder=""/>
 																	</div>
 																</div>
 																<div class="col-md-3">
 																	<div class="form-group">
-																		<h1>ngay cap</h1>
+																		<label><spring:message code="label.ngayCap" /></label>
 																		<form:input type="date" class="form-control" path="listThongTinBangCap[${status.index}].ngayCap" placeholder="" data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="Date Opened" />
 																	</div>
 																</div>

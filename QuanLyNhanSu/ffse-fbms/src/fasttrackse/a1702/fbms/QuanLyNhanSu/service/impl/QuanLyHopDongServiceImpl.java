@@ -13,13 +13,13 @@ public class QuanLyHopDongServiceImpl implements QuanLyHopDongService {
 
 	@Override
 	@Transactional
-	public void addThongTinHopDong(HopDong tthd) {
-		this.quanLyHopDongDAO.addThongTinHopDong(tthd);
+	public void addHopDong(HopDong tthd) {
+		this.quanLyHopDongDAO.addHopDong(tthd);
 	}
 
 	@Override
 	@Transactional
-	public void updateThongTinHopDong(HopDong tthd) {
-		this.quanLyHopDongDAO.updateThongTinHopDong(tthd);
+	public void updateHopDong(HopDong tthd) {
+		this.quanLyHopDongDAO.updateHopDong(tthd);
 	}
 }

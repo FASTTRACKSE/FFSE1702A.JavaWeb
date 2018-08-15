@@ -6,19 +6,20 @@ import org.springframework.stereotype.Repository;
 
 import fasttrackse.a1702.fbms.QuanLyNhanSu.model.dao.QuanLyHopDongDAO;
 import fasttrackse.a1702.fbms.QuanLyNhanSu.model.entity.HopDong;
+
 @Repository
 public class QuanLyHopDongDAOImpl implements QuanLyHopDongDAO {
 	@Autowired
 	private SessionFactory sessionFactory;
 
 	@Override
-	public void addThongTinHopDong(HopDong tthd) {
+	public void addHopDong(HopDong tthd) {
 		Session session = this.sessionFactory.getCurrentSession();
-		session.persist(tthd);
+		session.save(tthd);
 	}
 
 	@Override
-	public void updateThongTinHopDong(HopDong tthd) {
+	public void updateHopDong(HopDong tthd) {
 		Session session = this.sessionFactory.getCurrentSession();
 		session.update(tthd);
 	}
