@@ -16,4 +16,5 @@ public interface ChucNangDao {
 	public void active(String ma_chuc_nang);
 	
 	public ChucNang getChucNangByCode(String ma_chuc_nang);
+
 }
