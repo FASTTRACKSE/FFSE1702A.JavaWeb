@@ -66,7 +66,7 @@
 	                     </div>
 	                     <div class="card-body collapse in">
 	                        <div class="card-block">
-								<form:form class="form form-horizontal" method="POST" action="/ffse-fbms/ns/ho_so/gia_dinh/save" modelAttribute="thongTinGiaDinhForm" enctype="multipart/form-data">
+								<form:form class="form form-horizontal" method="POST" action="/ffse-fbms/ns/ho_so/gia_dinh/save" modelAttribute="thongTinGiaDinhForm">
 								   <div class="form-body">
 								      <div class="row">
 								         <div class="col-md-8">
@@ -117,64 +117,73 @@
 									      	<div id="repeater-item${status.index}" class="repeater-item">
 										      <form:hidden path="listThongTinGiaDinh[${status.index}].id" />
 										      <form:hidden path="listThongTinGiaDinh[${status.index}].hoSoNhanVien.maNhanVien" />
-										      <div class="row" data-repeater-item>
-										         <div class="col-md-4">
-										            <div class="form-group">
-										               <label><spring:message code="label.hoDem" /></label>
-										               <form:input class="form-control" path="listThongTinGiaDinh[${status.index}].hoDem" placeholder=""/>
-										            </div>
-										         </div>
-										         <div class="col-md-4">
-										            <div class="form-group">
-										               <label><spring:message code="label.ten" /></label>
-										               <form:input class="form-control" path="listThongTinGiaDinh[${status.index}].ten" placeholder=""/>
-										            </div>
-										         </div>
-										         <div class="col-md-4">
-										            <div class="form-group">
-										               <label><spring:message code="label.quanHe" /></label>
-										               <form:input class="form-control" path="listThongTinGiaDinh[${status.index}].quanHe" placeholder=""/>
-										            </div>
-										         </div>
-										      </div>
-										      <div class="row">
-										         <div class="col-md-4">
-										            <div class="form-group">
-										               <label><spring:message code="label.ngaySinh" /></label>
-										               <form:input type="date" class="form-control" path="listThongTinGiaDinh[${status.index}].namSinh" placeholder="" data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="Date Opened" />
-										            </div>
-										         </div>
-										         <div class="col-md-4">
-										            <div class="form-group">
-										               <label><spring:message code="label.gioiTinh" /></label>
-										               <form:select multiple="single" path="listThongTinGiaDinh[${status.index}].gioiTinh" class="form-control">
-												   		  <form:option selected = "true" disabled = "true" value="0" label="Chọn giới tính" />
-												   		  <form:option value="1" label="Nam" />
-												   		  <form:option value="2" label="Nữ" />
-													   </form:select>
-										            </div>
-										         </div>
-										         <div class="col-md-4">
-										            <div class="form-group">
-										               <label for="dienThoai"><spring:message code="label.dienThoai" /></label>
-										         	   <form:input class="form-control" path="listThongTinGiaDinh[${status.index}].soDienThoai" placeholder=""/>
-										            </div>
-										         </div>
-										      </div>
-										      <div class="row">
-										         <div class="col-md-8">
-										            <div class="form-group">
-										               <label for="queQuan"><spring:message code="label.queQuan" /></label>
-										               <form:input class="form-control" path="listThongTinGiaDinh[${status.index}].queQuan" placeholder=""/>
-										            </div>
-										         </div>
-										         <div class="col-md-4">
-										            <div class="form-group mt-2" style=" text-align: center; ">
-										               <button type="button" class="btn btn-danger" id="listThongTinGiaDinh${status.index}-delete" data-onclick="#listThongTinGiaDinh${status.index}-delete" data-toggle="modal" data-target="#confirm-delete"> <i class="ft-x"></i> <spring:message code="label.xoa" /></button>
-										            </div>
-										         </div>
-										      </div>
-										      <div class="form-section"></div>
+										      <div class="list-row">
+											      <div class="row" data-repeater-item>
+											         <div class="col-md-4">
+											            <div class="form-group">
+											               <label><spring:message code="label.hoDem" /></label>
+											               <form:input class="form-control" path="listThongTinGiaDinh[${status.index}].hoDem" placeholder=""/>
+														   <form:errors path="listThongTinGiaDinh[${status.index}].hoDem" cssClass="invalid-feedback d-block" />
+											            </div>
+											         </div>
+											         <div class="col-md-4">
+											            <div class="form-group">
+											               <label><spring:message code="label.ten" /></label>
+											               <form:input class="form-control" path="listThongTinGiaDinh[${status.index}].ten" placeholder=""/>
+														   <form:errors path="listThongTinGiaDinh[${status.index}].ten" cssClass="invalid-feedback d-block" />
+											            </div>
+											         </div>
+											         <div class="col-md-4">
+											            <div class="form-group">
+											               <label><spring:message code="label.quanHe" /></label>
+											               <form:input class="form-control" path="listThongTinGiaDinh[${status.index}].quanHe" placeholder=""/>
+														   <form:errors path="listThongTinGiaDinh[${status.index}].quanHe" cssClass="invalid-feedback d-block" />
+											            </div>
+											         </div>
+											      </div>
+											      <div class="row">
+											         <div class="col-md-4">
+											            <div class="form-group">
+											               <label><spring:message code="label.ngaySinh" /></label>
+											               <form:input type="date" class="form-control" path="listThongTinGiaDinh[${status.index}].namSinh" placeholder="" data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="Date Opened" />
+														   <form:errors path="listThongTinGiaDinh[${status.index}].namSinh" cssClass="invalid-feedback d-block" />
+											            </div>
+											         </div>
+											         <div class="col-md-4">
+											            <div class="form-group">
+											               <label><spring:message code="label.gioiTinh" /></label>
+											               <form:select multiple="single" path="listThongTinGiaDinh[${status.index}].gioiTinh" class="form-control">
+													   		  <form:option selected = "true" disabled = "true" value="0" label="Chọn giới tính" />
+													   		  <form:option value="1" label="Nam" />
+													   		  <form:option value="2" label="Nữ" />
+														   </form:select>
+														   <form:errors path="listThongTinGiaDinh[${status.index}].gioiTinh" cssClass="invalid-feedback d-block" />
+											            </div>
+											         </div>
+											         <div class="col-md-4">
+											            <div class="form-group">
+											               <label for="dienThoai"><spring:message code="label.dienThoai" /></label>
+											         	   <form:input class="form-control" path="listThongTinGiaDinh[${status.index}].soDienThoai" placeholder=""/>
+														   <form:errors path="listThongTinGiaDinh[${status.index}].soDienThoai" cssClass="invalid-feedback d-block" />
+											            </div>
+											         </div>
+											      </div>
+											      <div class="row">
+											         <div class="col-md-8">
+											            <div class="form-group">
+											               <label for="queQuan"><spring:message code="label.queQuan" /></label>
+											               <form:input class="form-control" path="listThongTinGiaDinh[${status.index}].queQuan" placeholder=""/>
+														   <form:errors path="listThongTinGiaDinh[${status.index}].queQuan" cssClass="invalid-feedback d-block" />
+											            </div>
+											         </div>
+											         <div class="col-md-4">
+											            <div class="form-group mt-2" style=" text-align: center; ">
+											               <button type="button" class="btn btn-danger" id="listThongTinGiaDinh${status.index}-delete" data-onclick="#listThongTinGiaDinh${status.index}-delete" data-toggle="modal" data-target="#confirm-delete"> <i class="ft-x"></i> <spring:message code="label.xoa" /></button>
+											            </div>
+											         </div>
+											      </div>
+											      <div class="form-section"></div>
+												</div>
 										  	</div>
 									      </c:forEach>
 									      	<div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -237,17 +246,20 @@
 	                                    	    });
 	                                    	    selectIdTTGD = "#listThongTinGiaDinh" + countForm + "\\.id";
 	                                    	    $(selectIdTTGD).val("NULL");
+	                                    	    $("#repeater-item" + countForm + " .invalid-feedback").remove();
 	                                    	}
 	                                    	function delete_form(ele) {
 	                                        	index = ele.match(/\d+/);
 	                                        	ele = "#repeater-item" + index;
 	                                    		$(ele).hide();
 	                                    		selectIdTTGD = "#listThongTinGiaDinh" + index + "\\.id";
-	                                    	    
-	                                    	    if ($(selectIdTTGD).val() == "NULL") {
+
+	                                    	    valSelect = $(selectIdTTGD).val();
+	                                    	    if (valSelect == "NULL") {
 	                                    	    	$(ele).remove();
-	                                        	} else {
-	                                        		$(selectIdTTGD).val("-"+$(selectIdTTGD).val());
+	                                        	} else if (valSelect > 0) {
+	                                        		$(selectIdTTGD).val("-" + valSelect);
+	                                        		// $(ele + " .list-row").remove();
 	                                            }
 	                                    	}
 	                                      	</script>
