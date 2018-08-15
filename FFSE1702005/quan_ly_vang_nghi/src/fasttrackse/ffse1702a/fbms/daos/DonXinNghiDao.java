@@ -1,9 +1,9 @@
-package fasttrackse.a1702.fbms.daos;
+package fasttrackse.ffse1702a.fbms.daos;
 
 import java.util.List;
 
-import fasttrackse.a1702.fbms.entities.DanhSachXinNghiEntity;
-import fasttrackse.a1702.fbms.entities.LyDoEntity;
+import fasttrackse.ffse1702a.fbms.entities.DanhSachXinNghiEntity;
+import fasttrackse.ffse1702a.fbms.entities.LyDoEntity;
 
 public interface DonXinNghiDao {
 
@@ -11,7 +11,9 @@ public interface DonXinNghiDao {
 
 	public List<DanhSachXinNghiEntity> danhSachXinNghiDuyet();
 
-	public List<DanhSachXinNghiEntity> danhSachXinNghiNhap();
+	public List<DanhSachXinNghiEntity> danhSachXinNghiNhap(int page);
+	
+	public long totalRecords();
 
 	public DanhSachXinNghiEntity layID(int id);
 
@@ -24,6 +26,10 @@ public interface DonXinNghiDao {
 	public void suaNhap(DanhSachXinNghiEntity entity);
 	
 	public void suaDon(DanhSachXinNghiEntity entity);
+	
+	public void duyet(DanhSachXinNghiEntity entity);
+	
+	public void tuChoi(DanhSachXinNghiEntity entity);
 
 	public List<LyDoEntity> danhSachLyDo();
 

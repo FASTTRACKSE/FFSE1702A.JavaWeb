@@ -800,7 +800,7 @@
                   </li>
                   <li><a href="<c:url value="/danhsachduyet"/>" class="menu-item">Đơn đã phê duyệt</a>
                   </li>
-                  <li><a href="<c:url value="/danhsachnhap"/>" class="menu-item">Đơn nháp</a>
+                  <li><a href="<c:url value="/danhsachnhap"/>" class="menu-item">Đơn của tôi</a>
                   </li>
                </ul>
             </li>

@@ -1,4 +1,4 @@
-package fasttrackse.a1702.fbms.services;
+package fasttrackse.ffse1702a.fbms.services;
 
 import java.util.List;
 
@@ -6,9 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import fasttrackse.a1702.fbms.entities.DanhSachXinNghiEntity;
-import fasttrackse.a1702.fbms.entities.LyDoEntity;
-import fasttrackse.a1702.fbms.daos.DonXinNghiDao;
+import fasttrackse.ffse1702a.fbms.entities.DanhSachXinNghiEntity;
+import fasttrackse.ffse1702a.fbms.entities.LyDoEntity;
+import fasttrackse.ffse1702a.fbms.daos.DonXinNghiDao;
 
 @Service
 public class DonXinNghiServiceImpl implements DonXinNghiService {
@@ -30,9 +30,15 @@ public class DonXinNghiServiceImpl implements DonXinNghiService {
 
 	@Override
 	@Transactional
-	public List<DanhSachXinNghiEntity> danhSachXinNghiNhap() {
-		return this.Dao.danhSachXinNghiNhap();
+	public List<DanhSachXinNghiEntity> danhSachXinNghiNhap(int page) {
+		return this.Dao.danhSachXinNghiNhap(page);
 	}
+	
+	@Override
+    @Transactional
+    public long totalRecords() {
+        return this.Dao.totalRecords();
+    }
 
 	@Override
 	@Transactional
@@ -68,6 +74,18 @@ public class DonXinNghiServiceImpl implements DonXinNghiService {
 	@Transactional
 	public void suaDon(DanhSachXinNghiEntity entity) {
 		Dao.suaDon(entity);
+	}
+	
+	@Override
+	@Transactional
+	public void duyet(DanhSachXinNghiEntity entity) {
+		Dao.duyet(entity);
+	}
+	
+	@Override
+	@Transactional
+	public void tuChoi(DanhSachXinNghiEntity entity) {
+		Dao.tuChoi(entity);
 	}
 
 	@Override
