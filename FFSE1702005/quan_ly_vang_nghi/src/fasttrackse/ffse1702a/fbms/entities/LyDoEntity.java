@@ -1,4 +1,4 @@
-package fasttrackse.a1702.fbms.entities;
+package fasttrackse.ffse1702a.fbms.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

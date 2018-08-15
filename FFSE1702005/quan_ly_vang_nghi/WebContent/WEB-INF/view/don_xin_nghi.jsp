@@ -65,7 +65,8 @@
 						</div>
 						<div class="card-body collapse in">
 							<div class="card-block">
-								<c:if test="${donxinnghi.trang_thai == 'Nháp'||empty donxinnghi.ma_don}">
+								<c:if
+									test="${donxinnghi.trang_thai == 'Nháp'||empty donxinnghi.ma_don}">
 									<div class="card-text">
 										<div
 											class="alert bg-info alert-icon-right alert-arrow-right alert-dismissible fade in"
@@ -87,7 +88,7 @@
 									<div class="form-body">
 										<c:if test="${not empty donxinnghi.ma_don}">
 											<h4 class="form-section">
-												<i class="ft-user"></i>Mã đơn*
+												<i class="fa fa-wpforms"></i>Mã đơn*
 											</h4>
 											<div class="row">
 												<div class="form-group col-md-12 mb-2">
@@ -97,13 +98,13 @@
 															path="ma_don" readonly="true" />
 														<form:hidden path="ma_don" />
 														<div class="form-control-position">
-															<i class="ft-user warning"></i>
+															<i class="fa fa-wpforms"></i>
 														</div>
 													</fieldset>
 												</div>
 											</div>
 											<h4 class="form-section">
-												<i class="ft-user"></i>Trạng thái*
+												<i class="fa fa-newspaper-o"></i>Trạng thái*
 											</h4>
 											<div class="row">
 												<div class="form-group col-md-12 mb-2">
@@ -113,14 +114,14 @@
 															path="trang_thai" readonly="true" disabled="true" />
 														<form:hidden path="trang_thai" />
 														<div class="form-control-position">
-															<i class="ft-user warning"></i>
+															<i class="fa fa-newspaper-o"></i>
 														</div>
 													</fieldset>
 												</div>
 											</div>
 										</c:if>
 										<h4 class="form-section">
-											<i class="ft-user"></i> Mã nhân viên*
+											<i class="fa fa-address-card-o"></i> Mã nhân viên*
 										</h4>
 										<div class="row">
 											<div class="form-group col-md-12 mb-2">
@@ -128,13 +129,13 @@
 													<form:input type="text" class="form-control round"
 														id="iconLeft10" value="" path="ma_nhan_vien" />
 													<div class="form-control-position">
-														<i class="ft-user warning"></i>
+														<i class="fa fa-user-circle-o"></i>
 													</div>
 												</fieldset>
 											</div>
 										</div>
 										<h4 class="form-section">
-											<i class="ft-user"></i> Tên nhân viên*
+											<i class="fa fa-address-card-o"></i> Tên nhân viên*
 										</h4>
 										<div class="row">
 											<div class="form-group col-md-12 mb-2">
@@ -142,13 +143,13 @@
 													<form:input type="text" class="form-control round"
 														id="iconLeft10" value="" path="ten_nhan_vien" />
 													<div class="form-control-position">
-														<i class="ft-user warning"></i>
+														<i class="fa fa-user-circle-o"></i>
 													</div>
 												</fieldset>
 											</div>
 										</div>
 										<h4 class="form-section">
-											<i class="ft-user"></i> Phòng ban*
+											<i class="fa fa-building-o"></i> Phòng ban*
 										</h4>
 										<div class="row">
 											<div class="form-group col-md-12 mb-2">
@@ -156,7 +157,7 @@
 													<form:input type="text" class="form-control round"
 														id="iconLeft10" value="" path="phong_ban" />
 													<div class="form-control-position">
-														<i class="ft-user warning"></i>
+														<i class="fa fa-users"></i>
 													</div>
 												</fieldset>
 											</div>
@@ -170,7 +171,7 @@
 													<form:input type="text" class="form-control round"
 														id="iconLeft10" path="so_ngay_da_nghi" readonly="true" />
 													<div class="form-control-position">
-														<i class="ft-user warning"></i>
+														<i class="fa fa-clock-o"></i>
 													</div>
 												</fieldset>
 											</div>
@@ -185,13 +186,13 @@
 													<form:input type="text" class="form-control round"
 														id="iconLeft10" path="so_ngay_con_lai" readonly="true" />
 													<div class="form-control-position">
-														<i class="ft-user warning"></i>
+														<i class="fa fa-clock-o"></i>
 													</div>
 												</fieldset>
 											</div>
 										</div>
 										<h4 class="form-section">
-											<i class="ft-clock"></i> Chọn ngày nghỉ
+											<i class="fa fa-calendar-o"></i> Chọn ngày nghỉ
 										</h4>
 										<div class="row">
 											<div class="form-group col-md-4 mb-2 has-icon-left">
@@ -200,7 +201,7 @@
 													<form:input type="date" class="form-control round"
 														id="from" onchange="myFunction()" path="ngay_nghi" />
 													<div class="form-control-position">
-														<i class="ft-clock"></i>
+														<i class="fa fa-calendar-o"></i>
 													</div>
 												</fieldset>
 												<script>
@@ -232,7 +233,7 @@
 																document
 																		.getElementById("from").value);
 														var dd = today
-																.getDate() + 1;
+																.getDate();
 														var mm = today
 																.getMonth() + 1; // January is 0!
 														var yyyy = today
@@ -262,37 +263,70 @@
 																.substring(0,
 																		10);
 
-														var oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
-														var firstDate = new Date(
+														var iWeeks, iDateDiff, iAdjust = 0;
+														var dDate1 = new Date(
 																document
 																		.getElementById("from").value);
-														var secondDate = new Date(
+														var dDate2 = new Date(
 																document
 																		.getElementById("to").value);
 
-														var diffDays = Math
-																.round(Math
-																		.abs((firstDate
-																				.getTime() - secondDate
-																				.getTime())
-																				/ (oneDay)));
+														if (dDate2 < dDate1)
+															return -1; // error code if dates transposed
+
+														var iWeekday1 = dDate1
+																.getDay(); // day of week
+														var iWeekday2 = dDate2
+																.getDay();
+
+														iWeekday1 = (iWeekday1 == 0) ? 7
+																: iWeekday1; // change Sunday from 0 to 7
+														iWeekday2 = (iWeekday2 == 0) ? 7
+																: iWeekday2;
+
+														if ((iWeekday1 > 5)
+																&& (iWeekday2 > 5))
+															iAdjust = 1; // adjustment if both days on weekend
+
+														iWeekday1 = (iWeekday1 > 5) ? 5
+																: iWeekday1; // only count weekdays
+														iWeekday2 = (iWeekday2 > 5) ? 5
+																: iWeekday2;
+
+														// calculate differnece in weeks (1000mS * 60sec * 60min * 24hrs * 7 days = 604800000)
+														iWeeks = Math
+																.floor((dDate2
+																		.getTime() - dDate1
+																		.getTime()) / 604800000)
+
+														if (iWeekday1 <= iWeekday2) {
+															iDateDiff = (iWeeks * 5)
+																	+ (iWeekday2 - iWeekday1)
+																	+ 1
+														} else {
+															iDateDiff = ((iWeeks + 1) * 5)
+																	- (iWeekday1 - iWeekday2)
+																	+ 1
+														}
+
+														iDateDiff -= iAdjust
 														document
-																.getElementById("total").value = diffDays;
+																.getElementById("total").value = iDateDiff;
 													}
 												</script>
 											</div>
 											<div class="form-group col-md-4 mb-2 has-icon-left">
-												<p>Ngày đi làm trở lại*</p>
+												<p>Ngày kết thúc*</p>
 												<fieldset class="form-group position-relative">
 													<form:input type="date" class="form-control round" id="to"
-														onchange="count()" path="ngay_di_lam_lai" />
+														onchange="count()" path="ngay_ket_thuc" />
 													<div class="form-control-position">
-														<i class="ft-clock"></i>
+														<i class="fa fa-calendar-o"></i>
 													</div>
 												</fieldset>
 												<script>
 													var today = new Date();
-													var dd = today.getDate() + 1;
+													var dd = today.getDate();
 													var mm = today.getMonth() + 1; // January is 0!
 													var yyyy = today
 															.getFullYear();
@@ -311,22 +345,55 @@
 															"to").setAttribute(
 															"min", today);
 													function count() {
-														var oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
-														var firstDate = new Date(
+														var iWeeks, iDateDiff, iAdjust = 0;
+														var dDate1 = new Date(
 																document
 																		.getElementById("from").value);
-														var secondDate = new Date(
+														var dDate2 = new Date(
 																document
 																		.getElementById("to").value);
 
-														var diffDays = Math
-																.round(Math
-																		.abs((firstDate
-																				.getTime() - secondDate
-																				.getTime())
-																				/ (oneDay)));
+														if (dDate2 < dDate1)
+															return -1; // error code if dates transposed
+
+														var iWeekday1 = dDate1
+																.getDay(); // day of week
+														var iWeekday2 = dDate2
+																.getDay();
+
+														iWeekday1 = (iWeekday1 == 0) ? 7
+																: iWeekday1; // change Sunday from 0 to 7
+														iWeekday2 = (iWeekday2 == 0) ? 7
+																: iWeekday2;
+
+														if ((iWeekday1 > 5)
+																&& (iWeekday2 > 5))
+															iAdjust = 1; // adjustment if both days on weekend
+
+														iWeekday1 = (iWeekday1 > 5) ? 5
+																: iWeekday1; // only count weekdays
+														iWeekday2 = (iWeekday2 > 5) ? 5
+																: iWeekday2;
+
+														// calculate differnece in weeks (1000mS * 60sec * 60min * 24hrs * 7 days = 604800000)
+														iWeeks = Math
+																.floor((dDate2
+																		.getTime() - dDate1
+																		.getTime()) / 604800000)
+
+														if (iWeekday1 <= iWeekday2) {
+															iDateDiff = (iWeeks * 5)
+																	+ (iWeekday2 - iWeekday1)
+																	+ 1
+														} else {
+															iDateDiff = ((iWeeks + 1) * 5)
+																	- (iWeekday1 - iWeekday2)
+																	+ 1
+														}
+
+														iDateDiff -= iAdjust
 														document
-																.getElementById("total").value = diffDays;
+																.getElementById("total").value = iDateDiff;
 													}
 												</script>
 											</div>
@@ -343,7 +410,7 @@
 										</div>
 
 										<h4 class="form-section">
-											<i class="fa fa-briefcase"></i> Lý do nghỉ*
+											<i class="fa fa-list-ul"></i> Lý do nghỉ*
 										</h4>
 										<div class="row">
 											<div class="form-group col-md-12 mb-2">
@@ -356,14 +423,14 @@
 											</div>
 										</div>
 										<h4 class="form-section">
-											<i class="ft-mail"></i>Ghi chú*
+											<i class="fa fa-tags"></i>Ghi chú*
 										</h4>
 										<div class="row">
 											<div class="form-group col-xs-12 mb-2 has-icon-left">
 												<form:textarea rows="9" class="form-control round"
 													name="notes" placeholder="Ghi chú ..." path="ghi_chu" />
 												<div class="form-control-position">
-													<i class="ft-file"></i>
+													<i class="fa fa-keyboard-o"></i>
 												</div>
 											</div>
 										</div>
@@ -371,32 +438,37 @@
 											<c:if test="${donxinnghi.trang_thai == 'Duyệt'}">
 												<a href="<%=request.getContextPath()%>/danhsachduyet">
 													<button type="button" class="btn btn-warning mr-1">
-														<i class="ft-x"></i> Quay lại
+														<i class="fa fa-arrow-circle-left"></i> Quay lại
 													</button>
 												</a>
 											</c:if>
 											<c:if test="${donxinnghi.trang_thai == 'Chờ Phê Duyệt'}">
-												<button type="submit" class="btn btn-success">
+												<button type="submit" class="btn btn-success"
+													formaction="<%=request.getContextPath()%>/donxinnghi/duyet">
 													<i class="fa fa-check-square-o"></i> Duyệt
+												</button>
+												<button type="submit" class="btn btn-danger"
+													formaction="<%=request.getContextPath()%>/donxinnghi/tuchoi">
+													<i class="ft-x"></i> Từ chối
 												</button>
 												<a href="<%=request.getContextPath()%>/danhsachcho">
 													<button type="button" class="btn btn-warning mr-1">
-														<i class="ft-x"></i> Quay lại
+														<i class="fa fa-arrow-circle-left"></i> Quay lại
 													</button>
 												</a>
 											</c:if>
 											<c:if
-												test="${donxinnghi.trang_thai == 'Nháp'||empty donxinnghi.ma_don}">
+												test="${donxinnghi.trang_thai == 'Nháp'||empty donxinnghi.ma_don||donxinnghi.trang_thai == 'Từ chối'}">
 												<button type="submit" class="btn btn-primary"
 													formaction="<%=request.getContextPath()%>/donxinnghi/nhap">
-													<i class="fa fa-check-square-o"></i> Lưu nháp
+													<i class="fa ft-save"></i> Lưu nháp
 												</button>
 												<button type="submit" class="btn btn-success">
 													<i class="fa fa-check-square-o"></i> Gửi đơn chờ phê duyệt
 												</button>
 												<a href="<%=request.getContextPath()%>/danhsachnhap">
 													<button type="button" class="btn btn-warning mr-1">
-														<i class="ft-x"></i> Quay lại
+														<i class="fa fa-arrow-circle-left"></i> Quay lại
 													</button>
 												</a>
 												<c:if test="${not empty donxinnghi.ma_don}">

@@ -1,4 +1,4 @@
-package fasttrackse.a1702.fbms.entities;
+package fasttrackse.ffse1702a.fbms.entities;
 
 import java.sql.Date;
 
@@ -30,8 +30,8 @@ public class DanhSachXinNghiEntity {
 	@Column(name = "ngay_nghi")
 	private Date ngay_nghi;
 
-	@Column(name = "ngay_di_lam_lai")
-	private Date ngay_di_lam_lai;
+	@Column(name = "ngay_ket_thuc")
+	private Date ngay_ket_thuc;
 
 	@Column(name = "so_ngay_da_nghi")
 	private Integer so_ngay_da_nghi;
@@ -49,7 +49,7 @@ public class DanhSachXinNghiEntity {
 	private String ghi_chu;
 
 	@Column(name = "trang_thai")
-	public String trang_thai="aa";
+	public String trang_thai = "aa";
 
 	public Integer getMa_don() {
 		return ma_don;
@@ -91,12 +91,12 @@ public class DanhSachXinNghiEntity {
 		this.ngay_nghi = ngay_nghi;
 	}
 
-	public Date getNgay_di_lam_lai() {
-		return ngay_di_lam_lai;
+	public Date getNgay_ket_thuc() {
+		return ngay_ket_thuc;
 	}
 
-	public void setNgay_di_lam_lai(Date ngay_di_lam_lai) {
-		this.ngay_di_lam_lai = ngay_di_lam_lai;
+	public void setNgay_ket_thuc(Date ngay_ket_thuc) {
+		this.ngay_ket_thuc = ngay_ket_thuc;
 	}
 
 	public Integer getSo_ngay_da_nghi() {

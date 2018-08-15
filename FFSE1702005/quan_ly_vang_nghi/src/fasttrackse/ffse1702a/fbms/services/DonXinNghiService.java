@@ -1,29 +1,35 @@
-package fasttrackse.a1702.fbms.services;
+package fasttrackse.ffse1702a.fbms.services;
 
 import java.util.List;
 
-import fasttrackse.a1702.fbms.entities.DanhSachXinNghiEntity;
-import fasttrackse.a1702.fbms.entities.LyDoEntity;
+import fasttrackse.ffse1702a.fbms.entities.DanhSachXinNghiEntity;
+import fasttrackse.ffse1702a.fbms.entities.LyDoEntity;
 
 public interface DonXinNghiService {
-	
+
 	public List<DanhSachXinNghiEntity> danhSachXinNghiChoDuyet();
 
 	public List<DanhSachXinNghiEntity> danhSachXinNghiDuyet();
-	
-	public List<DanhSachXinNghiEntity> danhSachXinNghiNhap();
-	
+
+	public List<DanhSachXinNghiEntity> danhSachXinNghiNhap(int page);
+
+	public long totalRecords();
+
 	public DanhSachXinNghiEntity layID(int id);
-	
+
 	public void xoaNhap(int id);
-	
+
 	public void themDon(DanhSachXinNghiEntity entity);
-	
+
 	public void themNhap(DanhSachXinNghiEntity entity);
 
 	public void suaNhap(DanhSachXinNghiEntity entity);
-	
+
 	public void suaDon(DanhSachXinNghiEntity entity);
+
+	public void duyet(DanhSachXinNghiEntity entity);
+
+	public void tuChoi(DanhSachXinNghiEntity entity);
 
 	public List<LyDoEntity> danhSachLyDo();
 }
