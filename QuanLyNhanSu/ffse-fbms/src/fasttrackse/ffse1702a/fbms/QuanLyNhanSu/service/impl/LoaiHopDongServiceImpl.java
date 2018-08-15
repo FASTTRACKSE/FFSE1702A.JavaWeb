@@ -1,4 +1,4 @@
-package fasttrackse.a1702.fbms.QuanLyNhanSu.service.impl;
+package fasttrackse.ffse1702a.fbms.QuanLyNhanSu.service.impl;
 
 import java.util.List;
 
@@ -6,12 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import fasttrackse.a1702.fbms.QuanLyNhanSu.model.dao.LoaiHopDongDAO;
-import fasttrackse.a1702.fbms.QuanLyNhanSu.model.entity.LoaiHopDong;
-import fasttrackse.a1702.fbms.QuanLyNhanSu.service.LoaiHopDongService;
+import fasttrackse.ffse1702a.fbms.QuanLyNhanSu.model.dao.LoaiHopDongDAO;
+import fasttrackse.ffse1702a.fbms.QuanLyNhanSu.model.entity.LoaiHopDong;
+import fasttrackse.ffse1702a.fbms.QuanLyNhanSu.service.LoaiHopDongService;
 
 @Service
-public class LoaiHopDongServiceImpl  implements LoaiHopDongService{
+public class LoaiHopDongServiceImpl implements LoaiHopDongService {
 	@Autowired
 	private LoaiHopDongDAO loaiHopDongDAO;
 
