@@ -1,4 +1,4 @@
-package fasttrackse.a1702.fbms.logwork.controllers;
+package fasttrackse.ffse1702a.fbms.logwork.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

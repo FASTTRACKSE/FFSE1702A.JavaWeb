@@ -1,4 +1,4 @@
-package fasttrackse.a1702.fbms.logwork.entity;
+package fasttrackse.ffse1702a.fbms.logwork.entity;
 
 import java.util.Date;
 
