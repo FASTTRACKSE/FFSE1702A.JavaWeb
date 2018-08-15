@@ -15,7 +15,7 @@
 		http://www.springframework.org/schema/tx/spring-tx.xsd">
 
 	<!-- Add support for component scanning -->
-	<context:component-scan base-package="fasttrackse.a1702.fbms" />
+	<context:component-scan base-package="fasttrackse.ffse1702a.fbms" />
 
 	<!-- Add support for conversion, formatting and validation support -->
 	<mvc:annotation-driven/>
@@ -45,7 +45,7 @@
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
 		<property name="dataSource" ref="theDataSource" />
-		<property name="packagesToScan" value="fasttrackse.a1702.fbms.QuanLyNhanSu" />
+		<property name="packagesToScan" value="fasttrackse.ffse1702a.fbms" />
 		<property name="hibernateProperties">
 		   <props>
 		      <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>

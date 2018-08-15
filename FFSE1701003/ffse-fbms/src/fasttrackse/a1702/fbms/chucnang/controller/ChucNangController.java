@@ -15,6 +15,7 @@ import fasttrackse.a1702.fbms.chucnang.model.dao.ChucNangDao;
 import fasttrackse.a1702.fbms.chucnang.model.entities.ChucNang;
 
 @Controller
+@RequestMapping("/chuc-nang")
 public class ChucNangController {
 
 	@Autowired
@@ -28,38 +29,52 @@ public class ChucNangController {
 		this.cnDao = cnDao;
 	}
 
-	@RequestMapping(value = { "/chuc-nang", "/chuc-nang/" }, method = RequestMethod.GET)
+	@RequestMapping(value = "/danh-sach")
 	public String danhSachChucNang(Model model) {
 		List<ChucNang> dsChucNang = cnDao.list();
+		// model.asMap().get("messageSuccess");
+		// model.asMap().get("messageError");
 		model.addAttribute("listChucNang", dsChucNang);
 		return "chucnang/list";
 	}
 
-	@RequestMapping(value = { "/chuc-nang/them-moi", "/chuc-nang/them-moi/" }, method = RequestMethod.GET)
-	public String addForm(Model model) {
+	@RequestMapping(value = "/them-moi", method = RequestMethod.GET)
+	public String addForm(Model model, final RedirectAttributes redirectAttributes) {
 		model.addAttribute("chucNang", new ChucNang());
 		return "chucnang/add_form";
 	}
-	
-	@RequestMapping(value = { "/chuc-nang/them-moi/luu", "/chuc-nang/them-moi/luu/" }, method = RequestMethod.POST)
-	public String addNew(@ModelAttribute("chucNang") ChucNang cn, final RedirectAttributes redirectAttributes) {
-		try{
-			// cnDao.save(cn);
-			redirectAttributes.addFlashAttribute("message", "<h1>Thêm mới thành công..</h1>");
-		}catch(Exception e) {
-			redirectAttributes.addFlashAttribute("message", "<strong>Lỗi. Xin thử lại!</strong>");
+
+	@RequestMapping(value = "/them-moi/luu", method = RequestMethod.POST)
+	public String doAdd(Model model, @ModelAttribute("chucNang") ChucNang cn,
+			final RedirectAttributes redirectAttributes) {
+		try {
+			cnDao.save(cn);
+			redirectAttributes.addFlashAttribute("messageSuccess", "Thêm mới thành công..");
+		} catch (Exception e) {
+			redirectAttributes.addFlashAttribute("messageError", "Lỗi. Xin thử lại!");
 		}
-		
-		return "redirect:chuc-nang/thong-bao";
+		return "redirect:/chuc-nang/danh-sach";
 	}
-	
-	@RequestMapping(value = { "/chuc-nang/sua/{code}", "/chuc-nang/sua/{id}/" }, method = RequestMethod.GET)
-	public String editForm(@PathVariable("code") String code ,Model model) {
+
+	@RequestMapping(value = "/sua/{code}", method = RequestMethod.GET)
+	public String editForm(@PathVariable("code") String code, Model model) {
 		model.addAttribute("chucNang", cnDao.getChucNangByCode(code));
-		return "chucnang/form";
+		return "chuc-nang/edit_form";
 	}
 	
-	@RequestMapping(value="/chuc-nang/thong-bao", method=RequestMethod.GET)
+	@RequestMapping(value = "/sua/luu", method = RequestMethod.POST)
+	public String doEdit(Model model, @ModelAttribute("chucNang") ChucNang cn,
+			final RedirectAttributes redirectAttributes) {
+		try {
+			cnDao.update(cn);
+			redirectAttributes.addFlashAttribute("messageSuccess", "Sửa thành công..");
+		} catch (Exception e) {
+			redirectAttributes.addFlashAttribute("messageError", "Lỗi. Xin thử lại!");
+		}
+		return "redirect:/chuc-nang/danh-sach";
+	}
+
+	@RequestMapping(value = "/chuc-nang/thong-bao", method = RequestMethod.GET)
 	public String showMessage() {
 		return "chucnang/showMessage";
 	}
