@@ -30,7 +30,7 @@ public class DatabaseDaoImpl implements DatabaseDao {
 	@Override
 	public List<Database> getAll() {
 		Session session=sessionFactory.getCurrentSession();
-		return session.createQuery("from Database",Database.class).list();
+		return session.createQuery("from Database where isDelete =0",Database.class).list();
 	}
 	@Override
 	public void update(Database database) {
@@ -41,8 +41,8 @@ public class DatabaseDaoImpl implements DatabaseDao {
 	@Override
 	public void delete(String maDatabase) {
 		Session session=sessionFactory.getCurrentSession();
-		session.delete(session.get(Database.class,maDatabase));	
+		Database db=session.get(Database.class,maDatabase);	
+		db.setIsDelete(1);
+		session.update(db);		
 	}
-	
-
 }

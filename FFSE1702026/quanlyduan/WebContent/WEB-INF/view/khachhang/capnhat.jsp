@@ -25,11 +25,11 @@
 						<form:form cssClass="form-horizontal" modelAttribute="khachhang" method="POST" action="${update }" >
 						
 							<div class="row">
-								<div class="col-lg-6 col-md-12">
+								<div class="col-lg-12 col-md-12">
 									<div class="form-group">
 										<h5><spring:message code="khachhang.code"></spring:message></h5>
 										<div class="controls">
-											<form:input path="maKhachHang" cssClass="form-control" readonly="true"/>
+											<form:input path="maKhachHang" cssClass="form-control round" readonly="true"/>
 											<form:errors path="maKhachHang" cssStyle="color: red"></form:errors>
 										<div class="help-block"></div></div>
 										
@@ -37,7 +37,7 @@
 									<div class="form-group">
 										<h5><spring:message code="khachhang.name"></spring:message></h5>
 										<div class="controls">
-											<form:input path="tenKhachHang" cssClass="form-control"/>
+											<form:input path="tenKhachHang" cssClass="form-control round"/>
 											<form:errors path="tenKhachHang" cssStyle="color: red"></form:errors>
 										<div class="help-block"></div></div>
 										
@@ -45,7 +45,7 @@
 									<div class="form-group">
 										<h5><spring:message code="khachhang.phone"></spring:message></h5>
 										<div class="controls">
-											<form:input path="phoneNumber" cssClass="form-control"/>
+											<form:input path="phoneNumber" cssClass="form-control round"/>
 											<form:errors path="phoneNumber" cssStyle="color: red"></form:errors>
 										<div class="help-block"></div></div>
 										
@@ -53,7 +53,7 @@
 									<div class="form-group">
 										<h5><spring:message code="khachhang.email"></spring:message></h5>
 										<div class="controls">
-											<form:input path="email" cssClass="form-control"/>
+											<form:input path="email" cssClass="form-control round"/>
 											<form:errors path="email" cssStyle="color: red"></form:errors>
 										<div class="help-block"></div></div>
 										
@@ -61,7 +61,7 @@
 									<div class="form-group">
 										<h5><spring:message code="khachhang.address"></spring:message></h5>
 										<div class="controls">
-											<form:input path="diaChi" cssClass="form-control"/>
+											<form:input path="diaChi" cssClass="form-control round"/>
 											<form:errors path="diaChi" cssStyle="color: red"></form:errors>
 										<div class="help-block"></div></div>
 										
@@ -69,7 +69,7 @@
 									<div class="form-group">
 										<h5><spring:message code="khachhang.business"></spring:message></h5>
 										<div class="controls">
-											<form:input path="nghiepVu" cssClass="form-control"/>
+											<form:input path="nghiepVu" cssClass="form-control round"/>
 											<form:errors path="nghiepVu" cssStyle="color: red"></form:errors>
 										<div class="help-block"></div></div>
 										
