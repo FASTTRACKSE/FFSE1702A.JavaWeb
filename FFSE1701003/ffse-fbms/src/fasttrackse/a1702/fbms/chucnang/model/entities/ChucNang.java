@@ -3,11 +3,28 @@ package fasttrackse.a1702.fbms.chucnang.model.entities;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+/*import javax.persistence.NamedNativeQueries;
+import javax.persistence.NamedNativeQuery;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;*/
 import javax.persistence.Table;
+
+/*@NamedQueries(  
+	    {  
+	        @NamedQuery(  
+	        name = "findChucNangByCode",  
+	        query = "FROM ChucNang e WHERE e.ma_chuc_nang = :name"  
+	        )  
+	    }  
+	)  */
 
 @Entity
 @Table(name = "chuc_nang")
-public class ChucNang {
+
+/*@NamedNativeQueries({ @NamedNativeQuery(name = "@SQL_GET_ALL_ADDRESS", 
+query = "select emp_id, address_line1, city, zipcode from Address") })*/
+
+public class ChucNang{
 
 	@Id
 	@Column(name = "ma_chuc_nang")

@@ -51,16 +51,24 @@
 						<div class="card-header">
 							<c:forEach items="${danhSachXinNghi}" var="nv" begin="0" end="0">
 								<c:if test="${nv.trang_thai == 'Chờ Phê Duyệt'}">
-									<h4 class="card-title">Danh sách đơn xin nghỉ đang chờ phê
-										duyệt</h4>
+									<h4 class="card-title">
+										<i class="fa fa-clipboard"></i> Danh sách đơn xin nghỉ đang
+										chờ phê duyệt
+									</h4>
 								</c:if>
 
 								<c:if test="${nv.trang_thai == 'Duyệt'}">
-									<h4 class="card-title">Danh sách đơn xin nghỉ đã phê duyệt</h4>
+									<h4 class="card-title">
+										<i class="fa fa-clipboard"></i> Danh sách đơn xin nghỉ đã phê
+										duyệt
+									</h4>
 								</c:if>
 
-								<c:if test="${nv.trang_thai == 'Nháp'}">
-									<h4 class="card-title">Nháp của tôi</h4>
+								<c:if
+									test="${nv.trang_thai == 'Nháp'||nv.trang_thai == 'Từ chối'}">
+									<h4 class="card-title">
+										<i class="fa fa-file-text-o"></i> Đơn của tôi
+									</h4>
 								</c:if>
 							</c:forEach>
 							<a class="heading-elements-toggle"><i
@@ -81,14 +89,14 @@
 									<thead class="bg-success">
 										<tr>
 											<th>STT</th>
-											<th>Mã nhân viên</th>
+											<th>Mã NV</th>
 											<th>Tên nhân viên</th>
 											<th>Phòng ban</th>
 											<th>Ngày nghỉ</th>
-											<th>Ngày đi làm lại</th>
+											<th>Ngày kết thúc</th>
 											<th>Số ngày nghỉ</th>
-											<th>Số ngày đã nghỉ</th>
-											<th>Số ngày còn lại</th>
+											<th>Đã nghỉ</th>
+											<th>Còn lại</th>
 											<th>Tình trạng</th>
 											<th>Tùy chọn</th>
 										</tr>
@@ -101,7 +109,7 @@
 												<td>${nv.ten_nhan_vien}</td>
 												<td>${nv.phong_ban}</td>
 												<td>${nv.ngay_nghi}</td>
-												<td>${nv.ngay_di_lam_lai}</td>
+												<td>${nv.ngay_ket_thuc}</td>
 												<td>${nv.so_ngay_nghi}</td>
 												<td>${nv.so_ngay_da_nghi}</td>
 												<td>${nv.so_ngay_con_lai}</td>
@@ -109,17 +117,14 @@
 												<td><a
 													href="<%=request.getContextPath()%>/danhsach/don/${nv.ma_don}">
 														<button type="submit" class="btn btn-primary">
-															<i class="fa fa-check-square-o"></i>Xem
+															<i class="fa fa-eye"></i>Xem
 														</button>
-												</a> <c:if test="${nv.trang_thai=='Chờ Phê Duyệt'}">
-														<button type="submit" class="btn btn-success">
-															<i class="fa fa-check-square-o"></i>Duyệt
-														</button>
-													</c:if> <c:if test="${nv.trang_thai=='Nháp'}">
+												</a> <c:if
+														test="${nv.trang_thai=='Nháp'||nv.trang_thai=='Từ chối'}">
 														<a
 															href="<%=request.getContextPath()%>/danhsachnhap/xoadon/${nv.ma_don}">
-															<button type="submit" class="btn btn-success">
-																<i class="fa fa-check-square-o"></i>Xóa
+															<button type="submit" class="btn btn-danger">
+																<i class="ft-x"></i>Xóa
 															</button>
 														</a>
 													</c:if></td>
@@ -131,29 +136,45 @@
 									<div class="dataTables_paginate paging_full_numbers"
 										id="DataTables_Table_5_paginate">
 										<ul class="pagination">
-											<li class="paginate_button page-item first disabled"
-												id="DataTables_Table_5_first"><a href="#"
-												aria-controls="DataTables_Table_5" data-dt-idx="0"
-												tabindex="0" class="page-link">First</a></li>
-											<li class="paginate_button page-item previous disabled"
-												id="DataTables_Table_5_previous"><a href="#"
-												aria-controls="DataTables_Table_5" data-dt-idx="1"
-												tabindex="0" class="page-link">Previous</a></li>
-											<li class="paginate_button page-item active"><a href="#"
-												aria-controls="DataTables_Table_5" data-dt-idx="2"
-												tabindex="0" class="page-link">1</a></li>
-											<li class="paginate_button page-item "><a href="#"
-												aria-controls="DataTables_Table_5" data-dt-idx="3"
-												tabindex="0" class="page-link">2</a></li>
-											<li class="paginate_button page-item "><a href="#"
-												aria-controls="DataTables_Table_5" data-dt-idx="4"
-												tabindex="0" class="page-link">3</a></li>
-											<li class="paginate_button page-item next"
-												id="DataTables_Table_5_next"><a href="#"
-												aria-controls="DataTables_Table_5" data-dt-idx="8"
-												tabindex="0" class="page-link">Next</a></li>
+											<c:if test="${currentPage != 1}">
+												<li class="paginate_button page-item first"
+													id="DataTables_Table_5_first"
+													${currentPage == 1 ? 'd-none' : ''}><a
+													href="<%=request.getContextPath()%>/danhsachnhap?page=1"
+													aria-controls="DataTables_Table_5" class="page-link">First</a></li>
+
+												<li class="paginate_button page-item previous"
+													id="DataTables_Table_5_previous"><a
+													href="<%=request.getContextPath()%>/danhsachnhap?page=${currentPage-1}"
+													aria-controls="DataTables_Table_5" tabindex="0"
+													class="page-link">Previous</a></li>
+											</c:if>
+
+											<c:if test="${currentPage != 1}">
+												<li class="paginate_button page-item"><a
+													href="<%=request.getContextPath()%>/danhsachnhap?page=${currentPage-1}"
+													aria-controls="DataTables_Table_5" class="page-link">${currentPage-1}</a></li>
+											</c:if>
+
+											<li class="paginate_button page-item "><a
+												href="<%=request.getContextPath()%>/danhsachnhap?page=${currentPage}"
+												aria-controls="DataTables_Table_5" class="page-link">${currentPage}</a></li>
+
+											<c:if test="${currentPage != lastPage}">
+												<li
+													class="paginate_button page-item ${currentPage == lastPage ? 'd-none' : ''}"><a
+													href="<%=request.getContextPath()%>/danhsachnhap?page=${currentPage+1}"
+													aria-controls="DataTables_Table_5" class="page-link">${currentPage+1}</a></li>
+												<li class="paginate_button page-item next"
+													id="DataTables_Table_5_next"><a
+													href="<%=request.getContextPath()%>/danhsachnhap?page=${currentPage+1}"
+													aria-controls="DataTables_Table_5" data-dt-idx="8"
+													tabindex="0" class="page-link">Next</a></li>
+											</c:if>
+
 											<li class="paginate_button page-item last"
-												id="DataTables_Table_5_last"><a href="#"
+												id="DataTables_Table_5_last"><a
+												href="<%=request.getContextPath()%>/danhsachnhap?page=${lastPage}"
 												aria-controls="DataTables_Table_5" data-dt-idx="9"
 												tabindex="0" class="page-link">Last</a></li>
 										</ul>

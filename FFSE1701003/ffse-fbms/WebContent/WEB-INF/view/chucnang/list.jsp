@@ -1,27 +1,32 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <jsp:include page="/WEB-INF/view/templates/header.jsp" />
 <style>
 .tbl_actions a {
-    color: #333;
-    font-size: 13px;
-    display: inline-block;
-    padding: 2px 5px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #FFF;
+	color: #333;
+	font-size: 13px;
+	display: inline-block;
+	padding: 2px 5px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	background-color: #FFF;
 }
+
 .tbl_actions a i {
-    margin-right: 3px;
+	margin-right: 3px;
 }
+
 .green {
-    color: #5cb85c;
+	color: #5cb85c;
 }
+
 .blue {
-    color: #337ab7;
+	color: #337ab7;
 }
+
 .red {
-    color: #d9534f;
+	color: #d9534f;
 }
 </style>
 <div class="app-content content container-fluid">
@@ -65,6 +70,25 @@
 			</div>
 			<!-- End Form search -->
 
+			<!-- Show message -->
+			<c:if test="${messageSuccess ne null}">
+				<div class="alert alert-success alert-dismissable" role="alert">
+					<button type="button" class="close" data-dismiss="alert">
+						<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+					</button>
+					${messageSuccess}
+				</div>
+			</c:if>
+			<c:if test="${messageError ne null}">
+				<div class="alert alert-danger alert-dismissable" role="alert">
+					<button type="button" class="close" data-dismiss="alert">
+						<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+					</button>
+					${messageError}
+				</div>
+			</c:if>
+			<!-- End Show message -->
+			
 			<div class="row">
 				<div class="col-xs-12">
 					<div class="card">
@@ -95,14 +119,15 @@
 									</thead>
 									<tbody>
 										<c:if test="${not empty listChucNang}">
-											<c:forEach var="item" items="${listChucNang}" begin="1" varStatus="counter">
+											<c:forEach var="item" items="${listChucNang}" begin="0"
+												varStatus="counter">
 												<tr>
-													<td>${counter.index}</td>
+													<td>${counter.index + 1}</td>
 													<td>${item.ma_chuc_nang}</td>
 													<td>${item.ten_chuc_nang}</td>
-													<td class="tbl_actions">
-														<a href="<c:url value="/chuc-nang/kich-hoat/123" />" title="Hiển thị">
-															<c:choose>
+													<td class="tbl_actions"><a
+														href="<c:url value="/chuc-nang/kich-hoat/123" />"
+														title="Hiển thị"> <c:choose>
 																<c:when test="${item.trang_thai == 1}">
 																	<i class="fa fa-check green" aria-hidden="true"></i>Hiển thị
 																</c:when>
@@ -110,16 +135,14 @@
 																	<i class="fa fa-times red" aria-hidden="true"></i>Ẩn
 																</c:otherwise>
 															</c:choose>
-														</a>
-													</td>
-													<td class="tbl_actions">
-														<a href="<c:url value="/chuc-nang/sua/123" />" title="Sửa">
+													</a></td>
+													<td class="tbl_actions"><a
+														href="<c:url value="/chuc-nang/sua/123" />" title="Sửa">
 															<i class="fa fa-pencil-square-o blue" aria-hidden="true"></i>Sửa
-														</a>
-														<a href="<c:url value="/chuc-nang/xoa/123" />" title="Xóa" onclick="return confirm('Bạn có chắc muốn xóa ?')">
-															<i class="fa fa-trash red" aria-hidden="true"></i>Delete
-														</a>
-													</td> 
+													</a> <a href="<c:url value="/chuc-nang/xoa/123" />" title="Xóa"
+														onclick="return confirm('Bạn có chắc muốn xóa ?')"> <i
+															class="fa fa-trash red" aria-hidden="true"></i>Delete
+													</a></td>
 												</tr>
 											</c:forEach>
 										</c:if>
@@ -133,6 +156,12 @@
 		</div>
 	</div>
 </div>
-
+<script type="text/javascript">
+window.setTimeout(function() {
+	$(".alert").fadeTo(500, 0).slideUp(500, function(){
+		$(this).remove(); 
+	});
+}, 2500);
+</script>
 
 <jsp:include page="/WEB-INF/view/templates/footer.jsp" />
