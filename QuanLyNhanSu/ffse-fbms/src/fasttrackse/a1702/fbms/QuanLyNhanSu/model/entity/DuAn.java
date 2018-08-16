@@ -140,4 +140,11 @@ public class DuAn implements Serializable {
 		this.hoSoNhanVien = hoSoNhanViens;
 	}
 
+	@Override
+	public String toString() {
+		return "DuAn [maDuAn=" + maDuAn + ", tenDuAn=" + tenDuAn + ", nghiepVu=" + nghiepVu + ", moTaDuAn=" + moTaDuAn
+				+ ", tinhTrang=" + tinhTrang + ", khachHang=" + khachHang + ", ngonNgu=" + ngonNgu + ", framework="
+				+ framework + ", database=" + database + "]";
+	}
+
 }
