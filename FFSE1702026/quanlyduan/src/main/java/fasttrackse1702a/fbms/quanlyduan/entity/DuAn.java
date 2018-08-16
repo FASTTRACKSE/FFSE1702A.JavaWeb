@@ -29,6 +29,8 @@ public class DuAn implements Serializable{
 	private String nghiepVu;
 	@Column(name="mo_ta_du_an")
 	private String moTaDuAn;
+	@Column(name="is_delete")
+	private int isDelete;
 	@ManyToOne(fetch = FetchType.EAGER,cascade= CascadeType.MERGE)
 	@JoinColumn(name="ma_tinh_trang",referencedColumnName="ma_tinh_trang", insertable=true, updatable=true)
 	private TinhTrang tinhTrang ;
@@ -124,6 +126,12 @@ public class DuAn implements Serializable{
 	}
 	public void setHoSoNhanVien(Set<HoSoNhanVien> hoSoNhanVien) {
 		this.hoSoNhanVien = hoSoNhanVien;
+	}
+	public int getIsDelete() {
+		return isDelete;
+	}
+	public void setIsDelete(int isDelete) {
+		this.isDelete = isDelete;
 	}
 	
 	
