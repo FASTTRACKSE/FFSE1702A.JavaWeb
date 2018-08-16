@@ -1,8 +1,12 @@
 package fasttrackse1702a.fbms.quanlyduan.entity;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
@@ -16,6 +20,17 @@ public class Database {
 	@Column(name="ten_database")
 	@NotEmpty
 	private String tenDatabase;
+	public List<DuAn> getDuAn() {
+		return duAn;
+	}
+	public void setDuAn(List<DuAn> duAn) {
+		this.duAn = duAn;
+	}
+	@ManyToMany(targetEntity = DuAn.class, mappedBy = "database", fetch = FetchType.EAGER)
+	private List<DuAn> duAn;
+	public Database() {
+		
+	}
 	public String getMaDatabase() {
 		return maDatabase;
 	}
@@ -28,4 +43,5 @@ public class Database {
 	public void setTenDatabase(String tenDatabase) {
 		this.tenDatabase = tenDatabase;
 	}
+	
 }

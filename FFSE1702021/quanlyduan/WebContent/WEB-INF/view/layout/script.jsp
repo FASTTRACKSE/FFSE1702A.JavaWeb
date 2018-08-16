@@ -13,3 +13,10 @@
 	<!-- END STACK JS-->
 	<!-- BEGIN PAGE LEVEL JS-->
 	<!-- END PAGE LEVEL JS-->
+	<script>
+$(document).ready(function(){
+	   setTimeout(function(){ if ( $('#message').css('display') != 'none'){
+		   $('#message').hide();
+	   } }, 2000);
+	});
+</script>

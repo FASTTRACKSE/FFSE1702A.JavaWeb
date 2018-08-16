@@ -1,8 +1,12 @@
 package fasttrackse1702a.fbms.quanlyduan.entity;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 @Entity
@@ -16,6 +20,8 @@ public class VaiTro {
 	@NotEmpty
 	private String tenVaiTro;
 	
+	@ManyToMany(targetEntity = HoSoNhanVien.class, mappedBy = "vaiTro", fetch = FetchType.EAGER)
+	private List<HoSoNhanVien> hoSoNhanVien;
 	public String getMaVaiTro() {
 		return maVaiTro;
 	}
@@ -28,5 +34,12 @@ public class VaiTro {
 	public void setTenVaiTro(String tenVaiTro) {
 		this.tenVaiTro = tenVaiTro;
 	}
+	public List<HoSoNhanVien> getHoSoNhanVien() {
+		return hoSoNhanVien;
+	}
+	public void setHoSoNhanVien(List<HoSoNhanVien> hoSoNhanVien) {
+		this.hoSoNhanVien = hoSoNhanVien;
+	}
+	
 	
 }

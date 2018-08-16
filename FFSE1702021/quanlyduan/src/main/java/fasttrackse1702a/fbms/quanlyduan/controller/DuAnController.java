@@ -14,12 +14,18 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import fasttrackse1702a.fbms.quanlyduan.entity.Database;
 import fasttrackse1702a.fbms.quanlyduan.entity.DuAn;
+import fasttrackse1702a.fbms.quanlyduan.entity.Framework;
 import fasttrackse1702a.fbms.quanlyduan.entity.KhachHang;
 import fasttrackse1702a.fbms.quanlyduan.entity.NgonNgu;
+import fasttrackse1702a.fbms.quanlyduan.entity.TinhTrang;
+import fasttrackse1702a.fbms.quanlyduan.service.DatabaseService;
 import fasttrackse1702a.fbms.quanlyduan.service.DuAnService;
+import fasttrackse1702a.fbms.quanlyduan.service.FrameworkService;
 import fasttrackse1702a.fbms.quanlyduan.service.KhachHangService;
 import fasttrackse1702a.fbms.quanlyduan.service.NgonNguService;
+import fasttrackse1702a.fbms.quanlyduan.service.TinhTrangService;
 
 @Controller
 @RequestMapping("/duan")
@@ -30,17 +36,23 @@ public class DuAnController {
 	NgonNguService ngonNguService;
 	@Autowired
 	KhachHangService khachHangService;
+	@Autowired
+	DatabaseService databaseService;
+	@Autowired
+	FrameworkService frameworkService;
+	@Autowired
+	TinhTrangService tinhTrangService;
 	@RequestMapping(value = { "/create" })
 	public String index(ModelMap mm) {
 		mm.put("view", "duan/create.jsp");
 		mm.put("duan", new DuAn());
-		mm.put("ngonngu", ngonNguService.getAll());
-		mm.put("khachhang", khachHangService.getAll());
+		
+		getData(mm);
 		return "layout";
 	}
 
 	@RequestMapping(value = { "/create" }, method = RequestMethod.POST)
-	public String create(ModelMap mm,@ModelAttribute("duan") @Validated DuAn duan, BindingResult result) {
+	public String create(ModelMap mm,@ModelAttribute("duan")  @Validated DuAn duan, BindingResult result) {
 		
 		
 		if(result.hasErrors()) {
@@ -52,28 +64,41 @@ public class DuAnController {
 	}
 	
 	@RequestMapping(value = { "/list","" })
-	public String list(ModelMap mm) {
-		mm.put("view", "DuAn/danhsach.jsp");
+	public String list(ModelMap mm ) {
+		mm.put("view", "duan/danhsach.jsp");
 		
 		mm.put("list", duAnService.getAll());
+		
+		
+		return "layout";
+	}
+	
+	@RequestMapping(value = { "/detail/{maDuAn}" })
+	public String detail(ModelMap mm,@PathVariable("maDuAn") String maDuAn) {
+		mm.put("view", "duan/detail.jsp");
+		
+		mm.put("duan", duAnService.getById(maDuAn));
+		
+		
+		
 		return "layout";
 	}
 	@RequestMapping(value = { "/update/{maDuAn}" })
 	public String update(ModelMap mm,@PathVariable("maDuAn") String maDuAn) {
 		mm.put("view", "DuAn/capnhat.jsp");		
-		mm.put("DuAn", duAnService.getById(maDuAn));
+		mm.put("duan", duAnService.getById(maDuAn));
 		
 		return "layout";
 	}
 	@RequestMapping(value = { "/update" }, method = RequestMethod.POST)
-	public String update(ModelMap mm,@ModelAttribute("DuAn") @Validated DuAn DuAn, BindingResult result) {
+	public String update(ModelMap mm,@ModelAttribute("duan") @Validated DuAn duan, BindingResult result) {
 		
 		
 		if(result.hasErrors()) {
 			mm.put("view", "DuAn/capnhat.jsp");
 			return "layout";
 		}
-		duAnService.update(DuAn);
+		duAnService.update(duan);
 		return "redirect:list";
 	}
 	@RequestMapping(value = { "/delete/{maDuAn}" })
@@ -91,12 +116,27 @@ public class DuAnController {
 				setValue(ngonNguService.getById(text));
 			}
 		});
-		binder.registerCustomEditor(KhachHang.class, "khachHang", new PropertyEditorSupport() {
+	
+		binder.registerCustomEditor(Framework.class, "framework", new PropertyEditorSupport() {
 			@Override
 			public void setAsText(String text) throws IllegalArgumentException {
-				setValue(khachHangService.getById(text));
+				setValue(frameworkService.getById(text));
 			}
 		});
+		binder.registerCustomEditor(Database.class, "database", new PropertyEditorSupport() {
+			@Override
+			public void setAsText(String text) throws IllegalArgumentException {
+				setValue(databaseService.getById(text));
+			}
+		});
+	
+	}
+	public void getData(ModelMap mm) {
+		mm.put("khachhang", khachHangService.getAll());
+		mm.put("database", databaseService.getAll());
+		mm.put("framework", frameworkService.getAll());
+		mm.put("ngonngu", ngonNguService.getAll());
+		mm.put("tinhtrang", tinhTrangService.getAll());
 	}
 
 }
