@@ -25,11 +25,11 @@
 						<form:form cssClass="form-horizontal" modelAttribute="ngonngu" method="POST" action="update" >
 						
 							<div class="row">
-								<div class="col-lg-6 col-md-12">
+								<div class="col-lg-12 col-md-12">
 									<div class="form-group">
 										<h5><spring:message code="ngonngu.code"></spring:message></h5>
 										<div class="controls">
-											<form:input readonly="true" path="maNgonNgu" cssClass="form-control"/>
+											<form:input readonly="true" path="maNgonNgu" cssClass="form-control round"/>
 											
 											<form:errors path="maNgonNgu" cssStyle="color: red"></form:errors>
 										<div class="help-block"></div></div>
@@ -38,7 +38,7 @@
 									<div class="form-group">
 										<h5><spring:message code="ngonngu.name"></spring:message></h5>
 										<div class="controls">
-											<form:input path="tenNgonNgu" cssClass="form-control"/>
+											<form:input path="tenNgonNgu" cssClass="form-control round"/>
 											<form:errors path="tenNgonNgu" cssStyle="color: red"></form:errors>
 										<div class="help-block"></div></div>
 										

@@ -3,11 +3,14 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<c:url var="createlink" value="/duan/create" />
+<c:url var="updatelink" value="/duan/update/" />
+<c:url var="detaillink" value="/duan/detail/" />
 <div class="row">
     <div class="col-xs-12">
         <div class="card">
             <div class="card-header">
-                <h4 class="card-title"><spring:message code="khachhang.list" /></h4>
+                <h4 class="card-title"><spring:message code="duan.list" /></h4>
                 <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
                 <div class="heading-elements">
                     <ul class="list-inline mb-0">
@@ -19,42 +22,36 @@
                 </div>
             </div>
             <div class="card-body collapse in">
-                <div class="card-block card-dashboard">
-                    
-                    <p><span class="text-bold-600"><spring:message code="khachhang.add" /></span> </p>
+                <div class="card-block card-dashboard">  
+                    <p><a href="${createlink }"><span class="text-bold-600"><spring:message code="duan.add" /></span> </a></p>
                     <div class="table-responsive">
                         <table class="table">
                             <thead>
                                 <tr>
                                     <th>#</th>
                                     
-                                    <th><spring:message code="khachhang.code" /></th>
-                                    <th><spring:message code="khachhang.name" /></th>
-                                    <th><spring:message code="khachhang.phone" /></th>
-                                    <th><spring:message code="khachhang.email" /></th>
-                                    <th><spring:message code="khachhang.business" /></th>
-                                    <th><spring:message code="khachhang.address" /></th>
+                                    <th><spring:message code="duan.code" /></th>
+                                    <th><spring:message code="duan.name" /></th>
                                     <th><spring:message code="ngonngu.action" /></th>
                                 </tr>
                             </thead>
                             <tbody>
-                            <c:forEach var="khachhang" items="${list }" varStatus="count"   >
+                            <c:forEach var="duan" items="${list }" varStatus="count"   >
                                 <tr>
                                     <th scope="row">${count.count  }</th>
-                                    <td>${khachhang.maKhachHang }</td>
-                                    <td>${khachhang.tenKhachHang }</td>
-                                    <td>${khachhang.phoneNumber }</td>
-                                    <td>${khachhang.email }</td>
-                                    <td>${khachhang.nghiepVu }</td>
-                                    <td>${khachhang.diaChi }</td>
-                                    <td>Test</td>
+                                    <td>${duan.maDuAn }</td>
+                                    <td>${duan.tenDuAn }</td>
+                                   	<td><a href="${detaillink }${duan.maDuAn }" data-toggle="tooltip" title="view!"><button type="button" class="btn btn-icon btn-outline-info"><i class="fa fa-eye"></i></button></a>
+                                   	<a href="${updatelink }${duan.maDuAn }" data-toggle="tooltip" title="edit!"><button type="button" class="btn btn-icon btn-outline-warning"><i class="fa fa-gavel"></i></button></a>
+                                   	</td>
+                               
                                 </tr>
                               </c:forEach>  
                             </tbody>
                         </table>
                     </div>
                 </div>
-                
+               
                 </div>
         </div>
     </div>

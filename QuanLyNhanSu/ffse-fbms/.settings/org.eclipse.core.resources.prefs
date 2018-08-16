@@ -1,2 +1,4 @@
 eclipse.preferences.version=1
 encoding//WebContent/WEB-INF/view/templates/header.jsp=UTF-8
+encoding//WebContent/resources/i18n/messages_vi.properties=UTF-8
+encoding/<project>=UTF-8

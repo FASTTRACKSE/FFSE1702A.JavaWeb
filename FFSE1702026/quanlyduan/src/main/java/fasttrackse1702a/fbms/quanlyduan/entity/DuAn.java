@@ -1,7 +1,7 @@
 package fasttrackse1702a.fbms.quanlyduan.entity;
 
 import java.io.Serializable;
-import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -18,9 +18,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name="du_an")
 public class DuAn implements Serializable{
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
 	@Id
 	@Column(name="ma_du_an")
@@ -31,17 +29,42 @@ public class DuAn implements Serializable{
 	private String nghiepVu;
 	@Column(name="mo_ta_du_an")
 	private String moTaDuAn;
-	@Column (name="tinh_trang")
-	private String tinhTrang;
+	@Column(name="is_delete")
+	private int isDelete;
+	@ManyToOne(fetch = FetchType.EAGER,cascade= CascadeType.MERGE)
+	@JoinColumn(name="ma_tinh_trang",referencedColumnName="ma_tinh_trang", insertable=true, updatable=true)
+	private TinhTrang tinhTrang ;
 	
-	@ManyToOne(fetch = FetchType.EAGER,cascade= CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.EAGER,cascade= CascadeType.ALL,optional=true)
 	@JoinColumn(name="ma_khach_hang",referencedColumnName="ma_khach_hang", insertable=true, updatable=true)
 	private KhachHang khachHang ;
+	
 	@ManyToMany(targetEntity = NgonNgu.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinTable(name = "ngon_ngu_du_an", joinColumns = {
 	@JoinColumn(name = "ma_du_an", referencedColumnName = "ma_du_an",  updatable = true,insertable=true) }, inverseJoinColumns = {
 	@JoinColumn(name = "ma_ngon_ngu", referencedColumnName = "ma_ngon_ngu", nullable = true, updatable = false,insertable=true) })
-	private List<NgonNgu> ngonNgu;
+	private Set<NgonNgu> ngonNgu;
+	
+	@ManyToMany(targetEntity = Framework.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinTable(name = "framework_du_an", joinColumns = {
+	@JoinColumn(name = "ma_du_an", referencedColumnName = "ma_du_an",  updatable = true,insertable=true) }, inverseJoinColumns = {
+	@JoinColumn(name = "ma_framework", referencedColumnName = "ma_framework", nullable = true, updatable = false,insertable=true) })
+	private Set<Framework> framework;
+	
+	@ManyToMany(targetEntity = Database.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinTable(name = "database_du_an", joinColumns = {
+	@JoinColumn(name = "ma_du_an", referencedColumnName = "ma_du_an",  updatable = true,insertable=true) }, inverseJoinColumns = {
+	@JoinColumn(name = "ma_database", referencedColumnName = "ma_database", nullable = true, updatable = false,insertable=true) })
+	private Set<Database> database;
+	
+	@ManyToMany(targetEntity = HoSoNhanVien.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinTable(name = "nhiem_vu", joinColumns = {
+	@JoinColumn(name = "ma_du_an", referencedColumnName = "ma_du_an",  updatable = true,insertable=true) }, inverseJoinColumns = {
+	@JoinColumn(name = "ma_nhan_vien", referencedColumnName = "ma_nhan_vien", nullable = true, updatable = false,insertable=true) })
+	private Set<HoSoNhanVien> hoSoNhanVien;
+	
+	
+	
 	public String getMaDuAn() {
 		return maDuAn;
 	}
@@ -66,10 +89,11 @@ public class DuAn implements Serializable{
 	public void setMoTaDuAn(String moTaDuAn) {
 		this.moTaDuAn = moTaDuAn;
 	}
-	public String getTinhTrang() {
+	
+	public TinhTrang getTinhTrang() {
 		return tinhTrang;
 	}
-	public void setTinhTrang(String tinhTrang) {
+	public void setTinhTrang(TinhTrang tinhTrang) {
 		this.tinhTrang = tinhTrang;
 	}
 	public KhachHang getKhachHang() {
@@ -78,12 +102,38 @@ public class DuAn implements Serializable{
 	public void setKhachHang(KhachHang khachHang) {
 		this.khachHang = khachHang;
 	}
-	public List<NgonNgu> getNgonNgu() {
+	
+	public Set<NgonNgu> getNgonNgu() {
 		return ngonNgu;
 	}
-	public void setNgonNgu(List<NgonNgu> ngonNgu) {
+	public void setNgonNgu(Set<NgonNgu> ngonNgu) {
 		this.ngonNgu = ngonNgu;
 	}
+	public Set<Framework> getFramework() {
+		return framework;
+	}
+	public void setFramework(Set<Framework> framework) {
+		this.framework = framework;
+	}
+	public Set<Database> getDatabase() {
+		return database;
+	}
+	public void setDatabase(Set<Database> database) {
+		this.database = database;
+	}
+	public Set<HoSoNhanVien> getHoSoNhanVien() {
+		return hoSoNhanVien;
+	}
+	public void setHoSoNhanVien(Set<HoSoNhanVien> hoSoNhanVien) {
+		this.hoSoNhanVien = hoSoNhanVien;
+	}
+	public int getIsDelete() {
+		return isDelete;
+	}
+	public void setIsDelete(int isDelete) {
+		this.isDelete = isDelete;
+	}
+	
 	
 	
 	

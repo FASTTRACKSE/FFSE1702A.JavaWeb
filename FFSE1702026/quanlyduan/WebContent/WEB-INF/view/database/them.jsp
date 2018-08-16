@@ -23,13 +23,13 @@
 					<div class="card-block ">
 						
 						<form:form cssClass="form-horizontal" modelAttribute="database" method="POST" action="create" >
-						
+							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 							<div class="row">
-								<div class="col-lg-6 col-md-12">
+								<div class="col-lg-12 col-md-12">
 									<div class="form-group">
 										<h5><spring:message code="database.code"></spring:message></h5>
 										<div class="controls">
-											<form:input path="maDatabase" cssClass="form-control"/>
+											<form:input path="maDatabase" cssClass="form-control round"/>
 											<form:errors path="maDatabase" cssStyle="color: red"></form:errors>
 										<div class="help-block"></div></div>
 										
@@ -37,7 +37,7 @@
 									<div class="form-group">
 										<h5><spring:message code="database.name"></spring:message></h5>
 										<div class="controls">
-											<form:input path="tenDatabase" cssClass="form-control"/>
+											<form:input path="tenDatabase" cssClass="form-control round"/>
 											<form:errors path="tenDatabase" cssStyle="color: red"></form:errors>
 										<div class="help-block"></div></div>
 										

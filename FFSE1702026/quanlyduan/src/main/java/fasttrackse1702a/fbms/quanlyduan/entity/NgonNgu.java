@@ -26,6 +26,8 @@ public class NgonNgu implements Serializable {
 	@NotEmpty
 	@Column(name="ten_ngon_ngu")
 	private String tenNgonNgu;
+	@Column(name="is_delete")
+	private int isDelete;
 	@ManyToMany(targetEntity = DuAn.class, mappedBy = "ngonNgu", fetch = FetchType.EAGER)
 	private List<DuAn> duAn;
 	public NgonNgu() {
@@ -48,6 +50,12 @@ public class NgonNgu implements Serializable {
 	}
 	public void setDuAn(List<DuAn> duAn) {
 		this.duAn = duAn;
+	}
+	public int getIsDelete() {
+		return isDelete;
+	}
+	public void setIsDelete(int isDelete) {
+		this.isDelete = isDelete;
 	}
 	
 	

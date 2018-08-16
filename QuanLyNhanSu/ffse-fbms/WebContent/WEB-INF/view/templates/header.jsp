@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 
 <!DOCTYPE html>
 
@@ -22,6 +23,7 @@
    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/fonts/font-awesome/css/font-awesome.min.css"/>">
    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/fonts/flag-icon-css/css/flag-icon.min.css"/>">
    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/vendors/css/extensions/pace.css"/>">
+   <link rel="stylesheet" type="text/css" href="<c:url value="/resources/vendors/css/tables/datatable/dataTables.bootstrap4.min.css"/>">
    <!-- END VENDOR CSS-->
    <!-- BEGIN STACK CSS-->
    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/bootstrap-extended.css"/>">
@@ -32,9 +34,23 @@
    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/core/menu/menu-types/vertical-menu.css"/>">
    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/core/menu/menu-types/vertical-overlay-menu.css"/>">
    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/core/colors/palette-gradient.css"/>">
+   <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/plugins/forms/extended/form-extended.min.css"/>">
    <!-- END Page Level CSS-->
    
+   
+
    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+   <style>
+	   .invalid-feedback {
+	   	color: #DC3545;
+	   	padding-top: 10px;
+	   }
+	   .invalid-feedback::before {
+	   content: "•";
+	   padding-left: 10px;
+   	   padding-right: 10px;
+	   }
+   </style>
 </head>
 
 <body data-open="click" data-menu="vertical-menu" data-col="2-columns" class="vertical-layout vertical-menu 2-columns   menu-expanded fixed-navbar">
@@ -126,7 +142,7 @@
                                  <label for="inputName1" class="col-sm-3 form-control-label">Name</label>
                                  <div class="col-sm-9">
                                     <div class="position-relative has-icon-left">
-                                       <input type="text" id="inputName1" placeholder="John Doe" class="form-control">
+                                       <input type="text" id="inputName1" placeholder="JunBjn" class="form-control">
                                        <div class="form-control-position"><i class="fa fa-user-o pl-1"></i></div>
                                     </div>
                                  </div>
@@ -264,7 +280,7 @@
                         <li class="dropdown-menu-footer"><a href="javascript:void(0)" class="dropdown-item text-muted text-xs-center">Read all messages</a></li>
                      </ul>
                   </li>
-                  <li class="dropdown dropdown-user nav-item"><a href="#" data-toggle="dropdown" class="dropdown-toggle nav-link dropdown-user-link"><span class="avatar avatar-online"><img src="<c:url value="/resources/images/portrait/small/avatar-s-1.png"/>" alt="avatar"><i></i></span><span class="user-name">John Doe</span></a>
+                  <li class="dropdown dropdown-user nav-item"><a href="#" data-toggle="dropdown" class="dropdown-toggle nav-link dropdown-user-link"><span class="avatar avatar-online"><img src="<c:url value="/resources/images/portrait/small/avatar-s-1.png"/>" alt="avatar"><i></i></span><span class="user-name">JunBjn</span></a>
                      <div class="dropdown-menu dropdown-menu-right"><a href="#" class="dropdown-item"><i class="ft-user"></i> Edit Profile</a><a href="#" class="dropdown-item"><i class="ft-mail"></i> My Inbox</a><a href="#" class="dropdown-item"><i class="ft-check-square"></i> Task</a><a href="#" class="dropdown-item"><i class="ft-message-square"></i> Chats</a>
                         <div class="dropdown-divider"></div><a href="#" class="dropdown-item"><i class="ft-power"></i> Logout</a>
                      </div>
@@ -283,43 +299,43 @@
          <ul id="main-menu-navigation" data-menu="menu-navigation" class="navigation navigation-main">
             <li class=" navigation-header"><span>Nhân viên</span><i data-toggle="tooltip" data-placement="right" data-original-title="Apps" class=" ft-minus"></i>
             </li>
-            <li class=" nav-item"><a href="#"><i class="ft-mail"></i><span data-i18n="" class="menu-title">Hồ sơ bản thân</span></a>
+            <li class=" nav-item"><a href="#"><i class="ft-user"></i><span data-i18n="" class="menu-title"><spring:message code="label.hoSoBanThan" /></span></a>
             </li>
-            <li class=" nav-item"><a href="#"><i class="ft-message-square"></i><span data-i18n="" class="menu-title">Hợp đồng lao động</span></a>
+            <li class=" nav-item"><a href="#"><i class="ft-file-text"></i><span data-i18n="" class="menu-title">Hợp đồng lao động</span></a>
             </li>
-            <li class=" nav-item"><a href="project-summary.html"><i class="ft-airplay"></i><span data-i18n="" class="menu-title">Xuất</span></a>
+            <li class=" nav-item"><a href="#"><i class="ft-airplay"></i><span data-i18n="" class="menu-title">Xem tất cả</span></a>
             </li>
             <li class=" navigation-header"><span>Quản lý nhân sự</span><i data-toggle="tooltip" data-placement="right" data-original-title="Quản lý nhân sự" class=" ft-minus"></i>
             </li>
             <li class=" nav-item"><a href="javascript:void(0)"><i class="ft-home"></i><span data-i18n="" class="menu-title">Quản lý phòng ban</span></a>
                <ul class="menu-content">
-                  <li><a href="phong_ban" class="menu-item">Danh sách phòng ban</a>
+                  <li><a href="<c:url value = "/ns/phong_ban"/>" class="menu-item">Danh sách phòng ban</a>
                   </li>
-                  <li><a href="phong_ban/add" class="menu-item">Thêm phòng ban</a>
-                  </li>
-               </ul>
-            </li>
-            <li class=" nav-item"><a href="javascript:void(0)"><i class="ft-home"></i><span data-i18n="" class="menu-title">Quản lý chức danh</span></a>
-               <ul class="menu-content">
-                  <li><a href="chuc_danh" class="menu-item">Danh sách chức danh</a>
-                  </li>
-                  <li><a href="chuc_danh/add" class="menu-item">Thêm chức danh</a>
+                  <li><a href="<c:url value = "/ns/phong_ban/add"/>" class="menu-item">Thêm phòng ban</a>
                   </li>
                </ul>
             </li>
-            <li class=" nav-item"><a href="javascript:void(0)"><i class="ft-home"></i><span data-i18n="" class="menu-title">Quản lý hồ sơ</span></a>
+            <li class=" nav-item"><a href="javascript:void(0)"><i class="ft-award"></i><span data-i18n="" class="menu-title">Quản lý chức danh</span></a>
                <ul class="menu-content">
-                  <li><a href="ho_so" class="menu-item">Danh sách hồ sơ</a>
+                  <li><a href="<c:url value = "/ns/chuc_danh"/>" class="menu-item">Danh sách chức danh</a>
                   </li>
-                  <li><a href="ho_so/add" class="menu-item">Thêm hồ sơ</a>
+                  <li><a href="<c:url value = "/ns/chuc_danh/add"/>" class="menu-item">Thêm chức danh</a>
                   </li>
                </ul>
             </li>
-            <li class=" nav-item"><a href="javascript:void(0)"><i class="ft-home"></i><span data-i18n="" class="menu-title">Quản lý hợp đồng</span></a>
+            <li class=" nav-item"><a href="javascript:void(0)"><i class="ft-users"></i><span data-i18n="" class="menu-title">Quản lý hồ sơ</span></a>
                <ul class="menu-content">
-                  <li><a href="hop_dong" class="menu-item">Danh sách hợp đồng</a>
+                  <li><a href="<c:url value = "/ns/ho_so"/>" class="menu-item">Danh sách hồ sơ</a>
                   </li>
-                  <li><a href="hop_dong/add" class="menu-item">Thêm hợp đồng</a>
+                  <li><a href="<c:url value = "/ns/ho_so/add"/>" class="menu-item">Thêm hồ sơ</a>
+                  </li>
+               </ul>
+            </li>
+            <li class=" nav-item"><a href="javascript:void(0)"><i class="ft-file-text"></i><span data-i18n="" class="menu-title">Quản lý hợp đồng</span></a>
+               <ul class="menu-content">
+                  <li><a href="<c:url value = "/ns/hop_dong"/>" class="menu-item">Danh sách hợp đồng</a>
+                  </li>
+                  <li><a href="<c:url value = "/ns/hop_dong/add"/>" class="menu-item">Thêm hợp đồng</a>
                   </li>
                </ul>
             </li>

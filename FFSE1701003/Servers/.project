@@ -3,7 +3,6 @@
 	<name>Servers</name>
 	<comment></comment>
 	<projects>
-		<project>demo-jsf</project>
 	</projects>
 	<buildSpec>
 	</buildSpec>

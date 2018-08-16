@@ -19,9 +19,10 @@
 .btnSpace {
 	margin: 17px;
 }
-  .error {
-    color: red;
-  }
+
+.error {
+	color: red;
+}
 </style>
 </head>
 <body>
@@ -55,49 +56,53 @@
 				<td style="width: 250px;"><form:label path="ho">
 						<spring:message code="ho" />
 					</form:label></td>
-				<td><form:input path="ho" class="form-control"/><form:errors path="ho" cssClass="error"/></td>		
+				<td><form:input path="ho" class="form-control" />
+					<form:errors path="ho" cssClass="error" /></td>
 			</tr>
 			<tr>
 				<td><form:label path="ten">
 						<spring:message code="ten" />
 					</form:label></td>
-				<td><form:input path="ten" class="form-control"/><form:errors path="ten" cssClass="error"/></td>
+				<td><form:input path="ten" class="form-control" />
+					<form:errors path="ten" cssClass="error" /></td>
 			</tr>
 			<tr>
 				<td><form:label path="namSinh">
 						<spring:message code="namsinh" />
 					</form:label></td>
-				<td><form:input type="number" path="namSinh" class="form-control"/><form:errors path="namSinh" cssClass="error"/></td>
+				<td><form:input type="number" path="namSinh"
+						class="form-control" />
+					<form:errors path="namSinh" cssClass="error" /></td>
 			</tr>
 			<tr>
 				<td><form:label path="gioiTinh">
 						<spring:message code="gioitinh" />
 					</form:label></td>
-				<td>
-				<form:radiobutton path="gioiTinh" value="Nam" checked="checked"/> 
-				<spring:message code="nam" /> 
-				<form:radiobutton path="gioiTinh" value="Nữ" /> 
-				<spring:message code="nu" /> 
-				<form:radiobutton path="gioiTinh" value="Khác" /> 
-				<spring:message code="khac" /></td>
+				<td><form:radiobutton path="gioiTinh" value="Nam"
+						checked="checked" /> <spring:message code="nam" /> <form:radiobutton
+						path="gioiTinh" value="Nữ" /> <spring:message code="nu" /> <form:radiobutton
+						path="gioiTinh" value="Khác" /> <spring:message code="khac" /></td>
 			</tr>
 			<tr>
 				<td><form:label path="email">
 						<spring:message code="email" />
 					</form:label></td>
-				<td><form:input path="email" class="form-control"/><form:errors path="email" cssClass="error"/></td>
+				<td><form:input path="email" class="form-control" />
+					<form:errors path="email" cssClass="error" /></td>
 			</tr>
 			<tr>
 				<td><form:label path="sdt">
 						<spring:message code="sdt" />
 					</form:label></td>
-				<td><form:input type="number" path="sdt" class="form-control"/><form:errors path="sdt" cssClass="error"/></td>
+				<td><form:input type="number" path="sdt" class="form-control" />
+					<form:errors path="sdt" cssClass="error" /></td>
 			</tr>
 			<tr>
 				<td><form:label path="diaChi">
 						<spring:message code="diachi" />
 					</form:label></td>
-				<td><form:input path="diaChi" class="form-control"/><form:errors path="diaChi" cssClass="error"/></td>
+				<td><form:input path="diaChi" class="form-control" />
+					<form:errors path="diaChi" cssClass="error" /></td>
 			</tr>
 			<tr>
 				<td><form:label path="lophoc.maLop">
@@ -114,19 +119,19 @@
 				</td>
 			</tr>
 			<tr>
-				<td colspan="2"><input type="submit" style="background-color: limegreen;"
+				<td colspan="2"><input type="submit"
+					style="background-color: limegreen;"
 					value="<spring:message code="Submit"/>" class="btn btn-primary"
-					style="text-align: center;" /> 
-					<c:if test="${not empty sinhvien.id}">
+					style="text-align: center;" /> <c:if
+						test="${not empty sinhvien.id}">
 						<input type="reset" value="<spring:message code="reset"/>"
 							class="btn btn-primary" style="text-align: center;" />
 
-						<a  href="<%=request.getContextPath()%>/danhsach">
-						<input type="button" value="<spring:message code="back"/>"
+						<a href="<%=request.getContextPath()%>/danhsach"> <input
+							type="button" value="<spring:message code="back"/>"
 							class="btn btn-primary" style="text-align: center;" />
 						</a>
-					</c:if>
-				</td>
+					</c:if></td>
 			</tr>
 		</table>
 	</form:form>
