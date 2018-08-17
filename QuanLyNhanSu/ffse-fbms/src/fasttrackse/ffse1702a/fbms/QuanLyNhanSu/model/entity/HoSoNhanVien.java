@@ -383,8 +383,6 @@ public class HoSoNhanVien implements Serializable {
 	public void setDuAn(Set<DuAn> duAn) {
 		this.duAn = duAn;
 	}
-
-<<<<<<< HEAD:QuanLyNhanSu/ffse-fbms/src/fasttrackse/a1702/fbms/QuanLyNhanSu/model/entity/HoSoNhanVien.java
 	public Set<VaiTro> getVaiTro() {
 		return vaiTro;
 	}
@@ -392,9 +390,6 @@ public class HoSoNhanVien implements Serializable {
 	public void setVaiTro(Set<VaiTro> vaiTro) {
 		this.vaiTro = vaiTro;
 	}
-
-=======
->>>>>>> 0f6a5e1b06b2a8db2c449372715f69fd250c7e33:QuanLyNhanSu/ffse-fbms/src/fasttrackse/ffse1702a/fbms/QuanLyNhanSu/model/entity/HoSoNhanVien.java
 	@Override
 	public String toString() {
 		return "HoSoNhanVien [maNhanVien=" + maNhanVien + ", anhDaiDien=" + anhDaiDien + ", danToc=" + danToc

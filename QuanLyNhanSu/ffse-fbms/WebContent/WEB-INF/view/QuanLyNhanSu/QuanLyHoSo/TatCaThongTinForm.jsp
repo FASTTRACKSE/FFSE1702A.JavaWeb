@@ -4,6 +4,17 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%> 
+<%@page import="java.io.File"%>
+<%@page import="java.io.*"%>
+<%@page import="javax.servlet.*"%>
+<%@page import="com.itextpdf.*"%>
+<%@page import="com.itextpdf.text.Image"%>
+<%@page import="com.itextpdf.text.Document"%>
+<%@page import="com.itextpdf.text.DocumentException"%>
+<%@page import="com.itextpdf.text.pdf.PdfReader"%>
+<%@page import="com.itextpdf.text.pdf.PdfImportedPage"%>
+<%@page import="com.itextpdf.text.pdf.PdfWriter"%>
+<%@page import="com.itextpdf.text.pdf.PdfContentByte"%>
 
 <jsp:include page="/WEB-INF/view/templates/header.jsp" />
 
@@ -27,6 +38,7 @@
                   </div>
                </div>
             </div>
+            <%Document dcm = new Document();  %>
             <div class="content-header-right col-md-3 col-xs-12">
 	            <div role="group" aria-label="Button group with nested dropdown" class="dropdown nav-item float-md-right">
 	               <div role="group" class="btn-group">
@@ -64,6 +76,7 @@
 	                           </ul>
 	                        </div>
 	                     </div>
+	                     
 	                     <div class="card-body collapse in">
 	                        <div class="card-block">
 								<form:form class="form form-horizontal" method="POST" action="/ffse-fbms/ns/ho_so/gia_dinh/save" modelAttribute="tatCaThongTin">

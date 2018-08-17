@@ -1,4 +1,4 @@
-package fasttrackse.a1702.fbms.QuanLyNhanSu.controller;
+package fasttrackse.ffse1702a.fbms.QuanLyNhanSu.controller;
 
 import java.util.Map;
 
@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import fasttrackse.a1702.fbms.QuanLyNhanSu.model.entity.HoSoNhanVien;
-import fasttrackse.a1702.fbms.QuanLyNhanSu.service.QuanLyHoSoService;
-import fasttrackse.a1702.fbms.QuanLyNhanSu.service.ThongTinKinhNghiemService;
+import fasttrackse.ffse1702a.fbms.QuanLyNhanSu.model.entity.HoSoNhanVien;
+import fasttrackse.ffse1702a.fbms.QuanLyNhanSu.service.QuanLyHoSoService;
+import fasttrackse.ffse1702a.fbms.QuanLyNhanSu.service.ThongTinKinhNghiemService;
 
 @Controller
 public class TatCaThongTinController {
