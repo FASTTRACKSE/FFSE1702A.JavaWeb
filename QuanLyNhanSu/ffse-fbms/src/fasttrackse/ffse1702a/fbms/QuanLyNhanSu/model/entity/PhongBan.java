@@ -56,5 +56,6 @@ public class PhongBan implements Serializable {
 	public void setHoSoNhanViens(List<HoSoNhanVien> hoSoNhanViens) {
 		this.hoSoNhanViens = hoSoNhanViens;
 	}
+	
 
 }

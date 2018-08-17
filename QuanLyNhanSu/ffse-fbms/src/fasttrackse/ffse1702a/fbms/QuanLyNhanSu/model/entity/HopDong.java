@@ -27,7 +27,7 @@ public class HopDong implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "ma_hop_dong", unique = true, nullable = false, length = 30)
+	@Column(name = "ma_hop_dong", unique = true, nullable = false)
 	private int maHopDong;
 
 	@Column(name = "luong_thang_13", nullable = false)
@@ -61,7 +61,6 @@ public class HopDong implements Serializable {
 
 	public HopDong() {
 	}
-
 	public int getMaHopDong() {
 		return this.maHopDong;
 	}
@@ -128,7 +127,7 @@ public class HopDong implements Serializable {
 
 	@Override
 	public String toString() {
-		return "HopDong [maHopDong=" + maHopDong + ", luongThang13=" + luongThang13 + ", ngayKetThuc=" + ngayKetThuc
+		return "HopDong [maHopDong=" + maHopDong + ", maNhanVien=" + hoSoNhanVien.getMaNhanVien() +", luongThang13=" + luongThang13 + ", ngayKetThuc=" + ngayKetThuc
 				+ ", ngayKyKet=" + ngayKyKet + ", soNgayPhep=" + soNgayPhep + ", trangThai=" + trangThai
 				+ ", loaiHopDong=" + loaiHopDong + "]";
 	}

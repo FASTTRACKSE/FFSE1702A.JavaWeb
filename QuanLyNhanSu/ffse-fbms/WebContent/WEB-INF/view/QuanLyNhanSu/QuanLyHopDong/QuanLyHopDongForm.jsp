@@ -129,9 +129,13 @@
 												<div class="col-md-4">
 													<div class="form-group">
 														<label>Mã hợp đồng</label>
-														<form:input class="form-control" path="maHopDong"
-															placeholder="Mã Hợp Đồng" />
-										      			<form:hidden path="hoSoNhanVien.maNhanVien" />
+														<form:input class="form-control" path="maHopDong" value="${maHopDongFormat}"  readonly="true" disabled="true"/>
+															<fmt:formatNumber type="number" var="maHopDongFormat" minIntegerDigits="5" groupingUsed="false" value="${quanLyHopDong.maHopDong}" />
+										              
+														<c:if test="${empty maHopDong}">
+															
+														</c:if>
+										      			<form:hidden path="hoSoNhanVien.maNhanVien" value="${hoSoNhanVien.maNhanVien}" />
 													</div>
 												</div>
 												<div class="col-md-4">
