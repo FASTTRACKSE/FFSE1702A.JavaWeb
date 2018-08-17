@@ -12,7 +12,8 @@ public interface QuanLyHoSoService {
 
 	public List<HoSoNhanVien> getAllHoSo();
 
-	public List<HoSoNhanVien> getAllHoSo(int INITIAL, int RECORD_SIZE);
+	public List<HoSoNhanVien> getAllHoSo(int INITIAL, int RECORD_SIZE, String GLOBAL_SEARCH_TERM, String[] COLUMN_NAME,
+			String[] DIRECTION);
 
 	public void addHoSoNhanVien(HoSoNhanVien hsnv);
 

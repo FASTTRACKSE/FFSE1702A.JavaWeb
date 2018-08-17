@@ -383,22 +383,21 @@ public class HoSoNhanVien implements Serializable {
 	public void setDuAn(Set<DuAn> duAn) {
 		this.duAn = duAn;
 	}
+
 	public Set<VaiTro> getVaiTro() {
 		return vaiTro;
 	}
 
-<<<<<<< HEAD
 	public String toJson() {
 		return "[\"" + maNhanVien + "\",\"" + anhDaiDien + "\",\"" + hoDem + "\",\"" + ten + "\",\"" + gioiTinh
 				+ "\",\"" + phongBan.getTenPhongBan() + "\",\"" + chucDanh.getTenChucDanh() + "\",\"" + trangThai
 				+ "\"]";
 	}
 
-=======
 	public void setVaiTro(Set<VaiTro> vaiTro) {
 		this.vaiTro = vaiTro;
 	}
->>>>>>> 1e27c34060736cecf05671a6c4da20072f513958
+
 	@Override
 	public String toString() {
 		return "HoSoNhanVien [maNhanVien=" + maNhanVien + ", anhDaiDien=" + anhDaiDien + ", danToc=" + danToc
@@ -407,8 +406,7 @@ public class HoSoNhanVien implements Serializable {
 				+ ", soCmnd=" + soCmnd + ", soDienThoai=" + soDienThoai + ", ten=" + ten + ", trangThai=" + trangThai
 				+ ", phongBan=" + phongBan + ", chucDanh=" + chucDanh + ", quocTich=" + quocTich + ", tinhTrangHonNhan="
 				+ tinhTrangHonNhan + ", hopDongs=" + hopDongs + ", duAns=" + duAn + ", thongTinBangCaps="
-				+ thongTinBangCaps + ", vaiTro="
-						+ vaiTro + ", thongTinGiaDinhs=" + thongTinGiaDinhs + "]";
+				+ thongTinBangCaps + ", vaiTro=" + vaiTro + ", thongTinGiaDinhs=" + thongTinGiaDinhs + "]";
 	}
 
 }

@@ -76,13 +76,19 @@ public class QuanLyHoSoDAOImpl implements QuanLyHoSoDAO {
 
 	@SuppressWarnings({ "unchecked" })
 	@Override
-	public List<HoSoNhanVien> getAllHoSo(int INITIAL, int RECORD_SIZE) {
+	public List<HoSoNhanVien> getAllHoSo(int INITIAL, int RECORD_SIZE, String GLOBAL_SEARCH_TERM, String[] COLUMN_NAME,
+			String[] DIRECTION) {
 
 		Session session = this.sessionFactory.getCurrentSession();
-		List<HoSoNhanVien> listHoSo = session.createQuery("from HoSoNhanVien").setFirstResult(INITIAL)
-				.setMaxResults(RECORD_SIZE).list();
+		Query query = session.createQuery("from HoSoNhanVien").setFirstResult(INITIAL).setMaxResults(RECORD_SIZE);
+		for (String sortDirection : DIRECTION) {
+			if (!sortDirection.equals("asc")) {
+				// query.addOrder(Order.asc("maSinhVien")).list();
+			}
+		}
+		List<HoSoNhanVien> listHoSo1 = query.list();
 
-		return listHoSo;
+		return listHoSo1;
 	}
 
 }

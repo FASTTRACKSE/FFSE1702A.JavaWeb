@@ -37,30 +37,13 @@ public class Test {
 		String[] columnNames = { "ma_nhan_vien", "anh_dai_dien", "ho_dem", "ten", "gioi_tinh", "ma_phong_ban",
 				"ma_chuc_danh", "trang_thai" };
 
-		int listDisplayAmount = 10;
-		int start = 0;
-		int column = 0;
-		String dir = "asc";
 		String pageNo = request.getParameter("iDisplayStart");
 		String pageSize = request.getParameter("iDisplayLength");
 
-		if (pageNo != null) {
-			start = Integer.parseInt(pageNo);
-			if (start < 0) {
-				start = 0;
-			}
-		}
-		if (pageSize != null) {
-			listDisplayAmount = Integer.parseInt(pageSize);
-			if (listDisplayAmount < 10 || listDisplayAmount > 100) {
-				listDisplayAmount = 10;
-			}
-		}
-
 		int totalRecords = Integer.parseInt(quanLyHoSoService.getAutoId()) - 1;
 
-		INITIAL = start;
-		RECORD_SIZE = listDisplayAmount;
+		INITIAL = Integer.parseInt(pageNo);
+		RECORD_SIZE = Integer.parseInt(pageSize);
 		GLOBAL_SEARCH_TERM = request.getParameter("sSearch");
 
 		int colLength = columnNames.length;
@@ -77,7 +60,8 @@ public class Test {
 			}
 		}
 
-		List<HoSoNhanVien> list = quanLyHoSoService.getAllHoSo(INITIAL, RECORD_SIZE);
+		List<HoSoNhanVien> list = quanLyHoSoService.getAllHoSo(INITIAL, RECORD_SIZE, GLOBAL_SEARCH_TERM, COLUMN_NAME,
+				DIRECTION);
 
 		String sql = "from HoSoNhanVien ";
 		String globeSearch = "";

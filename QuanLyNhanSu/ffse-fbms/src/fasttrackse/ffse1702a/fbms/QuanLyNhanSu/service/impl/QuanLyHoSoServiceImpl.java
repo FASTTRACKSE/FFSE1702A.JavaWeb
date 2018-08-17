@@ -61,7 +61,8 @@ public class QuanLyHoSoServiceImpl implements QuanLyHoSoService {
 
 	@Override
 	@Transactional
-	public List<HoSoNhanVien> getAllHoSo(int INITIAL, int RECORD_SIZE) {
-		return this.quanLyHoSoDAO.getAllHoSo(INITIAL, RECORD_SIZE);
+	public List<HoSoNhanVien> getAllHoSo(int INITIAL, int RECORD_SIZE, String GLOBAL_SEARCH_TERM, String[] COLUMN_NAME,
+			String[] DIRECTION) {
+		return this.quanLyHoSoDAO.getAllHoSo(INITIAL, RECORD_SIZE, GLOBAL_SEARCH_TERM, COLUMN_NAME, DIRECTION);
 	}
 }
