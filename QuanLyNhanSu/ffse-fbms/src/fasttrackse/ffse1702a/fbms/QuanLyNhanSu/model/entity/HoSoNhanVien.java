@@ -384,6 +384,12 @@ public class HoSoNhanVien implements Serializable {
 		this.duAn = duAn;
 	}
 
+	public String toJson() {
+		return "[\"" + maNhanVien + "\",\"" + anhDaiDien + "\",\"" + hoDem + "\",\"" + ten + "\",\"" + gioiTinh
+				+ "\",\"" + phongBan.getTenPhongBan() + "\",\"" + chucDanh.getTenChucDanh() + "\",\"" + trangThai
+				+ "\"]";
+	}
+
 	@Override
 	public String toString() {
 		return "HoSoNhanVien [maNhanVien=" + maNhanVien + ", anhDaiDien=" + anhDaiDien + ", danToc=" + danToc

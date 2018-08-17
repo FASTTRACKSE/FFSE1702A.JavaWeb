@@ -216,6 +216,13 @@
 	                                    				$('#confirm-delete .close').click();
 		                                    		});
 	    	                                    });
+	                                    		var i = $('.repeater-item').length;
+	                                    		for (j = 0; j < i; j++) { 
+	                                    			selectId = "#listThongTinGiaDinh" + j + "\\.id";
+	                                    			if ($(selectId).val() < 0) {
+	                                    				$("#repeater-item" + j + " .list-row").remove();
+		                                    		}
+	                                    		}
 	                                    	};
 	                                    	function add_form(ele) {
 	                                    		var countForm = $('.repeater-item').length;

@@ -58,4 +58,10 @@ public class QuanLyHoSoServiceImpl implements QuanLyHoSoService {
 	public String getAutoId() {
 		return this.quanLyHoSoDAO.getAutoId();
 	}
+
+	@Override
+	@Transactional
+	public List<HoSoNhanVien> getAllHoSo(int INITIAL, int RECORD_SIZE) {
+		return this.quanLyHoSoDAO.getAllHoSo(INITIAL, RECORD_SIZE);
+	}
 }

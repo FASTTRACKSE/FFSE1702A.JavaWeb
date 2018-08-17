@@ -28,9 +28,11 @@ public class ThongTinGiaDinhController {
 
 	@RequestMapping(value = "/ns/ho_so/gia_dinh/edit/{maNhanVien}", method = RequestMethod.GET)
 	public String editThongTinGiaDinh(@PathVariable("maNhanVien") int maNhanVien, Model model) {
+
 		HoSoNhanVien hsnv = this.quanLyHoSoService.getHoSoNhanVienById(maNhanVien);
 		ThongTinGiaDinhForm thongTinGiaDinhForm = new ThongTinGiaDinhForm(hsnv.getThongTinGiaDinhs());
 		List<ThongTinGiaDinh> listThongTinGiaDinh = thongTinGiaDinhForm.getListThongTinGiaDinh();
+
 		if (listThongTinGiaDinh.size() == 0) {
 			ThongTinGiaDinh ttgd = new ThongTinGiaDinh();
 			ttgd.setHoSoNhanVien(hsnv);
@@ -47,26 +49,29 @@ public class ThongTinGiaDinhController {
 			@ModelAttribute("thongTinGiaDinhForm") @Valid ThongTinGiaDinhForm thongTinGiaDinhForm,
 			BindingResult bindingResult, Model model) {
 
-		if (bindingResult.hasErrors()) {
+		List<ThongTinGiaDinh> listThongTinGiaDinh = thongTinGiaDinhForm.getListThongTinGiaDinh();
+
+		List<String> errorList = thongTinGiaDinhService.getErrorList(bindingResult);
+		System.out.println("errorlist" + errorList);
+		List<String> deleteList = thongTinGiaDinhService.getDeleteList(listThongTinGiaDinh);
+		System.out.println("deletelist" + deleteList);
+
+		if (bindingResult.hasErrors() && !errorList.equals(deleteList)) {
 			int maNhanVien = thongTinGiaDinhForm.getListThongTinGiaDinh().get(0).getHoSoNhanVien().getMaNhanVien();
 			HoSoNhanVien hsnv = this.quanLyHoSoService.getHoSoNhanVienById(maNhanVien);
 			model.addAttribute("hoSoNhanVien", hsnv);
 			return "QuanLyNhanSu/QuanLyHoSo/ThongTinGiaDinhForm";
 		}
 
-		List<ThongTinGiaDinh> listThongTinGiaDinh = thongTinGiaDinhForm.getListThongTinGiaDinh();
-
-		if (listThongTinGiaDinh != null && listThongTinGiaDinh.size() > 0) {
-			for (ThongTinGiaDinh ttgd : listThongTinGiaDinh) {
-				int id = ttgd.getId();
-				if (id == 0) {
-					this.thongTinGiaDinhService.addThongTinGiaDinh(ttgd);
-				} else if (id < 0) {
-					System.err.println("xóaaaaaaaaaaaaaa");
-					// this.thongTinGiaDinhService.deleteThongTinGiaDinh(Math.abs(id));
-				} else {
-					this.thongTinGiaDinhService.updateThongTinGiaDinh(ttgd);
-				}
+		for (ThongTinGiaDinh ttgd : listThongTinGiaDinh) {
+			int id = ttgd.getId();
+			if (id == 0) {
+				this.thongTinGiaDinhService.addThongTinGiaDinh(ttgd);
+			} else if (id < 0) {
+				System.err.println("xóaaaaaaaaaaaaaa");
+				// this.thongTinGiaDinhService.deleteThongTinGiaDinh(Math.abs(id));
+			} else {
+				this.thongTinGiaDinhService.updateThongTinGiaDinh(ttgd);
 			}
 		}
 

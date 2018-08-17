@@ -74,4 +74,15 @@ public class QuanLyHoSoDAOImpl implements QuanLyHoSoDAO {
 		return index;
 	}
 
+	@SuppressWarnings({ "unchecked" })
+	@Override
+	public List<HoSoNhanVien> getAllHoSo(int INITIAL, int RECORD_SIZE) {
+
+		Session session = this.sessionFactory.getCurrentSession();
+		List<HoSoNhanVien> listHoSo = session.createQuery("from HoSoNhanVien").setFirstResult(INITIAL)
+				.setMaxResults(RECORD_SIZE).list();
+
+		return listHoSo;
+	}
+
 }

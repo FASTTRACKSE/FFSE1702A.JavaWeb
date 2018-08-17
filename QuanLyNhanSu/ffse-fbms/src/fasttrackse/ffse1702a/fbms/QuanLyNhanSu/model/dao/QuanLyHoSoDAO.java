@@ -12,6 +12,8 @@ public interface QuanLyHoSoDAO {
 
 	public List<HoSoNhanVien> getAllHoSo();
 
+	public List<HoSoNhanVien> getAllHoSo(int INITIAL, int RECORD_SIZE);
+
 	public void addHoSoNhanVien(HoSoNhanVien hsnv);
 
 	public void updateHoSoNhanVien(HoSoNhanVien hsnv);
