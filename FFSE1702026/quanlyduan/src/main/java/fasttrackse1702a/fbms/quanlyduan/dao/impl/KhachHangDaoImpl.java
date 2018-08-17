@@ -30,7 +30,7 @@ public class KhachHangDaoImpl implements KhachHangDao {
 	@Override
 	public List<KhachHang> getAll() {
 		Session session=sessionFactory.getCurrentSession();
-		return session.createQuery("from KhachHang",KhachHang.class).list();
+		return session.createQuery("from KhachHang where isDelete =0",KhachHang.class).list();
 	}
 	@Override
 	public void update(KhachHang khachHang) {
@@ -41,6 +41,8 @@ public class KhachHangDaoImpl implements KhachHangDao {
 	@Override
 	public void delete(String maKhachHang) {
 		Session session=sessionFactory.getCurrentSession();
-		session.delete(session.get(KhachHang.class,maKhachHang));	
+		KhachHang khachHang=session.get(KhachHang.class,maKhachHang);
+		khachHang.setIsDelete(1);
+		session.update(khachHang);	
 	}
 }

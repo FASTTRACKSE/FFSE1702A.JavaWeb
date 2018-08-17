@@ -383,7 +383,13 @@ public class HoSoNhanVien implements Serializable {
 	public void setDuAn(Set<DuAn> duAn) {
 		this.duAn = duAn;
 	}
+	public Set<VaiTro> getVaiTro() {
+		return vaiTro;
+	}
 
+	public void setVaiTro(Set<VaiTro> vaiTro) {
+		this.vaiTro = vaiTro;
+	}
 	@Override
 	public String toString() {
 		return "HoSoNhanVien [maNhanVien=" + maNhanVien + ", anhDaiDien=" + anhDaiDien + ", danToc=" + danToc
@@ -392,7 +398,8 @@ public class HoSoNhanVien implements Serializable {
 				+ ", soCmnd=" + soCmnd + ", soDienThoai=" + soDienThoai + ", ten=" + ten + ", trangThai=" + trangThai
 				+ ", phongBan=" + phongBan + ", chucDanh=" + chucDanh + ", quocTich=" + quocTich + ", tinhTrangHonNhan="
 				+ tinhTrangHonNhan + ", hopDongs=" + hopDongs + ", duAns=" + duAn + ", thongTinBangCaps="
-				+ thongTinBangCaps + ", thongTinGiaDinhs=" + thongTinGiaDinhs + "]";
+				+ thongTinBangCaps + ", vaiTro="
+						+ vaiTro + ", thongTinGiaDinhs=" + thongTinGiaDinhs + "]";
 	}
 
 }

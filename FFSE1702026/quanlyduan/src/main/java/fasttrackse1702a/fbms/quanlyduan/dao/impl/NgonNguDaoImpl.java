@@ -30,7 +30,7 @@ public class NgonNguDaoImpl implements NgonNguDao {
 	@Override
 	public List<NgonNgu> getAll() {
 		Session session=sessionFactory.getCurrentSession();
-		return session.createQuery("from NgonNgu",NgonNgu.class).list();
+		return session.createQuery("from NgonNgu where isDelete =0",NgonNgu.class).list();
 	}
 	@Override
 	public void update(NgonNgu ngonNgu) {
@@ -41,7 +41,9 @@ public class NgonNguDaoImpl implements NgonNguDao {
 	@Override
 	public void delete(String maNgonNgu) {
 		Session session=sessionFactory.getCurrentSession();
-		session.delete(session.get(NgonNgu.class,maNgonNgu));	
+		NgonNgu ngonngu=session.get(NgonNgu.class,maNgonNgu);
+		ngonngu.setIsDelete(1);
+		session.update(ngonngu);	
 	}
 	
 

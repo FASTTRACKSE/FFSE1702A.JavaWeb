@@ -10,6 +10,7 @@
 	type="text/javascript"></script>
 <script src="<c:url value="/resources/js/core/app.js" />"
 	type="text/javascript"></script>
+<script src="<c:url value="/resources/js/scripts/modal/components-modal.js"/>" type="text/javascript"></script>
 <!-- END STACK JS-->
 <!-- BEGIN PAGE LEVEL JS-->
 <!-- END PAGE LEVEL JS-->

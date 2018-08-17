@@ -22,6 +22,8 @@ public class Framework {
 	@Column(name="ten_framework")
 	@NotEmpty
 	private String tenFramework;
+	@Column(name="is_delete")
+	private int isDelete;
 	
 	@ManyToMany(fetch = FetchType.EAGER,mappedBy="framework",targetEntity=DuAn.class)
 	private Set<DuAn> duAn;
@@ -52,6 +54,13 @@ public class Framework {
 	public void setDuAn(Set<DuAn> duAn) {
 		this.duAn = duAn;
 	}
+	public int getIsDelete() {
+		return isDelete;
+	}
+	public void setIsDelete(int isDelete) {
+		this.isDelete = isDelete;
+	}
+	
 	
 	
 }

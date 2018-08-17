@@ -31,7 +31,7 @@ public class TinhTrangDaoImpl implements TinhTrangDao {
 	@Override
 	public List<TinhTrang> getAll() {
 		Session session=sessionFactory.getCurrentSession();
-		return session.createQuery("from TinhTrang",TinhTrang.class).list();
+		return session.createQuery("from TinhTrang where isDelete =0",TinhTrang.class).list();
 	}
 	@Override
 	public void update(TinhTrang tinhTrang) {
@@ -42,7 +42,9 @@ public class TinhTrangDaoImpl implements TinhTrangDao {
 	@Override
 	public void delete(String maTinhTrang) {
 		Session session=sessionFactory.getCurrentSession();
-		session.delete(session.get(TinhTrang.class,maTinhTrang));	
+		TinhTrang tinhTrang=session.get(TinhTrang.class,maTinhTrang);
+		tinhTrang.setIsDelete(1);
+		session.update(tinhTrang);	
 	}
 	
 
