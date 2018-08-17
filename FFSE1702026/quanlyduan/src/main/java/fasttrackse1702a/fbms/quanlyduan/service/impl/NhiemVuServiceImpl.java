@@ -32,7 +32,7 @@ public class NhiemVuServiceImpl implements NhiemVuService {
 	}
 
 	@Override
-	public NhiemVu getById(String maDuAn,String maNhanVien) {
+	public NhiemVu getById(int maDuAn,String maNhanVien) {
 	
 		return this.nhiemVuDao.getById(maDuAn,maNhanVien);
 	}

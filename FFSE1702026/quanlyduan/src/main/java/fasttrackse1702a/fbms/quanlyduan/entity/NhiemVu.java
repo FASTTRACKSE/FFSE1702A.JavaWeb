@@ -14,16 +14,17 @@ public class NhiemVu implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id
 	@Column(name="ma_du_an")
-	private String maDuAn;
+	private int maDuAn;
 	@Id
 	@Column(name="ma_nhan_vien")
 	private String maNhanVien;
 	@Column(name="ma_vai_tro")
 	private String maVaiTro;
-	public String getMaDuAn() {
+	
+	public int getMaDuAn() {
 		return maDuAn;
 	}
-	public void setMaDuAn(String maDuAn) {
+	public void setMaDuAn(int maDuAn) {
 		this.maDuAn = maDuAn;
 	}
 	public String getMaNhanVien() {

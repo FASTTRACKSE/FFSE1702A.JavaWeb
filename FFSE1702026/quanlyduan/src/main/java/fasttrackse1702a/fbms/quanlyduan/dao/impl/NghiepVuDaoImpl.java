@@ -8,50 +8,43 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import fasttrackse1702a.fbms.quanlyduan.dao.DuAnDao;
-import fasttrackse1702a.fbms.quanlyduan.entity.DuAn;
+import fasttrackse1702a.fbms.quanlyduan.dao.NghiepVuDao;
+import fasttrackse1702a.fbms.quanlyduan.entity.NghiepVu;
 
-@Transactional
 @Repository
-public class DuAnDaoImpl implements DuAnDao {
-	
+@Transactional
+public class NghiepVuDaoImpl implements NghiepVuDao {
 	@Autowired
 	SessionFactory sessionFactory;
+	@Override
+	public void save(NghiepVu nghiepVu) {
+		Session session=sessionFactory.getCurrentSession();
+		session.save(nghiepVu);
+		
+	}
+	@Override
+	public NghiepVu getById(String maNghiepVu) {
+		Session session=sessionFactory.getCurrentSession();
+		return session.get(NghiepVu.class,maNghiepVu);		
+	}
+	@Override
+	public List<NghiepVu> getAll() {
+		Session session=sessionFactory.getCurrentSession();
+		return session.createQuery("from NghiepVu where isDelete = 0",NghiepVu.class).list();
+	}
+	@Override
+	public void update(NghiepVu nghiepVu) {
+		Session session=sessionFactory.getCurrentSession();
+		session.update(nghiepVu);
+		
+	}
+	@Override
+	public void delete(String maNghiepVu) {
+		Session session=sessionFactory.getCurrentSession();
+		NghiepVu nghiepVu=session.get(NghiepVu.class,maNghiepVu);
+		nghiepVu.setIsDelete(1);
+		session.update(nghiepVu);	
+	}
 	
-	
-	@Override
-	public void save(DuAn duAn) {
-		Session session=sessionFactory.getCurrentSession();
-		session.save(duAn);
-		
-	}
-
-	@Override
-	public DuAn getById(int maDuAn) {
-		Session session=sessionFactory.getCurrentSession();
-		return session.get(DuAn.class,maDuAn);
-	}
-
-	@Override
-	public List<DuAn> getAll() {
-		Session session=sessionFactory.getCurrentSession();
-		return session.createQuery("from DuAn where isDelete =0",DuAn.class).list();
-	}
-
-	@Override
-	public void update(DuAn duAn) {
-		Session session=sessionFactory.getCurrentSession();
-		session.update(duAn);
-		
-	}
-
-	@Override
-	public void delete(String maDuAn) {
-		Session session=sessionFactory.getCurrentSession();
-		DuAn duan=session.get(DuAn.class,maDuAn);	
-		duan.setIsDelete(1);
-		session.update(duan);	
-		
-	}
 
 }
