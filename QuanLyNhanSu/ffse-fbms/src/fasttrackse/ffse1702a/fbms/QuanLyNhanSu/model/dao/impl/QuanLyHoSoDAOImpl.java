@@ -2,8 +2,10 @@ package fasttrackse.ffse1702a.fbms.QuanLyNhanSu.model.dao.impl;
 
 import java.util.List;
 
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Order;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -80,15 +82,19 @@ public class QuanLyHoSoDAOImpl implements QuanLyHoSoDAO {
 			String[] DIRECTION) {
 
 		Session session = this.sessionFactory.getCurrentSession();
-		Query query = session.createQuery("from HoSoNhanVien").setFirstResult(INITIAL).setMaxResults(RECORD_SIZE);
-		for (String sortDirection : DIRECTION) {
-			if (!sortDirection.equals("asc")) {
-				// query.addOrder(Order.asc("maSinhVien")).list();
+		Criteria criteria = (Criteria) session.createQuery("from HoSoNhanVien").setFirstResult(INITIAL)
+				.setMaxResults(RECORD_SIZE);
+		int size = DIRECTION.length;
+		for (int i = 0; i < size; i++) {
+			if (!DIRECTION[i].equals("asc")) {
+				criteria.addOrder(Order.asc(COLUMN_NAME[i]));
+			} else {
+				criteria.addOrder(Order.desc(COLUMN_NAME[i]));
 			}
 		}
-		List<HoSoNhanVien> listHoSo1 = query.list();
+		List<HoSoNhanVien> listHoSo = criteria.list();
 
-		return listHoSo1;
+		return listHoSo;
 	}
 
 }
