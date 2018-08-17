@@ -42,5 +42,9 @@ public class VaiTro {
 	public void setHoSoNhanVien(Set<HoSoNhanVien> hoSoNhanVien) {
 		this.hoSoNhanVien = hoSoNhanVien;
 	}
+	@Override
+	public String toString() {
+		return "VaiTro [maVaiTro=" + maVaiTro + ", tenVaiTro=" + tenVaiTro + "]";
+	}
 	
 }

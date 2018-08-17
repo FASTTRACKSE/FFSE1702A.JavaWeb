@@ -9,16 +9,20 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import fasttrackse1702a.fbms.quanlyduan.entity.Database;
+import fasttrackse1702a.fbms.quanlyduan.entity.KhachHang;
 import fasttrackse1702a.fbms.quanlyduan.service.DatabaseService;
+import fasttrackse1702a.fbms.quanlyduan.service.KhachHangService;
 
 @Controller
 @RequestMapping("/database")
 public class DatabaseController {
 	@Autowired
 	DatabaseService databaseService;
-
+	
 	@RequestMapping(value = { "/create" })
 	public String index(ModelMap mm) {
 		mm.put("view", "database/them.jsp");
@@ -27,7 +31,7 @@ public class DatabaseController {
 	}
 
 	@RequestMapping(value = { "/create" }, method = RequestMethod.POST)
-	public String create(ModelMap mm,@ModelAttribute("database") @Validated Database database, BindingResult result) {
+	public String create(ModelMap mm,@ModelAttribute("database") @Validated Database database, BindingResult result,final RedirectAttributes redirectAttributes) {
 		
 		
 		if(result.hasErrors()) {
@@ -35,7 +39,9 @@ public class DatabaseController {
 			return "layout";
 			
 		}
+		 
 		databaseService.save(database);
+		redirectAttributes.addFlashAttribute("message","Added successfully.");
 		return "redirect:list";
 	}
 	

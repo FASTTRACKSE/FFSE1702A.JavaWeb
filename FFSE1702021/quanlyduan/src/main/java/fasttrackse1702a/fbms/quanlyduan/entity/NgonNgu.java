@@ -26,8 +26,10 @@ public class NgonNgu implements Serializable {
 	@NotEmpty
 	@Column(name="ten_ngon_ngu")
 	private String tenNgonNgu;
+	
 	@ManyToMany(targetEntity = DuAn.class, mappedBy = "ngonNgu", fetch = FetchType.EAGER)
 	private List<DuAn> duAn;
+	
 	public NgonNgu() {
 		super();
 	}

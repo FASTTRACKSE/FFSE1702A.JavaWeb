@@ -29,7 +29,7 @@ public class VaiTroDaoImpl implements VaiTroDao {
 	@Override
 	public List<VaiTro> getAll() {
 		Session session=sessionFactory.getCurrentSession();
-		return session.createQuery("from VaiTro",VaiTro.class).list();
+		return session.createQuery("from VaiTro where isDelete =0",VaiTro.class).list();
 	}
 	@Override
 	public void update(VaiTro vaitro) {
@@ -40,7 +40,9 @@ public class VaiTroDaoImpl implements VaiTroDao {
 	@Override
 	public void delete(String maVaiTro) {
 		Session session=sessionFactory.getCurrentSession();
-		session.delete(session.get(VaiTro.class,maVaiTro));	
+		VaiTro vaiTro=session.get(VaiTro.class,maVaiTro);
+		vaiTro.setIsDelete(1);
+		session.update(vaiTro);
 	}
 	
 

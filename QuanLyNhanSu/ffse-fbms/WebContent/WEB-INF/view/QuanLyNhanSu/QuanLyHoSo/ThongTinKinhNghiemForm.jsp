@@ -113,17 +113,78 @@
 								      <h4 class="form-section"><i class="ft-user"></i> <spring:message code="label.thongTinKinhNghiem" /></h4>
 								      	<div class="thong-tin-kinh-nghiem">
 									      	<div class="repeater-list">
-									      	<!-- List kinh nghiệm ở đây -->
+									      		<div class="row">
+									      			<div class="col-md-4">
+									      				<div class="form-group">
+											               <label><spring:message code="label.hoDem" /></label>
+											               <div class="form-control well">${hoSoNhanVien.hoDem}</div>
+										            	</div>
+									      			</div>
+									      			<div class="col-md-4">
+									      				<div class="form-group">
+											               <label><spring:message code="label.ten" /></label>
+											               <div class="form-control well">${hoSoNhanVien.ten}</div>
+										            	</div>
+									      			</div>
+									      			<c:forEach items="${hoSoNhanVien.duAn}" var="duAn" varStatus="status">
+									      				<div class="col-md-4">
+										      				<div class="form-group">
+												               <label><spring:message code="label.maDuAn" /></label>
+												               <div class="form-control well">${duAn.maDuAn}</div>
+											            	</div>
+										      			</div>
+										      			<div class="col-md-6">
+										      				<div class="form-group">
+												               <label><spring:message code="label.tenDuAn" /></label>
+												               <div style="word-wrap: break-word;" class="form-control well">${duAn.tenDuAn}</div>
+											            	</div>
+										      			</div>
+										      			<div class="col-md-6">
+										      				<div class="form-group">
+												               <label><spring:message code="label.vaiTroDuAn" /></label>
+												               <div style="word-wrap: break-word;" class="form-control well">
+												               		<c:forEach items="${hoSoNhanVien.vaiTro}" var="vaiTro" varStatus="stt">
+												               			<span class="tag tag-default tag-info">${vaiTro.tenVaiTro }</span>   			
+												               		</c:forEach>
+												               </div>
+											            	</div>
+										      			</div>
+										      			<div class="col-md-12">
+										      				<div class="form-group">
+												               <label><spring:message code="label.moTaDuAn" /></label>
+												               <div style="word-wrap: break-word;" class="form-control well">${duAn.moTaDuAn}</div>
+											            	</div>
+										      			</div>
+										      			<div class="col-md-4">
+										      				<div class="form-group">
+												               <label><spring:message code="label.ngonNguDuAn" /></label>
+												               <div style="word-wrap: break-word;" class="form-control well"><c:forEach items="${duAn.ngonNgu}" var="ngonNgu" varStatus="stt">
+												               		<span class="tag tag-default tag-info">${ngonNgu.tenNgonNgu }</span>		   			
+											               		</c:forEach></div>
+											            	</div>
+										      			</div>
+										      			<div class="col-md-4">
+										      				<div class="form-group">
+												               <label><spring:message code="label.framework" /></label>
+												               <div style="word-wrap: break-word;" class="form-control">
+												               <c:forEach items="${duAn.framework}" var="framework" varStatus="stt">
+												               		<span class="tag tag-default tag-info">${framework.tenFramework }</span>	
+												               	</c:forEach></div>
+											            	</div>
+										      			</div>
+										      			<div class="col-md-4">
+										      				<div class="form-group">
+												               <label><spring:message code="label.database" /></label>
+												               <div style="word-wrap: break-word;" class="form-control">
+												               <c:forEach items="${duAn.database}" var="database" varStatus="stt">
+												               		<span class="tag tag-default tag-info">${database.tenDatabase }</span>	
+												               	</c:forEach></div>
+											            	</div>
+										      			</div>
+									      			</c:forEach>
+									      		</div>
 									  		</div>
 								   		</div>
-								   </div>
-								   <div class="form-actions center">
-								      <button type="button" class="btn btn-warning mr-1">
-								         <i class="ft-x"></i> <spring:message code="label.huy" />
-								      </button>
-								      <button type="submit" class="btn btn-primary">
-								         <i class="fa fa-check-square-o"></i> <spring:message code="label.luu" />
-								      </button>
 								   </div>
 								</form:form>
 	                        </div>

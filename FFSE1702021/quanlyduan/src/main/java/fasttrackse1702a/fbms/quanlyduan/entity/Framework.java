@@ -1,8 +1,12 @@
 package fasttrackse1702a.fbms.quanlyduan.entity;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
@@ -19,7 +23,8 @@ public class Framework {
 	@NotEmpty
 	private String tenFramework;
 	
-	
+	@ManyToMany(targetEntity = DuAn.class, mappedBy = "framework", fetch = FetchType.EAGER)
+	private List<DuAn> duAn;
 	public Framework() {
 		super();
 	}
@@ -39,6 +44,12 @@ public class Framework {
 	}
 	public void setTenFramework(String tenFramework) {
 		this.tenFramework = tenFramework;
+	}
+	public List<DuAn> getDuAn() {
+		return duAn;
+	}
+	public void setDuAn(List<DuAn> duAn) {
+		this.duAn = duAn;
 	}
 	
 }

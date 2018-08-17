@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+
 <section class="input-validation">
 	<div class="row">
 		<div class="col-md-12">
@@ -45,7 +46,7 @@
 									
 									
 									<div class="text-xs-right">
-										<button type="submit" class="btn btn-success">Submit <i class="fa fa-thumbs-o-up position-right"></i></button>
+										<button type="submit"  class="btn btn-success">Submit <i class="fa fa-thumbs-o-up position-right"></i></button>
 										<button type="reset" class="btn btn-danger">Reset <i class="fa fa-refresh position-right"></i></button>
 									</div>
 								</div>

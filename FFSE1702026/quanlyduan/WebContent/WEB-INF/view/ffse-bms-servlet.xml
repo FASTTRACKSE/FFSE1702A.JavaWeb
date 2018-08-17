@@ -51,6 +51,8 @@
 		   <props>
 		      <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
 		      <prop key="hibernate.show_sql">true</prop>
+		      <prop key="hibernate.validator.autoregister_listeners">false</prop>
+		      
 		   </props>
 		</property>
    </bean>	  

@@ -19,6 +19,13 @@
                 </div>
             </div>
             <div class="card-body collapse in">
+            <!-- phần view flashmessage -->
+            <c:if test="${message !=null }">
+            <div id="message" class="alerl alerl-success mb-2" role="alerl">
+            ${message }
+            </div>
+            </c:if>
+
                 <div class="card-block card-dashboard">
                     
                     <p><span class="text-bold-600"><spring:message code="database.add" /></span> </p>

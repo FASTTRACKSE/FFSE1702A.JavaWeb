@@ -15,25 +15,38 @@ import javax.validation.constraints.NotEmpty;
 public class Database {
 	@Id
 	@Column(name="ma_database")
-	@NotEmpty
+	//@GeneratedValue(strategy=GenerationType.IDENTITY)
+	
 	private String maDatabase;
 	@Column(name="ten_database")
 	@NotEmpty
 	private String tenDatabase;
+	@Column(name="is_delete")
+	private int isDelete;
 	
 	@ManyToMany(fetch = FetchType.EAGER,mappedBy="database",targetEntity=DuAn.class)
 	private Set<DuAn> duAn;
+	
+	
 	public String getMaDatabase() {
 		return maDatabase;
 	}
 	public void setMaDatabase(String maDatabase) {
 		this.maDatabase = maDatabase;
 	}
+	
 	public String getTenDatabase() {
 		return tenDatabase;
 	}
 	public void setTenDatabase(String tenDatabase) {
 		this.tenDatabase = tenDatabase;
+	}
+	
+	public int getIsDelete() {
+		return isDelete;
+	}
+	public void setIsDelete(int isDelete) {
+		this.isDelete = isDelete;
 	}
 	public Set<DuAn> getDuAn() {
 		return duAn;
@@ -41,5 +54,7 @@ public class Database {
 	public void setDuAn(Set<DuAn> duAn) {
 		this.duAn = duAn;
 	}
+	
+	
 	
 }

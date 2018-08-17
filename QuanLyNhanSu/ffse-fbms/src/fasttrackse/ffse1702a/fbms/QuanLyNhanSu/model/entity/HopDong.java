@@ -14,6 +14,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 /**
  * The persistent class for the hop_dong database table.
  * 
@@ -25,25 +27,27 @@ public class HopDong implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "ma_hop_dong", unique = true, nullable = false, length = 30)
-	private String maHopDong;
+	@Column(name = "ma_hop_dong", unique = true, nullable = false)
+	private int maHopDong;
 
 	@Column(name = "luong_thang_13", nullable = false)
-	private int luongThang13;
+	private Integer luongThang13;
 
 	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "ngay_ket_thuc", nullable = false)
 	private Date ngayKetThuc;
 
 	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "ngay_ky_ket", nullable = false)
 	private Date ngayKyKet;
 
 	@Column(name = "so_ngay_phep", nullable = false)
-	private int soNgayPhep;
+	private Integer soNgayPhep;
 
 	@Column(name = "trang_thai", nullable = false)
-	private int trangThai;
+	private Integer trangThai;
 
 	// bi-directional many-to-one association to HoSoNhanVien
 	@ManyToOne
@@ -57,20 +61,19 @@ public class HopDong implements Serializable {
 
 	public HopDong() {
 	}
-
-	public String getMaHopDong() {
+	public int getMaHopDong() {
 		return this.maHopDong;
 	}
 
-	public void setMaHopDong(String maHopDong) {
+	public void setMaHopDong(int maHopDong) {
 		this.maHopDong = maHopDong;
 	}
 
-	public int getLuongThang13() {
+	public Integer getLuongThang13() {
 		return this.luongThang13;
 	}
 
-	public void setLuongThang13(int luongThang13) {
+	public void setLuongThang13(Integer luongThang13) {
 		this.luongThang13 = luongThang13;
 	}
 
@@ -90,19 +93,19 @@ public class HopDong implements Serializable {
 		this.ngayKyKet = ngayKyKet;
 	}
 
-	public int getSoNgayPhep() {
+	public Integer getSoNgayPhep() {
 		return this.soNgayPhep;
 	}
 
-	public void setSoNgayPhep(int soNgayPhep) {
+	public void setSoNgayPhep(Integer soNgayPhep) {
 		this.soNgayPhep = soNgayPhep;
 	}
 
-	public int getTrangThai() {
+	public Integer getTrangThai() {
 		return this.trangThai;
 	}
 
-	public void setTrangThai(byte trangThai) {
+	public void setTrangThai(Integer trangThai) {
 		this.trangThai = trangThai;
 	}
 
@@ -120,6 +123,13 @@ public class HopDong implements Serializable {
 
 	public void setLoaiHopDong(LoaiHopDong loaiHopDong) {
 		this.loaiHopDong = loaiHopDong;
+	}
+
+	@Override
+	public String toString() {
+		return "HopDong [maHopDong=" + maHopDong + ", maNhanVien=" + hoSoNhanVien.getMaNhanVien() +", luongThang13=" + luongThang13 + ", ngayKetThuc=" + ngayKetThuc
+				+ ", ngayKyKet=" + ngayKyKet + ", soNgayPhep=" + soNgayPhep + ", trangThai=" + trangThai
+				+ ", loaiHopDong=" + loaiHopDong + "]";
 	}
 
 }
