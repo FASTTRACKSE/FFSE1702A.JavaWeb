@@ -57,6 +57,7 @@
 <fullyQualifiedTypeName name="javax.persistence.EntityManager"/>
 <fullyQualifiedTypeName name="org.hibernate.Criteria"/>
 <fullyQualifiedTypeName name="javax.management.Query"/>
-<fullyQualifiedTypeName name="javax.persistence.Query"/>
 <fullyQualifiedTypeName name="org.hibernate.SQLQuery"/>
+<fullyQualifiedTypeName name="javax.persistence.Query"/>
+<fullyQualifiedTypeName name="org.hibernate.transform.Transformers"/>
 </qualifiedTypeNameHistroy>
