@@ -1,12 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <jsp:include page="/WEB-INF/view/templates/header.jsp" />
 <div class="app-content content container-fluid">
 	<div class="content-wrapper">
 		<div class="content-body">
 			<div class="row" id="default">
 				<div class="col-xs-12">
-					<form>
+					<form:form action="" method="post"
+						modelAttribute="logWork">
 						<div class="form-group">
 							<label for="nameLogwork">Tên công việc</label> <input
 								class="form-control" id="nameLogwork"
@@ -30,7 +32,8 @@
 								type="text" class="form-control" id="estimateTime">
 						</div>
 						<button type="submit" class="btn btn-primary">Submit</button>
-					</form>
+					</form:form>
+					>
 				</div>
 			</div>
 		</div>

@@ -49,10 +49,10 @@
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
 		<property name="dataSource" ref="theDataSource" />
-		<property name="packagesToScan" value="fasttrackse.ffse1702a.fbms.logwork.entities" />
+		<property name="packagesToScan" value="fasttrackse.ffse1702a.fbms.logwork.entity" />
 		<property name="hibernateProperties">
 		   <props>
-		      <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+		      <prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
 		      <prop key="hibernate.show_sql">true</prop>
 		   </props>
 		</property>
@@ -69,6 +69,14 @@
 
     <!-- Resources theme location -->
     <mvc:resources mapping="/resources/**" location="/resources/stack-admin/" />
+    
+    <bean id="LogworkDAO" class="fasttrackse.a1702.fbms.logwork.dao.LogworkDAOimpl">
+    <property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
+    
+    <bean id="LogworkService" class="fasttrackse.a1702.fbms.logwork.service.LogworkServiceimpl">
+    <property name="logworkDAO" ref="LogworkDAO"></property>
+    </bean>
 
 </beans>
 

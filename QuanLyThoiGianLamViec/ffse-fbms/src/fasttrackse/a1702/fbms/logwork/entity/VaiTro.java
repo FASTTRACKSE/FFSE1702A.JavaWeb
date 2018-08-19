@@ -1,4 +1,4 @@
-package fasttrackse.ffse1702a.fbms.logwork.entity;
+package fasttrackse.a1702.fbms.logwork.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
