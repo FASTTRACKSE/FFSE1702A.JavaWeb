@@ -3,10 +3,12 @@ package fasttrackse.a1702.fbms.chucnang.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import fasttrackse.a1702.fbms.chucnang.model.dao.ChucNangDao;
 import fasttrackse.a1702.fbms.chucnang.model.entities.ChucNang;
 
+@Service
 public class ChucNangServiceImpl implements ChucNangService {
 
 	@Autowired
@@ -57,4 +59,13 @@ public class ChucNangServiceImpl implements ChucNangService {
 		return null;
 	}
 
+	@Override
+	public List<ChucNang> findAllForPaging(int startPosition, int maxResult) {
+		return chucNangDao.findAllForPaging(startPosition, maxResult);
+	}
+
+	@Override
+	public List<ChucNang> findAll() {
+		return chucNangDao.findAll();
+	}
 }

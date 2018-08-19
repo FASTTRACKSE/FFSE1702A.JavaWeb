@@ -54,13 +54,13 @@
 			<div class="row mb-2">
 				<form class="col-xs-12" action='<c:url value="/chuc-nang/"></c:url>'
 					method="get" enctype="multipart/form-data">
-					<div class="frm-search-box form-inline pull-left">
+					<!-- <div class="frm-search-box form-inline pull-left">
 						<label class="mr-sm-2" for="">Từ khóa: </label> <input
 							class="form-control" type="text" value="" name="q"
 							id="txtkeyword" placeholder="Keyword">&nbsp;
 						<button type="submit" id="button" class="btn btn-success">Tìm
 							kiếm</button>
-					</div>
+					</div> -->
 					<div class="pull-right">
 						<a href="<c:url value="/chuc-nang/them-moi"></c:url>"
 							class="btn btn-success button"><i class="fa fa-plus"
@@ -148,6 +148,33 @@
 										</c:if>
 									</tbody>
 								</table>
+
+								<nav aria-label="Page navigation example">
+									<ul class="pagination">
+										<li class="page-item"><a class="page-link" href="?page=1">First
+												Page</a></li>
+										<c:if test="${currentPage > 2}">
+											<li class="page-item"><a class="page-link"
+												href="?page=${currentPage-2}">${currentPage-2}</a></li>
+										</c:if>
+										<c:if test="${currentPage > 1}">
+											<li class="page-item"><a class="page-link"
+												href="?page=${currentPage-1}">${currentPage-1}</a></li>
+										</c:if>
+										<li class="page-item active"><a class="page-link"
+											href="?page=${currentPage}">${currentPage}</a></li>
+										<c:if test="${currentPage < lastPage}">
+											<li class="page-item"><a class="page-link"
+												href="?page=${currentPage+1}">${currentPage+1}</a></li>
+										</c:if>
+										<c:if test="${currentPage < lastPage - 1}">
+											<li class="page-item"><a class="page-link"
+												href="?page=${currentPage+2}">${currentPage+2}</a></li>
+										</c:if>
+										<li class="page-item"><a class="page-link"
+											href="?page=${lastPage }">Last Page</a></li>
+									</ul>
+								</nav>
 							</div>
 						</div>
 					</div>

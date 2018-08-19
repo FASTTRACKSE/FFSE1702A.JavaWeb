@@ -2,6 +2,8 @@ package fasttrackse.a1702.fbms.chucnang.model.dao;
 
 import java.util.List;
 
+import javax.persistence.Query;
+
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -12,6 +14,7 @@ import org.springframework.stereotype.Repository;
 
 import fasttrackse.a1702.fbms.chucnang.model.entities.ChucNang;
 
+@SuppressWarnings("deprecation")
 @Repository
 public class ChucNangDaoImpl implements ChucNangDao {
 
@@ -25,10 +28,8 @@ public class ChucNangDaoImpl implements ChucNangDao {
 	@Override
 	public List<ChucNang> list() {
 		Session session = this.sessionFactory.openSession();
-		Transaction tx = session.beginTransaction();
 		@SuppressWarnings("unchecked")
 		List<ChucNang> list = session.createQuery("from ChucNang").list();
-		tx.commit();
 		session.close();
 		return list;
 	}
@@ -39,6 +40,25 @@ public class ChucNangDaoImpl implements ChucNangDao {
 		ChucNang cn = session.get(ChucNang.class, ma_chuc_nang);
 		session.close();
 		return cn;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<ChucNang> findAll() {
+		Session session = this.sessionFactory.openSession();
+		List<ChucNang> list = session.createQuery("from ChucNang").list();
+		session.close();
+		return list;
+	}
+	
+	@Override
+	public List<ChucNang> findAllForPaging(int startPosition, int maxResult){
+		Session session = this.sessionFactory.openSession();
+		Query q = session.createQuery("from ChucNang");
+		q.setFirstResult(startPosition);
+		q.setMaxResults(maxResult);
+		List<ChucNang> list = q.getResultList();
+		session.close();
+		return list;
 	}
 
 	@Override
