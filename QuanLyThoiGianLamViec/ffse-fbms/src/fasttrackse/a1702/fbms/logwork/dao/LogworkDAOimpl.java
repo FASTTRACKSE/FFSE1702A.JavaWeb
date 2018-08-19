@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import fasttrackse.a1702.fbms.logwork.entity.ThoiGianLamViec;
 
 @Repository
-@Transactional(rollbackFor = Exception.class)
+@Transactional("myTransactionManager")
 public class LogworkDAOimpl implements LogworkDAO{
 	
 	@Autowired
@@ -20,7 +20,7 @@ public class LogworkDAOimpl implements LogworkDAO{
 	}
 
 	public void create(ThoiGianLamViec logWork) {
-		Session session = this.sessionFactory.getCurrentSession();
+		Session session = sessionFactory.openSession();
 		session.save(logWork);
 	}
 }

@@ -1,6 +1,8 @@
 package fasttrackse.a1702.fbms.logwork.controller;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +15,7 @@ import fasttrackse.a1702.fbms.logwork.service.LogworkService;
 public class MainController {
 	
 	@Autowired
+	@Qualifier("logworkService")
 	LogworkService service;
 	
 	public void setService(LogworkService service) {

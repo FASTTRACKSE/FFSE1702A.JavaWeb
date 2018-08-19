@@ -28,13 +28,13 @@ public class ThoiGianLamViec {
 	@Column(name = "id", unique = true, length = 5)
 	private int id;
 	
-	@Column(name = "ten_cong_viec", length = 150)
+	@Column(name = "ten_cong_viec",nullable = true, length = 150)
 	private String tenCongViec;
 	
 	@Column(name = "mo_ta", nullable = true, length = 1000)
 	private String moTa;
 	
-	@Column(name = "trang_thai", length = 1)
+	@Column(name = "trang_thai",nullable = true, length = 1)
 	private int trangThai;
 	
 	@Temporal(TemporalType.DATE)
@@ -53,15 +53,11 @@ public class ThoiGianLamViec {
 	@Column(name = "ly_do_tu_choi", nullable = true)
 	private String lyDoTuChoi;
 	
-	/*Quan hệ nhiều - một với bảng nhan_vien thông qua cột ma_nhan_vien */
-	@ManyToOne
-	@JoinColumn(name = "ma_nhan_vien")
-	private NhanVien nhanVien;
+	@Column(name="ma_nhan_vien", nullable = true,length = 30)
+	private String maNhanVien;
 	
-	/*Quan hệ nhiều - một với bảng du_an thông qua cột ma_du_an */
-	@ManyToOne
-	@JoinColumn(name = "ma_du_an")
-	private DuAn duAn;
+	@Column(name="ma_du_an", nullable = true,length = 30)
+	private String maDuAn;
 	
 	public int getId() {
 		return id;
@@ -79,20 +75,22 @@ public class ThoiGianLamViec {
 		this.tenCongViec = tenCongViec;
 	}
 
-	public NhanVien getNhanVien() {
-		return nhanVien;
+
+
+	public String getMaNhanVien() {
+		return maNhanVien;
 	}
 
-	public void setNhanVien(NhanVien nhanVien) {
-		this.nhanVien = nhanVien;
+	public void setMaNhanVien(String maNhanVien) {
+		this.maNhanVien = maNhanVien;
 	}
 
-	public DuAn getDuAn() {
-		return duAn;
+	public String getMaDuAn() {
+		return maDuAn;
 	}
 
-	public void setDuAn(DuAn duAn) {
-		this.duAn = duAn;
+	public void setMaDuAn(String maDuAn) {
+		this.maDuAn = maDuAn;
 	}
 
 	public String getMoTa() {
