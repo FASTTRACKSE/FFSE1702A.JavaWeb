@@ -54,7 +54,7 @@
 										</div>
 
 									</div>
-									<div class="col-lg-6 col-md-12">
+									<div class="col-lg-6 col-md-6">
 										<div class="form-group">
 											<h5>
 												<spring:message code="duan.customer"></spring:message>
@@ -71,7 +71,7 @@
 
 										</div>
 									</div>
-									<div class="col-lg-6 col-md-12">
+									<div class="col-lg-6 col-md-6">
 										<div class="form-group">
 											<h5>
 												<spring:message code="duan.business"></spring:message>
@@ -88,7 +88,7 @@
 
 										</div>
 									</div>
-									<div class="col-lg-6 col-md-12">
+									<div class="col-lg-6 col-md-6">
 										<div class="form-group">
 											<h5>
 												<spring:message code="duan.vendor" />
@@ -105,7 +105,7 @@
 
 										</div>
 									</div>
-									<div class="col-lg-6 col-md-12">
+									<div class="col-lg-6 col-md-6">
 										<div class="form-group">
 											<h5>
 												<spring:message code="duan.language" />
@@ -124,7 +124,7 @@
 
 										</div>
 									</div>
-									<div class="col-lg-6 col-md-12">
+									<div class="col-lg-6 col-md-6">
 										<div class="form-group">
 											<h5>
 												<spring:message code="duan.database" />
@@ -143,7 +143,7 @@
 
 										</div>
 									</div>
-									<div class="col-lg-6 col-md-12">
+									<div class="col-lg-6 col-md-6">
 										<div class="form-group">
 											<h5>
 												<spring:message code="duan.framework" />
@@ -163,7 +163,7 @@
 										</div>
 									</div>
 
-									<div class="col-lg-6 col-md-12">
+									<div class="col-lg-6 col-md-6">
 										<div class="form-group">
 											<h5>
 												<spring:message code="duan.startdate" />
@@ -177,7 +177,7 @@
 
 										</div>
 									</div>
-									<div class="col-lg-6 col-md-12">
+									<div class="col-lg-6 col-md-6">
 										<div class="form-group">
 											<h5>
 												<spring:message code="duan.enddate" />
@@ -197,7 +197,7 @@
 
 
 
-									<div class="col-lg-6 col-md-12">
+									<div class="col-lg-6 col-md-6">
 										<div class="form-group">
 											<h5>
 												<spring:message code="duan.status" />

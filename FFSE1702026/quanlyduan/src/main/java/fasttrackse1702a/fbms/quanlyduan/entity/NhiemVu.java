@@ -17,20 +17,31 @@ public class NhiemVu implements Serializable {
 	private int maDuAn;
 	@Id
 	@Column(name="ma_nhan_vien")
-	private String maNhanVien;
+	private int maNhanVien;
+	@Id
 	@Column(name="ma_vai_tro")
 	private String maVaiTro;
 	
+	public NhiemVu() {
+		super();
+	}
+	public NhiemVu(int maDuAn, int maNhanVien, String maVaiTro) {
+		super();
+		this.maDuAn = maDuAn;
+		this.maNhanVien = maNhanVien;
+		this.maVaiTro = maVaiTro;
+	}
 	public int getMaDuAn() {
 		return maDuAn;
 	}
 	public void setMaDuAn(int maDuAn) {
 		this.maDuAn = maDuAn;
 	}
-	public String getMaNhanVien() {
+	
+	public int getMaNhanVien() {
 		return maNhanVien;
 	}
-	public void setMaNhanVien(String maNhanVien) {
+	public void setMaNhanVien(int maNhanVien) {
 		this.maNhanVien = maNhanVien;
 	}
 	public String getMaVaiTro() {
@@ -39,5 +50,6 @@ public class NhiemVu implements Serializable {
 	public void setMaVaiTro(String maVaiTro) {
 		this.maVaiTro = maVaiTro;
 	}
+	
 	
 }

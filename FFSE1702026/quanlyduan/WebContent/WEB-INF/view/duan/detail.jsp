@@ -4,6 +4,7 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <c:url var="detailrolelink" value="/duan/phancongnhiemvu/list/" />
+<c:url var="addrolelink" value="/duan/phancongnhiemvu/addpm/" />
 <div class="row">
 	<div class="col-xs-12">
 		<div class="card">
@@ -48,7 +49,7 @@
 									<th><spring:message code="duan.business" /></th>
 									<td>${duan.nghiepVu.tenNghiepVu }</td>
 								</tr>
-								
+
 								<tr>
 									<th><spring:message code="duan.customer" /></th>
 									<td>${duan.khachHang.tenKhachHang }</td>
@@ -78,16 +79,41 @@
 								</c:forEach></td>
 								</tr>
 								<tr>
-									<th><spring:message code="duan.language" /></th>
+									<th><spring:message code="duan.vendor" /></th>
 									<td><c:forEach items="${duan.doiTac }" var="dt">
 									${dt.tenDoiTac } ,
 								</c:forEach></td>
 								</tr>
 								<tr>
-									<th ><spring:message code="duan.employee" /></th>
+								
+									<th><spring:message code="duan.pm" text="PM" /></th>
 									<td>
-										<a href="${detailrolelink }${duan.maDuAn }"><spring:message code="duan.detailrole" /></a>
-									<td>
+									<%-- <c:if test="${empty duan.hoSoNhanVien }"><a href="${addrolelink }${duan.maDuAn }"><spring:message
+																code="duan.addpm" text="Add PM" /></a></c:if> --%>
+									<c:if test="${addPM==true }"><a href="${addrolelink }${duan.maDuAn }"><spring:message
+																code="duan.addpm" text="Add PM" /></a></c:if>
+									<c:forEach items="${duan.hoSoNhanVien }" var="nv">
+										
+										<c:forEach items="${nv.vaiTro }" var="vt">
+										
+										<c:choose>
+											<c:when test="${vt.tenVaiTro=='PM' }">
+												
+												${nv.ten },
+												
+											</c:when>
+											
+											
+											</c:choose>
+										</c:forEach>
+									</c:forEach>
+									</td>
+								</tr>
+								<tr>
+									<th><spring:message code="duan.employee" /></th>
+									<td><a href="${detailrolelink }${duan.maDuAn }"><spring:message
+												code="duan.detailrole" /></a>
+									</td>
 								</tr>
 
 							</tbody>
