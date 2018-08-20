@@ -1,5 +1,4 @@
-package fasttrackse.ffse1702a.fbms.QuanLyDuAn.model.entity;
-
+package fasttrackse.ffse1702a.fbms.QuanLyNhanSu.model.entity;
 import java.io.Serializable;
 import java.util.List;
 

@@ -9,8 +9,10 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
-
-import fasttrackse.ffse1702a.fbms.QuanLyNhanSu.model.entity.HoSoNhanVien;
+/**
+ * @author Sang
+ *
+ */
 @Entity
 @Table(name="vai_tro_thanh_vien")
 public class VaiTro {
@@ -21,6 +23,8 @@ public class VaiTro {
 	@Column(name="ten_vai_tro")
 	@NotEmpty
 	private String tenVaiTro;
+	@Column(name="is_delete")
+	private int isDelete;
 	@ManyToMany(targetEntity = HoSoNhanVien.class, mappedBy = "vaiTro", fetch = FetchType.EAGER)
 	private Set<HoSoNhanVien> hoSoNhanVien;
 	
@@ -42,9 +46,12 @@ public class VaiTro {
 	public void setHoSoNhanVien(Set<HoSoNhanVien> hoSoNhanVien) {
 		this.hoSoNhanVien = hoSoNhanVien;
 	}
-	@Override
-	public String toString() {
-		return "VaiTro [maVaiTro=" + maVaiTro + ", tenVaiTro=" + tenVaiTro + "]";
+	public int getIsDelete() {
+		return isDelete;
 	}
+	public void setIsDelete(int isDelete) {
+		this.isDelete = isDelete;
+	}
+	
 	
 }

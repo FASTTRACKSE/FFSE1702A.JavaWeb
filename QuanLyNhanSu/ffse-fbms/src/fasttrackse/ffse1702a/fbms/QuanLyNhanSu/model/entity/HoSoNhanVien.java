@@ -27,7 +27,7 @@ import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import fasttrackse.ffse1702a.fbms.QuanLyDuAn.model.entity.ChucDanh;
+import fasttrackse.ffse1702a.fbms.QuanLyNhanSu.model.entity.ChucDanh;
 import fasttrackse.ffse1702a.fbms.QuanLyDuAn.model.entity.DuAn;
 import fasttrackse.ffse1702a.fbms.QuanLyDuAn.model.entity.VaiTro;
 
@@ -147,12 +147,6 @@ public class HoSoNhanVien implements Serializable {
 
 	@ManyToMany(mappedBy = "hoSoNhanVien", fetch = FetchType.EAGER, targetEntity = DuAn.class)
 	private Set<DuAn> duAn;
-
-	@ManyToMany(targetEntity = VaiTro.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JoinTable(name = "nhiem_vu", joinColumns = {
-			@JoinColumn(name = "ma_nhan_vien", referencedColumnName = "ma_nhan_vien", updatable = true, insertable = true) }, inverseJoinColumns = {
-					@JoinColumn(name = "ma_vai_tro", referencedColumnName = "ma_vai_tro", nullable = true, updatable = false, insertable = true) })
-	private Set<VaiTro> vaiTro;
 
 	public HoSoNhanVien() {
 	}
@@ -383,13 +377,6 @@ public class HoSoNhanVien implements Serializable {
 		this.duAn = duAn;
 	}
 
-	public Set<VaiTro> getVaiTro() {
-		return vaiTro;
-	}
-
-	public void setVaiTro(Set<VaiTro> vaiTro) {
-		this.vaiTro = vaiTro;
-	}
 
 	@Override
 	public String toString() {
@@ -399,7 +386,7 @@ public class HoSoNhanVien implements Serializable {
 				+ ", soCmnd=" + soCmnd + ", soDienThoai=" + soDienThoai + ", ten=" + ten + ", trangThai=" + trangThai
 				+ ", phongBan=" + phongBan + ", chucDanh=" + chucDanh + ", quocTich=" + quocTich + ", tinhTrangHonNhan="
 				+ tinhTrangHonNhan + ", hopDongs=" + hopDongs + ", duAns=" + duAn + ", thongTinBangCaps="
-				+ thongTinBangCaps + ", vaiTro=" + vaiTro + ", thongTinGiaDinhs=" + thongTinGiaDinhs + "]";
+				+ thongTinBangCaps  + ", thongTinGiaDinhs=" + thongTinGiaDinhs + "]";
 	}
 
 }
