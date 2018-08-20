@@ -13,6 +13,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -31,17 +33,21 @@ public class ThongTinBangCap implements Serializable {
 	private int id;
 
 	@Column(name = "don_vi_cap", nullable = false, length = 200)
+	@NotEmpty
 	private String donViCap;
 
 	@Column(name = "loai_bang_cap", nullable = false, length = 20)
+	@NotEmpty
 	private String loaiBangCap;
 
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "ngay_cap", nullable = false)
+	@NotNull
 	private Date ngayCap;
 
 	@Column(name = "ten_bang_cap", nullable = false, length = 250)
+	@NotEmpty
 	private String tenBangCap;
 
 	// bi-directional many-to-one association to HoSoNhanVien

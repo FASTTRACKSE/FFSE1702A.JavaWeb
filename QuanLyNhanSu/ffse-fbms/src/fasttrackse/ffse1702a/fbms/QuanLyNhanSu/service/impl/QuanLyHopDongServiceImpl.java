@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import fasttrackse.ffse1702a.fbms.QuanLyNhanSu.model.dao.QuanLyHopDongDAO;
-import fasttrackse.ffse1702a.fbms.QuanLyNhanSu.model.entity.HoSoNhanVien;
 import fasttrackse.ffse1702a.fbms.QuanLyNhanSu.model.entity.HopDong;
 import fasttrackse.ffse1702a.fbms.QuanLyNhanSu.service.QuanLyHopDongService;
 @Service

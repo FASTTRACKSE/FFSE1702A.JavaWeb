@@ -160,12 +160,14 @@
 																	<div class="form-group">
 																		<label><spring:message code="label.tenBangCap" /></label>
 																		<form:input class="form-control" path="listThongTinBangCap[${status.index}].tenBangCap" placeholder=""/>
+																		 <form:errors path="listThongTinBangCap[${status.index}].tenBangCap" cssClass="invalid-feedback d-block" />
 																	</div>
 																</div>
 																<div class="col-md-6">
 																	<div class="form-group">
 																		<label><spring:message code="label.loaiBangCap" /></label>
 																		<form:input class="form-control" path="listThongTinBangCap[${status.index}].loaiBangCap" placeholder=""/>
+																		<form:errors path="listThongTinBangCap[${status.index}].loaiBangCap" cssClass="invalid-feedback d-block" />
 																	</div>
 																</div>
 															</div>
@@ -174,12 +176,14 @@
 																	<div class="form-group">
 																		<label><spring:message code="label.noiCapBang" /></label>
 																		<form:input class="form-control" path="listThongTinBangCap[${status.index}].donViCap" placeholder=""/>
+																		<form:errors path="listThongTinBangCap[${status.index}].donViCap" cssClass="invalid-feedback d-block" />
 																	</div>
 																</div>
 																<div class="col-md-3">
 																	<div class="form-group">
 																		<label><spring:message code="label.ngayCap" /></label>
 																		<form:input type="date" class="form-control" path="listThongTinBangCap[${status.index}].ngayCap" placeholder="" data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="Date Opened" />
+																		<form:errors path="listThongTinBangCap[${status.index}].ngayCap" cssClass="invalid-feedback d-block" />
 																	</div>
 																</div>
 														         <div class="col-md-3">
