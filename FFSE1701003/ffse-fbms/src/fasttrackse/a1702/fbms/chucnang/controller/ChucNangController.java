@@ -59,7 +59,7 @@ public class ChucNangController {
 	@RequestMapping(value = "/sua/{code}", method = RequestMethod.GET)
 	public String editForm(@PathVariable("code") String code, Model model) {
 		model.addAttribute("chucNang", cnDao.getChucNangByCode(code));
-		return "chuc-nang/edit_form";
+		return "chucnang/edit_form";
 	}
 	
 	@RequestMapping(value = "/sua/luu", method = RequestMethod.POST)
@@ -67,15 +67,15 @@ public class ChucNangController {
 			final RedirectAttributes redirectAttributes) {
 		try {
 			cnDao.update(cn);
-			redirectAttributes.addFlashAttribute("messageSuccess", "Sửa thành công..");
+			redirectAttributes.addFlashAttribute("messageSuccess", "Thành công..");
 		} catch (Exception e) {
-			redirectAttributes.addFlashAttribute("messageError", "Lỗi. Xin thử lại!");
+			redirectAttributes.addFlashAttribute("messageError", "Lỗi! Xin thử lại!");
 		}
 		return "redirect:/chuc-nang/danh-sach";
 	}
 
 	@RequestMapping(value = "/chuc-nang/thong-bao", method = RequestMethod.GET)
-	public String showMessage() {
+	public String active() {
 		return "chucnang/showMessage";
 	}
 

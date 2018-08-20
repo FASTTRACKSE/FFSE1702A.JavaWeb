@@ -15,7 +15,7 @@
 		http://www.springframework.org/schema/tx/spring-tx.xsd">
 
 	<!-- Add support for component scanning -->
-	<context:component-scan base-package="fasttrackse.ffse1702a.fbms" />
+	<context:component-scan base-package="fasttrackse.a1702.fbms" />
 
 	<!-- Add support for conversion, formatting and validation support -->
 	<mvc:annotation-driven/>
@@ -49,10 +49,10 @@
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
 		<property name="dataSource" ref="theDataSource" />
-		<property name="packagesToScan" value="fasttrackse.ffse1702a.fbms.logwork.entities" />
+		<property name="packagesToScan" value="fasttrackse.a1702.fbms.logwork.entity" />
 		<property name="hibernateProperties">
 		   <props>
-		      <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+		      <prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
 		      <prop key="hibernate.show_sql">true</prop>
 		   </props>
 		</property>
@@ -65,10 +65,18 @@
     </bean>
     
     <!-- Enable configuration of transactional behavior based on annotations -->
-	<tx:annotation-driven transaction-manager="myTransactionManager" />
+	<tx:annotation-driven transaction-manager="sessionFactory" />
 
     <!-- Resources theme location -->
     <mvc:resources mapping="/resources/**" location="/resources/stack-admin/" />
+    
+    <bean id="logworkDAO" class="fasttrackse.a1702.fbms.logwork.dao.LogworkDAOimpl">
+    <property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
+    
+    <bean id="logworkService" class="fasttrackse.a1702.fbms.logwork.service.LogworkServiceimpl">
+    <property name="logworkDAO" ref="logworkDAO"></property>
+    </bean>
 
 </beans>
 

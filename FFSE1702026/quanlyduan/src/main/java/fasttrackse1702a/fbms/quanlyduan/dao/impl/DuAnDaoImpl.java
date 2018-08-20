@@ -27,7 +27,7 @@ public class DuAnDaoImpl implements DuAnDao {
 	}
 
 	@Override
-	public DuAn getById(String maDuAn) {
+	public DuAn getById(int maDuAn) {
 		Session session=sessionFactory.getCurrentSession();
 		return session.get(DuAn.class,maDuAn);
 	}
