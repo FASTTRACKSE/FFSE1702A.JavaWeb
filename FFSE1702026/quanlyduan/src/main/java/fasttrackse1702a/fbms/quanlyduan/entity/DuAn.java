@@ -1,18 +1,25 @@
 package fasttrackse1702a.fbms.quanlyduan.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 
 @Entity
@@ -22,15 +29,23 @@ public class DuAn implements Serializable{
 	private static final long serialVersionUID = 1L;
 	@Id
 	@Column(name="ma_du_an")
-	private String maDuAn;
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Integer maDuAn;
+	
 	@Column(name="ten_du_an")
 	private String tenDuAn;
-	@Column(name="nghiep_vu")
-	private String nghiepVu;
 	@Column(name="mo_ta_du_an")
 	private String moTaDuAn;
 	@Column(name="is_delete")
 	private int isDelete;
+	@Column (name="start_date")
+	@DateTimeFormat(pattern="yyyy-MM-dd")
+	@Temporal(TemporalType.DATE)
+	private Date startDate;
+	@Column (name="end_date")
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern="yyyy-MM-dd")
+	private Date endDate;
 	@ManyToOne(fetch = FetchType.EAGER,cascade= CascadeType.MERGE)
 	@JoinColumn(name="ma_tinh_trang",referencedColumnName="ma_tinh_trang", insertable=true, updatable=true)
 	private TinhTrang tinhTrang ;
@@ -39,11 +54,22 @@ public class DuAn implements Serializable{
 	@JoinColumn(name="ma_khach_hang",referencedColumnName="ma_khach_hang", insertable=true, updatable=true)
 	private KhachHang khachHang ;
 	
+	@ManyToOne(fetch = FetchType.EAGER,cascade= CascadeType.ALL,optional=true)
+	@JoinColumn(name="ma_nghiep_vu",referencedColumnName="ma_nghiep_vu", insertable=true, updatable=true)
+	private NghiepVu nghiepVu ;
+	
+	
 	@ManyToMany(targetEntity = NgonNgu.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinTable(name = "ngon_ngu_du_an", joinColumns = {
 	@JoinColumn(name = "ma_du_an", referencedColumnName = "ma_du_an",  updatable = true,insertable=true) }, inverseJoinColumns = {
 	@JoinColumn(name = "ma_ngon_ngu", referencedColumnName = "ma_ngon_ngu", nullable = true, updatable = false,insertable=true) })
 	private Set<NgonNgu> ngonNgu;
+	
+	@ManyToMany(targetEntity = DoiTac.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinTable(name = "doi_tac_du_an", joinColumns = {
+	@JoinColumn(name = "ma_du_an", referencedColumnName = "ma_du_an",  updatable = true,insertable=true) }, inverseJoinColumns = {
+	@JoinColumn(name = "ma_doi_tac", referencedColumnName = "ma_doi_tac", nullable = true, updatable = false,insertable=true) })
+	private Set<DoiTac> doiTac;
 	
 	@ManyToMany(targetEntity = Framework.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinTable(name = "framework_du_an", joinColumns = {
@@ -65,10 +91,11 @@ public class DuAn implements Serializable{
 	
 	
 	
-	public String getMaDuAn() {
+	
+	public Integer getMaDuAn() {
 		return maDuAn;
 	}
-	public void setMaDuAn(String maDuAn) {
+	public void setMaDuAn(Integer maDuAn) {
 		this.maDuAn = maDuAn;
 	}
 	public String getTenDuAn() {
@@ -76,12 +103,6 @@ public class DuAn implements Serializable{
 	}
 	public void setTenDuAn(String tenDuAn) {
 		this.tenDuAn = tenDuAn;
-	}
-	public String getNghiepVu() {
-		return nghiepVu;
-	}
-	public void setNghiepVu(String nghiepVu) {
-		this.nghiepVu = nghiepVu;
 	}
 	public String getMoTaDuAn() {
 		return moTaDuAn;
@@ -132,6 +153,30 @@ public class DuAn implements Serializable{
 	}
 	public void setIsDelete(int isDelete) {
 		this.isDelete = isDelete;
+	}
+	public Date getStartDate() {
+		return startDate;
+	}
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
+	}
+	public Date getEndDate() {
+		return endDate;
+	}
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
+	}
+	public NghiepVu getNghiepVu() {
+		return nghiepVu;
+	}
+	public void setNghiepVu(NghiepVu nghiepVu) {
+		this.nghiepVu = nghiepVu;
+	}
+	public Set<DoiTac> getDoiTac() {
+		return doiTac;
+	}
+	public void setDoiTac(Set<DoiTac> doiTac) {
+		this.doiTac = doiTac;
 	}
 	
 	

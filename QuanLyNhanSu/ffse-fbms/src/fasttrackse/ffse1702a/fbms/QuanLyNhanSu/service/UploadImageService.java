@@ -9,5 +9,5 @@ public interface UploadImageService {
 
 	public void uploadImage(String filename, MultipartFile image) throws RuntimeException, IOException;
 
-	public String checkImage(MultipartFile image, BindingResult bindingResult, String referer);
+	public String checkImage(MultipartFile image, BindingResult bindingResult);
 }

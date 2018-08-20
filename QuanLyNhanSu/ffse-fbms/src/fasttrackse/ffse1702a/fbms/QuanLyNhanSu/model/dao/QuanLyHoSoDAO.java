@@ -8,9 +8,15 @@ public interface QuanLyHoSoDAO {
 
 	public HoSoNhanVien getHoSoNhanVienById(int maNhanVien);
 
-	public List<HoSoNhanVien> getHoSoByPhongBan(String maPhongBan);
+	public String getRecordsTotal(String maPhongBan);
+
+	public String getRecordsFiltered(String sql);
 
 	public List<HoSoNhanVien> getAllHoSo();
+
+	public List<HoSoNhanVien> getAllHoSo(int iDisplayStart, int iDisplayLength, String sql);
+
+	public List<HoSoNhanVien> getHoSoByPhongBan(String maPhongBan);
 
 	public void addHoSoNhanVien(HoSoNhanVien hsnv);
 

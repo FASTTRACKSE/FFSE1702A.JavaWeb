@@ -37,7 +37,7 @@ public class NhiemVuDaoImpl implements NhiemVuDao {
 	}
 
 	@Override
-	public NhiemVu getById(String maDuAn,String maNhanVien) {
+	public NhiemVu getById(int maDuAn,String maNhanVien) {
 		Session session= sessionFactory.getCurrentSession();
 		return (NhiemVu) session.createQuery("from NhiemVu where maDuAn ='"+maDuAn+"' and maNhanVien='"+maNhanVien+"'",NhiemVu.class).getSingleResult();
 	}

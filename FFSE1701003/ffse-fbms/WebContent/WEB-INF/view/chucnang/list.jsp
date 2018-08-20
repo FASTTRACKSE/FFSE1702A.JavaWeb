@@ -126,7 +126,7 @@
 													<td>${item.ma_chuc_nang}</td>
 													<td>${item.ten_chuc_nang}</td>
 													<td class="tbl_actions"><a
-														href="<c:url value="/chuc-nang/kich-hoat/123" />"
+														href="<c:url value="/chuc-nang/kich-hoat/${item.ma_chuc_nang}" />"
 														title="Hiển thị"> <c:choose>
 																<c:when test="${item.trang_thai == 1}">
 																	<i class="fa fa-check green" aria-hidden="true"></i>Hiển thị
@@ -137,9 +137,9 @@
 															</c:choose>
 													</a></td>
 													<td class="tbl_actions"><a
-														href="<c:url value="/chuc-nang/sua/123" />" title="Sửa">
+														href="<c:url value="/chuc-nang/sua/${item.ma_chuc_nang}" />" title="Sửa">
 															<i class="fa fa-pencil-square-o blue" aria-hidden="true"></i>Sửa
-													</a> <a href="<c:url value="/chuc-nang/xoa/123" />" title="Xóa"
+													</a> <a href="<c:url value="/chuc-nang/xoa/${item.ma_chuc_nang}" />" title="Xóa"
 														onclick="return confirm('Bạn có chắc muốn xóa ?')"> <i
 															class="fa fa-trash red" aria-hidden="true"></i>Delete
 													</a></td>

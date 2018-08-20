@@ -10,7 +10,7 @@
 
 <head>
 
-<title><spring:message code="${title }"/></title>
+<title><spring:message code="${title }" text="FFSE - Business"/></title>
 </head>
 <%-- <body>
 	<form:form modelAttribute="ngonngu">

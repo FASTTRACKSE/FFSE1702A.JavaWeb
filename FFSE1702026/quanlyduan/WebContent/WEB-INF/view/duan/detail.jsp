@@ -41,13 +41,14 @@
 									<td>${duan.tenDuAn }</td>
 								</tr>
 								<tr>
-									<th><spring:message code="duan.business" /></th>
-									<td>${duan.nghiepVu }</td>
-								</tr>
-								<tr>
 									<th><spring:message code="duan.description" /></th>
 									<td>${duan.moTaDuAn }</td>
 								</tr>
+								<tr>
+									<th><spring:message code="duan.business" /></th>
+									<td>${duan.nghiepVu.tenNghiepVu }</td>
+								</tr>
+								
 								<tr>
 									<th><spring:message code="duan.customer" /></th>
 									<td>${duan.khachHang.tenKhachHang }</td>
@@ -74,6 +75,12 @@
 									<th><spring:message code="duan.language" /></th>
 									<td><c:forEach items="${duan.ngonNgu }" var="nn">
 									${nn.tenNgonNgu } ,
+								</c:forEach></td>
+								</tr>
+								<tr>
+									<th><spring:message code="duan.language" /></th>
+									<td><c:forEach items="${duan.doiTac }" var="dt">
+									${dt.tenDoiTac } ,
 								</c:forEach></td>
 								</tr>
 								<tr>

@@ -1,5 +1,7 @@
 package fasttrackse.ffse1702a.fbms.QuanLyNhanSu.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,13 +26,44 @@ public class QuanLyHopDongController {
 	private LoaiHopDongService loaiHopDongService;
 	@Autowired
 	private QuanLyHopDongService quanLyHopDongService;
+	
+	@RequestMapping(value = "/{maPhongBan}/hop_dong", method = RequestMethod.GET)
+	public String listHopDong(@PathVariable("maPhongBan") String maPhongBan,Model model) {
+		if (maPhongBan.equals("ns")) {
+			model.addAttribute("listHopDong", this.quanLyHopDongService.getAllHopDong());
+		} else {
+			model.addAttribute("listHopDong", this.quanLyHopDongService.getHopDongByPhongBan(maPhongBan));
+		}
+		
+		return "QuanLyNhanSu/QuanLyHopDong/HopDong";
+	}
+	@RequestMapping(value = "/ns/hop_dong/{maPhongBan}", method = RequestMethod.GET)
+	public String listHoSo(@PathVariable("maPhongBan") String maPhongBan, Model model) {
+		if (maPhongBan.equals("ns")) {
+			model.addAttribute("listHoSo", this.quanLyHoSoService.getAllHoSo());
+		} else {
+			model.addAttribute("listHoSo", this.quanLyHoSoService.getHoSoByPhongBan(maPhongBan));
+		}
+		return "QuanLyNhanSu/QuanLyHoSo/QuanLyHoSo";
+	}
 
 	@RequestMapping(value = "/ns/hop_dong/edit/{maNhanVien}", method = RequestMethod.GET)
 	public String editQuanLyHopDong(@PathVariable("maNhanVien") int maNhanVien, Model model) {
 		HoSoNhanVien hsnv = this.quanLyHoSoService.getHoSoNhanVienById(maNhanVien);
-
+		
 		model.addAttribute("hoSoNhanVien", hsnv);
-		model.addAttribute("hopDong", new HopDong());
+		HopDong hopDong = new HopDong();
+		hopDong.setMaHopDong(Integer.valueOf(this.quanLyHopDongService.getAutoId()));
+		List<HopDong> listHD = hsnv.getHopDongs();
+		// nếu nv có hợp đồng
+		if (listHD.size() != 0) {
+			// lấy cái mới nhất
+			HopDong hd = listHD.get(listHD.size()-1);
+			if (hd.getTrangThai() == 1) {
+				hopDong = hd;
+			}
+		}
+		model.addAttribute("hopDong", hopDong);
 		model.addAttribute("loaiHopDong", new LoaiHopDong());
 		model.addAttribute("listLoaiHopDong", this.loaiHopDongService.listLoaiHopDong());
 		return "QuanLyNhanSu/QuanLyHopDong/QuanLyHopDongForm";
@@ -39,15 +72,14 @@ public class QuanLyHopDongController {
 
 	@RequestMapping(value = "/ns/hop_dong/save", method = RequestMethod.POST)
 	public String addHopDong(@ModelAttribute("hopDong") HopDong hd) {
-		System.out.println(hd);
 
 		if (hd.getMaHopDong() == 0) {
 			this.quanLyHopDongService.addHopDong(hd);
 		} else {
 			this.quanLyHopDongService.updateHopDong(hd);
 		}
-
-		return "redirect:/ns/hop_dong/edit/{maNhanVien}";
+		String maNhanVien = String.valueOf(hd.getHoSoNhanVien().getMaNhanVien());
+		return "redirect:/ns/hop_dong/edit/" + maNhanVien;
 
 	}
 

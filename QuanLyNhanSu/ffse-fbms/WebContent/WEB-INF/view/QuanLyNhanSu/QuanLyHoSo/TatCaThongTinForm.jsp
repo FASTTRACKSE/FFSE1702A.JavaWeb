@@ -4,6 +4,12 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%> 
+<<<<<<< HEAD
+=======
+<%@page import="java.io.File"%>
+<%@page import="java.io.*"%>
+<%@page import="javax.servlet.*"%>
+>>>>>>> 67cb89c1e9adf5fa7e110d6a7957855308daf61c
 
 <jsp:include page="/WEB-INF/view/templates/header.jsp" />
 

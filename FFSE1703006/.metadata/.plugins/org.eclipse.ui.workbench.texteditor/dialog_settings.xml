@@ -9,12 +9,14 @@
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="resources" key="selection"/>
+		<item value="password=mysql" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="password=root"/>
+			<item value="root"/>
 			<item value="../../../app-assets"/>
 			<item value="app-assets/"/>
 			<item value="app-"/>
@@ -28,10 +30,9 @@
 			<item value=" [0, 50]"/>
 			<item value="radius: [0, 50]"/>
 			<item value="radius  [0, 50]"/>
-			<item value="radius : [0, 50]"/>
-			<item value="radius : [0, 50],"/>
 		</list>
 		<list key="replacehistory">
+			<item value="password=mysql"/>
 			<item value="resources"/>
 			<item value=""/>
 			<item value="/resources"/>
@@ -46,7 +47,6 @@
 			<item value="cssClass=&quot;invalid-feedback d-block&quot;"/>
 			<item value="cssClass=&quot;error&quot;"/>
 			<item value="cssClass=&quot;invalid-feedback&quot;"/>
-			<item value="invalid-feedback"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
