@@ -40,17 +40,6 @@
    
 
    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-   <style>
-	   .invalid-feedback {
-	   	color: #DC3545;
-	   	padding-top: 10px;
-	   }
-	   .invalid-feedback::before {
-	   content: "•";
-	   padding-left: 10px;
-   	   padding-right: 10px;
-	   }
-   </style>
 </head>
 
 <body data-open="click" data-menu="vertical-menu" data-col="2-columns" class="vertical-layout vertical-menu 2-columns   menu-expanded fixed-navbar">
