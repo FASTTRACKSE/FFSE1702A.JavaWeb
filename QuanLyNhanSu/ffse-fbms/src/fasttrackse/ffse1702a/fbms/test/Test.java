@@ -1,5 +1,6 @@
 package fasttrackse.ffse1702a.fbms.test;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -20,8 +21,8 @@ public class Test {
 	private QuanLyHoSoService quanLyHoSoService;
 
 	private String GLOBAL_SEARCH_TERM;
-	private String[] COLUMN_NAME;
-	private String[] DIRECTION;
+	private List<String> COLUMN_NAME;
+	private List<String> DIRECTION;
 	private int INITIAL;
 	private int RECORD_SIZE;
 
@@ -32,40 +33,27 @@ public class Test {
 
 	@RequestMapping(value = "/testDB", produces = "text/plain;charset=UTF-8")
 	@ResponseBody
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public String testDB(Model model, HttpServletRequest request) {
 
 		String[] columnNames = { "ma_nhan_vien", "anh_dai_dien", "ho_dem", "ten", "gioi_tinh", "ma_phong_ban",
 				"ma_chuc_danh", "trang_thai" };
+		COLUMN_NAME = new ArrayList();
+		DIRECTION = new ArrayList();
+		int colLength = columnNames.length;
 
 		String pageNo = request.getParameter("iDisplayStart");
 		String pageSize = request.getParameter("iDisplayLength");
 
-		int totalRecords = Integer.parseInt(quanLyHoSoService.getAutoId()) - 1;
+		int recordsTotal = Integer.parseInt(quanLyHoSoService.getAutoId()) - 1;
 
 		INITIAL = Integer.parseInt(pageNo);
 		RECORD_SIZE = Integer.parseInt(pageSize);
 		GLOBAL_SEARCH_TERM = request.getParameter("sSearch");
 
-		int colLength = columnNames.length;
-		for (int i = 0; i < colLength; i++) {
-			if (COLUMN_NAME[i] != "") {
-
-				int colIndex = Integer.parseInt(request.getParameter("iSortCol_" + i));
-				String sortDirection = request.getParameter("sSortDir_" + i);
-
-				COLUMN_NAME[i] = columnNames[colIndex];
-				DIRECTION[i] = sortDirection;
-			} else {
-				break;
-			}
-		}
-
-		List<HoSoNhanVien> list = quanLyHoSoService.getAllHoSo(INITIAL, RECORD_SIZE, GLOBAL_SEARCH_TERM, COLUMN_NAME,
-				DIRECTION);
-
 		String sql = "from HoSoNhanVien ";
 		String globeSearch = "";
-		if (GLOBAL_SEARCH_TERM != "") {
+		if (!GLOBAL_SEARCH_TERM.isEmpty()) {
 			for (int i = 0; i < colLength; i++) {
 				if (i == 0) {
 					globeSearch += "where " + columnNames[i] + " like '%" + GLOBAL_SEARCH_TERM + "%' ";
@@ -73,24 +61,51 @@ public class Test {
 					globeSearch += "or " + columnNames[i] + " like '%" + GLOBAL_SEARCH_TERM + "%' ";
 				}
 			}
+			GLOBAL_SEARCH_TERM = globeSearch;
 		}
-		sql += globeSearch;
-		sql += " order by " + COLUMN_NAME + " " + DIRECTION;
-		sql += " limit " + INITIAL + ", " + RECORD_SIZE;
-		System.out.println(sql);
 
-		String json = "{\"iTotalRecords\":" + totalRecords + ",\"aaData\":[";
+		for (int i = 0; i < colLength; i++) {
+			String colIndex = request.getParameter("iSortCol_" + i);
+			if (colIndex != null) {
+				String sortDirection = request.getParameter("sSortDir_" + i);
+
+				COLUMN_NAME.add(columnNames[Integer.parseInt(colIndex)]);
+				DIRECTION.add(sortDirection);
+			} else {
+				break;
+			}
+		}
+
+		int sortLength = DIRECTION.size();
+		String sort = " order by ";
+		for (int i = 0; i < sortLength; i++) {
+			sort += COLUMN_NAME.get(i) + " " + DIRECTION.get(i);
+			if (i != sortLength - 1) {
+				sort += ", ";
+			}
+			System.out.println(sort);
+		}
+		if (sortLength != 0) {
+			sql += GLOBAL_SEARCH_TERM + sort;
+		}
+
+		System.err.println(sql);
+
+		List<HoSoNhanVien> list = quanLyHoSoService.getAllHoSo(INITIAL, RECORD_SIZE, sql);
+		String recordsFiltered = String.valueOf(list.size());
+
+		String json = "{\"recordsTotal\":" + recordsTotal + ",\"recordsFiltered\":" + recordsFiltered + ",\"aaData\":[";
 		int j = list.size();
 		int i = 0;
 		for (HoSoNhanVien hsnv : list) {
 			i++;
 			if (i == j) {
-				json += hsnv.toJson();
+				// json += hsnv.toJson();
 			} else {
-				json += hsnv.toJson() + ",";
+				// json += hsnv.toJson() + ",";
 			}
 		}
-		json += "],\"iTotalDisplayRecords\":" + totalRecords + "}";
+		json += "]}";
 		System.out.println(json);
 		return json;
 	}

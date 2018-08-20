@@ -31,16 +31,15 @@
 
 <script type="text/javascript">
 var path = '${pageContext.request.contextPath}';
-   var table;
+var table;
 
 jQuery(document).ready(function() {
    table = $('#personTable').dataTable({
          "bPaginate": true,
-         "order": [ 0, 'asc' ],
+         "order": [ 0, 'desc' ],
          "bServerSide" : true,
-         "sAjaxSource" : path+"/testDB",
+         "sAjaxSource" : path + "/ns/getListHoSo",
          });
-         
    });
 </script>
 </body>

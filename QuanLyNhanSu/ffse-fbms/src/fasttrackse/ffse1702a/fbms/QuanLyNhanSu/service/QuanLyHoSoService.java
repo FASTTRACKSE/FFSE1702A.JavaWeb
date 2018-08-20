@@ -8,12 +8,15 @@ public interface QuanLyHoSoService {
 
 	public HoSoNhanVien getHoSoNhanVienById(int maNhanVien);
 
-	public List<HoSoNhanVien> getHoSoByPhongBan(String maPhongBan);
+	public String getRecordsTotal(String maPhongBan);
+
+	public String getRecordsFiltered(String sql);
 
 	public List<HoSoNhanVien> getAllHoSo();
 
-	public List<HoSoNhanVien> getAllHoSo(int INITIAL, int RECORD_SIZE, String GLOBAL_SEARCH_TERM, String[] COLUMN_NAME,
-			String[] DIRECTION);
+	public List<HoSoNhanVien> getAllHoSo(int iDisplayStart, int iDisplayLength, String sql);
+
+	public List<HoSoNhanVien> getHoSoByPhongBan(String maPhongBan);
 
 	public void addHoSoNhanVien(HoSoNhanVien hsnv);
 
@@ -22,5 +25,7 @@ public interface QuanLyHoSoService {
 	public void deleteHoSoNhanVien(int maNhanVien);
 
 	public String getAutoId();
+
+	public String toJson(HoSoNhanVien hsnv);
 
 }

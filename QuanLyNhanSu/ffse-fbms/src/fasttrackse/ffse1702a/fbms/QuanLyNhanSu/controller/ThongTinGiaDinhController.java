@@ -52,9 +52,7 @@ public class ThongTinGiaDinhController {
 		List<ThongTinGiaDinh> listThongTinGiaDinh = thongTinGiaDinhForm.getListThongTinGiaDinh();
 
 		List<String> errorList = thongTinGiaDinhService.getErrorList(bindingResult);
-		System.out.println("errorlist" + errorList);
 		List<String> deleteList = thongTinGiaDinhService.getDeleteList(listThongTinGiaDinh);
-		System.out.println("deletelist" + deleteList);
 
 		if (bindingResult.hasErrors() && !errorList.equals(deleteList)) {
 			int maNhanVien = thongTinGiaDinhForm.getListThongTinGiaDinh().get(0).getHoSoNhanVien().getMaNhanVien();
@@ -68,8 +66,7 @@ public class ThongTinGiaDinhController {
 			if (id == 0) {
 				this.thongTinGiaDinhService.addThongTinGiaDinh(ttgd);
 			} else if (id < 0) {
-				System.err.println("xóaaaaaaaaaaaaaa");
-				// this.thongTinGiaDinhService.deleteThongTinGiaDinh(Math.abs(id));
+				this.thongTinGiaDinhService.deleteThongTinGiaDinh(Math.abs(id));
 			} else {
 				this.thongTinGiaDinhService.updateThongTinGiaDinh(ttgd);
 			}

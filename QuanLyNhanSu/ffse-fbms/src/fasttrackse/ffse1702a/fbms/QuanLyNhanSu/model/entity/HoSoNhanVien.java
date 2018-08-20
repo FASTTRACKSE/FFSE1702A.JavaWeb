@@ -46,7 +46,6 @@ public class HoSoNhanVien implements Serializable {
 	private int maNhanVien;
 
 	@Column(name = "anh_dai_dien", nullable = false, length = 100)
-	@NotEmpty
 	private String anhDaiDien;
 
 	@Column(name = "dan_toc", nullable = false, length = 50)
@@ -386,12 +385,6 @@ public class HoSoNhanVien implements Serializable {
 
 	public Set<VaiTro> getVaiTro() {
 		return vaiTro;
-	}
-
-	public String toJson() {
-		return "[\"" + maNhanVien + "\",\"" + anhDaiDien + "\",\"" + hoDem + "\",\"" + ten + "\",\"" + gioiTinh
-				+ "\",\"" + phongBan.getTenPhongBan() + "\",\"" + chucDanh.getTenChucDanh() + "\",\"" + trangThai
-				+ "\"]";
 	}
 
 	public void setVaiTro(Set<VaiTro> vaiTro) {
