@@ -18,7 +18,7 @@ public class QuanLyChucDanhController {
 
 	@Autowired(required = true)
 	private QuanLyChucDanhService quanlychucdanhService;
-
+	
 	@RequestMapping(value = "/ns/chuc_danh", method = RequestMethod.GET)
 	public String listChucDanh(Model model) {
 		List<ChucDanh> list = quanlychucdanhService.listChucDanh();

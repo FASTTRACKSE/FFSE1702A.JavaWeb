@@ -3,12 +3,11 @@ package fasttrackse.a1702.fbms.chucnang.model.dao;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.Query;
 
-import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.transform.Transformers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -19,16 +18,6 @@ public class ChucNangDaoImpl implements ChucNangDao {
 
 	@Autowired
 	private SessionFactory sessionFactory;
-	private EntityManager em;
-	private EntityManager entityManager;
-
-	public EntityManager getEntityManager() {
-		return entityManager;
-	}
-
-	public void setEntityManager(EntityManager entityManager) {
-		this.entityManager = entityManager;
-	}
 
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
@@ -68,7 +57,7 @@ public class ChucNangDaoImpl implements ChucNangDao {
 	public void delete(String ma_chuc_nang) {
 		Session session = this.sessionFactory.openSession();
 		Transaction cn = session.beginTransaction();
-		session.delete(getChucNangByCode(ma_chuc_nang));
+//		session.delete(getChucNangByCode(ma_chuc_nang));
 		cn.commit();
 		session.close();
 	}
@@ -79,48 +68,11 @@ public class ChucNangDaoImpl implements ChucNangDao {
 
 	@Override
 	public ChucNang getChucNangByCode(String ma_chuc_nang) {
-		Session session = this.sessionFactory.getCurrentSession();
-
-//		Session session = this.sessionFactory.openSession();
-		Transaction tx = session.beginTransaction();
-		
-		ChucNang hsnv = (ChucNang) session.load(ChucNang.class, new String(ma_chuc_nang));
-		System.out.println(hsnv);
-		
-		tx.commit();
-		session.close();
-		return hsnv;
-//		Session session = this.sessionFactory.openSession();
-//		Transaction tx = session.beginTransaction();
-//		Query query = entityManager.createQuery("SELECT * FROM ChucNang sm WHERE sm.ma_chuc_nang=:arg1");
-//		query.setParameter("arg1", ma_chuc_nang);
-//		tx.commit();
-//		session.close();
-//		ChucNang cn = (ChucNang) query;
-//		return cn;
-		
-//		Session session = this.sessionFactory.openSession();
-//		Transaction tx = session.beginTransaction();
-//		List<ChucNang> cn = (List<ChucNang>) session
-//				.createNativeQuery("SELECT * FROM chuc_nang WHERE ma_chuc_nang = ?").addEntity(ChucNang.class)
-//				.setParameter(1, ma_chuc_nang)
-//				.list();
-//		
-//		tx.commit();
-//		session.close();
-//		System.out.println(cn);
-//		return (ChucNang) cn;
-	}
-	
-	public ChucNang findByMaChucNang(String maChucNang) {
 		Session session = this.sessionFactory.openSession();
-		Transaction tx = session.beginTransaction();
-		List<ChucNang> phones = session.createNativeQuery( "SELECT * FROM ChucNang" )
-			.addEntity(ChucNang.class )
-			.list();
-		tx.commit();
+		List<ChucNang> cn = session.createSQLQuery("select * from chuc_nang WHERE ma_chuc_nang ='"+ ma_chuc_nang +"'").setResultTransformer(
+			    Transformers.aliasToBean(ChucNang.class)).list();
+		
 		session.close();
-		return (ChucNang) phones;
+		return cn.get(0);
 	}
-
 }

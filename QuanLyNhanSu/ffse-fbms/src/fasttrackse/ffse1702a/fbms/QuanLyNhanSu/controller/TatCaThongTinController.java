@@ -20,6 +20,7 @@ public class TatCaThongTinController {
 	
 	@Autowired
 	private ThongTinKinhNghiemService thongTinKinhNghiemService;
+	
 
 	@RequestMapping(value = "ns/ho_so/xem_tat_ca/{maNhanVien}", method = RequestMethod.GET)
 	public String tatCaThongTin(@PathVariable("maNhanVien") int maNhanVien, Model model) {

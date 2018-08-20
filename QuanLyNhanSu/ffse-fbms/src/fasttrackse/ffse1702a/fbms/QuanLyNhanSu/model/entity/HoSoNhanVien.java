@@ -46,7 +46,6 @@ public class HoSoNhanVien implements Serializable {
 	private int maNhanVien;
 
 	@Column(name = "anh_dai_dien", nullable = false, length = 100)
-	@NotEmpty
 	private String anhDaiDien;
 
 	@Column(name = "dan_toc", nullable = false, length = 50)
@@ -383,6 +382,7 @@ public class HoSoNhanVien implements Serializable {
 	public void setDuAn(Set<DuAn> duAn) {
 		this.duAn = duAn;
 	}
+
 	public Set<VaiTro> getVaiTro() {
 		return vaiTro;
 	}
@@ -390,6 +390,7 @@ public class HoSoNhanVien implements Serializable {
 	public void setVaiTro(Set<VaiTro> vaiTro) {
 		this.vaiTro = vaiTro;
 	}
+
 	@Override
 	public String toString() {
 		return "HoSoNhanVien [maNhanVien=" + maNhanVien + ", anhDaiDien=" + anhDaiDien + ", danToc=" + danToc
@@ -398,8 +399,7 @@ public class HoSoNhanVien implements Serializable {
 				+ ", soCmnd=" + soCmnd + ", soDienThoai=" + soDienThoai + ", ten=" + ten + ", trangThai=" + trangThai
 				+ ", phongBan=" + phongBan + ", chucDanh=" + chucDanh + ", quocTich=" + quocTich + ", tinhTrangHonNhan="
 				+ tinhTrangHonNhan + ", hopDongs=" + hopDongs + ", duAns=" + duAn + ", thongTinBangCaps="
-				+ thongTinBangCaps + ", vaiTro="
-						+ vaiTro + ", thongTinGiaDinhs=" + thongTinGiaDinhs + "]";
+				+ thongTinBangCaps + ", vaiTro=" + vaiTro + ", thongTinGiaDinhs=" + thongTinGiaDinhs + "]";
 	}
 
 }

@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+		<item value="D:\Java\FFSE1702A.JavaWeb\QuanLyToChucVaPhanQuyenHeThong"/>
+		<item value="D:\Java\FFSE1702A.JavaWeb\FFSE1701003\ffse-fbms"/>
 		<item value="E:\Java\FFSE1702A.JavaWeb\FFSE1701003\SpringMVC"/>
 		<item value="E:\Java\FFSE1702A.JavaWeb\FFSE1703006\ffse-fbms"/>
 		<item value="E:\Java\FFSE1702A.JavaWeb\FFSE1701003\FFSE1702A"/>
@@ -12,7 +14,7 @@
 	<section name="CleanDialogSettings">
 		<item value="500" key="DIALOG_WIDTH"/>
 		<item value="false" key="TOGGLE_SELECTED"/>
-		<item value="401" key="DIALOG_HEIGHT"/>
+		<item value="402" key="DIALOG_HEIGHT"/>
 		<item value="431" key="DIALOG_X_ORIGIN"/>
 		<item value="65" key="DIALOG_Y_ORIGIN"/>
 	</section>

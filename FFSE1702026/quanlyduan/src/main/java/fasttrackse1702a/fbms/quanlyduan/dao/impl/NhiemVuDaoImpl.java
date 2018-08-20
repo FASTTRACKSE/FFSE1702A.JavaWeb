@@ -31,20 +31,30 @@ public class NhiemVuDaoImpl implements NhiemVuDao {
 	}
 
 	@Override
-	public List<NhiemVu> getAll() {
+	public List<NhiemVu> getAll(int maDuAn) {
 		Session session= sessionFactory.getCurrentSession();
-		return session.createQuery("from NhiemVu",NhiemVu.class).list();
+		return session.createQuery("from NhiemVu where maDuAn="+maDuAn,NhiemVu.class).list();
 	}
 
 	@Override
-	public NhiemVu getById(String maDuAn,String maNhanVien) {
+	public List<NhiemVu> getById(int maDuAn,int maNhanVien) {
 		Session session= sessionFactory.getCurrentSession();
-		return (NhiemVu) session.createQuery("from NhiemVu where maDuAn ='"+maDuAn+"' and maNhanVien='"+maNhanVien+"'",NhiemVu.class).getSingleResult();
+		return  session.createQuery("from NhiemVu where maDuAn ='"+maDuAn+"' and maNhanVien='"+maNhanVien+"'",NhiemVu.class).list();
 	}
 	@Override
 	public void delete(NhiemVu nhiemvu) {
 		Session session= sessionFactory.getCurrentSession();
+		
 		session.delete(nhiemvu);
+	}
+
+	@Override
+	public NhiemVu getDetailNhiemVu(int maDuAn, int maNhanVien, String maVaiTro) {
+		Session session= sessionFactory.getCurrentSession();
+		 if( session.createQuery("from NhiemVu where maDuAn ='"+maDuAn+"' and maNhanVien='"+maNhanVien+"' and maVaiTro='"+maVaiTro+"'" ,NhiemVu.class).list().size()==0) {
+			return null;
+		}
+		 return session.createQuery("from NhiemVu where maDuAn ='"+maDuAn+"' and maNhanVien='"+maNhanVien+"' and maVaiTro='"+maVaiTro+"'" ,NhiemVu.class).getSingleResult();
 	}
 	
 }

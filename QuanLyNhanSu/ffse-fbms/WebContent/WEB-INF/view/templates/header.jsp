@@ -34,23 +34,10 @@
    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/core/menu/menu-types/vertical-menu.css"/>">
    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/core/menu/menu-types/vertical-overlay-menu.css"/>">
    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/core/colors/palette-gradient.css"/>">
+   <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/core/colors/palette-callout.min.css"/>">
    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/plugins/forms/extended/form-extended.min.css"/>">
    <!-- END Page Level CSS-->
-   
-   
-
    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-   <style>
-	   .invalid-feedback {
-	   	color: #DC3545;
-	   	padding-top: 10px;
-	   }
-	   .invalid-feedback::before {
-	   content: "•";
-	   padding-left: 10px;
-   	   padding-right: 10px;
-	   }
-   </style>
 </head>
 
 <body data-open="click" data-menu="vertical-menu" data-col="2-columns" class="vertical-layout vertical-menu 2-columns   menu-expanded fixed-navbar">

@@ -221,7 +221,9 @@
 									      <label class="file block">
 										  	<input type="file" id="image" name="image">
 										  	<form:hidden path="anhDaiDien" />
-								            <form:errors path="anhDaiDien" cssClass="invalid-feedback d-block" />
+											<c:if test="${!empty anhDaiDienErrors}">
+												<span class="invalid-feedback d-block"><spring:message code="NotEmpty.hoSoNhanVien.anhDaiDien" /></span>
+											</c:if>
 										  </label>
 								      </div>
 								      <h4 class="form-section"><i class="fa fa-home"></i> <spring:message code="label.thongTinLienHe" /></h4>

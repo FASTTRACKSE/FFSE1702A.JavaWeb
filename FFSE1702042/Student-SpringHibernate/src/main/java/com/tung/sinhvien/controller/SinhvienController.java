@@ -58,7 +58,7 @@ public class SinhvienController {
 	}
 		
 	@RequestMapping("/create")
-	public String create(@ModelAttribute("Student") sinhvien student, Model model) {
+	public String create(@ModelAttribute("student") sinhvien student, Model model) {
 		dao.create(student);
 		return "redirect:/index";
 	}

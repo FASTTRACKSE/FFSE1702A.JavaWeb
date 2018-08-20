@@ -29,13 +29,13 @@
 							method="POST" action="${update }">
 
 							<div class="row">
-								<div class="col-lg-6 col-md-12">
+								<div class="col-lg-12 col-md-12">
 									<div class="form-group">
-										<h5>
+										<%-- <h5>
 											<spring:message code="duan.code"></spring:message>
-										</h5>
+										</h5> --%>
 										<div class="controls">
-											<form:input path="maDuAn" cssClass="form-control" />
+											<form:hidden path="maDuAn" cssClass="form-control round" />
 											<form:errors path="maDuAn" cssStyle="color: red"></form:errors>
 											<div class="help-block"></div>
 										</div>
@@ -46,145 +46,215 @@
 											<spring:message code="duan.name"></spring:message>
 										</h5>
 										<div class="controls">
-											<form:input path="tenDuAn" cssClass="form-control" />
+											<form:input path="tenDuAn" cssClass="form-control round" />
 											<form:errors path="tenDuAn" cssStyle="color: red"></form:errors>
 											<div class="help-block"></div>
 										</div>
 
 									</div>
-									<div class="form-group">
-										<h5>
-											<spring:message code="duan.business"></spring:message>
-										</h5>
-										<div class="controls">
-											<form:input path="nghiepVu" cssClass="form-control" />
-											<form:errors path="nghiepVu" cssStyle="color: red"></form:errors>
-											<div class="help-block"></div>
-										</div>
 
-									</div>
 									<div class="form-group">
 										<h5>
 											<spring:message code="duan.description"></spring:message>
 										</h5>
 										<div class="controls">
-											<form:textarea path="moTaDuAn" cssClass="form-control" />
+											<form:textarea path="moTaDuAn" cssClass="form-control round" />
 											<form:errors path="moTaDuAn" cssStyle="color: red"></form:errors>
 											<div class="help-block"></div>
 										</div>
 
 									</div>
 									<c:set var="khang" value="${duan.khachHang.maKhachHang }"></c:set>
-									<div class="form-group">
-										<h5>
-											<spring:message code="duan.customer"></spring:message>
-										</h5>
-										<div class="controls">
-											<form:select path="khachHang" cssClass="form-control">
-												<c:forEach items="${khachhang }" var="kh">
-													<option value="${kh.maKhachHang }"
-														<c:if test="${kh.maKhachHang ==khang }" >selected="selected"</c:if>>${kh.tenKhachHang }</option>
-												</c:forEach>
-											</form:select>
-											<form:errors path="khachHang" cssStyle="color: red"></form:errors>
-											<div class="help-block"></div>
-										</div>
+									<div class="col-lg-6 col-md-6">
+										<div class="form-group">
+											<h5>
+												<spring:message code="duan.customer"></spring:message>
+											</h5>
+											<div class="controls">
+												<form:select path="khachHang" cssClass="form-control round">
+													<c:forEach items="${khachhang }" var="kh">
+														<option value="${kh.maKhachHang }"
+															<c:if test="${kh.maKhachHang ==khang }" >selected="selected"</c:if>>${kh.tenKhachHang }</option>
+													</c:forEach>
+												</form:select>
+												<form:errors path="khachHang" cssStyle="color: red"></form:errors>
+												<div class="help-block"></div>
+											</div>
 
+										</div>
+									</div>
+									<c:set var="nvu" value="${duan.nghiepVu.maNghiepVu }"></c:set>
+									<div class="col-lg-6 col-md-6">
+										<div class="form-group">
+											<h5>
+												<spring:message code="duan.business"></spring:message>
+											</h5>
+											<div class="controls">
+												<form:select path="nghiepVu" cssClass="form-control round">
+													<c:forEach items="${nghiepvu }" var="nv">
+														<option value="${nv.maNghiepVu }"
+															<c:if test="${nv.maNghiepVu ==nvu }" >selected="selected"</c:if>>${nv.tenNghiepVu }</option>
+													</c:forEach>
+												</form:select>
+												<form:errors path="nghiepVu" cssStyle="color: red"></form:errors>
+												<div class="help-block"></div>
+											</div>
+
+										</div>
+									</div>
+									<c:set var="dtac" value="${duan.doiTac }"></c:set>
+									<div class="col-lg-6 col-md-6">
+										<div class="form-group">
+											<h5>
+												<spring:message code="duan.vendor" />
+											</h5>
+											<div class="controls">
+												<form:select path="doiTac" cssClass="form-control round"
+													mutiple="true">
+													<c:forEach items="${doitac }" var="dt">
+														<option value="${dt.maDoiTac }"
+															<c:forEach items="${dtac }" var="dtc">
+															<c:if test="${dtc.maDoiTac==dt.maDoiTac }"> selected="selected"</c:if>
+														</c:forEach>>${dt.tenDoiTac }
+														</option>
+													</c:forEach>
+
+												</form:select>
+												<form:errors path="doiTac" cssStyle="color: red"></form:errors>
+												<div class="help-block"></div>
+											</div>
+
+										</div>
 									</div>
 									<c:set var="nngu" value="${duan.ngonNgu }"></c:set>
-									<div class="form-group">
-										<h5>
-											<spring:message code="duan.language" />
-										</h5>
-										<div class="controls">
-											<form:select path="ngonNgu" cssClass="form-control"
-												mutiple="true">
-												<c:forEach items="${ngonngu }" var="nn">
-													<option value="${nn.maNgonNgu }"
-														<c:forEach items="${nngu }" var="nng">
+									<div class="col-lg-6 col-md-6">
+										<div class="form-group">
+											<h5>
+												<spring:message code="duan.language" />
+											</h5>
+											<div class="controls">
+												<form:select path="ngonNgu" cssClass="form-control round"
+													mutiple="true">
+													<c:forEach items="${ngonngu }" var="nn">
+														<option value="${nn.maNgonNgu }"
+															<c:forEach items="${nngu }" var="nng">
 															<c:if test="${nng.maNgonNgu==nn.maNgonNgu }"> selected="selected"</c:if>
 														</c:forEach>>${nn.tenNgonNgu }
-													</option>
-												</c:forEach>
-											</form:select>
-											<form:errors path="ngonNgu" cssStyle="color: red"></form:errors>
-											<div class="help-block"></div>
-										</div>
+														</option>
+													</c:forEach>
+												</form:select>
+												<form:errors path="ngonNgu" cssStyle="color: red"></form:errors>
+												<div class="help-block"></div>
+											</div>
 
+										</div>
 									</div>
 									<c:set var="databs" value="${duan.database }"></c:set>
-									<div class="form-group">
-										<h5>
-											<spring:message code="duan.database" />
-										</h5>
-										<div class="controls">
-											<form:select path="database" cssClass="form-control"
-												mutiple="true">
-												<c:forEach items="${database }" var="db">
-													<option value="${db.maDatabase }"
-														<c:forEach items="${databs }" var="dbs">
+									<div class="col-lg-6 col-md-6">
+										<div class="form-group">
+											<h5>
+												<spring:message code="duan.database" />
+											</h5>
+											<div class="controls">
+												<form:select path="database" cssClass="form-control round"
+													mutiple="true">
+													<c:forEach items="${database }" var="db">
+														<option value="${db.maDatabase }"
+															<c:forEach items="${databs }" var="dbs">
 															<c:if test="${db.maDatabase==dbs.maDatabase }"> selected="selected"</c:if>
 														</c:forEach>>${db.tenDatabase }
-													</option>
-												</c:forEach>
-											</form:select>
-											<form:errors path="database" cssStyle="color: red"></form:errors>
-											<div class="help-block"></div>
-										</div>
+														</option>
+													</c:forEach>
+												</form:select>
+												<form:errors path="database" cssStyle="color: red"></form:errors>
+												<div class="help-block"></div>
+											</div>
 
-									</div>
-									<c:set var="framew" value="${duan.framework }"></c:set>
-									<div class="form-group">
-										<h5>
-											<spring:message code="duan.framework" />
-										</h5>
-										<div class="controls">
-											<form:select path="framework" cssClass="form-control" mutiple="true">
-												<c:forEach items="${framework }" var="fr">
-													<option value="${fr.maFramework }"
-														<c:forEach items="${framew }" var="fw">
+										</div>
+										</div>
+										<div class="col-lg-6 col-md-6">
+											<c:set var="framew" value="${duan.framework }"></c:set>
+											<div class="form-group">
+												<h5>
+													<spring:message code="duan.framework" />
+												</h5>
+												<div class="controls">
+													<form:select path="framework" cssClass="form-control round"
+														mutiple="true">
+														<c:forEach items="${framework }" var="fr">
+															<option value="${fr.maFramework }"
+																<c:forEach items="${framew }" var="fw">
 															<c:if test="${fr.maFramework==fw.maFramework }"> selected="selected"</c:if>
 														</c:forEach>>${fr.tenFramework }
-													</option>
-												</c:forEach>
-											</form:select>
-											<form:errors path="framework" cssStyle="color: red"></form:errors>
-											<div class="help-block"></div>
+															</option>
+														</c:forEach>
+													</form:select>
+													<form:errors path="framework" cssStyle="color: red"></form:errors>
+													<div class="help-block"></div>
+												</div>
+
+											</div>
 										</div>
+										
+										<div class="col-lg-6 col-md-6">
+											<div class="form-group">
+												<h5>
+													<spring:message code="duan.startdate" />
+												</h5>
+												<div class="controls">
+													<form:input path="startDate" cssClass="form-control round"
+														type="date" />
+													<form:errors path="startDate" cssStyle="color: red"></form:errors>
+													<div class="help-block"></div>
+												</div>
 
-									</div>
-									<c:set var="stt" value="${duan.tinhTrang.maTinhTrang }"></c:set>
-									<div class="form-group">
-										<h5>
-											<spring:message code="duan.status" />
-										</h5>
-										<div class="controls">
-											<form:select path="tinhTrang" cssClass="form-control">
-												<c:forEach items="${tinhtrang }" var="tt">
-													<option value="${tt.maTinhTrang }"
-														<c:if test="${tt.maTinhTrang ==stt }" >selected="selected"</c:if>>${tt.tenTinhTrang }</option>
-												</c:forEach>
-											</form:select>
-											<form:errors path="tinhTrang" cssStyle="color: red"></form:errors>
-											<div class="help-block"></div>
+											</div>
 										</div>
+										<div class="col-lg-6 col-md-6">
+											<div class="form-group">
+												<h5>
+													<spring:message code="duan.enddate" />
+												</h5>
+												<div class="controls">
+													<form:input path="endDate" cssClass="form-control round"
+														type="date" />
+													<form:errors path="endDate" cssStyle="color: red"></form:errors>
+													<div class="help-block"></div>
+												</div>
 
+											</div>
+										</div>
+										<c:set var="stt" value="${duan.tinhTrang.maTinhTrang }"></c:set>
+										<div class="col-lg-6 col-md-6">
+											<div class="form-group">
+												<h5>
+													<spring:message code="duan.status" />
+												</h5>
+												<div class="controls">
+													<form:select path="tinhTrang" cssClass="form-control round">
+														<c:forEach items="${tinhtrang }" var="tt">
+															<option value="${tt.maTinhTrang }"
+																<c:if test="${tt.maTinhTrang ==stt }" >selected="selected"</c:if>>${tt.tenTinhTrang }</option>
+														</c:forEach>
+													</form:select>
+													<form:errors path="tinhTrang" cssStyle="color: red"></form:errors>
+													<div class="help-block"></div>
+												</div>
+
+											</div>
+
+										</div>
+										<div class="text-xs-right">
+											<button type="submit" class="btn btn-success">
+												Submit <i class="fa fa-thumbs-o-up position-right"></i>
+											</button>
+											<button type="reset" class="btn btn-danger">
+												Reset <i class="fa fa-refresh position-right"></i>
+											</button>
+										</div>
 									</div>
 
-
-									<div class="text-xs-right">
-										<button type="submit" class="btn btn-success">
-											Submit <i class="fa fa-thumbs-o-up position-right"></i>
-										</button>
-										<button type="reset" class="btn btn-danger">
-											Reset <i class="fa fa-refresh position-right"></i>
-										</button>
-									</div>
 								</div>
-
-							</div>
-
-
 						</form:form>
 					</div>
 				</div>
