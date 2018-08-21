@@ -9,6 +9,7 @@ import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 
 /**
  * The persistent class for the phong_ban database table.
@@ -21,9 +22,11 @@ public class PhongBan implements Serializable {
 
 	@Id
 	@Column(name = "ma_phong_ban", unique = true, nullable = false, length = 30)
+	@NotEmpty
 	private String maPhongBan;
 
 	@Column(name = "ten_phong_ban", nullable = false, length = 255)
+	@NotEmpty
 	private String tenPhongBan;
 
 	// bi-directional many-to-one association to HoSoNhanVien

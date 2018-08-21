@@ -53,19 +53,29 @@
 		                          <div class="form-body" style="margin-top: 1rem;">
 		                            <div class="form-group">
 		                              <label>Mã phòng ban</label>
-		                           	  <form:input path="maPhongBan" type="text" class="form-control" id="id_edit" placeholder="Mã phòng ban ..."/>
+		                              <c:if test="${!empty phongBan.maPhongBan }">
+		                              <form:input path="maPhongBan" type="text" class="form-control" readonly="true" id="id_edit" placeholder="Mã phòng ban ..."/>
+		                              <form:hidden path="maPhongBan"/>
+										</c:if> 
+		                       		 <c:if test="${empty phongBan.maPhongBan}">
+		                       		 <form:input path="maPhongBan" type="text" class="form-control" id="id_edit" placeholder="Mã phòng ban ..."/>
+		                              <form:errors path="maPhongBan" cssClass="invalid-feedback d-block" />
+		                       		 </c:if>
+		                           	  
 		                            </div>
 		                            <div class="form-group">
 		                              <label>Tên phòng ban</label>
 		                               <form:input path="tenPhongBan" type="text" id="name_edit" class="form-control" placeholder="Tên phòng ban ..." />
+		                           	   <form:errors path="tenPhongBan" cssClass="invalid-feedback d-block" />
 		                            </div>
 		                          </div>
 		                        </div>
 		                      </div>
 		                      <div class="form-actions center">
 		                        <a href="/ffse-fbms/ns/phong_ban"><button type="button" class="btn btn-warning mr-1"><i class="ft-x"></i> Quay lại</button></a>
+		                        <c:if test="${!empty phongBan.maPhongBan || !empty phongBan.tenPhongBan}"><button type="submit" class="btn btn-primary"><i class="fa fa-check-square-o"></i> Sửa</button></c:if> 
+		                        <c:if test="${empty phongBan.maPhongBan}"><button type="submit" class="btn btn-primary"><i class="fa fa-check-square-o"></i> Thêm</button></c:if>
 		                        
-		                        <button type="submit" class="btn btn-primary"><i class="fa fa-check-square-o"></i> Thêm</button>
 		                     
 		                      </div>
 		                    </form:form>

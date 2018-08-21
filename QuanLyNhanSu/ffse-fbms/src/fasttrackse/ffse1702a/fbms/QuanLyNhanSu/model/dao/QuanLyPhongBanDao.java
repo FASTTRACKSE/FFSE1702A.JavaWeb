@@ -11,4 +11,5 @@ public interface QuanLyPhongBanDao {
 	public List<PhongBan> listPhongBan();
 	public PhongBan getMaPhongBan(String id);
 	public void removePhongBan(String id);
+	public boolean checkMaPhongBan(String maPhongBan);
 }
