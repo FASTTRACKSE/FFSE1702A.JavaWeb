@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import fasttrackse.ffse1702a.fbms.QuanLyDuAn.model.entity.ChucDanh;
+import fasttrackse.ffse1702a.fbms.QuanLyNhanSu.model.entity.ChucDanh;
 import fasttrackse.ffse1702a.fbms.QuanLyNhanSu.service.QuanLyChucDanhService;
 
 @Controller

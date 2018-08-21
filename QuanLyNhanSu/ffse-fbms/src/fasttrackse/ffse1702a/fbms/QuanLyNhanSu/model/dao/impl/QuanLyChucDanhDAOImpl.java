@@ -7,7 +7,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import fasttrackse.ffse1702a.fbms.QuanLyDuAn.model.entity.ChucDanh;
+import fasttrackse.ffse1702a.fbms.QuanLyNhanSu.model.entity.ChucDanh;
 import fasttrackse.ffse1702a.fbms.QuanLyNhanSu.model.dao.QuanLyChucDanhDAO;
 
 @Repository

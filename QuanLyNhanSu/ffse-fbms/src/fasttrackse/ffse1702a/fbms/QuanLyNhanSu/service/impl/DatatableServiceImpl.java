@@ -28,9 +28,6 @@ public class DatatableServiceImpl implements DatatableService {
 
 		if (!sSearch.isEmpty()) {
 			for (int i = 0; i < colLength; i++) {
-				if (columnNames[i].equals("anh_dai_dien")) {
-					continue;
-				}
 				if (i == 0) {
 					if (!custom.isEmpty()) {
 						globeSearch += " and ";

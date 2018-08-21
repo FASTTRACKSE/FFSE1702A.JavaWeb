@@ -10,7 +10,6 @@ import org.springframework.stereotype.Repository;
 
 import fasttrackse.ffse1702a.fbms.QuanLyNhanSu.model.dao.QuanLyHoSoDAO;
 import fasttrackse.ffse1702a.fbms.QuanLyNhanSu.model.entity.HoSoNhanVien;
-import fasttrackse.ffse1702a.fbms.QuanLyNhanSu.model.entity.PhongBan;
 
 @Repository
 @SuppressWarnings({ "rawtypes", "unchecked" })
@@ -33,7 +32,7 @@ public class QuanLyHoSoDAOImpl implements QuanLyHoSoDAO {
 
 		String sql = "SELECT COUNT(*) FROM `ho_so_nhan_vien`";
 		if (!maPhongBan.equals("ns")) {
-			sql += " WHERE ma_phong_ban = '" + maPhongBan + "'";
+			sql += " WHERE ma_phong_ban = '" + maPhongBan + "' and trang_thai = 1";
 		}
 		Query query = session.createSQLQuery(sql);
 
@@ -70,8 +69,13 @@ public class QuanLyHoSoDAOImpl implements QuanLyHoSoDAO {
 	@Override
 	public List<HoSoNhanVien> getHoSoByPhongBan(String maPhongBan) {
 		Session session = this.sessionFactory.getCurrentSession();
-		PhongBan pb = session.load(PhongBan.class, maPhongBan);
-		List<HoSoNhanVien> listHoSo = pb.getHoSoNhanViens();
+
+		// PhongBan pb = session.load(PhongBan.class, maPhongBan);
+		// List<HoSoNhanVien> listHoSo = pb.getHoSoNhanViens();
+
+		Query query = session.createQuery("from HoSoNhanVien where ma_phong_ban = :maPhongBan and trang_thai = 1 ");
+		query.setParameter("maPhongBan", maPhongBan);
+		List<HoSoNhanVien> listHoSo = query.list();
 		return listHoSo;
 	}
 

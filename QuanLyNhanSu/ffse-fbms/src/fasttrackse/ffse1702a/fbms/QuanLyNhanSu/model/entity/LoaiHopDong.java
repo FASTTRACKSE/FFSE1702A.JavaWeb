@@ -59,18 +59,4 @@ public class LoaiHopDong implements Serializable {
 		this.hopDongs = hopDongs;
 	}
 
-	public HopDong addHopDong(HopDong hopDong) {
-		getHopDongs().add(hopDong);
-		hopDong.setLoaiHopDong(this);
-
-		return hopDong;
-	}
-
-	public HopDong removeHopDong(HopDong hopDong) {
-		getHopDongs().remove(hopDong);
-		hopDong.setLoaiHopDong(null);
-
-		return hopDong;
-	}
-
 }

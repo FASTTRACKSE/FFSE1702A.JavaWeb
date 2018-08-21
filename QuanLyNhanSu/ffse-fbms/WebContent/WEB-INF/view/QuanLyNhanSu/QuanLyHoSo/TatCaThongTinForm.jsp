@@ -4,16 +4,17 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%> 
-<<<<<<< HEAD
-=======
 <%@page import="java.io.File"%>
 <%@page import="java.io.*"%>
 <%@page import="javax.servlet.*"%>
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 =======
 >>>>>>> 67cb89c1e9adf5fa7e110d6a7957855308daf61c
 >>>>>>> 47858687edeaa782cd01ec673dcd1a57a61e47cf
+=======
+>>>>>>> a2bbaf84c8b2e76d27b6b2c0bafebcfce4661f4a
 
 <jsp:include page="/WEB-INF/view/templates/header.jsp" />
 

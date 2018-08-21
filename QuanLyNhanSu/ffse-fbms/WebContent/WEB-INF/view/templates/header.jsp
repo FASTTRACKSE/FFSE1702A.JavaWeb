@@ -38,6 +38,7 @@
    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/plugins/forms/extended/form-extended.min.css"/>">
    <!-- END Page Level CSS-->
    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<<<<<<< HEAD
     <style>
 	   .invalid-feedback {
 	   	color: #DC3545;
@@ -49,6 +50,18 @@
    	   padding-right: 10px;
 	   }
    </style>
+=======
+   <script>
+   $(document)
+      .ready(function () {
+         url = window.location.href;
+         selector = '.' + url.substring(url.lastIndexOf("ffse-fbms")+10);
+         console.log(selector);
+         $(selector.replace(/\//g, ''))
+            .addClass('active');
+      });
+   </script>
+>>>>>>> a2bbaf84c8b2e76d27b6b2c0bafebcfce4661f4a
 </head>
 
 <body data-open="click" data-menu="vertical-menu" data-col="2-columns" class="vertical-layout vertical-menu 2-columns   menu-expanded fixed-navbar">
@@ -305,33 +318,73 @@
             </li>
             <li class=" nav-item"><a href="javascript:void(0)"><i class="ft-home"></i><span data-i18n="" class="menu-title">Quản lý phòng ban</span></a>
                <ul class="menu-content">
-                  <li><a href="<c:url value = "/ns/phong_ban"/>" class="menu-item">Danh sách phòng ban</a>
+                  <li class="nsphong_ban"><a href="<c:url value = "/ns/phong_ban"/>" class="menu-item">Danh sách phòng ban</a>
                   </li>
-                  <li><a href="<c:url value = "/ns/phong_ban/add"/>" class="menu-item">Thêm phòng ban</a>
+                  <li class="nsphong_banadd"><a href="<c:url value = "/ns/phong_ban/add"/>" class="menu-item">Thêm phòng ban</a>
                   </li>
                </ul>
             </li>
             <li class=" nav-item"><a href="javascript:void(0)"><i class="ft-award"></i><span data-i18n="" class="menu-title">Quản lý chức danh</span></a>
                <ul class="menu-content">
-                  <li><a href="<c:url value = "/ns/chuc_danh"/>" class="menu-item">Danh sách chức danh</a>
+                  <li class="nschuc_danh"><a href="<c:url value = "/ns/chuc_danh"/>" class="menu-item">Danh sách chức danh</a>
                   </li>
-                  <li><a href="<c:url value = "/ns/chuc_danh/add"/>" class="menu-item">Thêm chức danh</a>
+                  <li class="nschuc_danhadd"><a href="<c:url value = "/ns/chuc_danh/add"/>" class="menu-item">Thêm chức danh</a>
                   </li>
                </ul>
             </li>
             <li class=" nav-item"><a href="javascript:void(0)"><i class="ft-users"></i><span data-i18n="" class="menu-title">Quản lý hồ sơ</span></a>
                <ul class="menu-content">
-                  <li><a href="<c:url value = "/ns/ho_so"/>" class="menu-item">Danh sách hồ sơ</a>
+                  <li><a href="javascript:void(0)" class="menu-item">Danh sách hồ sơ</a>
+                  	<ul class="menu-content">
+					   <li class="nsho_so"><a href="<c:url value = "/ns/ho_so"/>" class="menu-item">Tất cả</a>
+					   </li>
+					   <li><a href="javascript:void(0)" class="menu-item">Phòng ban</a>
+					      <ul class="menu-content">
+					         <li class="PGDho_so"><a href="<c:url value = "/PGD/ho_so"/>" class="menu-item">Phòng Giám đốc</a>
+					         </li>
+					         <li class="PNSho_so"><a href="<c:url value = "/PNS/ho_so"/>" class="menu-item">Phòng Nhân sự</a>
+					         </li>
+					         <li class="PKTho_so"><a href="<c:url value = "/PKT/ho_so"/>" class="menu-item">Phòng Kế toán</a>
+					         </li>
+					         <li class="PDAho_so"><a href="<c:url value = "/PDA/ho_so"/>" class="menu-item">Phòng Dự án</a>
+					         </li>
+					         <li class="PDTho_so"><a href="<c:url value = "/PDT/ho_so"/>" class="menu-item">Phòng Đào tạo</a>
+					         </li>
+					         <li class="PITho_so"><a href="<c:url value = "/PIT/ho_so"/>" class="menu-item">Phòng IT</a>
+					         </li>
+					      </ul>
+					   </li>
+					</ul>
                   </li>
-                  <li><a href="<c:url value = "/ns/ho_so/add"/>" class="menu-item">Thêm hồ sơ</a>
+                  <li class="nsho_soadd"><a href="<c:url value = "/ns/ho_so/add"/>" class="menu-item">Thêm hồ sơ</a>
                   </li>
                </ul>
             </li>
             <li class=" nav-item"><a href="javascript:void(0)"><i class="ft-file-text"></i><span data-i18n="" class="menu-title">Quản lý hợp đồng</span></a>
                <ul class="menu-content">
-                  <li><a href="<c:url value = "/ns/hop_dong"/>" class="menu-item">Danh sách hợp đồng</a>
+                  <li><a href="javascript:void(0)" class="menu-item">Danh sách hợp đồng</a>
+                  	<ul class="menu-content">
+					   <li class="nshop_dong"><a href="<c:url value = "/ns/hop_dong"/>" class="menu-item">Tất cả</a>
+					   </li>
+					   <li><a href="javascript:void(0)" class="menu-item">Phòng ban</a>
+					      <ul class="menu-content">
+					         <li class="PGDhop_dong"><a href="<c:url value = "/PGD/hop_dong"/>" class="menu-item">Phòng Giám đốc</a>
+					         </li>
+					         <li class="PNShop_dong"><a href="<c:url value = "/PNS/hop_dong"/>" class="menu-item">Phòng Nhân sự</a>
+					         </li>
+					         <li class="PKThop_dong"><a href="<c:url value = "/PKT/hop_dong"/>" class="menu-item">Phòng Kế toán</a>
+					         </li>
+					         <li class="PDAhop_dong"><a href="<c:url value = "/PDA/hop_dong"/>" class="menu-item">Phòng Dự án</a>
+					         </li>
+					         <li class="PDThop_dong"><a href="<c:url value = "/PDT/hop_dong"/>" class="menu-item">Phòng Đào tạo</a>
+					         </li>
+					         <li class="PIThop_dong"><a href="<c:url value = "/PIT/hop_dong"/>" class="menu-item">Phòng IT</a>
+					         </li>
+					      </ul>
+					   </li>
+					</ul>
                   </li>
-                  <li><a href="<c:url value = "/ns/hop_dong/add"/>" class="menu-item">Thêm hợp đồng</a>
+                  <li class="nshop_dongadd"><a href="<c:url value = "/ns/hop_dong/add"/>" class="menu-item">Thêm hợp đồng</a>
                   </li>
                </ul>
             </li>

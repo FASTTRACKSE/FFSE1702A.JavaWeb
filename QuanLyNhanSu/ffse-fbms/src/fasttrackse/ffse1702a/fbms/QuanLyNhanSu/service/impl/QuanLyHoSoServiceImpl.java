@@ -90,8 +90,9 @@ public class QuanLyHoSoServiceImpl implements QuanLyHoSoService {
 				+ hsnv.getPhongBan().getTenPhongBan() + "</a>";
 		String chucDanh = hsnv.getChucDanh().getTenChucDanh();
 		String trangThai = hsnv.getTrangThai() == 1 ? "Đang làm việc" : "Nghỉ việc";
-		String action = "<a href='/ffse-fbms/ns/ho_so/" + hsnv.getMaNhanVien() + "'><i class='fa fa-eye'></i></a>"
-				+ "<a href='/ffse-fbms/ns/ho_so/edit/" + hsnv.getMaNhanVien() + "'><i class='fa fa-pencil'></i></a>"
+		String action = "<a href='/ffse-fbms/ns/ho_so/xem_tat_ca/" + hsnv.getMaNhanVien()
+				+ "'><i class='fa fa-eye'></i></a>" + "<a href='/ffse-fbms/ns/ho_so/edit/" + hsnv.getMaNhanVien()
+				+ "'><i class='fa fa-pencil'></i></a>"
 				+ "<a href='javascript:void(0);' data-toggle='modal' data-target='#confirm-delete' data-href='/ffse-fbms/ns/ho_so/delete/"
 				+ hsnv.getMaNhanVien() + "'><i class='fa fa-trash'></i></a>";
 

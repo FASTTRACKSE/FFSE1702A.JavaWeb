@@ -70,6 +70,7 @@ public class HopDong implements Serializable {
 
 	public HopDong() {
 	}
+
 	public int getMaHopDong() {
 		return this.maHopDong;
 	}
@@ -136,9 +137,9 @@ public class HopDong implements Serializable {
 
 	@Override
 	public String toString() {
-		return "HopDong [maHopDong=" + maHopDong + ", maNhanVien=" + hoSoNhanVien.getMaNhanVien() +", luongThang13=" + luongThang13 + ", ngayKetThuc=" + ngayKetThuc
-				+ ", ngayKyKet=" + ngayKyKet + ", soNgayPhep=" + soNgayPhep + ", trangThai=" + trangThai
-				+ ", loaiHopDong=" + loaiHopDong + "]";
+		return "HopDong [maHopDong=" + maHopDong + ", maNhanVien=" + hoSoNhanVien.getMaNhanVien() + ", luongThang13="
+				+ luongThang13 + ", ngayKetThuc=" + ngayKetThuc + ", ngayKyKet=" + ngayKyKet + ", soNgayPhep="
+				+ soNgayPhep + ", trangThai=" + trangThai + ", loaiHopDong=" + loaiHopDong + "]";
 	}
 
 }
