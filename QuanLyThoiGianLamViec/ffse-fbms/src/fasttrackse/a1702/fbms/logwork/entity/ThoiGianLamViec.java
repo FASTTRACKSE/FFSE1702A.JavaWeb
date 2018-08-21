@@ -7,8 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -53,10 +51,10 @@ public class ThoiGianLamViec {
 	@Column(name = "ly_do_tu_choi", nullable = true)
 	private String lyDoTuChoi;
 	
-	@Column(name="ma_nhan_vien", nullable = true,length = 30)
+	@Column(name="ma_nhan_vien", nullable = true,length = 10)
 	private String maNhanVien;
 	
-	@Column(name="ma_du_an", nullable = true,length = 30)
+	@Column(name="ma_du_an", nullable = true,length = 10)
 	private String maDuAn;
 	
 	public int getId() {
@@ -139,6 +137,25 @@ public class ThoiGianLamViec {
 
 	public void setLyDoTuChoi(String lyDoTuChoi) {
 		this.lyDoTuChoi = lyDoTuChoi;
+	}
+
+	public ThoiGianLamViec() {
+		super();
+	}
+
+	public ThoiGianLamViec(int id, String tenCongViec, String moTa, int trangThai, Date thoiGianBatDau,
+			Date thoiGianKetThuc, int thoiGianUocLuong, String lyDoTuChoi, String maNhanVien, String maDuAn) {
+		super();
+		this.id = id;
+		this.tenCongViec = tenCongViec;
+		this.moTa = moTa;
+		this.trangThai = trangThai;
+		this.thoiGianBatDau = thoiGianBatDau;
+		this.thoiGianKetThuc = thoiGianKetThuc;
+		this.thoiGianUocLuong = thoiGianUocLuong;
+		this.lyDoTuChoi = lyDoTuChoi;
+		this.maNhanVien = maNhanVien;
+		this.maDuAn = maDuAn;
 	}
 
   
