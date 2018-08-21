@@ -47,13 +47,13 @@
 							   		<span aria-hidden="true">×</span>
 							   </button>
 							   <c:if test="${!empty DELETE_SUCCESS_ID}">
-							   	<span>Delete success #${DELETE_SUCCESS_ID}!</span>
+							   	<span><spring:message code="message.deleteSuccess" /> #${DELETE_SUCCESS_ID}!</span>
 							   </c:if>
 							   <c:if test="${!empty UPDATE_SUCCESS_ID}">
-							   	<span>Update success #${UPDATE_SUCCESS_ID}!</span>
+							   	<span><spring:message code="message.updateSuccess" /> #${UPDATE_SUCCESS_ID}!</span>
 							   </c:if>
 							   <c:if test="${!empty ADD_SUCCESS_ID}">
-							   	<span>Add success #${ADD_SUCCESS_ID}!</span>
+							   	<span><spring:message code="message.addSuccess" /> #${ADD_SUCCESS_ID}!</span>
 							   </c:if>
 							 </div>
 							</div>
@@ -74,7 +74,7 @@
 						    	padding-left: 1rem!important;
 						    	padding-right: 1rem!important;
 							}
-							#datatable tr td:nth-child(1), td:nth-child(2), th {
+							#datatable tr td:nth-child(1), th {
 								text-align: center !important;
 							}
 							#datatable tr td:last-child {
@@ -134,7 +134,7 @@
 									      $("#datatable").dataTable().fnDestroy();
 									      $("#datatable").dataTable({
 									    	  responsive: true,
-									    	  "order": [[7 , "asc" ], [0, "desc"]],
+									    	  "order": [[6 , "asc" ], [0, "desc"]],
 									          "bServerSide" : true,
 									          "sAjaxSource" : "/ffse-fbms/${maPhongBan}/getListHoSo",
 									      });

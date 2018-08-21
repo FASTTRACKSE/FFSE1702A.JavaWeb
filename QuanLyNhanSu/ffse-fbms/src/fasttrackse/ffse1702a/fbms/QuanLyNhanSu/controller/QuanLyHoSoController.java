@@ -61,14 +61,15 @@ public class QuanLyHoSoController {
 	@ResponseBody
 	public String getListHoSo(@PathVariable("maPhongBan") String maPhongBan, Model model, HttpServletRequest request) {
 
-		String[] columnNames = { "ma_nhan_vien", "anh_dai_dien", "ho_dem", "ten", "gioi_tinh", "ma_phong_ban",
-				"ma_chuc_danh", "trang_thai" };
+		String[] columnNames = { "ma_nhan_vien", "ho_dem", "ten", "gioi_tinh", "ma_phong_ban", "ma_chuc_danh",
+				"trang_thai" };
 		int iDisplayStart = Integer.parseInt(request.getParameter("iDisplayStart"));
 		int iDisplayLength = Integer.parseInt(request.getParameter("iDisplayLength"));
 
-		String custom = maPhongBan.equals("ns") ? "" : ("ma_phong_ban = '" + maPhongBan + "'");
+		String custom = maPhongBan.equals("ns") ? "" : ("ma_phong_ban = '" + maPhongBan + "' and trang_thai = 1");
 
 		String sql = this.datatableService.getSqlQuery("HoSoNhanVien", request, columnNames, custom);
+		// System.out.println(sql);
 		List<HoSoNhanVien> listHoSo = null;
 
 		listHoSo = this.quanLyHoSoService.getAllHoSo(iDisplayStart, iDisplayLength, sql);
@@ -100,7 +101,7 @@ public class QuanLyHoSoController {
 	@RequestMapping(value = "/ns/ho_so/save", method = RequestMethod.POST)
 	public String saveHoSoNhanVien(@ModelAttribute("hoSoNhanVien") @Valid HoSoNhanVien hsnv,
 			BindingResult bindingResult, @RequestParam(value = "image", required = false) MultipartFile image,
-			HttpServletRequest request, Model model) {
+			HttpServletRequest request, Model model, RedirectAttributes redirectAttributes) {
 
 		boolean addAction = (hsnv.getMaNhanVien() == 0);
 		int autoID = Integer.valueOf(this.quanLyHoSoService.getAutoId());
@@ -128,14 +129,17 @@ public class QuanLyHoSoController {
 			// thêm
 			hsnv.setAnhDaiDien(filename);
 			this.quanLyHoSoService.addHoSoNhanVien(hsnv);
+			redirectAttributes.addFlashAttribute("ADD_SUCCESS_ID", String.format("%05d", hsnv.getMaNhanVien()));
 		} else {
 			// sửa
 			if (filename != null) {
 				hsnv.setAnhDaiDien(filename);
 			}
 			this.quanLyHoSoService.updateHoSoNhanVien(hsnv);
+			redirectAttributes.addFlashAttribute("UPDATE_SUCCESS_ID", String.format("%05d", hsnv.getMaNhanVien()));
 		}
 
+		redirectAttributes.addFlashAttribute("SUCCESS", "TRUE");
 		return "redirect:/ns/ho_so/";
 	}
 
@@ -145,7 +149,7 @@ public class QuanLyHoSoController {
 
 		this.quanLyHoSoService.deleteHoSoNhanVien(maNhanVien);
 		redirectAttributes.addFlashAttribute("SUCCESS", "TRUE");
-		redirectAttributes.addFlashAttribute("DELETE_SUCCESS_ID", maNhanVien);
+		redirectAttributes.addFlashAttribute("DELETE_SUCCESS_ID", String.format("%05d", maNhanVien));
 
 		return "redirect:/ns/ho_so/";
 	}

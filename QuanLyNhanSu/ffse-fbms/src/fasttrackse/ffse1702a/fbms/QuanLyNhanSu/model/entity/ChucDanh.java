@@ -1,4 +1,5 @@
 package fasttrackse.ffse1702a.fbms.QuanLyNhanSu.model.entity;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -7,8 +8,6 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-import fasttrackse.ffse1702a.fbms.QuanLyNhanSu.model.entity.HoSoNhanVien;
 
 /**
  * The persistent class for the chuc_danh database table.
@@ -55,20 +54,6 @@ public class ChucDanh implements Serializable {
 
 	public void setHoSoNhanViens(List<HoSoNhanVien> hoSoNhanViens) {
 		this.hoSoNhanViens = hoSoNhanViens;
-	}
-
-	public HoSoNhanVien addHoSoNhanVien(HoSoNhanVien hoSoNhanVien) {
-		getHoSoNhanViens().add(hoSoNhanVien);
-		hoSoNhanVien.setChucDanh(this);
-
-		return hoSoNhanVien;
-	}
-
-	public HoSoNhanVien removeHoSoNhanVien(HoSoNhanVien hoSoNhanVien) {
-		getHoSoNhanViens().remove(hoSoNhanVien);
-		hoSoNhanVien.setChucDanh(null);
-
-		return hoSoNhanVien;
 	}
 
 }
