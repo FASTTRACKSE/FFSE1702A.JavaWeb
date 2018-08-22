@@ -45,7 +45,7 @@
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
 		<property name="dataSource" ref="theDataSource" />
-		<property name="packagesToScan" value="fasttrackse.a1702.fbms.chucnang.model.entities" />
+		<property name="packagesToScan" value="fasttrackse.a1702.fbms" />
 		<property name="hibernateProperties">
 		   <props>
 		      <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
@@ -73,6 +73,20 @@
     </bean>
     <bean id="chucNangServiceImpl" class="fasttrackse.a1702.fbms.chucnang.service.ChucNangServiceImpl">
     	<property name="chucNangDao" ref="chucNangDaoImpl"/>
+    </bean>
+    
+    <bean id="taiKhoanImpl" class="fasttrackse.a1702.fbms.taikhoan.model.dao.TaiKhoanDaoImpl">
+    	<property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="taiKhoanServiceImpl" class="fasttrackse.a1702.fbms.taikhoan.service.TaiKhoanServiceImpl">
+    	<property name="taiKhoanDao" ref="taiKhoanImpl"/>
+    </bean>
+    
+    <bean id="chucNangPhongBanImpl" class="fasttrackse.a1702.fbms.chucnangphongban.model.dao.ChucNangPhongBanImpl">
+    	<property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="chucNangPhongBanServiceImpl" class="fasttrackse.a1702.fbms.chucnangphongban.service.ChucNangPhongBanServiceImpl">
+    	<property name="chucNangPhongBanDao" ref="chucNangPhongBanImpl"/>
     </bean>
 
 </beans>
