@@ -1,21 +1,18 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page language="java" pageEncoding="UTF-8"%>
-<%@ page contentType="text/html;charset=UTF-8" %>
-
-
 <jsp:include page="/WEB-INF/view/templates/header.jsp" />
-
-<!-- code here -->
 <div class="app-content content container-fluid">
 	<div class="content-wrapper">
+		<!-- code here -->
 		<div class="content-header row">
 			<div class="content-header-left col-md-6 col-xs-12 mb-2">
-				<h3 class="content-header-title mb-0">my document</h3>
+				<h3 class="content-header-title mb-0">pending approve document</h3>
 				<div class="row breadcrumbs-top">
 					<div class="breadcrumb-wrapper col-xs-12">
 						<ol class="breadcrumb">
-							<li class="breadcrumb-item"><a href="index.html">Home</a></li>
-							<li class="breadcrumb-item active">my document</li>
+							<li class="breadcrumb-item"><a href="list">Home</a></li>
+							</li>
+							<li class="breadcrumb-item active">pending approve document
+							</li>
 						</ol>
 					</div>
 				</div>
@@ -35,10 +32,10 @@
 			</div>
 		</div>
 		<div style="text-align: center; color: red;">
-			<h1>My Document</h1>
-			<a href="documentInsert">add</a>
+			<h1>pending approve document</h1>
+			<a href="list">back</a>
 		</div>
-
+		<!-- table -->
 		<!-- Border color end-->
 		<div class="row">
 			<div class="col-xs-12">
@@ -61,29 +58,53 @@
 								<thead>
 									<tr class="border-bottom-active border-custom-color">
 										<th>STT</th>
-										<th>Tên tài liệu</th>
-										<th>Mô tả</th>
-										<th>Loại danh mục</th>
-										<th>Trạng thái</th>
-										<th>Quyền truy cập</th>
-										<th>Chức năng</th>
+										<th>ten tai lieu</th>
+										<th>loai danh muc</th>
+										<th>phan quyen</th>
+										<th>phong ban</th>
+										<th>trang thai</th>
+										<th>chuc nang</th>
 									</tr>
 								</thead>
 								<tbody>
-									<c:if test="${not empty listDocument}">
-										<c:forEach var="document" items="${listDocument}" varStatus="stt">
-											<tr class="border-bottom-success border-custom-color">
-												<td>${stt.count}</td>
-												<td><img src="<c:url value="${document.ma_icon.hinh_anh}"/>" width="20" height="20"> ${document.ten_tai_lieu}</td>
-												<td>${document.mo_ta}</td>
-												<td>${document.ma_danh_muc.ten_danh_muc}</td>
-												<td>${document.ma_trang_thai.ten_trang_thai}</td>
-												<td>${document.quyen_truy_cap}</td>
-												<td><a href="documentView/${document.id}" class="btn-warning btn"> view </a><a href="documentDelete/${document.id}" class="btn-warning btn"> delete </a><a
-													href="//${document.tai_ve}" class="btn-warning btn"> download </a><a href="documentEdit/${document.id}" class="btn-warning btn" > edit </a></td>
-											</tr>
-										</c:forEach>
-									</c:if>
+									<tr class="border-bottom-success border-custom-color">
+										<td>1</td>
+										<td>Doe</td>
+										<td>john@example.com</td>
+										<td>20</td>
+										<td>John</td>
+										<td>cho phe duyet</td>
+										<td><a href="ddf"> chap nhan </a><a href="ddf"> tu choi </a></td>
+									</tr>
+									<tr class="border-bottom-info border-custom-color">
+										<td>2</td>
+										<td>Moe</td>
+										<td>mary@example.com</td>
+										<td>22</td>
+										<td>John</td>
+										<td>cho phe duyet</td>
+										<td><a href="ddf"> chap nhan </a><a href="ddf"> tu choi </a></td>
+									</tr>
+									<tr
+										class="border-bottom-teal border-bottom-darken-2 border-custom-color">
+										<td>3</td>
+										<td>Dooley</td>
+										<td>july@example.com</td>
+										<td>30</td>
+										<td>John</td>
+										<td>cho phe duyet</td>
+										<td><a href="ddf"> chap nhan </a><a href="ddf"> tu choi </a></td>
+									</tr>
+									<tr
+										class="border-bottom-pink border-bottom-darken-2 border-custom-color">
+										<td>4</td>
+										<td>Draker</td>
+										<td>piter@example.com</td>
+										<td>30</td>
+										<td>John</td>
+										<td>cho phe duyet</td>
+										<td><a href="ddf"> chap nhan </a><a href="ddf"> tu choi </a></td>
+									</tr>
 								</tbody>
 							</table>
 						</div>
@@ -92,6 +113,8 @@
 			</div>
 		</div>
 		<!-- Border color end -->
+		<!-- code here end  -->
 	</div>
 </div>
+
 <jsp:include page="/WEB-INF/view/templates/footer.jsp" />
