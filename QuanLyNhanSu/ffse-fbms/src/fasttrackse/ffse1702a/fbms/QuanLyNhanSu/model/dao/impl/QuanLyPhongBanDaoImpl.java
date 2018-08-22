@@ -26,11 +26,6 @@ public class QuanLyPhongBanDaoImpl implements QuanLyPhongBanDao {
 		session.save(p);
 	}
 	
-	@Override
-	public boolean checkMaPhongBan(String maPhongBan) {
-	    
-	     return getMaPhongBan(maPhongBan)!=null;
-	}
 
 	@Override
 	public void updatePhongBan(PhongBan p) {

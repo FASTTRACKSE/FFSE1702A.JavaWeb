@@ -38,7 +38,7 @@
    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/plugins/forms/extended/form-extended.min.css"/>">
    <!-- END Page Level CSS-->
    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-<<<<<<< HEAD
+
     <style>
 	   .invalid-feedback {
 	   	color: #DC3545;
@@ -50,7 +50,7 @@
    	   padding-right: 10px;
 	   }
    </style>
-=======
+
    <script>
    $(document)
       .ready(function () {
@@ -61,7 +61,7 @@
             .addClass('active');
       });
    </script>
->>>>>>> a2bbaf84c8b2e76d27b6b2c0bafebcfce4661f4a
+
 </head>
 
 <body data-open="click" data-menu="vertical-menu" data-col="2-columns" class="vertical-layout vertical-menu 2-columns   menu-expanded fixed-navbar">

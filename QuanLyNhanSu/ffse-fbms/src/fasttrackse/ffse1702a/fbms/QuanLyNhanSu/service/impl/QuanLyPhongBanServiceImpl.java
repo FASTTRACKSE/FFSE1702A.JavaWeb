@@ -20,12 +20,7 @@ public class QuanLyPhongBanServiceImpl implements QuanLyPhongBanService {
 	public void addPhongBan(PhongBan p) {
 		this.quanLyPhongBanDao.addPhongBan(p);
 	}
-	@Override
-	@Transactional
-	public boolean checkMaPhongBan(String maPhongBan) {
-		 return this.quanLyPhongBanDao.checkMaPhongBan(maPhongBan);
-		
-	}
+
 	
 
 	@Override
