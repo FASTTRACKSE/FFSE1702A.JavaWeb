@@ -95,6 +95,13 @@
     <bean id="chucNangChucDanhServiceImpl" class="fasttrackse.a1702.fbms.chucnangchucdanh.service.ChucNangChucDanhServiceImpl">
     	<property name="chucNangChucDanhDao" ref="chucNangChucDanhImpl"/>
     </bean>
+    
+    <bean id="phongBanImpl" class="fasttrackse.a1702.fbms.phongban.model.dao.PhongBanDaoImpl">
+    	<property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="phongBanServiceImpl" class="fasttrackse.a1702.fbms.phongban.service.PhongBanServiceImpl">
+    	<property name="phongBanDao" ref="phongBanImpl"/>
+    </bean>
 
 </beans>
 
