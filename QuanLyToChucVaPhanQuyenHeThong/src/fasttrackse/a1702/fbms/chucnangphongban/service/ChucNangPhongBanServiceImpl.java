@@ -9,8 +9,8 @@ import fasttrackse.a1702.fbms.chucnangphongban.model.dao.ChucNangPhongBanDao;
 import fasttrackse.a1702.fbms.chucnangphongban.model.entities.ChucNangPhongBan;
 
 @Service
-public class ChucNangPhongBanServiceImpl implements ChucNangPhongBanService{
-	
+public class ChucNangPhongBanServiceImpl implements ChucNangPhongBanService {
+
 	@Autowired
 	ChucNangPhongBanDao chucNangPhongBanDao;
 
@@ -36,8 +36,6 @@ public class ChucNangPhongBanServiceImpl implements ChucNangPhongBanService{
 	public void update(String maPhongBan, List<String> maChucNang) {
 		chucNangPhongBanDao.update(maPhongBan, maChucNang);
 	}
-
-	
 
 	@Override
 	public List<Object> findAllForPaging(int startPosition, int maxResult) {
