@@ -25,6 +25,17 @@ public class TinhTrang {
 	@NotEmpty
 	private String tenTinhTrang;
 	
+	@Column(name="is_delete")
+	private int isDelete;
+	
+	public int getIsDelete() {
+		return isDelete;
+	}
+
+
+	public void setIsDelete(int isDelete) {
+		this.isDelete = isDelete;
+	}
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "tinhTrang",cascade=CascadeType.ALL)
 	private Set<DuAn> duAn = new HashSet<DuAn>(0);
 

@@ -2,7 +2,7 @@ package fasttrackse.ffse1702a.fbms.QuanLyNhanSu.controller;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -43,8 +43,15 @@ public class ThongTinBangCapController {
 	}
 
 	@RequestMapping(value = "/ns/ho_so/bang_cap/save", method = RequestMethod.POST)
-	public String saveHoSoNhanVien(@ModelAttribute("thongTinBangCapForm") ThongTinBangCapForm thongTinBangCapForm,
-			BindingResult bindingResult, HttpServletRequest request) {
+	public String saveHoSoNhanVien(@ModelAttribute("thongTinBangCapForm") @Valid ThongTinBangCapForm thongTinBangCapForm,
+			BindingResult bindingResult, Model model) {
+		if (bindingResult.hasErrors()) {
+			int maNhanVien = thongTinBangCapForm.getListThongTinBangCap().get(0).getHoSoNhanVien().getMaNhanVien();
+			HoSoNhanVien hsnv = this.quanLyHoSoService.getHoSoNhanVienById(maNhanVien);
+			model.addAttribute("hoSoNhanVien", hsnv);
+			return "QuanLyNhanSu/QuanLyHoSo/ThongTinBangCapForm";
+		}
+		
 		List<ThongTinBangCap> listThongTinBangCap = thongTinBangCapForm.getListThongTinBangCap();
 
 		if (listThongTinBangCap != null && listThongTinBangCap.size() > 0) {

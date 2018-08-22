@@ -2,7 +2,7 @@ package fasttrackse.ffse1702a.fbms.QuanLyNhanSu.model.dao;
 
 import java.util.List;
 
-import fasttrackse.ffse1702a.fbms.QuanLyDuAn.model.entity.ChucDanh;
+import fasttrackse.ffse1702a.fbms.QuanLyNhanSu.model.entity.ChucDanh;
 
 public interface QuanLyChucDanhDAO {
 	public List<ChucDanh> listChucDanh();

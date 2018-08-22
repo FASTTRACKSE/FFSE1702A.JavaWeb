@@ -14,14 +14,17 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import fasttrackse.ffse1702a.fbms.QuanLyDuAn.model.entity.ChucDanh;
+import fasttrackse.ffse1702a.fbms.QuanLyNhanSu.model.entity.ChucDanh;
 import fasttrackse.ffse1702a.fbms.QuanLyNhanSu.model.entity.HoSoNhanVien;
 import fasttrackse.ffse1702a.fbms.QuanLyNhanSu.model.entity.PhongBan;
 import fasttrackse.ffse1702a.fbms.QuanLyNhanSu.model.entity.QuocTich;
 import fasttrackse.ffse1702a.fbms.QuanLyNhanSu.model.entity.TinhTrangHonNhan;
+import fasttrackse.ffse1702a.fbms.QuanLyNhanSu.service.DatatableService;
 import fasttrackse.ffse1702a.fbms.QuanLyNhanSu.service.QuanLyChucDanhService;
 import fasttrackse.ffse1702a.fbms.QuanLyNhanSu.service.QuanLyHoSoService;
 import fasttrackse.ffse1702a.fbms.QuanLyNhanSu.service.QuanLyPhongBanService;
@@ -35,38 +38,56 @@ public class QuanLyHoSoController {
 
 	@Autowired
 	private QuanLyHoSoService quanLyHoSoService;
-
 	@Autowired
 	private QuanLyPhongBanService quanLyPhongBanService;
-
 	@Autowired
 	private QuanLyChucDanhService quanLyChucDanhService;
-
 	@Autowired
 	private QuocTichService quocTichService;
-
 	@Autowired
 	private TinhTrangHonNhanService tinhTrangHonNhanService;
-
 	@Autowired
 	private UploadImageService uploadImageService;
+	@Autowired
+	private DatatableService datatableService;
 
 	@RequestMapping(value = "/{maPhongBan}/ho_so", method = RequestMethod.GET)
-	public String listHoSo(@PathVariable("maPhongBan") String maPhongBan, Model model) {
-		if (maPhongBan.equals("ns")) {
-			model.addAttribute("listHoSo", this.quanLyHoSoService.getAllHoSo());
-		} else {
-			model.addAttribute("listHoSo", this.quanLyHoSoService.getHoSoByPhongBan(maPhongBan));
-		}
+	public String viewHoSo(@PathVariable("maPhongBan") String maPhongBan, Model model) {
+		model.addAttribute("maPhongBan", maPhongBan);
 		return "QuanLyNhanSu/QuanLyHoSo/QuanLyHoSo";
+	}
+
+	@RequestMapping(value = "/{maPhongBan}/getListHoSo", produces = "text/plain;charset=UTF-8")
+	@ResponseBody
+	public String getListHoSo(@PathVariable("maPhongBan") String maPhongBan, Model model, HttpServletRequest request) {
+
+		String[] columnNames = { "ma_nhan_vien", "ho_dem", "ten", "gioi_tinh", "ma_phong_ban", "ma_chuc_danh",
+				"trang_thai" };
+		int iDisplayStart = Integer.parseInt(request.getParameter("iDisplayStart"));
+		int iDisplayLength = Integer.parseInt(request.getParameter("iDisplayLength"));
+
+		String custom = maPhongBan.equals("ns") ? "" : ("ma_phong_ban = '" + maPhongBan + "' and trang_thai = 1");
+
+		String sql = this.datatableService.getSqlQuery("HoSoNhanVien", request, columnNames, custom);
+		// System.out.println(sql);
+		List<HoSoNhanVien> listHoSo = null;
+
+		listHoSo = this.quanLyHoSoService.getAllHoSo(iDisplayStart, iDisplayLength, sql);
+
+		String recordsTotal = this.quanLyHoSoService.getRecordsTotal(maPhongBan);
+		String recordsFiltered = this.quanLyHoSoService.getRecordsFiltered(sql);
+		String json = this.datatableService.getJson(recordsTotal, recordsFiltered, listHoSo);
+
+		return json;
 	}
 
 	@RequestMapping(value = "/ns/ho_so/add", method = RequestMethod.GET)
 	public String addHoSoNhanVien(Model model) {
-		model.addAttribute("add", "add");
 		HoSoNhanVien hsnv = new HoSoNhanVien();
 		hsnv.setMaNhanVien(Integer.valueOf(this.quanLyHoSoService.getAutoId()));
 		model.addAttribute("hoSoNhanVien", hsnv);
+		model.addAttribute("add", "add");
+
 		return "QuanLyNhanSu/QuanLyHoSo/QuanLyHoSoForm";
 	}
 
@@ -80,38 +101,56 @@ public class QuanLyHoSoController {
 	@RequestMapping(value = "/ns/ho_so/save", method = RequestMethod.POST)
 	public String saveHoSoNhanVien(@ModelAttribute("hoSoNhanVien") @Valid HoSoNhanVien hsnv,
 			BindingResult bindingResult, @RequestParam(value = "image", required = false) MultipartFile image,
-			HttpServletRequest request, Model model) {
+			HttpServletRequest request, Model model, RedirectAttributes redirectAttributes) {
 
-		if (bindingResult.hasErrors()) {
+		boolean addAction = (hsnv.getMaNhanVien() == 0);
+		int autoID = Integer.valueOf(this.quanLyHoSoService.getAutoId());
+		String filename = uploadImageService.checkImage(image, bindingResult);
+
+		// check lỗi form + ảnh
+		if (bindingResult.hasErrors() || (filename != null && filename.equals("err"))) {
 			System.out.println(hsnv);
-			model.addAttribute("add", "add");
-			hsnv.setMaNhanVien(Integer.valueOf(this.quanLyHoSoService.getAutoId()));
+			if (addAction) {
+				model.addAttribute("add", "add");
+				hsnv.setMaNhanVien(autoID);
+				// add action - chưa thêm ảnh
+				if (filename == null) {
+					model.addAttribute("anhDaiDienErrors", "anhDaiDienErrors");
+				}
+			}
+			// lỗi định dạng ảnh
+			if (filename != null && filename.equals("err")) {
+				model.addAttribute("anhDaiDienErrors", "anhDaiDienErrors");
+			}
 			return "QuanLyNhanSu/QuanLyHoSo/QuanLyHoSoForm";
 		}
 
-		String referer = request.getHeader("Referer");
-		String filename = uploadImageService.checkImage(image, bindingResult, referer);
-		if (filename != null && filename.contains("redirect")) {
-			return filename;
-		}
-		if (hsnv.getMaNhanVien() == 0) {
+		if (addAction) {
 			// thêm
 			hsnv.setAnhDaiDien(filename);
 			this.quanLyHoSoService.addHoSoNhanVien(hsnv);
+			redirectAttributes.addFlashAttribute("ADD_SUCCESS_ID", String.format("%05d", hsnv.getMaNhanVien()));
 		} else {
 			// sửa
 			if (filename != null) {
 				hsnv.setAnhDaiDien(filename);
 			}
 			this.quanLyHoSoService.updateHoSoNhanVien(hsnv);
+			redirectAttributes.addFlashAttribute("UPDATE_SUCCESS_ID", String.format("%05d", hsnv.getMaNhanVien()));
 		}
 
+		redirectAttributes.addFlashAttribute("SUCCESS", "TRUE");
 		return "redirect:/ns/ho_so/";
 	}
 
 	@RequestMapping(value = "/ns/ho_so/delete/{maNhanVien}", method = RequestMethod.GET)
-	public String xoaHoSoNhanVien(@PathVariable("maNhanVien") int maNhanVien, Model model) {
+	public String xoaHoSoNhanVien(@PathVariable("maNhanVien") int maNhanVien, Model model,
+			RedirectAttributes redirectAttributes) {
+
 		this.quanLyHoSoService.deleteHoSoNhanVien(maNhanVien);
+		redirectAttributes.addFlashAttribute("SUCCESS", "TRUE");
+		redirectAttributes.addFlashAttribute("DELETE_SUCCESS_ID", String.format("%05d", maNhanVien));
+
 		return "redirect:/ns/ho_so/";
 	}
 

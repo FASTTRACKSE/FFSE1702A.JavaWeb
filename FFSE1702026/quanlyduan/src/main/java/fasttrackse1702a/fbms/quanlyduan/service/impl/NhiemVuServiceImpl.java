@@ -26,13 +26,13 @@ public class NhiemVuServiceImpl implements NhiemVuService {
 		
 	}
 	@Override
-	public List<NhiemVu> getAll() {
+	public List<NhiemVu> getAll(int maDuAn) {
 		
-		return this.nhiemVuDao.getAll();
+		return this.nhiemVuDao.getAll(maDuAn);
 	}
 
 	@Override
-	public NhiemVu getById(int maDuAn,String maNhanVien) {
+	public List<NhiemVu> getById(int maDuAn,int maNhanVien) {
 	
 		return this.nhiemVuDao.getById(maDuAn,maNhanVien);
 	}
@@ -41,6 +41,12 @@ public class NhiemVuServiceImpl implements NhiemVuService {
 	public void delete(NhiemVu nhiemvu) {
 		this.nhiemVuDao.delete(nhiemvu);
 		
+	}
+
+	@Override
+	public NhiemVu getDetailNhiemVu(int maDuAn, int maNhanVien, String maVaiTro) {
+		// TODO Auto-generated method stub
+		return this.nhiemVuDao.getDetailNhiemVu(maDuAn, maNhanVien, maVaiTro);
 	}
 
 }

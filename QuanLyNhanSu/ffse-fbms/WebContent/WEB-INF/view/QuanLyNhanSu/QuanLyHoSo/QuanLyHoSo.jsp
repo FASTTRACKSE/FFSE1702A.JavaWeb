@@ -40,14 +40,24 @@
                      <div class="card">
                         <div class="card-header">
                            <h4 class="card-title">Datatable</h4>
-                           <%-- <div style="margin-top: 1.5rem">
-                              <div style="margin: 0 auto!important; <?php echo isset($_SESSION['success_msg']) ? 'display:block' : 'display:none'; ?>" class="alert alert-icon-left alert-success alert-dismissible mb-2" role="alert">
-                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                    <span aria-hidden="true">×</span>
-                                 </button>
-                                 xxxxxxxxxxxxxxxxxxxxxxx
-                              </div>
-                           </div> --%>
+                           <c:if test="${!empty SUCCESS}">
+							<div class="html_success mt-1">
+							   <div style="margin: 0 auto!important;?>" class="alert alert-icon-left alert-success alert-dismissible mb-2" role="alert">
+							   <button style="margin-top: 2px" type="button" class="close" data-dismiss="alert" aria-label="Close">
+							   		<span aria-hidden="true">×</span>
+							   </button>
+							   <c:if test="${!empty DELETE_SUCCESS_ID}">
+							   	<span><spring:message code="message.deleteSuccess" /> #${DELETE_SUCCESS_ID}!</span>
+							   </c:if>
+							   <c:if test="${!empty UPDATE_SUCCESS_ID}">
+							   	<span><spring:message code="message.updateSuccess" /> #${UPDATE_SUCCESS_ID}!</span>
+							   </c:if>
+							   <c:if test="${!empty ADD_SUCCESS_ID}">
+							   	<span><spring:message code="message.addSuccess" /> #${ADD_SUCCESS_ID}!</span>
+							   </c:if>
+							 </div>
+							</div>
+						   </c:if>
                            <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
                            <div class="heading-elements">
                               <ul class="list-inline mb-0">
@@ -57,21 +67,29 @@
                            </div>
                         </div>
                         <style type="text/css">
-                        	.table td {
+                        	#datatable td {
                         		vertical-align: baseline;
 			                }
-			                th, td {
+			                #datatable th, td {
 						    	padding-left: 1rem!important;
 						    	padding-right: 1rem!important;
+							}
+							#datatable tr td:nth-child(1), th {
+								text-align: center !important;
+							}
+							#datatable tr td:last-child {
+								letter-spacing: 15px;
+								min-width: 100px;
+								text-align: center !important;
 							}
 						</style>
                         <div class="card-body collapse in">
                            <div class="card-block card-dashboard">
-                              <table id="datatable" class="table table-striped table-bordered zero-configuration">
+                              <table id="datatable" class="table table-striped table-bordered dataex-res-constructor">
                                  <thead>
                                     <tr>
-                                       <th><spring:message code="label.maNhanVien" /></th>
-                                       <th><spring:message code="label.anhDaiDien" /></th>
+                                       <th><spring:message code="label.maNV" /></th>
+                                       <%-- <th><spring:message code="label.anhDaiDien" /></th> --%>
                                        <th><spring:message code="label.hoDem" /></th>
                                        <th><spring:message code="label.ten" /></th>
                                        <th><spring:message code="label.gioiTinh" /></th>
@@ -82,56 +100,46 @@
                                     </tr>
                                  </thead>
                                  <tbody>
-                                 	<c:forEach items="${listHoSo}" var="hsnv" varStatus="loop">
-                                    <tr>
-                                       <td><fmt:formatNumber type="number" minIntegerDigits="5" groupingUsed="false" value="${hsnv.maNhanVien}" /></td>
-                                       <td style="text-align: center !important;"><img width="75px" height="75px" src="<c:url value="/resources/images/nhan-vien/${hsnv.anhDaiDien}"/>"></td>
-                                       <td>${hsnv.hoDem}</td>
-                                       <td>${hsnv.ten}</td>
-                                       <td>${hsnv.gioiTinh == 1 ? "Nam" : "Nữ"}</td>
-                                       <td><a href="<c:url value = "/${hsnv.phongBan.maPhongBan}/ho_so"/>">${hsnv.phongBan.tenPhongBan}</a></td>
-                                       <td>${hsnv.chucDanh.tenChucDanh}</td>
-                                       <td>${hsnv.trangThai == 1 ? "Đang làm việc" : "Nghỉ việc"}</td>
-                                       <td style="letter-spacing: 5px; min-width: 75px;text-align: center !important;">
-                                          <a href="<c:url value = "/ns/ho_so/${hsnv.maNhanVien}"/>"><i class="fa fa-eye"></i></a>
-                                          <a href="<c:url value = "/ns/ho_so/edit/${hsnv.maNhanVien}"/>"><i class="fa fa-pencil"></i></a>
-                                          <a href="javascript:void(0);" data-toggle="modal" data-target="#confirm-delete" data-href="<c:url value = "/ns/ho_so/delete/${hsnv.maNhanVien}"/>"><i class="fa fa-trash"></i></a>
-                                       </td>
-                                    </tr>
-                                    </c:forEach>
-                                    <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                       <div class="modal-dialog">
-                                          <div class="modal-content">
-      
-                                             <div class="modal-header">
-                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                <h4 class="modal-title" id="myModalLabel">Confirm Delete</h4>
-                                             </div>
-      
-                                             <div class="modal-body">
-                                                <p>You are about to delete one product, this procedure is irreversible.</p>
-                                                <p>Do you want to proceed?</p>
-                                                <p class="debug-url"></p>
-                                             </div>
-      
-                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                                                <a class="btn btn-danger btn-ok">Delete</a>
-                                             </div>
-                                          </div>
-                                       </div>
-                                    </div>
-                                    <script>
-                                    	window.onload = function(){
-                                    		$('#confirm-delete').on('show.bs.modal', function(e) {
-    	                                        $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
-    	                                    });
-                                    		$("#datatable").DataTable({
-                                    			destroy: true,
-                                    	        "order": [[7 , "desc" ], [0, "desc"]],
-                                    	    });
-                                    	};
-                                    </script>
+		                     		<div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+									   <div class="modal-dialog">
+									      <div class="modal-content">
+									
+									         <div class="modal-header">
+									            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+									            <h4 class="modal-title" id="myModalLabel">Confirm Delete</h4>
+									         </div>
+									
+									         <div class="modal-body">
+									            <p>You are about to delete one product, this procedure is irreversible.</p>
+									            <p>Do you want to proceed?</p>
+									            <p class="debug-url"></p>
+									         </div>
+									
+									         <div class="modal-footer">
+									            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+									            <a class="btn btn-danger btn-ok">Delete</a>
+									         </div>
+									      </div>
+									   </div>
+									</div>
+									<script>
+									   window.onload = function () {
+									      $('#confirm-delete')
+									         .on('show.bs.modal', function (e) {
+									            $(this)
+									               .find('.btn-ok')
+									               .attr('href', $(e.relatedTarget)
+									                  .data('href'));
+									         });
+									      $("#datatable").dataTable().fnDestroy();
+									      $("#datatable").dataTable({
+									    	  responsive: true,
+									    	  "order": [[6 , "asc" ], [0, "desc"]],
+									          "bServerSide" : true,
+									          "sAjaxSource" : "/ffse-fbms/${maPhongBan}/getListHoSo",
+									      });
+									   };				   
+									</script>
                                  </tbody>
                               </table>
                            </div>

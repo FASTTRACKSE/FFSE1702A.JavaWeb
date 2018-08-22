@@ -60,19 +60,4 @@ public class TinhTrangHonNhan implements Serializable {
 	public void setHoSoNhanViens(List<HoSoNhanVien> hoSoNhanViens) {
 		this.hoSoNhanViens = hoSoNhanViens;
 	}
-
-	public HoSoNhanVien addHoSoNhanVien(HoSoNhanVien hoSoNhanVien) {
-		getHoSoNhanViens().add(hoSoNhanVien);
-		hoSoNhanVien.setTinhTrangHonNhan(this);
-
-		return hoSoNhanVien;
-	}
-
-	public HoSoNhanVien removeHoSoNhanVien(HoSoNhanVien hoSoNhanVien) {
-		getHoSoNhanViens().remove(hoSoNhanVien);
-		hoSoNhanVien.setTinhTrangHonNhan(null);
-
-		return hoSoNhanVien;
-	}
-
 }

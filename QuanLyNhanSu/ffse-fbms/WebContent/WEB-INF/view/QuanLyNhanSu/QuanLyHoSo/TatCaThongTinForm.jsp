@@ -7,6 +7,14 @@
 <%@page import="java.io.File"%>
 <%@page import="java.io.*"%>
 <%@page import="javax.servlet.*"%>
+<<<<<<< HEAD
+<<<<<<< HEAD
+
+=======
+>>>>>>> 67cb89c1e9adf5fa7e110d6a7957855308daf61c
+>>>>>>> 47858687edeaa782cd01ec673dcd1a57a61e47cf
+=======
+>>>>>>> a2bbaf84c8b2e76d27b6b2c0bafebcfce4661f4a
 
 <jsp:include page="/WEB-INF/view/templates/header.jsp" />
 
@@ -30,6 +38,10 @@
                   </div>
                </div>
             </div>
+<<<<<<< HEAD
+
+=======
+>>>>>>> 47858687edeaa782cd01ec673dcd1a57a61e47cf
             <div class="content-header-right col-md-3 col-xs-12">
 	            <div role="group" aria-label="Button group with nested dropdown" class="dropdown nav-item float-md-right">
 	               <div role="group" class="btn-group">
@@ -67,14 +79,13 @@
 	                           </ul>
 	                        </div>
 	                     </div>
-	                     
-	                     <div class="card-body collapse in">
+	                     <img id="preview" hidden class="rounded-circle" width="180px" height="180px" src="/ffse-fbms/resources/images/nhan-vien/${hoSoNhanVien.anhDaiDien}">
+	                     <div id="pdfBody" class="card-body collapse in">
 	                        <div class="card-block">
-								<form:form class="form form-horizontal" method="POST" action="/ffse-fbms/ns/ho_so/gia_dinh/save" modelAttribute="tatCaThongTin">
 								   <div class="form-body">
 								      <div class="row edit-row-title-ho-so" style="background: #00A5A8; padding: 15px; color: #fff">
 								         <div class="col-md-3" style="text-align: center !important;">
-								         	<img class="rounded-circle" width="180px" height="180px" src="/ffse-fbms/resources/images/nhan-vien/${hoSoNhanVien.anhDaiDien}">
+								         	<img id="image2" class="rounded-circle" width="180px" height="180px" src="">
 								         </div>
 								      	 <div class="col-md-4">
 								      	 	<h2>${hoSoNhanVien.hoDem} ${hoSoNhanVien.ten}</h2>
@@ -90,13 +101,13 @@
 								      	 </div>
 								      </div>
 								      <div class="panel-group" id="accordion">
-									    <div class="panel panel-default ">
+									    <div <c:if test="${empty hoSoNhanVien.ten}">style="display: none;"</c:if> class="panel panel-default ">
 									      <div class="panel-heading form-section">
 									        <h4 class="panel-title">
 									          <br><a data-toggle="collapse" data-parent="#accordion" href="#collapse1"><i class="ft-user"></i> <spring:message code="label.thongTinCaNhan" /></a>
 									        </h4>
 									      </div>
-									      <div id="collapse1" class="panel-collapse collapse">
+									      <div id="collapse1" class="panel-collapse collapse in">
 										      	<div class="thong-tin-ca-nhan">
 											      	<div class="repeater-list">
 											      		<div class="row">
@@ -122,13 +133,13 @@
 											    </div>
 									      </div>
 									    </div>
-									    <div class="panel panel-default ">
+									    <div <c:if test="${empty hoSoNhanVien.thongTinGiaDinhs}">style="display: none;"</c:if> class="panel panel-default ">
 									      <div class="panel-heading form-section">
 									        <h4 class="panel-title">
 									          <br><a data-toggle="collapse" data-parent="#accordion" href="#collapse2"><i class="ft-user"></i> <spring:message code="label.thongTinGiaDinh" /></a>
 									        </h4>
 									      </div>
-									      <div id="collapse2" class="panel-collapse collapse">
+									      <div id="collapse2" class="panel-collapse collapse in">
 										      	<div class="thong-tin-gia-dinh">
 												      	<div class="repeater-list">
 												      	<c:forEach items="${hoSoNhanVien.thongTinGiaDinhs }" var="thongTinGiaDinh" varStatus="stt">
@@ -151,13 +162,13 @@
 											    </div>
 									      </div>
 									    </div>
-									    <div class="panel panel-default ">
+									    <div <c:if test="${empty hoSoNhanVien.thongTinBangCaps}">style="display: none;"</c:if> class="panel panel-default ">
 									      <div class="panel-heading form-section">
 									        <h4 class="panel-title">
 									          <br><a data-toggle="collapse" data-parent="#accordion" href="#collapse3"><i class="ft-user"></i> <spring:message code="label.thongTinBangCap" /></a>
 									        </h4>
 									      </div>
-									      <div id="collapse3" class="panel-collapse collapse">
+									      <div id="collapse3" class="panel-collapse collapse in">
 										      	<div class="thong-tin-bang-cap">
 												      	<div class="repeater-list">
 												      	<c:forEach items="${hoSoNhanVien.thongTinBangCaps }" var="thongTinBangCap" varStatus="stt">
@@ -176,10 +187,10 @@
 											    </div>
 									      </div>
 									    </div>
-									    <div class="panel panel-default ">
+									    <div <c:if test="${empty hoSoNhanVien.duAn}">style="display: none;"</c:if> class="panel panel-default ">
 									      <div class="panel-heading form-section">
 									        <h4 class="panel-title">
-									          <br><a data-toggle="collapse" data-parent="#accordion" href="#collapse4"><i class="ft-user"></i> <spring:message code="label.thongTinBangCap" /></a>
+									          <br><a data-toggle="collapse" data-parent="#accordion" href="#collapse4"><i class="ft-user"></i> <spring:message code="label.thongTinKinhNghiem" /></a>
 									        </h4>
 									      </div>
 									      <div id="collapse4" class="panel-collapse collapse in">
@@ -187,120 +198,126 @@
 												      	<div class="repeater-list">
 												      		<div class="row form-section">
 												      			<div class=" col-md-4">
-												      				<!-- load Google AJAX API -->
-																        <script type="text/javascript" src="https://www.google.com/jsapi"></script>
-																         <script type="text/javascript">
-																            // Load the Visualization API and the piechart package.
-																            google.load('visualization', '1', {'packages': ['columnchart']});
-																
-																            // Set a callback to run when the Google Visualization API is loaded.
-																            google.setOnLoadCallback(drawChart);
-																
-																            // Callback that creates and populates a data table,
-																            // instantiates the pie chart, passes in the data and
-																            // draws it.
-																            function drawChart() {
-																
-																                // Create the data table.    
-																                var data = google.visualization.arrayToDataTable([
-																                    ['Country', 'Area(square km)'],
-																                    <c:forEach var="ngonNgu" items="${listNgonNgu }">
-															      						['${ngonNgu.key}', ${ngonNgu.value}],
-																      				</c:forEach>
-																                ]);
-																                // Set chart options
-																                var options = {
-																                    'title': 'NGÔN NGỮ DỰ ÁN',
-																                    is3D: true,
-																                    pieSliceText: 'label',
-																                    tooltip: {showColorCode: true},
-																                    'width': 250,
-																                    'height': 200
-																                };
-																
-																                // Instantiate and draw our chart, passing in some options.
-																                var chart = new google.visualization.PieChart(document.getElementById('ChartNgonNgu'));
-																                chart.draw(data, options);
-																            }
-																</script>
+												      				<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+								                                    <script type="text/javascript">
+								                                      google.charts.load("current", {packages:['corechart']});
+								                                      google.charts.setOnLoadCallback(drawChart);
+								                                      function drawChart() {
+								                                  
+								                                        var data = google.visualization.arrayToDataTable([
+								                                          ['Element', 'Density'],
+								                                          <c:forEach var="ngonNgu" items="${listNgonNgu }">
+								                                              ['${ngonNgu.key}', ${ngonNgu.value}],
+								                                            </c:forEach>
+								                                        ]);
+								                                  
+								                                        var options = {
+								                                          'title': 'NGÔN NGỮ DỰ ÁN',
+								                                                is3D: true,
+								                                                tooltip: {showColorCode: true},
+								                                                'width': 300,
+								                                                'height': 250
+								                                        };
+								                                  
+								                                        var chart_div = document.getElementById('ChartNgonNgu');
+								                                        var chart = new google.visualization.PieChart(chart_div);
+								                                  
+								                                        // Wait for the chart to finish drawing before calling the getImageURI() method.
+								                                        /* google.visualization.events.addListener(chart, 'ready', function () {
+								                                          console.log(1);
+								                                            var chartImg = chart.getImageURI();
+								                                            var preview = document.getElementById('chartImgDatabase');
+								                                            preview.src = chartImg;
+								                                            console.log(chart.getImageURI());
+								                                        }); */
+								                                  
+								                                        chart.draw(data, options);
+								                                  
+								                                    }
+								                                    </script>
 												      				<div id="ChartNgonNgu"></div>
 												      			</div>
 												      			<div class=" col-md-4">
-												      				<!-- load Google AJAX API -->
-																        <script type="text/javascript" src="https://www.google.com/jsapi"></script>
-																         <script type="text/javascript">
-																            // Load the Visualization API and the piechart package.
-																            google.load('visualization', '1', {'packages': ['columnchart']});
-																
-																            // Set a callback to run when the Google Visualization API is loaded.
-																            google.setOnLoadCallback(drawChart);
-																
-																            // Callback that creates and populates a data table,
-																            // instantiates the pie chart, passes in the data and
-																            // draws it.
-																            function drawChart() {
-																
-																                // Create the data table.    
-																                var data = google.visualization.arrayToDataTable([
-																                    ['Country', 'Area(square km)'],
-																                    <c:forEach var="framework" items="${listFramework }">
-														      						['${framework.key}', ${framework.value}],
-															      				</c:forEach>
-																                ]);
-																                // Set chart options
-																                var options = {
-																                    'title': 'FRAMEWORK',
-																                    is3D: true,
-																                    pieSliceText: 'label',
-																                    tooltip: {showColorCode: true},
-																                    'width': 250,
-																                    'height': 200
-																                };
-																
-																                // Instantiate and draw our chart, passing in some options.
-																                var chart = new google.visualization.PieChart(document.getElementById('ChartFrameWork'));
-																                chart.draw(data, options);
-																            }
-																</script>
+												      				<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+								                                    <script type="text/javascript">
+								                                      google.charts.load("current", {packages:['corechart']});
+								                                      google.charts.setOnLoadCallback(drawChart);
+								                                      function drawChart() {
+								                                  
+								                                        var data = google.visualization.arrayToDataTable([
+								                                          ['Element', 'Density'],
+								                                          <c:forEach var="framework" items="${listFramework }">
+								                                              ['${framework.key}', ${framework.value}],
+								                                            </c:forEach>
+								                                        ]);
+								                                  
+								                                        var options = {
+								                                          'title': 'FRAMEWORK',
+								                                                is3D: true,
+								                                                tooltip: {showColorCode: true},
+								                                                'width': 300,
+								                                                'height': 250
+								                                        };
+								                                  
+								                                        var chart_div = document.getElementById('ChartFrameWork');
+								                                        var chart = new google.visualization.PieChart(chart_div);
+								                                  
+								                                        // Wait for the chart to finish drawing before calling the getImageURI() method.
+								                                       /*  google.visualization.events.addListener(chart, 'ready', function () {
+								                                          console.log(1);
+								                                            var chartImg = chart.getImageURI();
+								                                            var preview = document.getElementById('chartImgDatabase');
+								                                            preview.src = chartImg;
+								                                            console.log(chart.getImageURI());
+								                                        }); */
+								                                  
+								                                        chart.draw(data, options);
+								                                  
+								                                    }
+								                                    </script>
 												      				<div id="ChartFrameWork"></div>
 												      			</div>
 												      			<div class=" col-md-4">
-												      				<!-- load Google AJAX API -->
-																        <script type="text/javascript" src="https://www.google.com/jsapi"></script>
-																         <script type="text/javascript">
-																            // Load the Visualization API and the piechart package.
-																            google.load('visualization', '1', {'packages': ['columnchart']});
-																
-																            // Set a callback to run when the Google Visualization API is loaded.
-																            google.setOnLoadCallback(drawChart);
-																
-																            // Callback that creates and populates a data table,
-																            // instantiates the pie chart, passes in the data and
-																            // draws it.
-																            function drawChart() {
-																
-																                // Create the data table.    
-																                var data = google.visualization.arrayToDataTable([
-																                    ['Country', 'Area(square km)'],
-																                    <c:forEach var="database" items="${listDatabase }">
-														      						['${database.key}', ${database.value}],
-															      				</c:forEach>
-																                ]);
-																                // Set chart options
-																                var options = {
-																                    'title': 'CƠ SỞ DỮ LIỆU',
-																                    is3D: true,
-																                    pieSliceText: 'label',
-																                    tooltip: {showColorCode: true},
-																                    'width': 250,
-																                    'height': 200
-																                };
-																
-																                // Instantiate and draw our chart, passing in some options.
-																                var chart = new google.visualization.PieChart(document.getElementById('ChartDatabase'));
-																                chart.draw(data, options);
-																            }
-																</script>
+												      				<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+																	  <script type="text/javascript">
+																	    google.charts.load("current", {packages:['corechart']});
+																	    google.charts.setOnLoadCallback(drawChart);
+																	    function drawChart() {
+																	
+																	      var data = google.visualization.arrayToDataTable([
+																	        ['Element', 'Density'],
+																	        <c:forEach var="database" items="${listDatabase }">
+																	            ['${database.key}', ${database.value}],
+																	        </c:forEach>
+																	      ]);
+																	
+																	      var options = {
+																	        'title': 'CƠ SỞ DỮ LIỆU',
+																	              is3D: true,
+																	              tooltip: {showColorCode: true},
+																	              'width': 300,
+																	              'height': 250
+																	      };
+																	
+																	      var chart_div = document.getElementById('ChartDatabase');
+																	      var chart = new google.visualization.PieChart(chart_div);
+																	
+																	      // Wait for the chart to finish drawing before calling the getImageURI() method.
+																	      /* google.visualization.events.addListener(chart, 'ready', function () {
+																	    	  console.log(1);
+																	          var chartImg = chart.getImageURI();
+																	          var preview = document.getElementById('chartImgDatabase');
+																	          preview.src = chartImg;
+																	          console.log(chart.getImageURI());
+																	      }); */
+																	
+																	      chart.draw(data, options);
+																	
+																	  }
+																	  </script>
 												      				<div id="ChartDatabase"></div>
 												      			</div>
 												      		</div>
@@ -351,17 +368,17 @@
 									    </div>
 									  </div> 
 								   </div>
-								   <div class="form-actions center">
-								      <button type="button" class="btn btn-warning mr-1">
-								         <i class="ft-x"></i> <spring:message code="label.huy" />
-								      </button>
-								      <button type="submit" class="btn btn-primary">
-								         <i class="fa fa-check-square-o"></i> <spring:message code="label.luu" />
-								      </button>
-								   </div>
-								</form:form>
+								<%-- </form:form> --%>
 	                        </div>
 	                     </div>
+	                     <div style="text-align: center; border-top: 1px solid #d3dce9; padding: 20px 0; margin-top: 20px;" class="form-actions center">
+					      <a href="<c:url value = "/ns/ho_so"/>"><button type="button" class="btn btn-warning mr-1">
+					         <i class="ft-x"></i> <spring:message code="label.quaylai" />
+					      </button></a>
+					      <button id="save" type="submit" class="btn btn-primary">
+					         <i class="fa fa-check-square-o"></i> <spring:message code="label.luuPDF" />
+					      </button>
+					   </div>
 	                  </div>
 	               </div>
 	            </div>
@@ -370,5 +387,46 @@
          </div>
       </div>
    </div>
+  <script src="/ffse-fbms/resources/dist/html2pdf.bundle.min.js"></script>
+  <script>
+     function toDataURL(src, callback, outputFormat) {
+  var img = new Image();
+  img.crossOrigin = 'Anonymous';
+  img.onload = function() {
+    var canvas = document.createElement('CANVAS');
+    var ctx = canvas.getContext('2d');
+    var dataURL;
+    canvas.height = this.naturalHeight;
+    canvas.width = this.naturalWidth;
+    ctx.drawImage(this, 0, 0);
+    dataURL = canvas.toDataURL(outputFormat);
+    callback(dataURL);
+  };
+  img.src = src;
+  if (img.complete || img.complete === undefined) {
+    img.src = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==";
+    img.src = src;
+  }
+  console.log(img.src);
+}
+var abc = document.getElementById("preview").src;
+toDataURL(
+  abc,
+  function(dataUrl) {
+    console.log('RESULT:', dataUrl)
+    var image = document.getElementById("image2");
+      image.src = dataUrl;
+  }
+)
+    </script>
+     <script>
+  // var pdf = new jsPDF();
+  var btn = document.getElementById('save');
+
+  btn.addEventListener('click', function(event) {
+    var content = document.getElementById('pdfBody');
+    html2pdf(content, { useCORS: true });
+  });
+</script>
    <!-- ////////////////////////////////////////////////////////////////////////////-->
 <jsp:include page="/WEB-INF/view/templates/footer.jsp" /> 

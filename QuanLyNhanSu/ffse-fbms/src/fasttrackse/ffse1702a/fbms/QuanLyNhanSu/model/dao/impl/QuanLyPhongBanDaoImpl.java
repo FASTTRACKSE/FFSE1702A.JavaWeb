@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -24,6 +25,7 @@ public class QuanLyPhongBanDaoImpl implements QuanLyPhongBanDao {
 		Session session = this.sessionFactory.getCurrentSession();
 		session.save(p);
 	}
+	
 
 	@Override
 	public void updatePhongBan(PhongBan p) {

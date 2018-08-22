@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.kb.model.Employee;
 
@@ -20,9 +21,13 @@ public class QuanLySinhVienController {
 	private QuanLySinhVienDAO quanLySinhVienDAOCuaDung;
 	
 	@RequestMapping(value = {"/" , "/sinhvien"})
-	public String listsinhvien(Model model) {
+	public String listsinhvien(Model model,@RequestParam(value = "page", defaultValue = "1") Integer page,
+			Integer maxResult) {
+		Integer offset = (page - 1) * 10;
+		model.addAttribute("count", this.quanLySinhVienDAOCuaDung.count());
+		model.addAttribute("offset", offset);
 		model.addAttribute("sinhvien", new SinhVien());
-		model.addAttribute("sinhVienList", quanLySinhVienDAOCuaDung.listStudent());
+		model.addAttribute("sinhVienList", quanLySinhVienDAOCuaDung.listStudent(offset, maxResult));
 		return "SinhVien";
 	} 
 	

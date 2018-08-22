@@ -10,4 +10,5 @@ public interface QuanLyPhongBanService {
 	public List<PhongBan> listPhongBan();
 	public PhongBan getMaPhongBan(String id);
 	public void removePhongBan(String id);
+	
 }

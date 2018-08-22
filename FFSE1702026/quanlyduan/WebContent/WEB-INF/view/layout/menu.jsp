@@ -8,6 +8,8 @@
 <c:url var="ngonngulink" value="/ngonngu/list"/>
 <c:url var="frameworklink" value="/framework/list"/>
 <c:url var="customerlink" value="/khachhang/list"/>
+<c:url var="vendorlink" value="/doitac/list"/>
+<c:url var="domainlink" value="/nghiepvu/list"/>
 <div data-scroll-to-active="true" class="main-menu menu-fixed menu-light menu-accordion menu-shadow">
       <div class="main-menu-content">
         <ul id="main-menu-navigation" data-menu="menu-navigation" class="navigation navigation-main">
@@ -24,6 +26,10 @@
               <li><a href="${frameworklink }" class="menu-item"><spring:message code="quanlyduan.frameworkmenu" /></a>
               </li>
               <li><a href="${customerlink }" class="menu-item"><spring:message code="quanlyduan.customer" /></a>
+              </li>
+              <li><a href="${vendorlink }" class="menu-item"><spring:message code="quanlyduan.vendor" /></a>
+              </li>
+              <li><a href="${domainlink }" class="menu-item"><spring:message code="quanlyduan.domain" /></a>
               </li>
             </ul>
           </li>

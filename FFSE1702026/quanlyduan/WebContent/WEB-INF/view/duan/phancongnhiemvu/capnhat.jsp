@@ -9,7 +9,7 @@
 		<div class="col-md-12">
 			<div class="card">
 				<div class="card-header">
-					<h4 class="card-title"><spring:message code="duan.add"></spring:message></h4>
+					<h4 class="card-title"><spring:message code="duan.phancongduan.update"></spring:message></h4>
 					<a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
         			<div class="heading-elements">
 						<ul class="list-inline mb-0">
@@ -41,7 +41,9 @@
 									<div class="form-group">
 										<h5><spring:message code="duan.employee" /></h5>
 										<div class="controls">
-											<form:input path="maNhanVien" cssClass="form-control" readonly="true"  />
+												<form:select path="maNhanVien" cssClass="form-control">
+												<option value="${nhanvien.maNhanVien }">${nhanvien.tenNhanVien }</option>
+											</form:select>
 											<form:errors path="maNhanVien" cssStyle="color: red"></form:errors>
 										<div class="help-block"></div></div>
 										

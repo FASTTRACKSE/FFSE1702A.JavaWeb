@@ -34,8 +34,14 @@ public class UploadImageServiceImpl implements UploadImageService, ServletContex
 	}
 
 	@Override
+	public void setServletContext(ServletContext servletContext) {
+		this.servletContext = servletContext;
+
+	}
+
+	@Override
 	@Transactional
-	public String checkImage(MultipartFile image, BindingResult bindingResult, String referer) {
+	public String checkImage(MultipartFile image, BindingResult bindingResult) {
 		String filename = null;
 		if (!image.isEmpty()) {
 			try {
@@ -45,7 +51,7 @@ public class UploadImageServiceImpl implements UploadImageService, ServletContex
 
 			} catch (RuntimeException re) {
 				bindingResult.reject(re.getMessage());
-				return "redirect:" + referer;
+				return "err";
 			}
 
 			try {
@@ -53,17 +59,11 @@ public class UploadImageServiceImpl implements UploadImageService, ServletContex
 				uploadImage(filename, image);
 			} catch (IOException e) {
 				bindingResult.reject(e.getMessage());
-				return "redirect:" + referer;
+				return "err";
 			}
 
 		}
 		return filename;
-	}
-
-	@Override
-	public void setServletContext(ServletContext servletContext) {
-		this.servletContext = servletContext;
-
 	}
 
 }

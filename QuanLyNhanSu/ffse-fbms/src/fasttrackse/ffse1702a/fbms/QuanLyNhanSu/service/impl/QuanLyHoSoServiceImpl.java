@@ -24,8 +24,26 @@ public class QuanLyHoSoServiceImpl implements QuanLyHoSoService {
 
 	@Override
 	@Transactional
+	public String getRecordsTotal(String maPhongBan) {
+		return this.quanLyHoSoDAO.getRecordsTotal(maPhongBan);
+	}
+
+	@Override
+	@Transactional
+	public String getRecordsFiltered(String sql) {
+		return this.quanLyHoSoDAO.getRecordsFiltered(sql);
+	}
+
+	@Override
+	@Transactional
 	public List<HoSoNhanVien> getAllHoSo() {
 		return this.quanLyHoSoDAO.getAllHoSo();
+	}
+
+	@Override
+	@Transactional
+	public List<HoSoNhanVien> getAllHoSo(int iDisplayStart, int iDisplayLength, String sql) {
+		return this.quanLyHoSoDAO.getAllHoSo(iDisplayStart, iDisplayLength, sql);
 	}
 
 	@Override
@@ -61,8 +79,24 @@ public class QuanLyHoSoServiceImpl implements QuanLyHoSoService {
 
 	@Override
 	@Transactional
-	public List<HoSoNhanVien> getAllHoSo(int INITIAL, int RECORD_SIZE, String GLOBAL_SEARCH_TERM, String[] COLUMN_NAME,
-			String[] DIRECTION) {
-		return this.quanLyHoSoDAO.getAllHoSo(INITIAL, RECORD_SIZE, GLOBAL_SEARCH_TERM, COLUMN_NAME, DIRECTION);
+	public String toJson(HoSoNhanVien hsnv) {
+		String maNhanVien = String.format("%05d", hsnv.getMaNhanVien());
+		// String anhDaiDien = "<img width='75px' height='75px'
+		// src='/ffse-fbms/resources/images/nhan-vien/" + hsnv.getAnhDaiDien() + "'>";
+		String hoDem = hsnv.getHoDem();
+		String ten = hsnv.getTen();
+		String gioiTinh = hsnv.getGioiTinh() == 1 ? "Nam" : "Nữ";
+		String phongBan = "<a href='/ffse-fbms/" + hsnv.getPhongBan().getMaPhongBan() + "/ho_so'>"
+				+ hsnv.getPhongBan().getTenPhongBan() + "</a>";
+		String chucDanh = hsnv.getChucDanh().getTenChucDanh();
+		String trangThai = hsnv.getTrangThai() == 1 ? "Đang làm việc" : "Nghỉ việc";
+		String action = "<a href='/ffse-fbms/ns/ho_so/xem_tat_ca/" + hsnv.getMaNhanVien()
+				+ "'><i class='fa fa-eye'></i></a>" + "<a href='/ffse-fbms/ns/ho_so/edit/" + hsnv.getMaNhanVien()
+				+ "'><i class='fa fa-pencil'></i></a>"
+				+ "<a href='javascript:void(0);' data-toggle='modal' data-target='#confirm-delete' data-href='/ffse-fbms/ns/ho_so/delete/"
+				+ hsnv.getMaNhanVien() + "'><i class='fa fa-trash'></i></a>";
+
+		return "[\"" + maNhanVien + "\",\"" + hoDem + "\",\"" + ten + "\",\"" + gioiTinh + "\",\"" + phongBan + "\",\""
+				+ chucDanh + "\",\"" + trangThai + "\",\"" + action + "\"]";
 	}
 }

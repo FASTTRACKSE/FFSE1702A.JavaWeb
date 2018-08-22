@@ -13,6 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -23,30 +24,37 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Entity
 @Table(name = "hop_dong")
 public class HopDong implements Serializable {
+	
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ma_hop_dong", unique = true, nullable = false)
+	@NotNull
 	private int maHopDong;
 
 	@Column(name = "luong_thang_13", nullable = false)
+	@NotNull
 	private Integer luongThang13;
 
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "ngay_ket_thuc", nullable = false)
+	@NotNull
 	private Date ngayKetThuc;
 
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "ngay_ky_ket", nullable = false)
+	@NotNull
 	private Date ngayKyKet;
 
 	@Column(name = "so_ngay_phep", nullable = false)
+	@NotNull
 	private Integer soNgayPhep;
 
 	@Column(name = "trang_thai", nullable = false)
+	@NotNull
 	private Integer trangThai;
 
 	// bi-directional many-to-one association to HoSoNhanVien
@@ -57,10 +65,12 @@ public class HopDong implements Serializable {
 	// bi-directional many-to-one association to LoaiHopDong
 	@ManyToOne
 	@JoinColumn(name = "ma_loai_hop_dong", nullable = false)
+	@NotNull
 	private LoaiHopDong loaiHopDong;
 
 	public HopDong() {
 	}
+
 	public int getMaHopDong() {
 		return this.maHopDong;
 	}
@@ -127,9 +137,9 @@ public class HopDong implements Serializable {
 
 	@Override
 	public String toString() {
-		return "HopDong [maHopDong=" + maHopDong + ", maNhanVien=" + hoSoNhanVien.getMaNhanVien() +", luongThang13=" + luongThang13 + ", ngayKetThuc=" + ngayKetThuc
-				+ ", ngayKyKet=" + ngayKyKet + ", soNgayPhep=" + soNgayPhep + ", trangThai=" + trangThai
-				+ ", loaiHopDong=" + loaiHopDong + "]";
+		return "HopDong [maHopDong=" + maHopDong + ", maNhanVien=" + hoSoNhanVien.getMaNhanVien() + ", luongThang13="
+				+ luongThang13 + ", ngayKetThuc=" + ngayKetThuc + ", ngayKyKet=" + ngayKyKet + ", soNgayPhep="
+				+ soNgayPhep + ", trangThai=" + trangThai + ", loaiHopDong=" + loaiHopDong + "]";
 	}
 
 }

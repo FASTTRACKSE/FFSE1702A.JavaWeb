@@ -37,6 +37,8 @@ public class KhachHang {
 	@Email
 	@Column(name="email")
 	private String email;
+	@Column(name="is_delete")
+	private int isDelete;
 	
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "khachHang",cascade=CascadeType.MERGE)
 	private Set<DuAn> duAn = new HashSet<DuAn>(0);
@@ -85,6 +87,12 @@ public class KhachHang {
 	}
 	public void setDuAn(Set<DuAn> duAn) {
 		this.duAn = duAn;
+	}
+	public int getIsDelete() {
+		return isDelete;
+	}
+	public void setIsDelete(int isDelete) {
+		this.isDelete = isDelete;
 	}
 	
 	

@@ -2,9 +2,12 @@ package fasttrackse.ffse1702a.fbms.QuanLyNhanSu.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -37,15 +40,7 @@ public class QuanLyHopDongController {
 		
 		return "QuanLyNhanSu/QuanLyHopDong/HopDong";
 	}
-	@RequestMapping(value = "/ns/hop_dong/{maPhongBan}", method = RequestMethod.GET)
-	public String listHoSo(@PathVariable("maPhongBan") String maPhongBan, Model model) {
-		if (maPhongBan.equals("ns")) {
-			model.addAttribute("listHoSo", this.quanLyHoSoService.getAllHoSo());
-		} else {
-			model.addAttribute("listHoSo", this.quanLyHoSoService.getHoSoByPhongBan(maPhongBan));
-		}
-		return "QuanLyNhanSu/QuanLyHoSo/QuanLyHoSo";
-	}
+
 
 	@RequestMapping(value = "/ns/hop_dong/edit/{maNhanVien}", method = RequestMethod.GET)
 	public String editQuanLyHopDong(@PathVariable("maNhanVien") int maNhanVien, Model model) {
@@ -71,8 +66,14 @@ public class QuanLyHopDongController {
 	}
 
 	@RequestMapping(value = "/ns/hop_dong/save", method = RequestMethod.POST)
-	public String addHopDong(@ModelAttribute("hopDong") HopDong hd) {
-
+	public String addHopDong(@Valid @ModelAttribute("hopDong") HopDong hd, BindingResult bindingResult, Model model) {
+		if (bindingResult.hasErrors()) {
+			int maNhanVien = hd.getHoSoNhanVien().getMaNhanVien();
+			HoSoNhanVien hsnv = this.quanLyHoSoService.getHoSoNhanVienById(maNhanVien);
+			hd.setMaHopDong(Integer.valueOf(this.quanLyHopDongService.getAutoId()));
+			model.addAttribute("hoSoNhanVien", hsnv);
+			return "QuanLyNhanSu/QuanLyHopDong/QuanLyHopDongForm";
+		}
 		if (hd.getMaHopDong() == 0) {
 			this.quanLyHopDongService.addHopDong(hd);
 		} else {

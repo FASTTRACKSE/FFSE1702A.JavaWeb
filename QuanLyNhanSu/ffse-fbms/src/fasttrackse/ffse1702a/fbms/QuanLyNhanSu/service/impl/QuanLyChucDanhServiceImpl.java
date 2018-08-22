@@ -7,7 +7,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import fasttrackse.ffse1702a.fbms.QuanLyDuAn.model.entity.ChucDanh;
+import fasttrackse.ffse1702a.fbms.QuanLyNhanSu.model.entity.ChucDanh;
 import fasttrackse.ffse1702a.fbms.QuanLyNhanSu.model.dao.QuanLyChucDanhDAO;
 import fasttrackse.ffse1702a.fbms.QuanLyNhanSu.service.QuanLyChucDanhService;
 

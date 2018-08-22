@@ -13,8 +13,10 @@ public interface QuanLySinhVienDAO{
 	
 	public void removeStudent(int id);
 	
-	public List<SinhVien> listStudent();
+	public List<SinhVien> listStudent(Integer offset, Integer maxResult);
 	
 	public SinhVien findById(int id);
+	
+	public Long count();
 	
 }

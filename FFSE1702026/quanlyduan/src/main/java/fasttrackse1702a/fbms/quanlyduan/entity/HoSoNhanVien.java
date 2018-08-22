@@ -29,12 +29,6 @@ public class HoSoNhanVien implements Serializable {
 	@Column(name = "ma_nhan_vien", unique = true)
 	private int maNhanVien;
 
-	/*@Column( length = 50)
-	private String email;
-
-	@Column(name = "gioi_tinh")
-	private byte gioiTinh;*/
-
 	@Column(name = "ho_dem")
 	private String hoDem;
 	
@@ -56,6 +50,8 @@ public class HoSoNhanVien implements Serializable {
 	@JoinColumn(name = "ma_vai_tro", referencedColumnName = "ma_vai_tro", nullable = true, updatable = false,insertable=true) })
 	private Set<VaiTro> vaiTro;
 	
+//	@OneToMany(fetch=FetchType.EAGER,cascade=CascadeType.ALL,mappedBy="nhanVien")
+//	private Set<User> user;
 	public HoSoNhanVien() {
 	}
 
@@ -128,6 +124,16 @@ public class HoSoNhanVien implements Serializable {
 	public void setVaiTro(Set<VaiTro> vaiTro) {
 		this.vaiTro = vaiTro;
 	}
+
+//	public Set<User> getUser() {
+//		return user;
+//	}
+//
+//	public void setUser(Set<User> user) {
+//		this.user = user;
+//	}
+
+	
 	
 
 	

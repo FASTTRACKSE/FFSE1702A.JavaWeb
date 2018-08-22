@@ -9,7 +9,7 @@
 		<div class="col-md-12">
 			<div class="card">
 				<div class="card-header">
-					<h4 class="card-title"><spring:message code="duan.add"></spring:message></h4>
+					<h4 class="card-title"><spring:message code="quanlyduan.addrole"></spring:message></h4>
 					<a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
         			<div class="heading-elements">
 						<ul class="list-inline mb-0">
@@ -26,11 +26,12 @@
 						<form:form cssClass="form-horizontal" modelAttribute="nhiemvu" method="POST" action="${phancongnhiemvu }" >
 						
 							<div class="row">
-								<div class="col-lg-6 col-md-12">
+								<div class="col-lg-12 col-md-12">
+								<div class="col-lg-6 col-md-6">
 									 <div class="form-group">
 										<h5><spring:message code="duan.code" /></h5>
 										<div class="controls">
-											<form:select path="maDuAn" cssClass="form-control"  >
+											<form:select path="maDuAn" cssClass="form-control round"  >
 												 
 													<option value="${duan.maDuAn }">${duan.tenDuAn} </option>
 												
@@ -39,11 +40,12 @@
 										<div class="help-block"></div></div>
 										
 									</div> 
-									
+									</div>
+									<div class="col-lg-6 col-md-6">
 									<div class="form-group">
 										<h5><spring:message code="duan.employee" /></h5>
 										<div class="controls">
-											<form:select path="maNhanVien" cssClass="form-control"   >
+											<form:select path="maNhanVien" cssClass="form-control round"   >
 												 <c:forEach items="${nhanvien }" var="nv">
 													<option value="${nv.maNhanVien }">${nv.hoDem } ${nv.ten } </option>
 												</c:forEach> 
@@ -52,18 +54,20 @@
 										<div class="help-block"></div></div>
 										
 									</div>
-									
+									</div>
+									<div class="col-lg-6 col-md-6">
 									<div class="form-group">
 										<h5><spring:message code="duan.vaitro" /></h5>
 										<div class="controls">
-											<form:select path="maVaiTro" cssClass="form-control"  items="${vaitro }" itemValue="maVaiTro" itemLabel="tenVaiTro">
+											<form:select path="maVaiTro" cssClass="form-control round"  items="${vaitro }" itemLabel="tenVaiTro" itemValue="maVaiTro">
 												
 											</form:select>
 											<form:errors path="maVaiTro" cssStyle="color: red"></form:errors>
 										<div class="help-block"></div></div>
 										
 									</div> 
-									
+									</div>
+									<div class="col-lg-6 col-md-6">
 									
 									
 									
@@ -75,7 +79,7 @@
 								
 							</div>
 							
-							
+							</div>
 						</form:form>
 					</div>
 				</div>

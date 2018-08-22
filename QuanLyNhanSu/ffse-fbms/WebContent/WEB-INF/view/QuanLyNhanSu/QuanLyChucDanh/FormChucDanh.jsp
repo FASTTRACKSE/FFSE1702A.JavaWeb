@@ -8,7 +8,14 @@
       <div class="content-wrapper">
          <div class="content-header row">
             <div class="content-header-left col-md-9 col-xs-12 mb-2">
-               <h3 class="content-header-title mb-0">THÊM CHỨC DANH</h3>
+               <h3 class="content-header-title mb-0">
+               		<c:if test="${!empty chucdanh.maChucDanh }">
+                      SỬA CHỨC DANH
+                     </c:if>
+                     <c:if test="${empty chucdanh.maChucDanh }">
+                      THÊM CHỨC DANH
+                     </c:if>
+			   </h3>
                <div class="row breadcrumbs-top">
                   <div class="breadcrumb-wrapper col-xs-12">
                      <ol class="breadcrumb">
@@ -18,7 +25,13 @@
                         </li>
                         <li class="breadcrumb-item"><a href="#">QUẢN LÝ CHỨC DANH</a>
                         </li>
-                        <li class="breadcrumb-item active">THÊM CHỨC DANH
+                        <li class="breadcrumb-item active">
+						<c:if test="${!empty chucdanh.maChucDanh }">
+                      		SỬA CHỨC DANH
+                     	</c:if>
+                     	<c:if test="${empty chucdanh.maChucDanh }">
+                      		THÊM CHỨC DANH
+                     	</c:if>
                         </li>
                      </ol>
                   </div>
@@ -57,7 +70,13 @@
 		                          <div class="form-body" style="margin-top: 1rem;">
 		                            <div class="form-group">
 		                              <label>Mã chức danh</label>
-		                              <form:input path="maChucDanh" class="form-control" placeholder="Mã chức danh..."/>
+		                              <c:if test="${!empty chucdanh.maChucDanh }">
+		                              	<form:input path="maChucDanh" class="form-control" readonly="true" placeholder="Mã chức danh..."/>
+		                              </c:if>
+		                              <c:if test="${empty chucdanh.maChucDanh }">
+		                              	<form:input path="maChucDanh" class="form-control"  placeholder="Mã chức danh..."/>
+		                              	<form:errors path="maChucDanh" cssClass="invalid-feedback d-block" />
+		                              </c:if>
 		                            </div>
 		                            <div class="form-group">
 		                              <label>Tên chức danh</label>
@@ -85,6 +104,6 @@
          </div>
       </div>
    </div>
-   <!-- ////////////////////////////////////////////////////////////////////////////-->
+
 
 <jsp:include page="/WEB-INF/view/templates/footer.jsp" /> 

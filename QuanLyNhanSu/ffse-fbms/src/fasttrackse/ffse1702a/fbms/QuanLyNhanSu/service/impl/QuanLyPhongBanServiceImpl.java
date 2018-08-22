@@ -21,6 +21,8 @@ public class QuanLyPhongBanServiceImpl implements QuanLyPhongBanService {
 		this.quanLyPhongBanDao.addPhongBan(p);
 	}
 
+	
+
 	@Override
 	@Transactional
 	public void updatePhongBan(PhongBan p) {

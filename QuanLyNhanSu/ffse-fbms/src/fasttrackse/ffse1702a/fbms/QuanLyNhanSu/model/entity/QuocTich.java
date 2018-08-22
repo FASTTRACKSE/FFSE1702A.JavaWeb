@@ -57,19 +57,4 @@ public class QuocTich implements Serializable {
 	public void setHoSoNhanViens(List<HoSoNhanVien> hoSoNhanViens) {
 		this.hoSoNhanViens = hoSoNhanViens;
 	}
-
-	public HoSoNhanVien addHoSoNhanVien(HoSoNhanVien hoSoNhanVien) {
-		getHoSoNhanViens().add(hoSoNhanVien);
-		hoSoNhanVien.setQuocTich(this);
-
-		return hoSoNhanVien;
-	}
-
-	public HoSoNhanVien removeHoSoNhanVien(HoSoNhanVien hoSoNhanVien) {
-		getHoSoNhanViens().remove(hoSoNhanVien);
-		hoSoNhanVien.setQuocTich(null);
-
-		return hoSoNhanVien;
-	}
-
 }

@@ -5,7 +5,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -13,7 +12,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -27,9 +25,7 @@ import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import fasttrackse.ffse1702a.fbms.QuanLyDuAn.model.entity.ChucDanh;
 import fasttrackse.ffse1702a.fbms.QuanLyDuAn.model.entity.DuAn;
-import fasttrackse.ffse1702a.fbms.QuanLyDuAn.model.entity.VaiTro;
 
 /**
  * The persistent class for the ho_so_nhan_vien database table.
@@ -46,7 +42,6 @@ public class HoSoNhanVien implements Serializable {
 	private int maNhanVien;
 
 	@Column(name = "anh_dai_dien", nullable = false, length = 100)
-	@NotEmpty
 	private String anhDaiDien;
 
 	@Column(name = "dan_toc", nullable = false, length = 50)
@@ -148,12 +143,15 @@ public class HoSoNhanVien implements Serializable {
 
 	@ManyToMany(mappedBy = "hoSoNhanVien", fetch = FetchType.EAGER, targetEntity = DuAn.class)
 	private Set<DuAn> duAn;
-
-	@ManyToMany(targetEntity = VaiTro.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JoinTable(name = "nhiem_vu", joinColumns = {
-			@JoinColumn(name = "ma_nhan_vien", referencedColumnName = "ma_nhan_vien", updatable = true, insertable = true) }, inverseJoinColumns = {
-					@JoinColumn(name = "ma_vai_tro", referencedColumnName = "ma_vai_tro", nullable = true, updatable = false, insertable = true) })
-	private Set<VaiTro> vaiTro;
+	//
+	// @ManyToMany(targetEntity = VaiTro.class, cascade = CascadeType.ALL, fetch =
+	// FetchType.EAGER)
+	// @JoinTable(name = "nhiem_vu", joinColumns = {
+	// @JoinColumn(name = "ma_nhan_vien", referencedColumnName = "ma_nhan_vien",
+	// updatable = true, insertable = true) }, inverseJoinColumns = {
+	// @JoinColumn(name = "ma_vai_tro", referencedColumnName = "ma_vai_tro",
+	// nullable = true, updatable = false, insertable = true) })
+	// private Set<VaiTro> vaiTro;
 
 	public HoSoNhanVien() {
 	}
@@ -314,66 +312,12 @@ public class HoSoNhanVien implements Serializable {
 		return this.hopDongs;
 	}
 
-	public void setHopDongs(List<HopDong> hopDongs) {
-		this.hopDongs = hopDongs;
-	}
-
-	public HopDong addHopDong(HopDong hopDong) {
-		getHopDongs().add(hopDong);
-		hopDong.setHoSoNhanVien(this);
-
-		return hopDong;
-	}
-
-	public HopDong removeHopDong(HopDong hopDong) {
-		getHopDongs().remove(hopDong);
-		hopDong.setHoSoNhanVien(null);
-
-		return hopDong;
-	}
-
 	public List<ThongTinBangCap> getThongTinBangCaps() {
 		return this.thongTinBangCaps;
 	}
 
-	public void setThongTinBangCaps(List<ThongTinBangCap> thongTinBangCaps) {
-		this.thongTinBangCaps = thongTinBangCaps;
-	}
-
-	public ThongTinBangCap addThongTinBangCap(ThongTinBangCap thongTinBangCap) {
-		getThongTinBangCaps().add(thongTinBangCap);
-		thongTinBangCap.setHoSoNhanVien(this);
-
-		return thongTinBangCap;
-	}
-
-	public ThongTinBangCap removeThongTinBangCap(ThongTinBangCap thongTinBangCap) {
-		getThongTinBangCaps().remove(thongTinBangCap);
-		thongTinBangCap.setHoSoNhanVien(null);
-
-		return thongTinBangCap;
-	}
-
 	public List<ThongTinGiaDinh> getThongTinGiaDinhs() {
 		return this.thongTinGiaDinhs;
-	}
-
-	public void setThongTinGiaDinhs(List<ThongTinGiaDinh> thongTinGiaDinhs) {
-		this.thongTinGiaDinhs = thongTinGiaDinhs;
-	}
-
-	public ThongTinGiaDinh addThongTinGiaDinh(ThongTinGiaDinh thongTinGiaDinh) {
-		getThongTinGiaDinhs().add(thongTinGiaDinh);
-		thongTinGiaDinh.setHoSoNhanVien(this);
-
-		return thongTinGiaDinh;
-	}
-
-	public ThongTinGiaDinh removeThongTinGiaDinh(ThongTinGiaDinh thongTinGiaDinh) {
-		getThongTinGiaDinhs().remove(thongTinGiaDinh);
-		thongTinGiaDinh.setHoSoNhanVien(null);
-
-		return thongTinGiaDinh;
 	}
 
 	public Set<DuAn> getDuAn() {
@@ -384,20 +328,6 @@ public class HoSoNhanVien implements Serializable {
 		this.duAn = duAn;
 	}
 
-	public Set<VaiTro> getVaiTro() {
-		return vaiTro;
-	}
-
-	public String toJson() {
-		return "[\"" + maNhanVien + "\",\"" + anhDaiDien + "\",\"" + hoDem + "\",\"" + ten + "\",\"" + gioiTinh
-				+ "\",\"" + phongBan.getTenPhongBan() + "\",\"" + chucDanh.getTenChucDanh() + "\",\"" + trangThai
-				+ "\"]";
-	}
-
-	public void setVaiTro(Set<VaiTro> vaiTro) {
-		this.vaiTro = vaiTro;
-	}
-
 	@Override
 	public String toString() {
 		return "HoSoNhanVien [maNhanVien=" + maNhanVien + ", anhDaiDien=" + anhDaiDien + ", danToc=" + danToc
@@ -406,7 +336,7 @@ public class HoSoNhanVien implements Serializable {
 				+ ", soCmnd=" + soCmnd + ", soDienThoai=" + soDienThoai + ", ten=" + ten + ", trangThai=" + trangThai
 				+ ", phongBan=" + phongBan + ", chucDanh=" + chucDanh + ", quocTich=" + quocTich + ", tinhTrangHonNhan="
 				+ tinhTrangHonNhan + ", hopDongs=" + hopDongs + ", duAns=" + duAn + ", thongTinBangCaps="
-				+ thongTinBangCaps + ", vaiTro=" + vaiTro + ", thongTinGiaDinhs=" + thongTinGiaDinhs + "]";
+				+ thongTinBangCaps + ", thongTinGiaDinhs=" + thongTinGiaDinhs + "]";
 	}
 
 }
