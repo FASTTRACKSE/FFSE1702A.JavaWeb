@@ -55,19 +55,21 @@
 										class="table table-striped table-bordered zero-configuration">
 										<thead>
 											<tr>
+												<th>#</th>
 												<th>Mã phòng ban</th>
 												<th>Tên phòng ban</th>
 												<th>Hành động</th>
 											</tr>
 										</thead>
 										<tbody>
-											<c:forEach items="${listPhongBan}" var="phongban">
+											<c:forEach items="${listPhongBan}" var="phongban" varStatus="stt">
 												<tr>
+													<td>${stt.count }</td>
 													<td>${phongban.maPhongBan}</td>
 													<td>${phongban.tenPhongBan}</td>
 													<td style="letter-spacing: 5px; min-width: 75px;">
-													<a href="<c:url value='/edit/${phongban.maPhongBan}' />"><i class="fa fa-pencil"></i></a> 
-													<a href="javascript:void(0);" data-toggle="modal" data-target="#confirm-delete" data-href="<c:url value='/remove/${phongban.maPhongBan}' />"><i class="fa fa-trash"></i></a> </td>
+													<a href="<c:url value='/ns/phong_ban/edit/${phongban.maPhongBan}' />"><i class="fa fa-pencil"></i></a> 
+													<a href="javascript:void(0);" data-toggle="modal" data-target="#confirm-delete" data-href="<c:url value='/ns/phong_ban/remove/${phongban.maPhongBan}' />"><i class="fa fa-trash"></i></a> </td>
 												
 												</tr>
 											</c:forEach>

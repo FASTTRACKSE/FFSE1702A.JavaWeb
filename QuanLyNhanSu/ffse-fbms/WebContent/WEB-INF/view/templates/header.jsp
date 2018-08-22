@@ -54,11 +54,27 @@
    <script>
    $(document)
       .ready(function () {
+    	 listClass = ["phong_ban", "chuc_danh", "ho_so", "hop_dong"];
          url = window.location.href;
          selector = '.' + url.substring(url.lastIndexOf("ffse-fbms")+10);
          console.log(selector);
-         $(selector.replace(/\//g, ''))
-            .addClass('active');
+         $(selector.replace(/\//g, '').replace(/[0-9]/g, ''))
+            .addClass('active open');
+         
+         var i;
+         for (i = 0; i < listClass.length; i++) { 
+             if (selector.includes(listClass[i])) {
+				$("." + listClass[i]).addClass('open');
+             }
+         }
+
+         if (selector.includes('ho_so') && !selector.includes('nsho_so')) {
+        	 $(".pbho_so").addClass('open');
+         }
+
+         if (selector.includes('hop_dong') && !selector.includes('nshop_dong')) {
+        	 $(".pbhop_dong").addClass('open');
+         }
       });
    </script>
 
@@ -316,7 +332,7 @@
             </li>
             <li class=" navigation-header"><span>Quản lý nhân sự</span><i data-toggle="tooltip" data-placement="right" data-original-title="Quản lý nhân sự" class=" ft-minus"></i>
             </li>
-            <li class=" nav-item"><a href="javascript:void(0)"><i class="ft-home"></i><span data-i18n="" class="menu-title">Quản lý phòng ban</span></a>
+            <li class=" nav-item phong_ban"><a href="javascript:void(0)"><i class="ft-home"></i><span data-i18n="" class="menu-title">Quản lý phòng ban</span></a>
                <ul class="menu-content">
                   <li class="nsphong_ban"><a href="<c:url value = "/ns/phong_ban"/>" class="menu-item">Danh sách phòng ban</a>
                   </li>
@@ -324,7 +340,7 @@
                   </li>
                </ul>
             </li>
-            <li class=" nav-item"><a href="javascript:void(0)"><i class="ft-award"></i><span data-i18n="" class="menu-title">Quản lý chức danh</span></a>
+            <li class=" nav-item chuc_danh"><a href="javascript:void(0)"><i class="ft-award"></i><span data-i18n="" class="menu-title">Quản lý chức danh</span></a>
                <ul class="menu-content">
                   <li class="nschuc_danh"><a href="<c:url value = "/ns/chuc_danh"/>" class="menu-item">Danh sách chức danh</a>
                   </li>
@@ -332,13 +348,13 @@
                   </li>
                </ul>
             </li>
-            <li class=" nav-item"><a href="javascript:void(0)"><i class="ft-users"></i><span data-i18n="" class="menu-title">Quản lý hồ sơ</span></a>
+            <li class=" nav-item ho_so"><a href="javascript:void(0)"><i class="ft-users"></i><span data-i18n="" class="menu-title">Quản lý hồ sơ</span></a>
                <ul class="menu-content">
-                  <li><a href="javascript:void(0)" class="menu-item">Danh sách hồ sơ</a>
+                  <li class="nsho_so pbho_so"><a href="javascript:void(0)" class="menu-item ">Danh sách hồ sơ</a>
                   	<ul class="menu-content">
 					   <li class="nsho_so"><a href="<c:url value = "/ns/ho_so"/>" class="menu-item">Tất cả</a>
 					   </li>
-					   <li><a href="javascript:void(0)" class="menu-item">Phòng ban</a>
+					   <li class="pbho_so"><a href="javascript:void(0)" class="menu-item">Phòng ban</a>
 					      <ul class="menu-content">
 					         <li class="PGDho_so"><a href="<c:url value = "/PGD/ho_so"/>" class="menu-item">Phòng Giám đốc</a>
 					         </li>
@@ -360,13 +376,13 @@
                   </li>
                </ul>
             </li>
-            <li class=" nav-item"><a href="javascript:void(0)"><i class="ft-file-text"></i><span data-i18n="" class="menu-title">Quản lý hợp đồng</span></a>
+            <li class=" nav-item hop_dong"><a href="javascript:void(0)"><i class="ft-file-text"></i><span data-i18n="" class="menu-title">Quản lý hợp đồng</span></a>
                <ul class="menu-content">
-                  <li><a href="javascript:void(0)" class="menu-item">Danh sách hợp đồng</a>
+                  <li class="nshop_dong pbhop_dong"><a href="javascript:void(0)" class="menu-item">Danh sách hợp đồng</a>
                   	<ul class="menu-content">
 					   <li class="nshop_dong"><a href="<c:url value = "/ns/hop_dong"/>" class="menu-item">Tất cả</a>
 					   </li>
-					   <li><a href="javascript:void(0)" class="menu-item">Phòng ban</a>
+					   <li class="pbhop_dong"><a href="javascript:void(0)" class="menu-item">Phòng ban</a>
 					      <ul class="menu-content">
 					         <li class="PGDhop_dong"><a href="<c:url value = "/PGD/hop_dong"/>" class="menu-item">Phòng Giám đốc</a>
 					         </li>
@@ -383,8 +399,6 @@
 					      </ul>
 					   </li>
 					</ul>
-                  </li>
-                  <li class="nshop_dongadd"><a href="<c:url value = "/ns/hop_dong/add"/>" class="menu-item">Thêm hợp đồng</a>
                   </li>
                </ul>
             </li>
