@@ -44,7 +44,7 @@ public class QuanLyHoSoDAOImpl implements QuanLyHoSoDAO {
 	public String getRecordsFiltered(String sql) {
 		Session session = this.sessionFactory.getCurrentSession();
 
-		Query query = session.createSQLQuery("SELECT COUNT(*) " + sql.replace("HoSoNhanVien", "ho_so_nhan_vien"));
+		Query query = session.createQuery(sql.replace("select hs", "select count(*)"));
 		String recordsFiltered = query.getSingleResult().toString();
 		return recordsFiltered;
 	}

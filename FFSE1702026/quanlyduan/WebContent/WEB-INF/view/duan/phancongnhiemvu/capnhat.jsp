@@ -42,7 +42,7 @@
 										<h5><spring:message code="duan.employee" /></h5>
 										<div class="controls">
 												<form:select path="maNhanVien" cssClass="form-control">
-												<option value="${nhanvien.maNhanVien }">${nhanvien.tenNhanVien }</option>
+												<option value="${nhanvien.maNhanVien }">${nhanvien.ten }</option>
 											</form:select>
 											<form:errors path="maNhanVien" cssStyle="color: red"></form:errors>
 										<div class="help-block"></div></div>

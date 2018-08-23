@@ -92,20 +92,18 @@
 																code="duan.addpm" text="Add PM" /></a></c:if> --%>
 									<c:if test="${addPM==true }"><a href="${addrolelink }${duan.maDuAn }"><spring:message
 																code="duan.addpm" text="Add PM" /></a></c:if>
-									<c:forEach items="${duan.hoSoNhanVien }" var="nv">
+									
+									<c:forEach items="${phancongnhiemvu }" var="nhiemvu">
+											<c:if test="${nhiemvu.maVaiTro=='VT01' }" >
+												<c:forEach items="${duan.hoSoNhanVien }" var="nv">
 										
-										<c:forEach items="${nv.vaiTro }" var="vt">
-										
-										<c:choose>
-											<c:when test="${vt.tenVaiTro=='PM' }">
-												
-												${nv.ten },
-												
-											</c:when>
+													<c:if test="${nv.maNhanVien==nhiemvu.maNhanVien }">
+															${nv.hoDem } ${nv.ten },
+													</c:if>
+												</c:forEach>
 											
-											
-											</c:choose>
-										</c:forEach>
+											</c:if>
+									
 									</c:forEach>
 									</td>
 								</tr>

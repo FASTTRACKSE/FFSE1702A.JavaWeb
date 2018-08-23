@@ -335,7 +335,7 @@ public class HoSoNhanVien implements Serializable {
 				+ ", ngayCap=" + ngayCap + ", noiCap=" + noiCap + ", noiTamTru=" + noiTamTru + ", queQuan=" + queQuan
 				+ ", soCmnd=" + soCmnd + ", soDienThoai=" + soDienThoai + ", ten=" + ten + ", trangThai=" + trangThai
 				+ ", phongBan=" + phongBan + ", chucDanh=" + chucDanh + ", quocTich=" + quocTich + ", tinhTrangHonNhan="
-				+ tinhTrangHonNhan + ", hopDongs=" + hopDongs + ", duAns=" + duAn + ", thongTinBangCaps="
+				+ tinhTrangHonNhan + ", hopDongs=" + hopDongs + ", duAns=" + "" + ", thongTinBangCaps="
 				+ thongTinBangCaps + ", thongTinGiaDinhs=" + thongTinGiaDinhs + "]";
 	}
 

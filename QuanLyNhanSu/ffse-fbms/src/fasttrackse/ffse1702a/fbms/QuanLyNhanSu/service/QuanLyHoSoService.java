@@ -2,6 +2,8 @@ package fasttrackse.ffse1702a.fbms.QuanLyNhanSu.service;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import fasttrackse.ffse1702a.fbms.QuanLyNhanSu.model.entity.HoSoNhanVien;
 
 public interface QuanLyHoSoService {
@@ -11,6 +13,8 @@ public interface QuanLyHoSoService {
 	public String getRecordsTotal(String maPhongBan);
 
 	public String getRecordsFiltered(String sql);
+
+	public String getSQL(HttpServletRequest request, String maPhongBan);
 
 	public List<HoSoNhanVien> getAllHoSo();
 

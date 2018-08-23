@@ -40,8 +40,8 @@
 			class="form form-horizontal striped-rows form-bordered"></form:form>
 		</c:if>
 		-->
-		<form:form action="documentSave/draft" method="POST"
-			modelAttribute="document"
+		<form:form action="documentSaveDraft" method="POST"
+			modelAttribute="document" enctype="multipart/form-data"
 			class="form form-horizontal striped-rows form-bordered">
 			<div class="form-body">
 				<!-- ///////////////////// -->
@@ -92,9 +92,11 @@
 				<div class="form-group row">
 					<label class="col-md-3 label-control">Select File</label>
 					<div class="col-md-9">
-						<label id="projectinput8" class="file center-block"> <input
-							type="file" id="file"> <span class="file-custom"></span>
-						</label>
+						<%-- <form action="${upload}" method="post" enctype="multipart/form-data">
+					Chọn file : <input type="file"  value="Upload File"  name="file" /><br /><br />
+				</form> --%>
+						Chọn file :
+						<form:input type="file" path="file" />
 					</div>
 				</div>
 				<!-- ///////////////////// -->

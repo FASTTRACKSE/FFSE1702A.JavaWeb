@@ -18,6 +18,7 @@ import fasttrackse.ffse1702a.fbms.QuanLyNhanSu.model.entity.PhongBan;
 public class QuanLyHopDongDAOImpl implements QuanLyHopDongDAO {
 	@Autowired
 	private SessionFactory sessionFactory;
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<HopDong> getAllHopDong() {
@@ -25,7 +26,7 @@ public class QuanLyHopDongDAOImpl implements QuanLyHopDongDAO {
 		List<HopDong> listHopDong = session.createQuery("from HopDong").list();
 		return listHopDong;
 	}
-	
+
 	@Override
 	public List<HopDong> getHopDongByPhongBan(String maPhongBan) {
 		Session session = this.sessionFactory.getCurrentSession();
@@ -34,7 +35,7 @@ public class QuanLyHopDongDAOImpl implements QuanLyHopDongDAO {
 		List<HopDong> listHopDong = new ArrayList<HopDong>();
 		for (HoSoNhanVien hsnv : listHoSo) {
 			List<HopDong> hdnv = hsnv.getHopDongs();
-			int lastIndex = hdnv.size()-1;
+			int lastIndex = hdnv.size() - 1;
 			if (hdnv.size() != 0 && hdnv.get(lastIndex).getTrangThai() == 1) {
 				listHopDong.add(hdnv.get(lastIndex));
 			}
@@ -54,6 +55,7 @@ public class QuanLyHopDongDAOImpl implements QuanLyHopDongDAO {
 		Session session = this.sessionFactory.getCurrentSession();
 		session.update(tthd);
 	}
+
 	@SuppressWarnings("rawtypes")
 	@Override
 	public String getAutoId() {
@@ -63,5 +65,42 @@ public class QuanLyHopDongDAOImpl implements QuanLyHopDongDAO {
 		;
 		String index = query.getSingleResult().toString();
 		return index;
+	}
+
+	@SuppressWarnings("rawtypes")
+	@Override
+	public String getRecordsTotal(String maPhongBan) {
+		Session session = this.sessionFactory.getCurrentSession();
+
+		String sql = "select count(*) from HopDong hd ";
+		if (!maPhongBan.equals("ns")) {
+			sql += " inner join hd.hoSoNhanVien where hd.hoSoNhanVien.phongBan.maPhongBan = '" + maPhongBan
+					+ "' and hd.trangThai = 1";
+		}
+		Query query = session.createQuery(sql);
+		System.out.println(sql);
+		String recordsTotal = query.getSingleResult().toString();
+		return recordsTotal;
+	}
+
+	@SuppressWarnings("rawtypes")
+	@Override
+	public String getRecordsFiltered(String sql) {
+		Session session = this.sessionFactory.getCurrentSession();
+
+		Query query = session.createQuery(sql.replace("select hd", "select count(*)"));
+		String recordsFiltered = query.getSingleResult().toString();
+		return recordsFiltered;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<HopDong> getAllHopDong(int iDisplayStart, int iDisplayLength, String sql) {
+		System.out.println(sql);
+		Session session = this.sessionFactory.getCurrentSession();
+		List<HopDong> listHopDong = session.createQuery(sql).setFirstResult(iDisplayStart).setMaxResults(iDisplayLength)
+				.list();
+
+		return listHopDong;
 	}
 }

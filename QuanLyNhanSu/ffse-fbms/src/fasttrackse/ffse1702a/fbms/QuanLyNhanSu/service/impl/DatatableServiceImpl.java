@@ -10,37 +10,43 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import fasttrackse.ffse1702a.fbms.QuanLyNhanSu.model.entity.HoSoNhanVien;
+import fasttrackse.ffse1702a.fbms.QuanLyNhanSu.model.entity.HopDong;
 import fasttrackse.ffse1702a.fbms.QuanLyNhanSu.service.DatatableService;
 import fasttrackse.ffse1702a.fbms.QuanLyNhanSu.service.QuanLyHoSoService;
+import fasttrackse.ffse1702a.fbms.QuanLyNhanSu.service.QuanLyHopDongService;
 
 @Service
 public class DatatableServiceImpl implements DatatableService {
 
 	@Autowired
 	private QuanLyHoSoService quanLyHoSoService;
+	@Autowired
+	private QuanLyHopDongService quanLyHopDongService;
 
 	@Override
-	public String getSearchQuery(HttpServletRequest request, String[] columnNames, String custom) {
+	public String getSearchQuery(HttpServletRequest request, String[] columnNames, String customCondition) {
 
 		int colLength = columnNames.length;
 		String sSearch = request.getParameter("sSearch");
-		String globeSearch = "where " + custom;
+		String globeSearch = "where " + customCondition;
+		boolean existCustom = !customCondition.isEmpty();
 
 		if (!sSearch.isEmpty()) {
 			for (int i = 0; i < colLength; i++) {
 				if (i == 0) {
-					if (!custom.isEmpty()) {
+					if (existCustom) {
 						globeSearch += " and ";
 					}
-					globeSearch += columnNames[i] + " like '%" + sSearch + "%' ";
+					globeSearch += "(" + columnNames[i] + " like '%" + sSearch + "%' ";
 				} else {
 					globeSearch += "or " + columnNames[i] + " like '%" + sSearch + "%' ";
 				}
 			}
+			globeSearch += ")";
 			sSearch = globeSearch;
 		}
 
-		return custom.isEmpty() ? sSearch : globeSearch;
+		return !existCustom ? sSearch : globeSearch;
 	}
 
 	@Override
@@ -81,15 +87,15 @@ public class DatatableServiceImpl implements DatatableService {
 
 	@Override
 	@Transactional
-	public String getSqlQuery(String tableName, HttpServletRequest request, String[] columnNames, String custom) {
+	public String getSqlQuery(String selectQuery, HttpServletRequest request, String[] columnNames,
+			String customCondition) {
 
-		String sql = "from " + tableName + " ";
-		return sql + getSearchQuery(request, columnNames, custom) + getSortQuery(request, columnNames);
+		return selectQuery + getSearchQuery(request, columnNames, customCondition) + getSortQuery(request, columnNames);
 	}
 
 	@Override
 	@Transactional
-	public String getJson(String recordsTotal, String recordsFiltered, List<HoSoNhanVien> list) {
+	public String getJsonHoSo(String recordsTotal, String recordsFiltered, List<HoSoNhanVien> list) {
 
 		String json = "{\"recordsTotal\":" + recordsTotal + ",\"recordsFiltered\":" + recordsFiltered + ",\"aaData\":[";
 		int j = list.size();
@@ -107,4 +113,23 @@ public class DatatableServiceImpl implements DatatableService {
 		return json;
 	}
 
+	@Override
+	@Transactional
+	public String getJsonHopDong(String recordsTotal, String recordsFiltered, List<HopDong> list) {
+
+		String json = "{\"recordsTotal\":" + recordsTotal + ",\"recordsFiltered\":" + recordsFiltered + ",\"aaData\":[";
+		int j = list.size();
+		int i = 0;
+		for (HopDong hd : list) {
+			i++;
+			if (i == j) {
+				json += this.quanLyHopDongService.toJson(hd);
+			} else {
+				json += this.quanLyHopDongService.toJson(hd) + ",";
+			}
+		}
+		json += "]}";
+
+		return json;
+	}
 }

@@ -2,8 +2,10 @@ package fasttrackse1702a.fbms.quanlyduan.controller;
 
 import java.beans.PropertyEditorSupport;
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 import java.util.TreeSet;
@@ -23,6 +25,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import fasttrackse1702a.fbms.quanlyduan.dao.UserDao;
@@ -119,8 +122,8 @@ public class DuAnController {
 			@ModelAttribute("nhiemvu") @Validated NhiemVu nhiemvu, BindingResult result) {
 		if (nhiemVuService.getDetailNhiemVu(nhiemvu.getMaDuAn(), nhiemvu.getMaNhanVien(),
 				nhiemvu.getMaVaiTro()) != null) {
-			FieldError error = new FieldError("nhiemvu", "maVaiTro", messageSource.getMessage(
-					"Unique.nhiemvu.maVaiTro", new String[] { nhiemvu.getMaVaiTro() }, Locale.getDefault()));
+			FieldError error = new FieldError("nhiemvu", "maVaiTro", messageSource.getMessage("Unique.nhiemvu.maVaiTro",
+					new String[] { nhiemvu.getMaVaiTro() }, Locale.getDefault()));
 			result.addError(error);
 		}
 		System.out.println(nhiemvu.getMaVaiTro());
@@ -166,7 +169,7 @@ public class DuAnController {
 		if (checkGoUrl(listDuAn, maDuAn)) {
 			mm.put("title", "duan.quanlyduan.update");
 			mm.put("duan", duAnService.getById(maDuAn));
-			mm.put("nhanvien", getNhanVien(pr));
+			mm.put("nhanvien", hoSoNhanVienService.getByID(maNhanVien));
 			mm.put("nhiemvu", nhiemVuService.getDetailNhiemVu(maDuAn, maNhanVien, maVaiTro));
 			mm.put("view", "duan/phancongnhiemvu/capnhat.jsp");
 			mm.put("vaitro", vaiTroService.getAll());
@@ -194,11 +197,12 @@ public class DuAnController {
 
 	@RequestMapping(value = { "/phancongnhiemvu/delete/{maDuAn}/{maNhanVien}/{maVaiTro}" })
 	public String phanCongNhiemVuDelete(final RedirectAttributes redirectAttributes, ModelMap mm,
-			@PathVariable("maDuAn") int maDuAn, @PathVariable("maNhanVien") int maNhanVien,@PathVariable("maVaiTro") String maVaiTro) {
-		 if(checkRolePM()&&maVaiTro.equals("VT01")) {
-			 redirectAttributes.addFlashAttribute("message", "Can not delete PM");
-			 return "redirect:/duan/phancongnhiemvu/list/" + maDuAn;
-		 }
+			@PathVariable("maDuAn") int maDuAn, @PathVariable("maNhanVien") int maNhanVien,
+			@PathVariable("maVaiTro") String maVaiTro) {
+		if (checkRolePM() && maVaiTro.equals("VT01")) {
+			redirectAttributes.addFlashAttribute("message", "Can not delete PM");
+			return "redirect:/duan/phancongnhiemvu/list/" + maDuAn;
+		}
 		nhiemVuService.delete(nhiemVuService.getDetailNhiemVu(maDuAn, maNhanVien, maVaiTro));
 		redirectAttributes.addFlashAttribute("message", "Delete successfully.");
 		return "redirect:/duan/phancongnhiemvu/list/" + maDuAn;
@@ -221,8 +225,8 @@ public class DuAnController {
 	public String create(final RedirectAttributes redirectAttributes, ModelMap mm,
 			@ModelAttribute("duan") @Validated DuAn duan, BindingResult result) {
 		if (duan.getStartDate().after(duan.getEndDate())) {
-			FieldError error = new FieldError("duan", "startDate", messageSource.getMessage(
-					"Erorr.duan.startDate", new String[] { duan.getEndDate().toString() }, Locale.getDefault()));
+			FieldError error = new FieldError("duan", "startDate", messageSource.getMessage("Erorr.duan.startDate",
+					new String[] { duan.getEndDate().toString() }, Locale.getDefault()));
 			result.addError(error);
 		}
 		if (result.hasErrors()) {
@@ -241,13 +245,14 @@ public class DuAnController {
 		Set<DuAn> listDuAn = new HashSet<DuAn>();
 		listDuAn = listDuAn(pr);
 		if (checkGoUrl(listDuAn, maDuAn)) {
-			boolean addPM=true;
-			for( NhiemVu nhiemVu:nhiemVuService.getAll(maDuAn)) {
-				if(nhiemVu.getMaVaiTro().equals("VT01")) {
-					addPM=false;
+			boolean addPM = true;
+			for (NhiemVu nhiemVu : nhiemVuService.getAll(maDuAn)) {
+				if (nhiemVu.getMaVaiTro().equals("VT01")) {
+					addPM = false;
 					break;
 				}
 			}
+			mm.put("phancongnhiemvu", nhiemVuService.getAll(maDuAn));
 			mm.put("addPM", addPM);
 			mm.put("view", "duan/detail.jsp");
 			mm.put("title", "duan.detail");
@@ -259,13 +264,29 @@ public class DuAnController {
 	}
 
 	@RequestMapping(value = { "/list" })
-	public String list(ModelMap mm, Principal pr) {
+	public String list(ModelMap mm, Principal pr,
+			@RequestParam(value = "page", required = false, defaultValue = "1") int page) {
 		if (checkRoleTPP()) {
 			mm.put("granted", true);
 		}
+		List<DuAn> listDuAn = new ArrayList<DuAn>();
+		List<DuAn> newListDuAn = new ArrayList<DuAn>();
+		listDuAn.addAll(listDuAn(pr));
+		if (listDuAn(pr).size() <= 5) {
+			newListDuAn = listDuAn;
+		} else {
+			for (int i = (page - 1) * 5; i < page * 5; i++) {
+				if (i < listDuAn.size()) {
+					DuAn duAn = listDuAn.get(i);
+					newListDuAn.add(duAn);
+				}
+
+			}
+		}
+		mm.put("total", Math.ceil(((float) listDuAn(pr).size() / 5)));
 		mm.put("view", "duan/danhsach.jsp");
 		mm.put("title", "duan.list");
-		mm.put("list", listDuAn(pr));
+		mm.put("list", newListDuAn);
 		return "layout";
 	}
 
@@ -389,8 +410,7 @@ public class DuAnController {
 						if (nhiemVu.getMaVaiTro().equals("VT01")) {
 							duan.setGrantUpdate(1);
 							listDuAn.add(duan);
-						} 
-						else {
+						} else {
 							listDuAn.add(duan);
 						}
 					}
@@ -398,7 +418,6 @@ public class DuAnController {
 
 			}
 
-			
 		}
 		return listDuAn;
 	}

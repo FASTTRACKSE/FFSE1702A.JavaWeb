@@ -23,6 +23,10 @@ public class Icon implements Serializable {
 	@Column(name = "hinh_anh")
 	private String hinh_anh;
 
+	public Icon(String ma_icon) {
+		super();
+	}
+	 
 	public Icon() {
 		super();
 	}
@@ -47,7 +51,14 @@ public class Icon implements Serializable {
 	}
 
 	public void setMa_icon(String ma_icon) {
-		this.ma_icon = ma_icon;
+		System.out.println(ma_icon);
+		String chk = ma_icon;
+		if(chk == "jpg") {
+			System.out.println("đã vào ");
+			ma_icon = "img";
+		}else {
+			this.ma_icon="soc";
+		}
 	}
 
 	public String getHinh_anh() {
