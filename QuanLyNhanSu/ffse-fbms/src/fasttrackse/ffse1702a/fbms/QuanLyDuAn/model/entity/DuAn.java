@@ -2,6 +2,7 @@ package fasttrackse.ffse1702a.fbms.QuanLyDuAn.model.entity;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -236,5 +237,4 @@ public class DuAn implements Serializable, Comparable<DuAn> {
 		// TODO Auto-generated method stub
 		return o.getMaDuAn() - this.getMaDuAn();
 	}
-
 }

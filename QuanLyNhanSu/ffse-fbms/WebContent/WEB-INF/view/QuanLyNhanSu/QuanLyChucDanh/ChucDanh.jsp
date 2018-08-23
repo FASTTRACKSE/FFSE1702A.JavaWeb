@@ -1,22 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <jsp:include page="/WEB-INF/view/templates/header.jsp" /> 
 
    <div class="app-content content container-fluid">
       <div class="content-wrapper">
          <div class="content-header row">
             <div class="content-header-left col-md-6 col-xs-12 mb-2">
-               <h3 class="content-header-title mb-0">QUẢN LÝ CHỨC DANH</h3>
+               <h3 class="content-header-title mb-0"><spring:message code="label.quanLyChucDanh" /></h3>
                <div class="row breadcrumbs-top">
                   <div class="breadcrumb-wrapper col-xs-12">
                      <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#">TRANG CHỦ</a>
+                        <li class="breadcrumb-item"><a href="<c:url value='/'></c:url>"><spring:message code="label.trangChu" /></a>
                         </li>
-                        <li class="breadcrumb-item"><a href="#">QUẢN LÝ NHÂN SỰ</a>
+                        <li class="breadcrumb-item"><a href="<c:url value='/ns/ho_so'></c:url>"><spring:message code="label.quanLyNhanSu" /></a>
                         </li>
-                        <li class="breadcrumb-item"><a href="#">QUẢN LÝ CHỨC DANH</a>
+                        <li class="breadcrumb-item"><a href="<c:url value='/ns/chuc_danh'></c:url>"><spring:message code="label.quanLyChucDanh" /></a>
                         </li>
-                        <li class="breadcrumb-item active">DANH SÁCH CHỨC DANH
+                        <li class="breadcrumb-item active"><spring:message code="label.danhSachChucDanh" />
                         </li>
                      </ol>
                   </div>
@@ -24,7 +26,7 @@
             </div>
             <div class="content-header-right col-md-6 col-xs-12">
                <div role="group" aria-label="Button group with nested dropdown" class="btn-group float-md-right" id="add-new">
-                  <a href="chuc_danh/add" class="btn btn-primary"><span class="fa fa-plus"></span> Thêm Mới</a>
+                  <a href="chuc_danh/add" class="btn btn-primary"><span class="fa fa-plus"></span> <spring:message code="label.themMoi" /></a>
                </div>
             </div>
          </div>
@@ -35,7 +37,7 @@
                   <div class="col-xs-12">
                      <div class="card">
                         <div class="card-header">
-                           <h4 class="card-title">Danh sách chức danh</h4>
+                           <h4 class="card-title"><spring:message code="label.danhSachChucDanh" /></h4>
                            
                            <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
                            <div class="heading-elements">
@@ -51,8 +53,8 @@
                                  <thead>
                                     <tr>
                                        <th>#</th>
-                                       <th>Mã chức danh</th>
-                                       <th>Tên chức danh</th>
+                                       <th><spring:message code="label.maChucDanh" /></th>
+                                       <th><spring:message code="label.tenChucDanh" /></th>
                                        <th></th>
                                     </tr>
                                  </thead>
@@ -74,18 +76,18 @@
       
                                              <div class="modal-header">
                                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                <h4 class="modal-title" id="myModalLabel">Xác Nhận Xoá</h4>
+                                                <h4 class="modal-title" id="myModalLabel"><spring:message code="label.xacNhanXoa" /></h4>
                                              </div>
       
                                              <div class="modal-body">
-                                                <p>Bạn chuẩn bị xoá một thông tin, quy trình này không thể đảo ngược.</p>
-                                                <p>Bạn vẫn muốn thực hiện?</p>
+                                                <p><spring:message code="label.xacNhanXoaThongTin" /></p>
+                                                <p><spring:message code="label.xacNhanXoaThongTinConfirm" /></p>
                                                 <p class="debug-url"></p>
                                              </div>
       
                                              <div class="modal-footer">
-                                                <button type="button" class="btn btn-default" data-dismiss="modal">Quay lại</button>
-                                                <a class="btn btn-danger btn-ok">Xoá</a>
+                                                <button type="button" class="btn btn-default" data-dismiss="modal"><spring:message code="label.quaylai" /></button>
+                                                <a class="btn btn-danger btn-ok"><spring:message code="label.xoa" /></a>
                                              </div>
                                           </div>
                                        </div>

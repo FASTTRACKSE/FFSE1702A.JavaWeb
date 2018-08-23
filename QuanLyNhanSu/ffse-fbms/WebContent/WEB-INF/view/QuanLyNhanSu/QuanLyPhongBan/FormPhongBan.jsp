@@ -9,17 +9,17 @@
       <div class="content-wrapper">
          <div class="content-header row">
             <div class="content-header-left col-md-9 col-xs-12 mb-2">
-               <h3 class="content-header-title mb-0">THÊM CHỨC DANH</h3>
+               <h3 class="content-header-title mb-0"><spring:message code="label.themPhongBan" /></h3>
                <div class="row breadcrumbs-top">
                   <div class="breadcrumb-wrapper col-xs-12">
                      <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#">TRANG CHỦ</a>
+                        <li class="breadcrumb-item"><a href="<c:url value='/'></c:url>"><spring:message code="label.trangChu" /></a>
                         </li>
-                        <li class="breadcrumb-item"><a href="#">QUẢN LÝ NHÂN SỰ</a>
+                        <li class="breadcrumb-item"><a href="<c:url value='/ns/ho_so'></c:url>"><spring:message code="label.quanLyNhanSu" /></a>
                         </li>
-                        <li class="breadcrumb-item"><a href="#">QUẢN LÝ PHÒNG BAN</a>
+                        <li class="breadcrumb-item"><a href="<c:url value='/ns/phong_ban'></c:url>"><spring:message code="label.quanLyPhongBan" /></a>
                         </li>
-                        <li class="breadcrumb-item active">THÊM PHÒNG BAN
+                        <li class="breadcrumb-item active"><spring:message code="label.themPhongBan" />
                         </li>
                      </ol>
                   </div>
