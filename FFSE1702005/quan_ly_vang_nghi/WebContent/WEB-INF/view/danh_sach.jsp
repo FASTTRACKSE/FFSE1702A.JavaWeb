@@ -52,22 +52,20 @@
 							<c:forEach items="${danhSachXinNghi}" var="nv" begin="0" end="0">
 								<c:if test="${nv.trang_thai == 'Chờ Phê Duyệt'}">
 									<h4 class="card-title">
-										<i class="fa fa-clipboard"></i> Danh sách đơn xin nghỉ đang
-										chờ phê duyệt
+										<i class="fa fa-clipboard"> </i><spring:message code="choduyet" />
 									</h4>
 								</c:if>
 
 								<c:if test="${nv.trang_thai == 'Duyệt'}">
 									<h4 class="card-title">
-										<i class="fa fa-clipboard"></i> Danh sách đơn xin nghỉ đã phê
-										duyệt
+										<i class="fa fa-clipboard"> </i><spring:message code="duyet" />
 									</h4>
 								</c:if>
 
 								<c:if
 									test="${nv.trang_thai == 'Nháp'||nv.trang_thai == 'Từ chối'}">
 									<h4 class="card-title">
-										<i class="fa fa-file-text-o"></i> Đơn của tôi
+										<i class="fa fa-file-text-o"> </i> <spring:message code="doncuatoi" />
 									</h4>
 								</c:if>
 							</c:forEach>
@@ -89,42 +87,42 @@
 									<thead class="bg-success">
 										<tr>
 											<th>STT</th>
-											<th>Mã NV</th>
-											<th>Tên nhân viên</th>
-											<th>Phòng ban</th>
-											<th>Ngày nghỉ</th>
-											<th>Ngày kết thúc</th>
-											<th>Số ngày nghỉ</th>
-											<th>Đã nghỉ</th>
-											<th>Còn lại</th>
-											<th>Tình trạng</th>
-											<th>Tùy chọn</th>
+											<th><spring:message code="id" /></th>
+											<th><spring:message code="ten" /></th>
+											<th><spring:message code="phongban" /></th>
+											<th><spring:message code="ngaynghi" /></th>
+											<th><spring:message code="ngayketthuc" /></th>
+											<th><spring:message code="songaynghi" /></th>
+											<th><spring:message code="danghi" /></th>
+											<th><spring:message code="conlai" /></th>
+											<th><spring:message code="trangthai" /></th>
+											<th><spring:message code="tuychon" /></th>
 										</tr>
 									</thead>
 									<tbody>
 										<c:forEach items="${danhSachXinNghi}" var="nv" varStatus="stt">
 											<tr class="bg-blue bg-lighten-5">
 												<td>${stt.count}</td>
-												<td>${nv.ma_nhan_vien}</td>
+												<td>${nv.ngaynghientity.ma_nhan_vien}</td>
 												<td>${nv.ten_nhan_vien}</td>
 												<td>${nv.phong_ban}</td>
 												<td>${nv.ngay_nghi}</td>
 												<td>${nv.ngay_ket_thuc}</td>
 												<td>${nv.so_ngay_nghi}</td>
-												<td>${nv.so_ngay_da_nghi}</td>
-												<td>${nv.so_ngay_con_lai}</td>
+												<td>${nv.ngaynghientity.so_ngay_da_nghi}</td>
+												<td>${nv.ngaynghientity.so_ngay_con_lai}</td>
 												<td>${nv.trang_thai}</td>
 												<td><a
 													href="<%=request.getContextPath()%>/danhsach/don/${nv.ma_don}">
 														<button type="submit" class="btn btn-primary">
-															<i class="fa fa-eye"></i>Xem
+															<i class="fa fa-eye"></i> <spring:message code="xem" />
 														</button>
 												</a> <c:if
 														test="${nv.trang_thai=='Nháp'||nv.trang_thai=='Từ chối'}">
 														<a
 															href="<%=request.getContextPath()%>/danhsachnhap/xoadon/${nv.ma_don}">
 															<button type="submit" class="btn btn-danger">
-																<i class="ft-x"></i>Xóa
+																<i class="ft-x"></i> <spring:message code="xoa" />
 															</button>
 														</a>
 													</c:if></td>

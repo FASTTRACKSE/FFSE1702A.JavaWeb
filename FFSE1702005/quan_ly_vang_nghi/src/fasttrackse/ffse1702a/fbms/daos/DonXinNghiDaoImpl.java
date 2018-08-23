@@ -52,11 +52,10 @@ public class DonXinNghiDaoImpl implements DonXinNghiDao {
 		cq.select(root)
 				.where(cb.or(cb.equal(root.get("trang_thai"), "Nháp"), cb.equal(root.get("trang_thai"), "Từ chối")));
 		Query<DanhSachXinNghiEntity> query = session.createQuery(cq);
-		query.setFirstResult((page - 1) * 1);
-		query.setMaxResults(1);
+		query.setFirstResult((page - 1) * 5);
+		query.setMaxResults(5);
 		return query.getResultList();
 	}
-
 
 	public long totalRecords() {
 		Session session = this.sessionFactory.getCurrentSession();
@@ -77,6 +76,11 @@ public class DonXinNghiDaoImpl implements DonXinNghiDao {
 	public void themDon(DanhSachXinNghiEntity entity) {
 		Session session = sessionFactory.getCurrentSession();
 		entity.setTrang_thai("Chờ Phê Duyệt");
+		if (!kiemTraNhanVienNgayNghiEntity(entity.getNgaynghientity().getMa_nhan_vien())) {
+			// thêm mới trong `ngay_nghi`
+			session.createSQLQuery("insert into `ngay_nghi` (ma_nhan_vien,so_ngay_con_lai) values ('"
+					+ entity.getNgaynghientity().getMa_nhan_vien() + "','12')").executeUpdate();
+		}
 		session.persist(entity);
 	}
 
@@ -84,15 +88,29 @@ public class DonXinNghiDaoImpl implements DonXinNghiDao {
 	public void themNhap(DanhSachXinNghiEntity entity) {
 		Session session = sessionFactory.getCurrentSession();
 		entity.setTrang_thai("Nháp");
-		session.persist(entity);		
+		if (!kiemTraNhanVienNgayNghiEntity(entity.getNgaynghientity().getMa_nhan_vien())) {
+			// thêm mới trong `ngay_nghi`
+			session.createSQLQuery("insert into `ngay_nghi` (ma_nhan_vien,so_ngay_con_lai) values ('"
+					+ entity.getNgaynghientity().getMa_nhan_vien() + "','12')").executeUpdate();			
+		}
+		session.persist(entity);
+	}
+
+	@Override
+	public boolean kiemTraNhanVienNgayNghiEntity(int maNhanVien) {
+		Session session = (Session) sessionFactory.getCurrentSession();
+		String count = session
+				.createSQLQuery("select count(*) from `ngay_nghi` where `ma_nhan_vien` = '" + maNhanVien + "'")
+				.getSingleResult().toString();
+
+		return count.equals("0") ? false : true;
 	}
 
 	@Override
 	public void suaNhap(DanhSachXinNghiEntity entity) {
 		Session session = (Session) sessionFactory.getCurrentSession();
+		entity.setTrang_thai("Nháp");
 		session.update(entity);
-		session.createQuery("update DanhSachXinNghiEntity set trang_thai = 'Nháp' where ma_don =" + entity.getMa_don())
-				.executeUpdate();
 	}
 
 	@Override
@@ -100,19 +118,32 @@ public class DonXinNghiDaoImpl implements DonXinNghiDao {
 		Session session = (Session) sessionFactory.getCurrentSession();
 		session.update(entity);
 		session.createQuery(
-				"update DanhSachXinNghiEntity set trang_thai = 'Chờ Phê Duyệt' where ma_don =" + entity.getMa_don())
+				"update DanhSachXinNghiEntity set trang_thai = 'Chờ Phê Duyệt' where ma_don=" + entity.getMa_don())
 				.executeUpdate();
 	}
-	
+
 	@Override
 	public void duyet(DanhSachXinNghiEntity entity) {
 		Session session = (Session) sessionFactory.getCurrentSession();
+		entity.setTrang_thai("Duyệt");
+		int ngayconlai = entity.getNgaynghientity().getSo_ngay_con_lai();
+		int ngaydanghi = entity.getNgaynghientity().getSo_ngay_da_nghi();
+		int songaynghi = entity.getSo_ngay_nghi();
+		int maNV = entity.getNgaynghientity().getMa_nhan_vien();
 		session.update(entity);
-		session.createQuery(
-				"update DanhSachXinNghiEntity set trang_thai = 'Duyệt' where ma_don =" + entity.getMa_don())
-				.executeUpdate();
+		if (ngayconlai == 0) {
+			session.createQuery("update NgayNghiEntity set so_ngay_da_nghi = " + (ngaydanghi + songaynghi)
+					+ "where ma_nhan_vien = " + maNV).executeUpdate();
+		} else if (songaynghi > ngayconlai) {
+			session.createQuery("update NgayNghiEntity set so_ngay_con_lai = 0,so_ngay_da_nghi = "
+					+ (ngaydanghi + songaynghi) + "where ma_nhan_vien = " + maNV).executeUpdate();
+		} else {
+			session.createQuery("update NgayNghiEntity set so_ngay_con_lai = " + (ngayconlai - songaynghi)
+					+ ",so_ngay_da_nghi = " + (ngaydanghi + songaynghi) + "where ma_nhan_vien = " + maNV)
+					.executeUpdate();
+		}
 	}
-	
+
 	@Override
 	public void tuChoi(DanhSachXinNghiEntity entity) {
 		Session session = (Session) sessionFactory.getCurrentSession();
