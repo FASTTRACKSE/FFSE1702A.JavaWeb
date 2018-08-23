@@ -156,7 +156,7 @@ Worker.template = {
     stack: []
   },
   opt: {
-    filename: 'file.pdf',
+    filename: 'hsnv.pdf',
     margin: [0, 0, 0, 0],
     image: { type: 'jpeg', quality: 0.95 },
     enableLinks: true,

@@ -82,6 +82,7 @@
 	                     <img id="preview" hidden class="rounded-circle" width="180px" height="180px" src="/ffse-fbms/resources/images/nhan-vien/${hoSoNhanVien.anhDaiDien}">
 	                     <div id="pdfBody" class="card-body collapse in">
 	                        <div class="card-block">
+	                        <form:form class="form form-horizontal" method="POST">
 								   <div class="form-body">
 								      <div class="row edit-row-title-ho-so" style="background: #00A5A8; padding: 15px; color: #fff">
 								         <div class="col-md-3" style="text-align: center !important;">
@@ -97,7 +98,7 @@
 								      	 	<h4><span class="fa fa-phone" style="display: inline-block; border-radius: 60px; border: solid 1px #fff; padding: 0.5em 0.6em;"></span> ${hoSoNhanVien.soDienThoai}</h4>
 								      	 	<h4><span class="fa fa-envelope" style="display: inline-block; border-radius: 60px; border: solid 1px #fff; padding: 0.5em 0.5em;"></span> ${hoSoNhanVien.email}</h4>
 								      	 	<h4><span class="fa fa-venus-mars" style="display: inline-block; border-radius: 60px; border: solid 1px #fff; padding: 0.5em 0.4em;"></span> ${hoSoNhanVien.gioiTinh == 1 ? "Nam" : "Nữ" }</h4>
-								      	 	<h4><span class="fa fa-map-marker" style="display: inline-block; border-radius: 60px; border: solid 1px #fff; padding: 0.5em 0.65em;"></span> ${hoSoNhanVien.namSinh}</h4>
+								      	 	<h4><span class="fa fa-map-marker" style="display: inline-block; border-radius: 60px; border: solid 1px #fff; padding: 0.5em 0.65em;"></span> ${hoSoNhanVien.queQuan}</h4>
 								      	 </div>
 								      </div>
 								      <div class="panel-group" id="accordion">
@@ -187,7 +188,7 @@
 											    </div>
 									      </div>
 									    </div>
-									    <div <c:if test="${empty hoSoNhanVien.duAn}">style="display: none;"</c:if> class="panel panel-default ">
+									    <div <c:if test="${empty hoSoNhanVien.duAnDTO}">style="display: none;"</c:if> class="panel panel-default ">
 									      <div class="panel-heading form-section">
 									        <h4 class="panel-title">
 									          <br><a data-toggle="collapse" data-parent="#accordion" href="#collapse4"><i class="ft-user"></i> <spring:message code="label.thongTinKinhNghiem" /></a>
@@ -321,18 +322,18 @@
 												      				<div id="ChartDatabase"></div>
 												      			</div>
 												      		</div>
-												      		<c:forEach items="${hoSoNhanVien.duAn }" var="duAn" varStatus="stt">
+												      		<c:forEach items="${hoSoNhanVien.duAnDTO }" var="duAn" varStatus="stt">
 												      		<div class="row form-section">
 												      			<div class="col-md-4">
-												      				<p><strong>Mã dự án: </strong>${duAn.maDuAn}</p>
+												      				<p><strong>Mã dự án: </strong>DA${duAn.maDuAn}</p>
 												      			</div>
 												      			<div class="col-md-4">
 												      				<p><strong>Tên dự án: </strong>${duAn.tenDuAn}</p>
 												      			</div>
 												      			<div class="col-md-4">
 												      				<p><strong>Vai trò: </strong>
-													      				<c:forEach items="${hoSoNhanVien.vaiTro}" var="vaiTro" varStatus="stt">
-													      					<span class="tag tag-default tag-info">${vaiTro.tenVaiTro }</span>
+													      				<c:forEach items="${duAn.vaiTro}" var="vaiTro" varStatus="stt">
+													      					<span class="tag tag-default tag-info">${vaiTro }</span>
 													               		</c:forEach>
 												               		</p>
 												      			</div>
@@ -368,7 +369,7 @@
 									    </div>
 									  </div> 
 								   </div>
-								<%-- </form:form> --%>
+								</form:form>
 	                        </div>
 	                     </div>
 	                     <div style="text-align: center; border-top: 1px solid #d3dce9; padding: 20px 0; margin-top: 20px;" class="form-actions center">
