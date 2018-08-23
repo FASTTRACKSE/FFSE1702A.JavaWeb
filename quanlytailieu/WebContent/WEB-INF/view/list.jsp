@@ -80,7 +80,7 @@
 												<td>${document.ma_trang_thai.ten_trang_thai}</td>
 												<td>${document.quyen_truy_cap}</td>
 												<td><a href="documentView/${document.id}" class="btn-warning btn"> view </a><a href="documentDelete/${document.id}" class="btn-warning btn"> delete </a><a
-													href="//${document.tai_ve}" class="btn-warning btn"> download </a><a href="documentEdit/${document.id}" class="btn-warning btn" > edit </a></td>
+													href="//${document.tai_ve}" class="btn-warning btn"> download </a><a href="documentUpdate/${document.id}" class="btn-warning btn" > edit </a></td>
 											</tr>
 										</c:forEach>
 									</c:if>
@@ -95,3 +95,4 @@
 	</div>
 </div>
 <jsp:include page="/WEB-INF/view/templates/footer.jsp" />
+<tag:paginate offset="${offset}" count="${count}" uri="/fasttrackse.ffse1702a.fbms.quanlytailieu" next="&raquo;" previous="&laquo;"/>
