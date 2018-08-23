@@ -1,7 +1,11 @@
 eclipse.preferences.version=1
 encoding//WebContent/WEB-INF/view/layout.jsp=UTF-8
+encoding//WebContent/WEB-INF/view/layout/header_navbar.jsp=UTF-8
 encoding//WebContent/WEB-INF/view/ngonngu/create.jsp=UTF-8
+encoding//WebContent/resources/i18n/messages_fr.properties=UTF-8
+encoding//WebContent/resources/i18n/messages_ja.properties=UTF-8
 encoding//WebContent/resources/i18n/messages_vi.properties=UTF-8
+encoding//src/main/java/fasttrackse1702a/fbms/quanlyduan/controller/DatabaseController.java=UTF-8
 encoding//src/main/java/fasttrackse1702a/fbms/quanlyduan/entity/NgonNgu.java=UTF-8
 encoding//src/main/java/fasttrackse1702a/fbms/quanlyduan/service/NgonNguService.java=UTF-8
 encoding//src/main/java/fasttrackse1702a/fbms/quanlyduan/service/impl/KhachHangServiceImpl.java=UTF-8

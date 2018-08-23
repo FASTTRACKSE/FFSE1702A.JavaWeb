@@ -27,7 +27,7 @@ public class DuAnDaoImpl implements DuAnDao {
 	}
 
 	@Override
-	public DuAn getById(String maDuAn) {
+	public DuAn getById(int maDuAn) {
 		Session session=sessionFactory.getCurrentSession();
 		return session.get(DuAn.class,maDuAn);
 	}
@@ -35,7 +35,7 @@ public class DuAnDaoImpl implements DuAnDao {
 	@Override
 	public List<DuAn> getAll() {
 		Session session=sessionFactory.getCurrentSession();
-		return session.createQuery("from DuAn",DuAn.class).list();
+		return session.createQuery("from DuAn where isDelete =0",DuAn.class).list();
 	}
 
 	@Override
@@ -47,7 +47,10 @@ public class DuAnDaoImpl implements DuAnDao {
 
 	@Override
 	public void delete(String maDuAn) {
-		// TODO Auto-generated method stub
+		Session session=sessionFactory.getCurrentSession();
+		DuAn duan=session.get(DuAn.class,maDuAn);	
+		duan.setIsDelete(1);
+		session.update(duan);	
 		
 	}
 

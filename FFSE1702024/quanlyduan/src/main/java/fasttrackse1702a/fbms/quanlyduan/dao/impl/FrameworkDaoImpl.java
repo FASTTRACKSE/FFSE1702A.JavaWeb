@@ -30,7 +30,7 @@ public class FrameworkDaoImpl implements FrameworkDao {
 	@Override
 	public List<Framework> getAll() {
 		Session session=sessionFactory.getCurrentSession();
-		return session.createQuery("from Framework",Framework.class).list();
+		return session.createQuery("from Framework where isDelete =0",Framework.class).list();
 	}
 	@Override
 	public void update(Framework framework) {
@@ -41,7 +41,9 @@ public class FrameworkDaoImpl implements FrameworkDao {
 	@Override
 	public void delete(String maFramework) {
 		Session session=sessionFactory.getCurrentSession();
-		session.delete(session.get(Framework.class,maFramework));	
+		Framework fr=session.get(Framework.class,maFramework);
+		fr.setIsDelete(1);
+		session.update(fr);	
 	}
 	
 
