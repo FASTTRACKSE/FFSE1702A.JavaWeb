@@ -68,32 +68,46 @@
     <!-- Resources theme location -->
     <mvc:resources mapping="/resources/**" location="/resources/stack-admin/" />
     
-    <bean id="chucNangDaoImpl" class="fasttrackse.a1702.fbms.chucnang.model.dao.ChucNangDaoImpl">
+    <bean id="chucNangDaoImpl" class="fasttrackse.a1702.fbms.quanlytochucvaphanquyenhethong.model.dao.impl.ChucNangDaoImpl">
     	<property name="sessionFactory" ref="sessionFactory"/>
     </bean>
-    <bean id="chucNangServiceImpl" class="fasttrackse.a1702.fbms.chucnang.service.ChucNangServiceImpl">
+    <bean id="chucNangServiceImpl" class="fasttrackse.a1702.fbms.quanlytochucvaphanquyenhethong.service.impl.ChucNangServiceImpl">
     	<property name="chucNangDao" ref="chucNangDaoImpl"/>
     </bean>
     
-    <bean id="taiKhoanImpl" class="fasttrackse.a1702.fbms.taikhoan.model.dao.TaiKhoanDaoImpl">
+    <bean id="taiKhoanImpl" class="fasttrackse.a1702.fbms.quanlytochucvaphanquyenhethong.model.dao.impl.TaiKhoanDaoImpl">
     	<property name="sessionFactory" ref="sessionFactory"/>
     </bean>
-    <bean id="taiKhoanServiceImpl" class="fasttrackse.a1702.fbms.taikhoan.service.TaiKhoanServiceImpl">
+    <bean id="taiKhoanServiceImpl" class="fasttrackse.a1702.fbms.quanlytochucvaphanquyenhethong.service.impl.TaiKhoanServiceImpl">
     	<property name="taiKhoanDao" ref="taiKhoanImpl"/>
     </bean>
     
-    <bean id="chucNangPhongBanImpl" class="fasttrackse.a1702.fbms.chucnangphongban.model.dao.ChucNangPhongBanImpl">
+    <bean id="chucNangPhongBanImpl" class="fasttrackse.a1702.fbms.quanlytochucvaphanquyenhethong.model.dao.impl.ChucNangPhongBanImpl">
     	<property name="sessionFactory" ref="sessionFactory"/>
     </bean>
-    <bean id="chucNangPhongBanServiceImpl" class="fasttrackse.a1702.fbms.chucnangphongban.service.ChucNangPhongBanServiceImpl">
+    <bean id="chucNangPhongBanServiceImpl" class="fasttrackse.a1702.fbms.quanlytochucvaphanquyenhethong.service.impl.ChucNangPhongBanServiceImpl">
     	<property name="chucNangPhongBanDao" ref="chucNangPhongBanImpl"/>
     </bean>
     
-    <bean id="chucNangChucDanhImpl" class="fasttrackse.a1702.fbms.chucnangchucdanh.model.dao.ChucNangChucDanhDaoImpl">
+    <bean id="chucNangChucDanhImpl" class="fasttrackse.a1702.fbms.quanlytochucvaphanquyenhethong.model.dao.impl.ChucNangChucDanhDaoImpl">
     	<property name="sessionFactory" ref="sessionFactory"/>
     </bean>
-    <bean id="chucNangChucDanhServiceImpl" class="fasttrackse.a1702.fbms.chucnangchucdanh.service.ChucNangChucDanhServiceImpl">
+    <bean id="chucNangChucDanhServiceImpl" class="fasttrackse.a1702.fbms.quanlytochucvaphanquyenhethong.service.impl.ChucNangChucDanhServiceImpl">
     	<property name="chucNangChucDanhDao" ref="chucNangChucDanhImpl"/>
+    </bean>
+    
+    <bean id="phongBanImpl" class="fasttrackse.a1702.fbms.quanlytochucvaphanquyenhethong.model.dao.impl.PhongBanDaoImpl">
+    	<property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="phongBanServiceImpl" class="fasttrackse.a1702.fbms.quanlytochucvaphanquyenhethong.service.impl.PhongBanServiceImpl">
+    	<property name="phongBanDao" ref="phongBanImpl"/>
+    </bean>
+    
+    <bean id="chucDanhImpl" class="fasttrackse.a1702.fbms.quanlytochucvaphanquyenhethong.model.dao.impl.ChucDanhDaoImpl">
+    	<property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="chucDanhServiceImpl" class="fasttrackse.a1702.fbms.quanlytochucvaphanquyenhethong.service.impl.ChucDanhServiceImpl">
+    	<property name="chucDanhDao" ref="chucDanhImpl"/>
     </bean>
 
 </beans>

@@ -114,37 +114,39 @@
 								      	<div class="thong-tin-kinh-nghiem">
 									      	<div class="repeater-list">
 									      		<div class="row">
-									      			<div class="col-md-4">
+									      			<div class="col-md-6">
 									      				<div class="form-group">
 											               <label><spring:message code="label.hoDem" /></label>
 											               <div class="form-control well">${hoSoNhanVien.hoDem}</div>
 										            	</div>
 									      			</div>
-									      			<div class="col-md-4">
+									      			<div class="col-md-6">
 									      				<div class="form-group">
 											               <label><spring:message code="label.ten" /></label>
 											               <div class="form-control well">${hoSoNhanVien.ten}</div>
 										            	</div>
 									      			</div>
-									      			<c:forEach items="${hoSoNhanVien.duAn}" var="duAn" varStatus="status">
+									      		</div>
+									      		<c:forEach items="${hoSoNhanVien.duAnDTO}" var="duAn" varStatus="status">
+									      			<div class="row form-section">
 									      				<div class="col-md-4">
 										      				<div class="form-group">
 												               <label><spring:message code="label.maDuAn" /></label>
-												               <div class="form-control well">${duAn.maDuAn}</div>
+												               <div class="form-control well">DA${duAn.maDuAn}</div>
 											            	</div>
 										      			</div>
-										      			<div class="col-md-6">
+										      			<div class="col-md-4">
 										      				<div class="form-group">
 												               <label><spring:message code="label.tenDuAn" /></label>
 												               <div style="word-wrap: break-word;" class="form-control well">${duAn.tenDuAn}</div>
 											            	</div>
 										      			</div>
-										      			<div class="col-md-6">
+										      			<div class="col-md-4">
 										      				<div class="form-group">
 												               <label><spring:message code="label.vaiTroDuAn" /></label>
 												               <div style="word-wrap: break-word;" class="form-control well">
-												               		<c:forEach items="${hoSoNhanVien.vaiTro}" var="vaiTro" varStatus="stt">
-												               			<span class="tag tag-default tag-info">${vaiTro.tenVaiTro }</span>   			
+												               		<c:forEach items="${duAn.vaiTro }" var="vaiTro" varStatus="stt">
+												               			<span class="tag tag-default tag-info">${vaiTro }</span>   			
 												               		</c:forEach>
 												               </div>
 											            	</div>
@@ -181,8 +183,8 @@
 												               	</c:forEach></div>
 											            	</div>
 										      			</div>
-									      			</c:forEach>
-									      		</div>
+										      		</div>
+									      		</c:forEach>
 									  		</div>
 								   		</div>
 								   </div>

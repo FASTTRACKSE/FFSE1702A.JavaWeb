@@ -51,4 +51,18 @@ public class QuanLyChucDanhDAOImpl implements QuanLyChucDanhDAO {
 			session.delete(remove);
 		}
 	}
+	
+	@Override
+	public boolean checkChucDanh(String maChucDanh) {
+
+		if (maChucDanh != "") {
+			Session session = this.sessionFactory.getCurrentSession();
+			String result = session
+					.createSQLQuery("SELECT COUNT(*) FROM `chuc_danh` WHERE `ma_chuc_danh` = '" + maChucDanh + "'")
+					.getSingleResult().toString();
+
+			return result.equals("0") ? true : false;
+		}
+		return true;
+	}
 }

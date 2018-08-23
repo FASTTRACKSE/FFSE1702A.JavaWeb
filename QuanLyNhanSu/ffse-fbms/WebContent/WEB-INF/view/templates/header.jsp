@@ -206,7 +206,7 @@
                </ul>
                <ul class="nav navbar-nav float-xs-right">
                   <li class="dropdown dropdown-language nav-item"><a id="dropdown-flag" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle nav-link"><i class="flag-icon flag-icon-gb"></i><span class="selected-language"></span></a>
-                     <div aria-labelledby="dropdown-flag" class="dropdown-menu"><a href="#" class="dropdown-item"><i class="flag-icon flag-icon-gb"></i> English</a><a href="#" class="dropdown-item"><i class="flag-icon flag-icon-fr"></i> French</a><a href="#" class="dropdown-item"><i class="flag-icon flag-icon-cn"></i> Chinese</a><a href="#" class="dropdown-item"><i class="flag-icon flag-icon-de"></i> German</a></div>
+                     <div aria-labelledby="dropdown-flag" class="dropdown-menu"><a href="?lang=en" class="dropdown-item"><i class="flag-icon flag-icon-gb"></i> English</a><a href="?lang=vi" class="dropdown-item"><i class="flag-icon flag-icon-vn"></i> Việt Nam</a></div>
                   </li>
                   <li class="dropdown dropdown-notification nav-item"><a href="#" data-toggle="dropdown" class="nav-link nav-link-label"><i class="ficon ft-bell"></i><span class="tag tag-pill tag-default tag-danger tag-default tag-up">5</span></a>
                      <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right">
@@ -306,8 +306,12 @@
                      </ul>
                   </li>
                   <li class="dropdown dropdown-user nav-item"><a href="#" data-toggle="dropdown" class="dropdown-toggle nav-link dropdown-user-link"><span class="avatar avatar-online"><img src="<c:url value="/resources/images/portrait/small/avatar-s-1.png"/>" alt="avatar"><i></i></span><span class="user-name">JunBjn</span></a>
-                     <div class="dropdown-menu dropdown-menu-right"><a href="#" class="dropdown-item"><i class="ft-user"></i> Edit Profile</a><a href="#" class="dropdown-item"><i class="ft-mail"></i> My Inbox</a><a href="#" class="dropdown-item"><i class="ft-check-square"></i> Task</a><a href="#" class="dropdown-item"><i class="ft-message-square"></i> Chats</a>
-                        <div class="dropdown-divider"></div><a href="#" class="dropdown-item"><i class="ft-power"></i> Logout</a>
+                     <div class="dropdown-menu dropdown-menu-right">
+                     	<a href="#" class="dropdown-item"><i class="ft-user"></i> <spring:message code="label.suaHoSo" /></a>
+                     	<a href="#" class="dropdown-item"><i class="ft-mail"></i> <spring:message code="label.hopThu" /></a>
+                     	<a href="#" class="dropdown-item"><i class="ft-check-square"></i> <spring:message code="label.nhiemVu" /></a>
+                     	<a href="#" class="dropdown-item"><i class="ft-message-square"></i> <spring:message code="label.tinNhan" /></a>
+                        <div class="dropdown-divider"></div><a href="#" class="dropdown-item"><i class="ft-power"></i> <spring:message code="label.dangXuat" /></a>
                      </div>
                   </li>
                </ul>
@@ -322,83 +326,89 @@
    <div data-scroll-to-active="true" class="main-menu menu-fixed menu-light menu-accordion menu-shadow">
       <div class="main-menu-content">
          <ul id="main-menu-navigation" data-menu="menu-navigation" class="navigation navigation-main">
-            <li class=" navigation-header"><span>Nhân viên</span><i data-toggle="tooltip" data-placement="right" data-original-title="Apps" class=" ft-minus"></i>
+            <li class=" navigation-header"><span><spring:message code="label.nhanVien" /></span><i data-toggle="tooltip" data-placement="right" data-original-title="Apps" class=" ft-minus"></i>
             </li>
             <li class=" nav-item"><a href="#"><i class="ft-user"></i><span data-i18n="" class="menu-title"><spring:message code="label.hoSoBanThan" /></span></a>
             </li>
-            <li class=" nav-item"><a href="#"><i class="ft-file-text"></i><span data-i18n="" class="menu-title">Hợp đồng lao động</span></a>
+            <li class=" nav-item"><a href="#"><i class="ft-file-text"></i><span data-i18n="" class="menu-title"><spring:message code="label.hopDongLaoDong" /></span></a>
             </li>
-            <li class=" nav-item"><a href="#"><i class="ft-airplay"></i><span data-i18n="" class="menu-title">Xem tất cả</span></a>
+          <li class=" nav-item"><a href="#"><i class="ft-airplay"></i><span data-i18n="" class="menu-title"><spring:message code="label.xemTatCa" /></span></a>
             </li>
-            <li class=" navigation-header"><span>Quản lý nhân sự</span><i data-toggle="tooltip" data-placement="right" data-original-title="Quản lý nhân sự" class=" ft-minus"></i>
+            <li class=" navigation-header"><span><spring:message code="label.quanLyNhanSu" /></span><i data-toggle="tooltip" data-placement="right" data-original-title="Quản lý nhân sự" class=" ft-minus"></i>
             </li>
-            <li class=" nav-item phong_ban"><a href="javascript:void(0)"><i class="ft-home"></i><span data-i18n="" class="menu-title">Quản lý phòng ban</span></a>
+            
+            <li class=" nav-item phong_ban"><a href="javascript:void(0)"><i class="ft-home"></i><span data-i18n="" class="menu-title"><spring:message code="label.quanLyPhongBan" /></span></a>
                <ul class="menu-content">
-                  <li class="nsphong_ban"><a href="<c:url value = "/ns/phong_ban"/>" class="menu-item">Danh sách phòng ban</a>
+                  <li class="nsphong_ban"><a href="<c:url value = "/ns/phong_ban"/>" class="menu-item"><spring:message code="label.danhSachPhongBan" /></a>
                   </li>
-                  <li class="nsphong_banadd"><a href="<c:url value = "/ns/phong_ban/add"/>" class="menu-item">Thêm phòng ban</a>
+                  <li class="nsphong_banadd"><a href="<c:url value = "/ns/phong_ban/add"/>" class="menu-item"><spring:message code="label.themPhongBan" /></a>
                   </li>
                </ul>
             </li>
-            <li class=" nav-item chuc_danh"><a href="javascript:void(0)"><i class="ft-award"></i><span data-i18n="" class="menu-title">Quản lý chức danh</span></a>
+            
+            <li class=" nav-item chuc_danh"><a href="javascript:void(0)"><i class="ft-award"></i><span data-i18n="" class="menu-title"><spring:message code="label.quanLyChucDanh" /></span></a>
                <ul class="menu-content">
-                  <li class="nschuc_danh"><a href="<c:url value = "/ns/chuc_danh"/>" class="menu-item">Danh sách chức danh</a>
+                  <li class="nschuc_danh"><a href="<c:url value = "/ns/chuc_danh"/>" class="menu-item"><spring:message code="label.danhSachChucDanh" /></a>
                   </li>
-                  <li class="nschuc_danhadd"><a href="<c:url value = "/ns/chuc_danh/add"/>" class="menu-item">Thêm chức danh</a>
+                  <li class="nschuc_danhadd"><a href="<c:url value = "/ns/chuc_danh/add"/>" class="menu-item"><spring:message code="label.themChucDanh" /></a>
                   </li>
                </ul>
             </li>
-            <li class=" nav-item ho_so"><a href="javascript:void(0)"><i class="ft-users"></i><span data-i18n="" class="menu-title">Quản lý hồ sơ</span></a>
+            <li class=" nav-item"><a href="javascript:void(0)"><i class="ft-users"></i><span data-i18n="" class="menu-title"><spring:message code="label.quanLyHoSo" /></span></a>
                <ul class="menu-content">
-                  <li class="nsho_so pbho_so"><a href="javascript:void(0)" class="menu-item ">Danh sách hồ sơ</a>
+                  
+            
+                  <li class="nsho_so pbho_so"><a href="javascript:void(0)" class="menu-item "><spring:message code="label.danhSachHoSo" /></a>
                   	<ul class="menu-content">
-					   <li class="nsho_so"><a href="<c:url value = "/ns/ho_so"/>" class="menu-item">Tất cả</a>
+					   <li class="nsho_so"><a href="<c:url value = "/ns/ho_so"/>" class="menu-item"><spring:message code="label.xemTatCa" /></a>
 					   </li>
-					   <li class="pbho_so"><a href="javascript:void(0)" class="menu-item">Phòng ban</a>
+					   <li class="pbho_so"><a href="javascript:void(0)" class="menu-item"><spring:message code="label.phongBan" /></a>
 					      <ul class="menu-content">
-					         <li class="PGDho_so"><a href="<c:url value = "/PGD/ho_so"/>" class="menu-item">Phòng Giám đốc</a>
+					         <li class="PGDho_so"><a href="<c:url value = "/PGD/ho_so"/>" class="menu-item"><spring:message code="label.phongGiamDoc" /></a>
 					         </li>
-					         <li class="PNSho_so"><a href="<c:url value = "/PNS/ho_so"/>" class="menu-item">Phòng Nhân sự</a>
+					         <li class="PNSho_so"><a href="<c:url value = "/PNS/ho_so"/>" class="menu-item"><spring:message code="label.phongNhanSu" /></a>
 					         </li>
-					         <li class="PKTho_so"><a href="<c:url value = "/PKT/ho_so"/>" class="menu-item">Phòng Kế toán</a>
+					         <li class="PKTho_so"><a href="<c:url value = "/PKT/ho_so"/>" class="menu-item"><spring:message code="label.phongKeToan" /></a>
 					         </li>
-					         <li class="PDAho_so"><a href="<c:url value = "/PDA/ho_so"/>" class="menu-item">Phòng Dự án</a>
+					         <li class="PDAho_so"><a href="<c:url value = "/PDA/ho_so"/>" class="menu-item"><spring:message code="label.phongDuAn" /></a>
 					         </li>
-					         <li class="PDTho_so"><a href="<c:url value = "/PDT/ho_so"/>" class="menu-item">Phòng Đào tạo</a>
+					         <li class="PDTho_so"><a href="<c:url value = "/PDT/ho_so"/>" class="menu-item"><spring:message code="label.phongDaoTao" /></a>
 					         </li>
-					         <li class="PITho_so"><a href="<c:url value = "/PIT/ho_so"/>" class="menu-item">Phòng IT</a>
+					         <li class="PITho_so"><a href="<c:url value = "/PIT/ho_so"/>" class="menu-item"><spring:message code="label.phongIT" /></a>
 					         </li>
 					      </ul>
 					   </li>
 					</ul>
                   </li>
-                  <li class="nsho_soadd"><a href="<c:url value = "/ns/ho_so/add"/>" class="menu-item">Thêm hồ sơ</a>
+                  <li class="nsho_soadd"><a href="<c:url value = "/ns/ho_so/add"/>" class="menu-item"><spring:message code="label.themHoSo" /></a>
                   </li>
                </ul>
             </li>
-            <li class=" nav-item hop_dong"><a href="javascript:void(0)"><i class="ft-file-text"></i><span data-i18n="" class="menu-title">Quản lý hợp đồng</span></a>
+            <li class=" nav-item"><a href="javascript:void(0)"><i class="ft-file-text"></i><span data-i18n="" class="menu-title"><spring:message code="label.quanLyHopDong" /></span></a>
                <ul class="menu-content">
-                  <li class="nshop_dong pbhop_dong"><a href="javascript:void(0)" class="menu-item">Danh sách hợp đồng</a>
+                  <li class="nshop_dong pbhop_dong"><a href="javascript:void(0)" class="menu-item"><spring:message code="label.danhSachHopDong" /></a>
                   	<ul class="menu-content">
-					   <li class="nshop_dong"><a href="<c:url value = "/ns/hop_dong"/>" class="menu-item">Tất cả</a>
+					   <li class="nshop_dong"><a href="<c:url value = "/ns/hop_dong"/>" class="menu-item"><spring:message code="label.xemTatCa" /></a>
 					   </li>
-					   <li class="pbhop_dong"><a href="javascript:void(0)" class="menu-item">Phòng ban</a>
+					   <li class="pbhop_dong"><a href="javascript:void(0)" class="menu-item"><spring:message code="label.phongBan" /></a>
 					      <ul class="menu-content">
-					         <li class="PGDhop_dong"><a href="<c:url value = "/PGD/hop_dong"/>" class="menu-item">Phòng Giám đốc</a>
+					         <li class="PGDhop_dong"><a href="<c:url value = "/PGD/hop_dong"/>" class="menu-item"><spring:message code="label.phongGiamDoc" /></a>
 					         </li>
-					         <li class="PNShop_dong"><a href="<c:url value = "/PNS/hop_dong"/>" class="menu-item">Phòng Nhân sự</a>
+					         <li class="PNShop_dong"><a href="<c:url value = "/PNS/hop_dong"/>" class="menu-item"><spring:message code="label.phongNhanSu" /></a>
 					         </li>
-					         <li class="PKThop_dong"><a href="<c:url value = "/PKT/hop_dong"/>" class="menu-item">Phòng Kế toán</a>
+					         <li class="PKThop_dong"><a href="<c:url value = "/PKT/hop_dong"/>" class="menu-item"><spring:message code="label.phongKeToan" /></a>
 					         </li>
-					         <li class="PDAhop_dong"><a href="<c:url value = "/PDA/hop_dong"/>" class="menu-item">Phòng Dự án</a>
+					         <li class="PDAhop_dong"><a href="<c:url value = "/PDA/hop_dong"/>" class="menu-item"><spring:message code="label.phongDuAn" /></a>
 					         </li>
-					         <li class="PDThop_dong"><a href="<c:url value = "/PDT/hop_dong"/>" class="menu-item">Phòng Đào tạo</a>
+					         <li class="PDThop_dong"><a href="<c:url value = "/PDT/hop_dong"/>" class="menu-item"><spring:message code="label.phongDaoTao" /></a>
 					         </li>
-					         <li class="PIThop_dong"><a href="<c:url value = "/PIT/hop_dong"/>" class="menu-item">Phòng IT</a>
+					         <li class="PIThop_dong"><a href="<c:url value = "/PIT/hop_dong"/>" class="menu-item"><spring:message code="label.phongIT" /></a>
 					         </li>
 					      </ul>
 					   </li>
 					</ul>
+                  </li>
+                  <li class="nshop_dongadd"><a href="<c:url value = "/ns/hop_dong/add"/>" class="menu-item"><spring:message code="label.themHopDong" /></a>
                   </li>
                </ul>
             </li>

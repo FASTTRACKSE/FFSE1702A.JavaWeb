@@ -25,11 +25,11 @@
 						<form:form cssClass="form-horizontal" modelAttribute="vaitro" method="POST" action="create" >
 						
 							<div class="row">
-								<div class="col-lg-6 col-md-12">
+								<div class="col-lg-12 col-md-12">
 									<div class="form-group">
 										<h5><spring:message code="role.code"></spring:message></h5>
 										<div class="controls">
-											<form:input path="maVaiTro" cssClass="form-control"/>
+											<form:input path="maVaiTro" cssClass="form-control round"/>
 											<form:errors path="maVaiTro" cssStyle="color: red"></form:errors>
 										<div class="help-block"></div></div>
 										
@@ -37,7 +37,7 @@
 									<div class="form-group">
 										<h5><spring:message code="role.name"></spring:message></h5>
 										<div class="controls">
-											<form:input path="tenVaiTro" cssClass="form-control"/>
+											<form:input path="tenVaiTro" cssClass="form-control round"/>
 											<form:errors path="tenVaiTro" cssStyle="color: red"></form:errors>
 										<div class="help-block"></div></div>
 										

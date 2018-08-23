@@ -1,5 +1,7 @@
 eclipse.preferences.version=1
 encoding//WebContent/WEB-INF/view/don_xin_nghi.jsp=UTF-8
 encoding//WebContent/WEB-INF/view/templates/header.jsp=UTF-8
+encoding//WebContent/resources/languages/messages.properties=UTF-8
+encoding//WebContent/resources/languages/messages_vi.properties=UTF-8
 encoding//src/fasttrackse/ffse1702a/fbms/daos/DonXinNghiDaoImpl.java=UTF-8
 encoding//src/fasttrackse/ffse1702a/fbms/entities/DanhSachXinNghiEntity.java=UTF-8

@@ -16,20 +16,13 @@ public class NghiepVu {
 	@Column(name="ten_nghiep_vu")
 	@NotEmpty
 	private String tenNghiepVu;
-	
-	
 	@Column(name="is_delete")
 	private int isDelete;
-	
 	public NghiepVu() {
 		super();
 	}
 	
-	public NghiepVu( String maNghiepVu,  String tenNghiepVu) {
-		super();
-		this.maNghiepVu = maNghiepVu;
-		this.tenNghiepVu = tenNghiepVu;
-	}
+	
 
 	public String getMaNghiepVu() {
 		return maNghiepVu;

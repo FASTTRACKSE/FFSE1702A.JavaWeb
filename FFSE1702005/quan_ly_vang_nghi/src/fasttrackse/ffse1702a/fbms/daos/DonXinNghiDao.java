@@ -21,6 +21,8 @@ public interface DonXinNghiDao {
 
 	public void themDon(DanhSachXinNghiEntity entity);
 	
+	public boolean kiemTraNhanVienNgayNghiEntity (int maNhanVien);
+	
 	public void themNhap(DanhSachXinNghiEntity entity);
 
 	public void suaNhap(DanhSachXinNghiEntity entity);

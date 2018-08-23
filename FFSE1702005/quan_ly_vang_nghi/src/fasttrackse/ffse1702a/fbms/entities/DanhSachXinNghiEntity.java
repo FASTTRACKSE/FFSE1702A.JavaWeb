@@ -7,10 +7,19 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
-@Table(name = "tk_nv_nghi")
+@Table(name = "danh_sach_don_xin_nghi")
 public class DanhSachXinNghiEntity {
 
 	@Id
@@ -18,8 +27,9 @@ public class DanhSachXinNghiEntity {
 	@Column(name = "ma_don")
 	private Integer ma_don;
 
-	@Column(name = "ma_nhan_vien")
-	private Integer ma_nhan_vien;
+	@ManyToOne
+	@JoinColumn(name = "ma_nhan_vien")
+	private NgayNghiEntity ngaynghientity;
 
 	@Column(name = "ten_nhan_vien")
 	private String ten_nhan_vien;
@@ -33,23 +43,33 @@ public class DanhSachXinNghiEntity {
 	@Column(name = "ngay_ket_thuc")
 	private Date ngay_ket_thuc;
 
-	@Column(name = "so_ngay_da_nghi")
-	private Integer so_ngay_da_nghi;
-
-	@Column(name = "so_ngay_con_lai")
-	private Integer so_ngay_con_lai;
-
+	@NotNull
+	@Min(1)
+	@Max(12)
 	@Column(name = "so_ngay_nghi")
 	private Integer so_ngay_nghi;
 
 	@Column(name = "ly_do")
 	private Integer ly_do;
 
+	@Size(max=255)
 	@Column(name = "ghi_chu")
 	private String ghi_chu;
 
+	@Size(max=255)
+	@Column(name = "ghi_chu_truong_phong")
+	private String ghi_chu_truong_phong;
+
 	@Column(name = "trang_thai")
-	public String trang_thai = "aa";
+	private String trang_thai;
+
+	public NgayNghiEntity getNgaynghientity() {
+		return ngaynghientity;
+	}
+
+	public void setNgaynghientity(NgayNghiEntity ngaynghientity) {
+		this.ngaynghientity = ngaynghientity;
+	}
 
 	public Integer getMa_don() {
 		return ma_don;
@@ -57,14 +77,6 @@ public class DanhSachXinNghiEntity {
 
 	public void setMa_don(Integer ma_don) {
 		this.ma_don = ma_don;
-	}
-
-	public Integer getMa_nhan_vien() {
-		return ma_nhan_vien;
-	}
-
-	public void setMa_nhan_vien(Integer ma_nhan_vien) {
-		this.ma_nhan_vien = ma_nhan_vien;
 	}
 
 	public String getTen_nhan_vien() {
@@ -99,22 +111,6 @@ public class DanhSachXinNghiEntity {
 		this.ngay_ket_thuc = ngay_ket_thuc;
 	}
 
-	public Integer getSo_ngay_da_nghi() {
-		return so_ngay_da_nghi;
-	}
-
-	public void setSo_ngay_da_nghi(Integer so_ngay_da_nghi) {
-		this.so_ngay_da_nghi = so_ngay_da_nghi;
-	}
-
-	public Integer getSo_ngay_con_lai() {
-		return so_ngay_con_lai;
-	}
-
-	public void setSo_ngay_con_lai(Integer so_ngay_con_lai) {
-		this.so_ngay_con_lai = so_ngay_con_lai;
-	}
-
 	public Integer getSo_ngay_nghi() {
 		return so_ngay_nghi;
 	}
@@ -137,6 +133,14 @@ public class DanhSachXinNghiEntity {
 
 	public void setGhi_chu(String ghi_chu) {
 		this.ghi_chu = ghi_chu;
+	}
+
+	public String getGhi_chu_truong_phong() {
+		return ghi_chu_truong_phong;
+	}
+
+	public void setGhi_chu_truong_phong(String ghi_chu_truong_phong) {
+		this.ghi_chu_truong_phong = ghi_chu_truong_phong;
 	}
 
 	public String getTrang_thai() {

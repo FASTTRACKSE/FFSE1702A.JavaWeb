@@ -10,8 +10,8 @@
 <meta name="author" content="PIXINVENT">
 <link rel="apple-touch-icon"
 	href="<c:url value="/resources/images/ico/apple-icon-120.png"/>" />
-<link rel="shortcut icon" type="image/x-icon"
-	href="<c:url value="/resources/images/ico/favicon.ico"/>" />
+<%-- <link rel="shortcut icon" type="image/x-icon"
+	href="<c:url value="/resources/images/ico/favicon.ico"/>" /> --%>
 <link
 	href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i%7COpen+Sans:300,300i,400,400i,600,600i,700,700i"
 	rel="stylesheet">
@@ -42,3 +42,4 @@
 	href="<c:url value="/resources/css/core/menu/menu-types/vertical-overlay-menu.css"/>" />
 <link rel="stylesheet" type="text/css"
 	href="<c:url value="/resources/css/core/colors/palette-gradient.css"/>" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

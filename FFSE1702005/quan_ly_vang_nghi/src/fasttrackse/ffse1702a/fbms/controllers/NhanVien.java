@@ -7,6 +7,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -43,7 +44,7 @@ public class NhanVien {
 	public String DanhSachNhap(Model model,
 			@RequestParam(value = "page", required = false, defaultValue = "1") int page) {
 		model.addAttribute("danhSachXinNghi", Service.danhSachXinNghiNhap(page));
-		int lastPage = (int) Math.ceil(Service.totalRecords() / 1.0);
+		int lastPage = (int) Math.ceil(Service.totalRecords() / 5.0);
 		model.addAttribute("currentPage", page);
 		model.addAttribute("lastPage", lastPage);
 		return "danh_sach";
@@ -57,17 +58,49 @@ public class NhanVien {
 	}
 
 	@RequestMapping(value = "/donxinnghi/choduyet", method = RequestMethod.POST, produces = "application/x-www-form-urlencoded;charset=UTF-8")
-	public String guiDon(@ModelAttribute("donxinnghi") @Valid DanhSachXinNghiEntity entity) {
+	public String guiDon(@ModelAttribute("donxinnghi") @Valid DanhSachXinNghiEntity entity, BindingResult result) {
 
 		if (entity.getMa_don() == null || entity.getMa_don() == 0) {
 			// them moi don cho duyet
-			Service.themDon(entity);
+			if (result.hasErrors()) {
+				return "don_xin_nghi";
+			} else {
+				Service.themDon(entity);
+			}
 		} else {
 			// Cho phe duyet don
-			Service.suaDon(entity);
+			if (result.hasErrors()) {
+				return "don_xin_nghi";
+			} else {
+				Service.suaDon(entity);
+			}
 		}
 
 		return "redirect:/danhsachcho";
+
+	}
+
+	@RequestMapping(value = "/donxinnghi/nhap", method = RequestMethod.POST, produces = "application/x-www-form-urlencoded;charset=UTF-8")
+	public String nhap(@ModelAttribute("donxinnghi") @Valid DanhSachXinNghiEntity entity, BindingResult result) {
+
+		System.out.println("xxxx" + entity.getNgaynghientity());
+		if (entity.getMa_don() == null || entity.getMa_don() == 0) {
+			// them nhap
+			if (result.hasErrors()) {
+				return "don_xin_nghi";
+			} else {
+				Service.themNhap(entity);
+			}
+		} else {
+			// sua nhap
+			if (result.hasErrors()) {
+				return "don_xin_nghi";
+			} else {
+				Service.suaNhap(entity);
+			}
+		}
+
+		return "redirect:/danhsachnhap";
 
 	}
 
@@ -82,21 +115,6 @@ public class NhanVien {
 	public String tuChoi(@ModelAttribute("donxinnghi") @Valid DanhSachXinNghiEntity entity) {
 		Service.tuChoi(entity);
 		return "redirect:/danhsachcho";
-
-	}
-
-	@RequestMapping(value = "/donxinnghi/nhap", method = RequestMethod.POST, produces = "application/x-www-form-urlencoded;charset=UTF-8")
-	public String nhap(@ModelAttribute("donxinnghi") @Valid DanhSachXinNghiEntity entity) {
-
-		if (entity.getMa_don() == null || entity.getMa_don() == 0) {
-			// them nhap
-			Service.themNhap(entity);
-		} else {
-			// sua nhap
-			Service.suaNhap(entity);
-		}
-
-		return "redirect:/danhsachnhap";
 
 	}
 

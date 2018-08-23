@@ -17,6 +17,14 @@
    </script>
    <script type="text/javascript" src="<c:url value="/resources/js/core/app.js"/> ">
    </script>
+    <script src="<c:url value="/resources/vendors/js/pickers/dateTime/moment-with-locales.min.js"/>" type="text/javascript"></script>
+    <script src="<c:url value="/resources/vendors/js/pickers/dateTime/bootstrap-datetimepicker.min.js"/>" type="text/javascript"></script>
+    <script src="<c:url value="/resources/vendors/js/pickers/pickadate/picker.js"/>" type="text/javascript"></script>
+    <script src="<c:url value="/resources/vendors/js/pickers/pickadate/picker.date.js"/>" type="text/javascript"></script>
+    <script src="<c:url value="/resources/vendors/js/pickers/pickadate/picker.time.js"/>" type="text/javascript"></script>
+    <script src="<c:url value="/resources/vendors/js/pickers/pickadate/legacy.js"/>" type="text/javascript"></script>
+    <script src="<c:url value="/resources/vendors/js/pickers/daterange/daterangepicker.js"/>" type="text/javascript"></script>
+   <script src="<c:url value="/resources/js/scripts/pickers/dateTime/picker-date-time.js"/>" type="text/javascript"></script>
    <!-- END STACK JS-->
    <!-- BEGIN PAGE LEVEL JS-->
    <!-- END PAGE LEVEL JS-->

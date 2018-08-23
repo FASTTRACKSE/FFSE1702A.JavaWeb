@@ -25,11 +25,11 @@
 						<form:form cssClass="form-horizontal" modelAttribute="framework" method="POST" action="create" >
 						
 							<div class="row">
-								<div class="col-lg-6 col-md-12">
+								<div class="col-lg-12 col-md-12">
 									<div class="form-group">
 										<h5><spring:message code="framework.code"></spring:message></h5>
 										<div class="controls">
-											<form:input path="maFramework" cssClass="form-control"/>
+											<form:input path="maFramework" cssClass="form-control round"/>
 											<form:errors path="maFramework" cssStyle="color: red"></form:errors>
 										<div class="help-block"></div></div>
 										
@@ -37,7 +37,7 @@
 									<div class="form-group">
 										<h5><spring:message code="framework.name"></spring:message></h5>
 										<div class="controls">
-											<form:input path="tenFramework" cssClass="form-control"/>
+											<form:input path="tenFramework" cssClass="form-control round"/>
 											<form:errors path="tenFramework" cssStyle="color: red"></form:errors>
 										<div class="help-block"></div></div>
 										

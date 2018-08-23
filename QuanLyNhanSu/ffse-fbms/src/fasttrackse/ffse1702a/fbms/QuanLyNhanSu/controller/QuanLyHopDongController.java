@@ -71,6 +71,7 @@ public class QuanLyHopDongController {
 			HopDong hd = listHD.get(listHD.size() - 1);
 			if (hd.getTrangThai() == 1) {
 				hopDong = hd;
+				model.addAttribute("edit", "true");
 			}
 		}
 		model.addAttribute("hopDong", hopDong);

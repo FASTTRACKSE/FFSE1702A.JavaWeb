@@ -102,9 +102,9 @@
 										            <div class="form-group">
 										               <label><spring:message code="label.trangThai" /></label>
 										               <form:select multiple="single" path="trangThai" class="form-control">
-												   		  <form:option selected = "true" disabled = "true" value="" label="Chọn trạng thái" />
-												   		  <form:option value="1" label="Đang làm việc" />
-												   		  <form:option value="2" label="Nghỉ việc" />
+												   		  <form:option selected = "true" disabled = "true" value=""><spring:message code="label.chonTrangThai" /></form:option>
+												   		  <form:option value="1"><spring:message code="label.dangLamViec" /></form:option>
+												   		  <form:option value="2"><spring:message code="label.daNghiViec" /></form:option>
 													   </form:select>
 													   <form:errors path="trangThai" cssClass="invalid-feedback d-block" />
 										            </div>
@@ -115,7 +115,7 @@
 										            <div class="form-group">
 										               <label><spring:message code="label.phongBan" /></label>
 										               <form:select multiple="single" path="phongBan.maPhongBan" class="form-control">
-												   		  <form:option selected = "true" disabled = "true" value="" label="Chọn phòng ban" />
+												   		  <form:option selected = "true" disabled = "true" value=""><spring:message code="label.chonPhongBan" /></form:option>
 													   	  <form:options items="${phongBan}" itemValue="maPhongBan" itemLabel="tenPhongBan" />
 													   </form:select>
 													   <form:errors path="phongBan" cssClass="invalid-feedback d-block" />
@@ -125,7 +125,7 @@
 										            <div class="form-group">
 										               <label><spring:message code="label.chucDanh" /></label>
 										               <form:select multiple="single" path="chucDanh.maChucDanh" class="form-control">
-												   		  <form:option selected = "true" disabled = "true" value="" label="Chọn chức danh" />
+												   		  <form:option selected = "true" disabled = "true" value=""><spring:message code="label.chonChucDanh" /></form:option>
 													   	  <form:options items="${chucDanh}" itemValue="maChucDanh" itemLabel="tenChucDanh" />
 													   </form:select>
 													   <form:errors path="chucDanh" cssClass="invalid-feedback d-block" />
@@ -159,9 +159,9 @@
 								            <div class="form-group">
 								               <label><spring:message code="label.gioiTinh" /></label>
 								               <form:select multiple="single" path="gioiTinh" class="form-control">
-										   		  <form:option selected = "true" disabled = "true" value="" label="Chọn giới tính" />
-										   		  <form:option value="1" label="Nam" />
-										   		  <form:option value="2" label="Nữ" />
+										   		  <form:option selected = "true" disabled = "true" value=""><spring:message code="label.chonGioiTinh" /></form:option>
+										   		  <form:option value="1"><spring:message code="label.nam" /></form:option>
+										   		  <form:option value="2"><spring:message code="label.nu" /></form:option>
 											   </form:select>
 											   <form:errors path="gioiTinh" cssClass="invalid-feedback d-block" />
 								            </div>
@@ -179,7 +179,7 @@
 								            <div class="form-group">
 								               <label><spring:message code="label.tinhTrangHonNhan" /></label>
 								               <form:select multiple="single" path="tinhTrangHonNhan.maTinhTrangHonNhan" class="form-control">
-										   		  <form:option selected="true" disabled="true" value="" label="Chọn tình trạng" />
+										   		  <form:option selected="true" disabled="true" value=""><spring:message code="label.chonTinhTrang" /></form:option>
 											   	  <form:options items="${tinhTrangHonNhan}" itemValue="maTinhTrangHonNhan" itemLabel="tinhTrangHonNhan" />
 											   </form:select>
 								               <form:errors path="tinhTrangHonNhan" cssClass="invalid-feedback d-block" />
@@ -189,7 +189,7 @@
 								            <div class="form-group">
 								               <label><spring:message code="label.quocTich" /></label>
 								               <form:select multiple="single" path="quocTich.maQuocTich" class="form-control">
-										   		  <form:option selected = "true" disabled = "true" value="" label="Chọn quốc tịch" />
+										   		  <form:option selected = "true" disabled = "true" value=""><spring:message code="label.chonQuocTich" /></form:option>
 											   	  <form:options items="${quocTich}" itemValue="maQuocTich" itemLabel="tenQuocTich" />
 											   </form:select>
 								               <form:errors path="quocTich" cssClass="invalid-feedback d-block" />

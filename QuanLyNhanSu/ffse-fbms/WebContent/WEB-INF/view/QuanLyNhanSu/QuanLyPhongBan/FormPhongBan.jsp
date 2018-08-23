@@ -12,25 +12,24 @@
 			<div class="content-header-left col-md-9 col-xs-12 mb-2">
 				<h3 class="content-header-title mb-0">
 					<c:if test="${empty add}">
-                         SỬA PHÒNG BAN
+                         <spring:message code="label.suaPhongBan" />
                     </c:if>
 					<c:if test="${!empty add}">
-                         THÊM PHÒNG BAN
+                         <spring:message code="label.themPhongBan" />
                     </c:if>
 				</h3>
 				<div class="row breadcrumbs-top">
 					<div class="breadcrumb-wrapper col-xs-12">
 						<ol class="breadcrumb">
-							<li class="breadcrumb-item"><a href="#">TRANG CHỦ</a></li>
-							<li class="breadcrumb-item"><a href="#">QUẢN LÝ NHÂN SỰ</a>
+							<li class="breadcrumb-item"><a href="<c:url value='/'></c:url>"><spring:message code="label.trangChu" /></a></li>
+							<li class="breadcrumb-item"><a href="<c:url value='/ns/ho_so'></c:url>"><spring:message code="label.quanLyNhanSu" /></a>
 							</li>
-							<li class="breadcrumb-item"><a href="#">QUẢN LÝ PHÒNG
-									BAN</a></li>
+							<li class="breadcrumb-item"><a href="<c:url value='/ns/phong_ban'></c:url>"><spring:message code="label.quanLyPhongBan" /></a></li>
 							<li class="breadcrumb-item active"><c:if
 									test="${empty add}">
-                         SỬA PHÒNG BAN
+                         <spring:message code="label.suaPhongBan" />
                          </c:if> <c:if test="${!empty add}">
-                         THÊM PHÒNG BAN
+                         <spring:message code="label.themPhongBan" />
                          </c:if></li>
 						</ol>
 					</div>
@@ -47,10 +46,10 @@
 								<h4 class="card-title center" id="basic-layout-form-center">
 									<i class="ft-user"></i>
 									<c:if test="${empty add }">
-                         SỬA PHÒNG BAN
+                         <spring:message code="label.suaPhongBan" />
                          </c:if>
 									<c:if test="${!empty add }">
-                         THÊM PHÒNG BAN
+                         <spring:message code="label.themPhongBan" />
                          </c:if>
 								</h4>
 								<a class="heading-elements-toggle"><i
@@ -71,30 +70,30 @@
 											<div class="col-md-6 offset-md-3">
 												<div class="form-body" style="margin-top: 1rem;">
 													<div class="form-group">
-														<label>Mã phòng ban</label>
+														<label><spring:message code="label.maPhongBan" /></label>
 														<c:if test="${empty add }">
 															<form:input path="maPhongBan" type="text"
 																class="form-control" readonly="true" id="id_edit"
-																placeholder="Mã phòng ban ..." />
+																placeholder="..." />
 															
 														</c:if>
 														<c:if test="${!empty add}">
 															<form:input path="maPhongBan" type="text"
 																class="form-control" id="id_edit"
-																placeholder="Mã phòng ban ..." />
+																placeholder="..." />
 															<form:errors path="maPhongBan"
 																cssClass="invalid-feedback d-block" />
 															<input name="add" type="hidden" value="TRUE" />
 														</c:if>
 
 														<c:if test="${checkMaPhongBan == 'false'}">
-															<span class="invalid-feedback d-block">Mã phòng ban đã tồn tại</span>
+															<span class="invalid-feedback d-block"><spring:message code="checkMaPhongBan" /></span>
 														</c:if>
 													</div>
 													<div class="form-group">
-														<label>Tên phòng ban</label>
+														<label><spring:message code="label.tenPhongBan" /></label>
 														<form:input path="tenPhongBan" type="text" id="name_edit"
-															class="form-control" placeholder="Tên phòng ban ..." />
+															class="form-control" placeholder="..." />
 														<form:errors path="tenPhongBan"
 															cssClass="invalid-feedback d-block" />
 													</div>
@@ -104,16 +103,16 @@
 										<div class="form-actions center">
 											<a href="/ffse-fbms/ns/phong_ban"><button type="button"
 													class="btn btn-warning mr-1">
-													<i class="ft-x"></i> Quay lại
+													<i class="ft-x"></i> <spring:message code="label.quaylai" />
 												</button></a>
 											<c:if test="${empty add }">
 												<button type="submit" class="btn btn-primary">
-													<i class="fa fa-check-square-o"></i> Sửa
+													<i class="fa fa-check-square-o"></i> <spring:message code="label.chinhSua" />
 												</button>
 											</c:if>
 											<c:if test="${!empty add}">
 												<button type="submit" class="btn btn-primary">
-													<i class="fa fa-check-square-o"></i> Thêm
+													<i class="fa fa-check-square-o"></i> <spring:message code="label.them" />
 												</button>
 											</c:if>
 

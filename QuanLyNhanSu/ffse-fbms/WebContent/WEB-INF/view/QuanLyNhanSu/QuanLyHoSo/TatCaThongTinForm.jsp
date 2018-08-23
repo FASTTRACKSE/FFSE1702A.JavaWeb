@@ -7,15 +7,6 @@
 <%@page import="java.io.File"%>
 <%@page import="java.io.*"%>
 <%@page import="javax.servlet.*"%>
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-=======
->>>>>>> 67cb89c1e9adf5fa7e110d6a7957855308daf61c
->>>>>>> 47858687edeaa782cd01ec673dcd1a57a61e47cf
-=======
->>>>>>> a2bbaf84c8b2e76d27b6b2c0bafebcfce4661f4a
-
 <jsp:include page="/WEB-INF/view/templates/header.jsp" />
 
    <div class="app-content content container-fluid">
@@ -26,7 +17,7 @@
                <div class="row breadcrumbs-top">
                   <div class="breadcrumb-wrapper col-xs-12">
                      <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="javascript:void(0)"><spring:message code="label.trangChu" /></a>
+                        <li class="breadcrumb-item"><a href="<c:url value = "/"/>"><spring:message code="label.trangChu" /></a>
                         </li>
                         <li class="breadcrumb-item"><a href="javascript:void(0)"><spring:message code="label.quanLyNhanSu" /></a>
                         </li>
@@ -38,10 +29,6 @@
                   </div>
                </div>
             </div>
-<<<<<<< HEAD
-
-=======
->>>>>>> 47858687edeaa782cd01ec673dcd1a57a61e47cf
             <div class="content-header-right col-md-3 col-xs-12">
 	            <div role="group" aria-label="Button group with nested dropdown" class="dropdown nav-item float-md-right">
 	               <div role="group" class="btn-group">
@@ -49,13 +36,13 @@
 	                  	<i class="ft-settings icon-left"></i> <spring:message code="label.thongTinKhac" />
 	                  </button>
 	                  <div aria-labelledby="btnGroupDrop1" class="dropdown-menu dropdown-menu-right">
-	                  	<a href="<c:url value = "/ns/ho_so/edit/"/>" class="dropdown-item"><i class="fa fa-id-card-o"></i> <spring:message code="label.thongTinHoSo" /></a>
-	                  	<a href="<c:url value = "/ns/ho_so/bang_cap/edit/"/>" class="dropdown-item"><i class="fa fa-graduation-cap"></i> <spring:message code="label.thongTinBangCap" /></a>
-	                  	<a href="<c:url value = "/ns/ho_so/gia_dinh/edit/"/>" class="dropdown-item"><i class="fa fa-users"></i> <spring:message code="label.thongTinGiaDinh" /></a>
-	                  	<a href="<c:url value = "/ns/ho_so/kinh_nghiem/edit/"/>" class="dropdown-item"><i class="fa fa-file-code-o"></i> <spring:message code="label.thongTinKinhNghiem" /></a>
-	                  	<a href="<c:url value = "/ns/hop_dong/edit/"/>" class="dropdown-item"><i class="fa fa-handshake-o"></i> <spring:message code="label.thongTinHopDong" /></a>
+	                  	<a href="<c:url value = "/ns/ho_so/xem_thong_tin_ho_so/${hoSoNhanVien.maNhanVien }"/>" class="dropdown-item"><i class="fa fa-id-card-o"></i> <spring:message code="label.thongTinHoSo" /></a>
+	                  	<a href="<c:url value = "/ns/ho_so/xem_bang_cap/${hoSoNhanVien.maNhanVien }"/>" class="dropdown-item"><i class="fa fa-graduation-cap"></i> <spring:message code="label.thongTinBangCap" /></a>
+	                  	<a href="<c:url value = "/ns/ho_so/xem_gia_dinh/${hoSoNhanVien.maNhanVien }"/>" class="dropdown-item"><i class="fa fa-users"></i> <spring:message code="label.thongTinGiaDinh" /></a>
+	                  	<a href="<c:url value = "/ns/ho_so/xem_kinh_nghiem/${hoSoNhanVien.maNhanVien }"/>" class="dropdown-item"><i class="fa fa-file-code-o"></i> <spring:message code="label.thongTinKinhNghiem" /></a>
+	                  	<a href="<c:url value = "/ns/hop_dong/xem_hop_dong/${hoSoNhanVien.maNhanVien }"/>" class="dropdown-item"><i class="fa fa-handshake-o"></i> <spring:message code="label.thongTinHopDong" /></a>
 	                  	<div class="dropdown-divider"></div>
-	                  	<a href="#" class="dropdown-item text-xs-center"><spring:message code="label.xemTatCa" /></a>
+	                  	<a href="<c:url value = "/ns/ho_so/xem_tat_ca/${hoSoNhanVien.maNhanVien }"/>" class="dropdown-item text-xs-center"><spring:message code="label.xemTatCa" /></a>
 	                  </div>
 	               </div>
 				</div>
@@ -82,6 +69,7 @@
 	                     <img id="preview" hidden class="rounded-circle" width="180px" height="180px" src="/ffse-fbms/resources/images/nhan-vien/${hoSoNhanVien.anhDaiDien}">
 	                     <div id="pdfBody" class="card-body collapse in">
 	                        <div class="card-block">
+	                        <form:form class="form form-horizontal" method="POST">
 								   <div class="form-body">
 								      <div class="row edit-row-title-ho-so" style="background: #00A5A8; padding: 15px; color: #fff">
 								         <div class="col-md-3" style="text-align: center !important;">
@@ -91,13 +79,19 @@
 								      	 	<h2>${hoSoNhanVien.hoDem} ${hoSoNhanVien.ten}</h2>
 								      	 	<h4>${hoSoNhanVien.phongBan.tenPhongBan}</h4>
 								      	 	<h4>${hoSoNhanVien.chucDanh.tenChucDanh}</h4>
-								      	 	<h6>Tình trạng: ${hoSoNhanVien.trangThai == 1 ? "Đang làm việc" : "Đã nghỉ việc"}</h6>
+								      	 	<h6><spring:message code="label.tinhTrang" />: 
+								      	 			<c:if test="${hoSoNhanVien.trangThai == 1 }"><spring:message code="label.dangLamViec" /></c:if>
+								      	 			<c:if test="${hoSoNhanVien.trangThai == 2 }"><spring:message code="label.daNghiViec" /></c:if>
+								      	 	</h6>
 								      	 </div>
 								      	 <div class="col-md-5">
 								      	 	<h4><span class="fa fa-phone" style="display: inline-block; border-radius: 60px; border: solid 1px #fff; padding: 0.5em 0.6em;"></span> ${hoSoNhanVien.soDienThoai}</h4>
 								      	 	<h4><span class="fa fa-envelope" style="display: inline-block; border-radius: 60px; border: solid 1px #fff; padding: 0.5em 0.5em;"></span> ${hoSoNhanVien.email}</h4>
-								      	 	<h4><span class="fa fa-venus-mars" style="display: inline-block; border-radius: 60px; border: solid 1px #fff; padding: 0.5em 0.4em;"></span> ${hoSoNhanVien.gioiTinh == 1 ? "Nam" : "Nữ" }</h4>
-								      	 	<h4><span class="fa fa-map-marker" style="display: inline-block; border-radius: 60px; border: solid 1px #fff; padding: 0.5em 0.65em;"></span> ${hoSoNhanVien.namSinh}</h4>
+								      	 	<h4><span class="fa fa-venus-mars" style="display: inline-block; border-radius: 60px; border: solid 1px #fff; padding: 0.5em 0.4em;"></span> 
+								      	 		<c:if test="${hoSoNhanVien.gioiTinh == 1 }"><spring:message code="label.nam" /></c:if>
+							      	 			<c:if test="${hoSoNhanVien.gioiTinh == 2 }"><spring:message code="label.nu" /></c:if>
+								      	 	</h4>
+								      	 	<h4><span class="fa fa-map-marker" style="display: inline-block; border-radius: 60px; border: solid 1px #fff; padding: 0.5em 0.65em;"></span> ${hoSoNhanVien.queQuan}</h4>
 								      	 </div>
 								      </div>
 								      <div class="panel-group" id="accordion">
@@ -112,21 +106,21 @@
 											      	<div class="repeater-list">
 											      		<div class="row">
 											      			<div class="col-md-6">
-											      				<p><strong>Dân tộc: </strong>${hoSoNhanVien.danToc}</p>
-													      	 	<p><strong>Quê quán: </strong>${hoSoNhanVien.queQuan}</p>
+											      				<p><strong><spring:message code="label.danToc" />: </strong>${hoSoNhanVien.danToc}</p>
+													      	 	<p><strong><spring:message code="label.queQuan" />: </strong>${hoSoNhanVien.queQuan}</p>
 													      	 </div>
 													      	 <div class="col-md-6">
-													      	 	<p><strong>Tình trạng hôn nhân: </strong>${hoSoNhanVien.tinhTrangHonNhan.tinhTrangHonNhan }</p>
-													      	 	<p><strong>Nơi ở hiện nay: </strong>${hoSoNhanVien.noiTamTru}</p>
+													      	 	<p><strong><spring:message code="label.tinhTrangHonNhan" />: </strong>${hoSoNhanVien.tinhTrangHonNhan.tinhTrangHonNhan }</p>
+													      	 	<p><strong><spring:message code="label.noiOHienNay" />: </strong>${hoSoNhanVien.noiTamTru}</p>
 													      	 </div>
 													      	 <div class="col-md-3">
-													      	 	<p><strong>CMND Số: </strong>${hoSoNhanVien.soCmnd}</p>
+													      	 	<p><strong><spring:message code="label.soCMND" />: </strong>${hoSoNhanVien.soCmnd}</p>
 													      	 </div>
 													      	 <div class="col-md-3">
-													      	 	<p><strong>Ngày cấp: </strong>${hoSoNhanVien.ngayCap}</p>
+													      	 	<p><strong><spring:message code="label.ngayCap" />: </strong>${hoSoNhanVien.ngayCap}</p>
 													      	 </div>
 													      	 <div class="col-md-6">
-													      	 	<p><strong>Nơi cấp: </strong>${hoSoNhanVien.noiCap}</p>
+													      	 	<p><strong><spring:message code="label.noiCap" />: </strong>${hoSoNhanVien.noiCap}</p>
 													      	 </div>
 											      		</div>
 											      	</div>
@@ -145,16 +139,19 @@
 												      	<c:forEach items="${hoSoNhanVien.thongTinGiaDinhs }" var="thongTinGiaDinh" varStatus="stt">
 												      		<div class="row form-section">
 												      			<div class="col-md-4">
-												      				<p><strong>Họ tên: </strong>${thongTinGiaDinh.hoDem} ${thongTinGiaDinh.ten}</p>
-														      	 	<p><strong>Ngày sinh: </strong>${hoSoNhanVien.namSinh}</p>
+												      				<p><strong><spring:message code="label.hoTen" />: </strong>${thongTinGiaDinh.hoDem} ${thongTinGiaDinh.ten}</p>
+														      	 	<p><strong><spring:message code="label.ngaySinh" />: </strong>${hoSoNhanVien.namSinh}</p>
 														      	 </div>
 														      	 <div class="col-md-4">
-														      	 	<p><strong>Giới tính: </strong>${thongTinGiaDinh.gioiTinh == 1 ? "Nam" : "Nữ" }</p>
-														      	 	<p><strong>Điện thoại: </strong>${thongTinGiaDinh.soDienThoai}</p>
+														      	 	<p><strong><spring:message code="label.gioiTinh" />: </strong>
+														      	 		<c:if test="${thongTinGiaDinh.gioiTinh == 1 }"><spring:message code="label.nam" /></c:if>
+														      	 		<c:if test="${thongTinGiaDinh.gioiTinh == 2 }"><spring:message code="label.nu" /></c:if>
+														      	 	</p>
+														      	 	<p><strong><spring:message code="label.dienThoai" />: </strong>${thongTinGiaDinh.soDienThoai}</p>
 														      	 </div>
 														      	 <div class="col-md-4">
-														      	 	<p><strong>Quan hệ: </strong>${thongTinGiaDinh.quanHe}</p>
-														      	 	<p><strong>Quê quán: </strong>${thongTinGiaDinh.queQuan}</p>
+														      	 	<p><strong><spring:message code="label.quanHe" />: </strong>${thongTinGiaDinh.quanHe}</p>
+														      	 	<p><strong><spring:message code="label.queQuan" />: </strong>${thongTinGiaDinh.queQuan}</p>
 														      	 </div>
 												      		</div>
 												      		</c:forEach>
@@ -174,12 +171,12 @@
 												      	<c:forEach items="${hoSoNhanVien.thongTinBangCaps }" var="thongTinBangCap" varStatus="stt">
 												      		<div class="row form-section">
 												      			<div class="col-md-6">
-												      				<p><strong>Tên bằng: </strong>${thongTinBangCap.tenBangCap}</p>
-														      	 	<p><strong>Nơi cấp: </strong>${thongTinBangCap.donViCap}</p>
+												      				<p><strong><spring:message code="label.tenBangCap" />: </strong>${thongTinBangCap.tenBangCap}</p>
+														      	 	<p><strong><spring:message code="label.noiCapBang" />: </strong>${thongTinBangCap.donViCap}</p>
 														      	 </div>
 														      	 <div class="col-md-6">
-														      	 	<p><strong>Loại bằng: </strong>${thongTinBangCap.loaiBangCap }</p>
-														      	 	<p><strong>Ngày cấp: </strong>${thongTinBangCap.ngayCap}</p>
+														      	 	<p><strong><spring:message code="label.loaiBangCap" />: </strong>${thongTinBangCap.loaiBangCap }</p>
+														      	 	<p><strong><spring:message code="label.ngayCap" />: </strong>${thongTinBangCap.ngayCap}</p>
 														      	 </div>
 												      		</div>
 												      		</c:forEach>
@@ -187,7 +184,7 @@
 											    </div>
 									      </div>
 									    </div>
-									    <div <c:if test="${empty hoSoNhanVien.duAn}">style="display: none;"</c:if> class="panel panel-default ">
+									    <div <c:if test="${empty hoSoNhanVien.duAnDTO}">style="display: none;"</c:if> class="panel panel-default ">
 									      <div class="panel-heading form-section">
 									        <h4 class="panel-title">
 									          <br><a data-toggle="collapse" data-parent="#accordion" href="#collapse4"><i class="ft-user"></i> <spring:message code="label.thongTinKinhNghiem" /></a>
@@ -213,7 +210,7 @@
 								                                        ]);
 								                                  
 								                                        var options = {
-								                                          'title': 'NGÔN NGỮ DỰ ÁN',
+								                                          'title': "<spring:message code='label.ngonNguDuAn' />",
 								                                                is3D: true,
 								                                                tooltip: {showColorCode: true},
 								                                                'width': 300,
@@ -254,7 +251,7 @@
 								                                        ]);
 								                                  
 								                                        var options = {
-								                                          'title': 'FRAMEWORK',
+								                                          'title': "<spring:message code='label.framework' />",
 								                                                is3D: true,
 								                                                tooltip: {showColorCode: true},
 								                                                'width': 300,
@@ -295,7 +292,7 @@
 																	      ]);
 																	
 																	      var options = {
-																	        'title': 'CƠ SỞ DỮ LIỆU',
+																	        'title': "<spring:message code='label.database' />",
 																	              is3D: true,
 																	              tooltip: {showColorCode: true},
 																	              'width': 300,
@@ -321,40 +318,40 @@
 												      				<div id="ChartDatabase"></div>
 												      			</div>
 												      		</div>
-												      		<c:forEach items="${hoSoNhanVien.duAn }" var="duAn" varStatus="stt">
+												      		<c:forEach items="${hoSoNhanVien.duAnDTO }" var="duAn" varStatus="stt">
 												      		<div class="row form-section">
 												      			<div class="col-md-4">
-												      				<p><strong>Mã dự án: </strong>${duAn.maDuAn}</p>
+												      				<p><strong><spring:message code='label.maDuAn' />: </strong>DA${duAn.maDuAn}</p>
 												      			</div>
 												      			<div class="col-md-4">
-												      				<p><strong>Tên dự án: </strong>${duAn.tenDuAn}</p>
+												      				<p><strong><spring:message code='label.tenDuAn' />: </strong>${duAn.tenDuAn}</p>
 												      			</div>
 												      			<div class="col-md-4">
-												      				<p><strong>Vai trò: </strong>
-													      				<c:forEach items="${hoSoNhanVien.vaiTro}" var="vaiTro" varStatus="stt">
-													      					<span class="tag tag-default tag-info">${vaiTro.tenVaiTro }</span>
+												      				<p><strong><spring:message code="label.vaiTroDuAn" />: </strong>
+													      				<c:forEach items="${duAn.vaiTro}" var="vaiTro" varStatus="stt">
+													      					<span class="tag tag-default tag-info">${vaiTro }</span>
 													               		</c:forEach>
 												               		</p>
 												      			</div>
 												      			<div class="col-md-12">
-												      				<p><strong>Mô tả dự án: </strong>${duAn.moTaDuAn}</p>
+												      				<p><strong><spring:message code="label.moTaDuAn" />: </strong>${duAn.moTaDuAn}</p>
 												      			</div>
 												      			<div class="col-md-4">
-												      				<p><strong>Ngôn ngữ: </strong>
+												      				<p><strong><spring:message code="label.ngonNguDuAnSub" />: </strong>
 													      				<c:forEach items="${duAn.ngonNgu}" var="ngonNgu" varStatus="stt">
 													               			<span class="tag tag-default tag-info">${ngonNgu.tenNgonNgu }</span>		   			
 												               			</c:forEach>
 												               		</p>
 												      			</div>
 												      			<div class="col-md-4">
-												      				<p><strong>Framework: </strong>
+												      				<p><strong><spring:message code="label.frameworkSub" />: </strong>
 													      				<c:forEach items="${duAn.framework}" var="framework" varStatus="stt">
 														               		<span class="tag tag-default tag-info">${framework.tenFramework }</span>	
 														               	</c:forEach>
 												               		</p>
 												      			</div>
 												      			<div class="col-md-4">
-												      				<p><strong>Database: </strong>
+												      				<p><strong><spring:message code="label.databaseSub" />: </strong>
 													      				<c:forEach items="${duAn.database}" var="database" varStatus="stt">
 														               		<span class="tag tag-default tag-info">${database.tenDatabase }</span>	
 														               	</c:forEach>
@@ -368,7 +365,7 @@
 									    </div>
 									  </div> 
 								   </div>
-								<%-- </form:form> --%>
+								</form:form>
 	                        </div>
 	                     </div>
 	                     <div style="text-align: center; border-top: 1px solid #d3dce9; padding: 20px 0; margin-top: 20px;" class="form-actions center">
