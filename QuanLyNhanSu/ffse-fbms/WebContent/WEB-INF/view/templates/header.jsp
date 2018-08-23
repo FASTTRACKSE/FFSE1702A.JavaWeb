@@ -336,11 +336,8 @@
             </li>
             <li class=" navigation-header"><span><spring:message code="label.quanLyNhanSu" /></span><i data-toggle="tooltip" data-placement="right" data-original-title="Quản lý nhân sự" class=" ft-minus"></i>
             </li>
-<<<<<<< HEAD
-            <li class=" nav-item"><a href="javascript:void(0)"><i class="ft-home"></i><span data-i18n="" class="menu-title"><spring:message code="label.quanLyPhongBan" /></span></a>
-=======
-            <li class=" nav-item phong_ban"><a href="javascript:void(0)"><i class="ft-home"></i><span data-i18n="" class="menu-title">Quản lý phòng ban</span></a>
->>>>>>> 87b874081daaa7fc735a7cc5e14c5578a2f46d2a
+            
+            <li class=" nav-item phong_ban"><a href="javascript:void(0)"><i class="ft-home"></i><span data-i18n="" class="menu-title"><spring:message code="label.quanLyPhongBan" /></span></a>
                <ul class="menu-content">
                   <li class="nsphong_ban"><a href="<c:url value = "/ns/phong_ban"/>" class="menu-item"><spring:message code="label.danhSachPhongBan" /></a>
                   </li>
@@ -348,11 +345,8 @@
                   </li>
                </ul>
             </li>
-<<<<<<< HEAD
-            <li class=" nav-item"><a href="javascript:void(0)"><i class="ft-award"></i><span data-i18n="" class="menu-title"><spring:message code="label.quanLyChucDanh" /></span></a>
-=======
-            <li class=" nav-item chuc_danh"><a href="javascript:void(0)"><i class="ft-award"></i><span data-i18n="" class="menu-title">Quản lý chức danh</span></a>
->>>>>>> 87b874081daaa7fc735a7cc5e14c5578a2f46d2a
+            
+            <li class=" nav-item chuc_danh"><a href="javascript:void(0)"><i class="ft-award"></i><span data-i18n="" class="menu-title"><spring:message code="label.quanLyChucDanh" /></span></a>
                <ul class="menu-content">
                   <li class="nschuc_danh"><a href="<c:url value = "/ns/chuc_danh"/>" class="menu-item"><spring:message code="label.danhSachChucDanh" /></a>
                   </li>
@@ -360,23 +354,15 @@
                   </li>
                </ul>
             </li>
-<<<<<<< HEAD
             <li class=" nav-item"><a href="javascript:void(0)"><i class="ft-users"></i><span data-i18n="" class="menu-title"><spring:message code="label.quanLyHoSo" /></span></a>
                <ul class="menu-content">
-                  <li><a href="javascript:void(0)" class="menu-item"><spring:message code="label.danhSachHoSo" /></a>
-=======
-            <li class=" nav-item ho_so"><a href="javascript:void(0)"><i class="ft-users"></i><span data-i18n="" class="menu-title">Quản lý hồ sơ</span></a>
-               <ul class="menu-content">
-                  <li class="nsho_so pbho_so"><a href="javascript:void(0)" class="menu-item ">Danh sách hồ sơ</a>
->>>>>>> 87b874081daaa7fc735a7cc5e14c5578a2f46d2a
+                  
+            
+                  <li class="nsho_so pbho_so"><a href="javascript:void(0)" class="menu-item "><spring:message code="label.danhSachHoSo" /></a>
                   	<ul class="menu-content">
 					   <li class="nsho_so"><a href="<c:url value = "/ns/ho_so"/>" class="menu-item"><spring:message code="label.xemTatCa" /></a>
 					   </li>
-<<<<<<< HEAD
-					   <li><a href="javascript:void(0)" class="menu-item"><spring:message code="label.phongBan" /></a>
-=======
-					   <li class="pbho_so"><a href="javascript:void(0)" class="menu-item">Phòng ban</a>
->>>>>>> 87b874081daaa7fc735a7cc5e14c5578a2f46d2a
+					   <li class="pbho_so"><a href="javascript:void(0)" class="menu-item"><spring:message code="label.phongBan" /></a>
 					      <ul class="menu-content">
 					         <li class="PGDho_so"><a href="<c:url value = "/PGD/ho_so"/>" class="menu-item"><spring:message code="label.phongGiamDoc" /></a>
 					         </li>
@@ -398,23 +384,13 @@
                   </li>
                </ul>
             </li>
-<<<<<<< HEAD
             <li class=" nav-item"><a href="javascript:void(0)"><i class="ft-file-text"></i><span data-i18n="" class="menu-title"><spring:message code="label.quanLyHopDong" /></span></a>
                <ul class="menu-content">
-                  <li><a href="javascript:void(0)" class="menu-item"><spring:message code="label.danhSachHopDong" /></a>
-=======
-            <li class=" nav-item hop_dong"><a href="javascript:void(0)"><i class="ft-file-text"></i><span data-i18n="" class="menu-title">Quản lý hợp đồng</span></a>
-               <ul class="menu-content">
-                  <li class="nshop_dong pbhop_dong"><a href="javascript:void(0)" class="menu-item">Danh sách hợp đồng</a>
->>>>>>> 87b874081daaa7fc735a7cc5e14c5578a2f46d2a
+                  <li class="nshop_dong pbhop_dong"><a href="javascript:void(0)" class="menu-item"><spring:message code="label.danhSachHopDong" /></a>
                   	<ul class="menu-content">
 					   <li class="nshop_dong"><a href="<c:url value = "/ns/hop_dong"/>" class="menu-item"><spring:message code="label.xemTatCa" /></a>
 					   </li>
-<<<<<<< HEAD
-					   <li><a href="javascript:void(0)" class="menu-item"><spring:message code="label.phongBan" /></a>
-=======
-					   <li class="pbhop_dong"><a href="javascript:void(0)" class="menu-item">Phòng ban</a>
->>>>>>> 87b874081daaa7fc735a7cc5e14c5578a2f46d2a
+					   <li class="pbhop_dong"><a href="javascript:void(0)" class="menu-item"><spring:message code="label.phongBan" /></a>
 					      <ul class="menu-content">
 					         <li class="PGDhop_dong"><a href="<c:url value = "/PGD/hop_dong"/>" class="menu-item"><spring:message code="label.phongGiamDoc" /></a>
 					         </li>
@@ -432,11 +408,8 @@
 					   </li>
 					</ul>
                   </li>
-<<<<<<< HEAD
                   <li class="nshop_dongadd"><a href="<c:url value = "/ns/hop_dong/add"/>" class="menu-item"><spring:message code="label.themHopDong" /></a>
                   </li>
-=======
->>>>>>> 87b874081daaa7fc735a7cc5e14c5578a2f46d2a
                </ul>
             </li>
          </ul>

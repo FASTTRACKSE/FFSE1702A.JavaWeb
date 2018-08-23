@@ -8,18 +8,14 @@
       <div class="content-wrapper">
          <div class="content-header row">
             <div class="content-header-left col-md-9 col-xs-12 mb-2">
-<<<<<<< HEAD
-               <h3 class="content-header-title mb-0"><spring:message code="label.themChucDanh" /></h3>
-=======
                <h3 class="content-header-title mb-0">
                		<c:if test="${!empty chucdanh.maChucDanh }">
-                      SỬA CHỨC DANH
+                      <spring:message code="label.suaChucDanh" />
                      </c:if>
                      <c:if test="${empty chucdanh.maChucDanh }">
-                      THÊM CHỨC DANH
+                      <spring:message code="label.themChucDanh" />
                      </c:if>
 			   </h3>
->>>>>>> 87b874081daaa7fc735a7cc5e14c5578a2f46d2a
                <div class="row breadcrumbs-top">
                   <div class="breadcrumb-wrapper col-xs-12">
                      <ol class="breadcrumb">
@@ -29,17 +25,13 @@
                         </li>
                         <li class="breadcrumb-item"><a href="<c:url value='/ns/chuc_danh'></c:url>"><spring:message code="label.quanLyChucDanh" /></a>
                         </li>
-<<<<<<< HEAD
-                        <li class="breadcrumb-item active"><spring:message code="label.themChucDanh" />
-=======
                         <li class="breadcrumb-item active">
-						<c:if test="${!empty chucdanh.maChucDanh }">
-                      		SỬA CHỨC DANH
+						<c:if test="${!empty chucdanh.maChucDanh }">	
+                      		<spring:message code="label.suaChucDanh" />
                      	</c:if>
                      	<c:if test="${empty chucdanh.maChucDanh }">
-                      		THÊM CHỨC DANH
+                      		<spring:message code="label.themChucDanh" />
                      	</c:if>
->>>>>>> 87b874081daaa7fc735a7cc5e14c5578a2f46d2a
                         </li>
                      </ol>
                   </div>
@@ -77,19 +69,9 @@
 		                        <div class="col-md-6 offset-md-3">
 		                          <div class="form-body" style="margin-top: 1rem;">
 		                            <div class="form-group">
-<<<<<<< HEAD
 		                              <label><spring:message code="label.maChucDanh" /></label>
 		                              <form:input disabled = "${!empty chucdanh.maChucDanh ? 'true' : 'false' }" path="maChucDanh" class="form-control" placeholder="..."/>
-=======
-		                              <label>Mã chức danh</label>
-		                              <c:if test="${!empty chucdanh.maChucDanh }">
-		                              	<form:input path="maChucDanh" class="form-control" readonly="true" placeholder="Mã chức danh..."/>
-		                              </c:if>
-		                              <c:if test="${empty chucdanh.maChucDanh }">
-		                              	<form:input path="maChucDanh" class="form-control"  placeholder="Mã chức danh..."/>
-		                              	<form:errors path="maChucDanh" cssClass="invalid-feedback d-block" />
-		                              </c:if>
->>>>>>> 87b874081daaa7fc735a7cc5e14c5578a2f46d2a
+		                              <form:errors path="maChucDanh" cssClass="invalid-feedback d-block" />
 		                            </div>
 		                            <div class="form-group">
 		                              <label><spring:message code="label.tenChucDanh" /></label>

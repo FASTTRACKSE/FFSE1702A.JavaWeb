@@ -54,16 +54,10 @@
 										class="table table-striped table-bordered zero-configuration">
 										<thead>
 											<tr>
-<<<<<<< HEAD
+												<th>#</th>
 												<th><spring:message code="label.maPhongBan" /></th>
 												<th><spring:message code="label.tenPhongBan" /></th>
 												<th></th>
-=======
-												<th>#</th>
-												<th>Mã phòng ban</th>
-												<th>Tên phòng ban</th>
-												<th>Hành động</th>
->>>>>>> 87b874081daaa7fc735a7cc5e14c5578a2f46d2a
 											</tr>
 										</thead>
 										<tbody>
