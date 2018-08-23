@@ -46,4 +46,10 @@ public class QuanLyChucDanhServiceImpl implements QuanLyChucDanhService {
 	public void removeChucDanh(String maChucDanh) {
 		this.quanlychucdanhDAO.removeChucDanh(maChucDanh);
 	}
+
+	@Override
+	@Transactional
+	public boolean checkChucDanh(String maChucDanh) {
+		return this.quanlychucdanhDAO.checkChucDanh(maChucDanh);
+	}
 }

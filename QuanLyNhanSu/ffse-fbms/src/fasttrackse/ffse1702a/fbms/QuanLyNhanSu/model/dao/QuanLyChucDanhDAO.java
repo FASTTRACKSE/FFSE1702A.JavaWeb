@@ -10,4 +10,5 @@ public interface QuanLyChucDanhDAO {
 	public void updateChucDanh(ChucDanh p);
 	public ChucDanh getChucDanhByMa(String maChucDanh);
 	public void removeChucDanh(String maChucDanh);
+	public boolean checkChucDanh(String maChucDanh);
 }

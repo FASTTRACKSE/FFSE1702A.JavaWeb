@@ -2,6 +2,7 @@ package fasttrackse.ffse1702a.fbms.QuanLyNhanSu.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,16 +34,23 @@ public class QuanLyChucDanhController {
 	@RequestMapping(value = "/ns/chuc_danh/add", method = RequestMethod.GET)
 	public String addChucDanh(Model model) {
 
+		model.addAttribute("add", "TRUE");
 		model.addAttribute("chucdanh", new ChucDanh());
 		return "QuanLyNhanSu/QuanLyChucDanh/FormChucDanh";
 	}
 
 	// For add and update person both
 	@RequestMapping(value = "/ns/chuc_danh/save", method = RequestMethod.POST)
-	public String addPerson(@ModelAttribute("chucdanh") @Valid ChucDanh p, BindingResult bindingResult, Model model) {
+	public String addPerson(@ModelAttribute("chucdanh") @Valid ChucDanh p, BindingResult bindingResult, Model model,
+			HttpServletRequest request) {
 		ChucDanh cd = this.quanlychucdanhService.getChucDanhByMa(p.getMaChucDanh());
-		System.out.println(p.getMaChucDanh());
-		if (bindingResult.hasErrors()) {
+		boolean addAction= request.getParameter("add") != null;
+		boolean checkMaChucDanh = this.quanlychucdanhService.checkChucDanh(p.getMaChucDanh());
+		if (addAction) {
+			model.addAttribute("add", "TRUE");
+			model.addAttribute("checkMaChucDanh", checkMaChucDanh);
+		}
+		if (bindingResult.hasErrors() || (addAction && !checkMaChucDanh)) {
 			return "QuanLyNhanSu/QuanLyChucDanh/FormChucDanh";
 		}
 		

@@ -14,4 +14,6 @@ public interface QuanLyChucDanhService {
 	public ChucDanh getChucDanhByMa(String maChucDanh);
 	
 	public void removeChucDanh(String maChucDanh);
+	
+	public boolean checkChucDanh(String maChucDanh) ;
 }
