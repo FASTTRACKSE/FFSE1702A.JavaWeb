@@ -11,15 +11,17 @@
 	<div class="content-wrapper">
 		<div class="content-header row">
 			<div class="content-header-left col-md-9 col-xs-12 mb-2">
-				<h3 class="content-header-title mb-0">Thông tin hợp đồng</h3>
-				<div class="row breadcrumbs-top">
-					<div class="breadcrumb-wrapper col-xs-12">
-						<ol class="breadcrumb">
-							<li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
-							<li class="breadcrumb-item"><a href="#">Quản lý nhân sự</a>
-							</li>
-							<li class="breadcrumb-item"><a href="#">Quản lý hồ sơ</a></li>
-							<li class="breadcrumb-item active">Thông tin hợp đồng</li>
+				<h3 class="content-header-title mb-0"><spring:message code="label.thongTinHopDong" /></h3>
+               <div class="row breadcrumbs-top">
+                  <div class="breadcrumb-wrapper col-xs-12">
+                     <ol class="breadcrumb">
+                       	<li class="breadcrumb-item"><a href="<c:url value = "/"/>"><spring:message code="label.trangChu" /></a>
+                        </li>
+                        <li class="breadcrumb-item"><a href="<c:url value = "/ns/ho_so"/>"><spring:message code="label.quanLyNhanSu" /></a>
+                        </li>
+                        <li class="breadcrumb-item"><a href="<c:url value = "/ns/hop_dong"/>"><spring:message code="label.quanLyHopDong" /></a>
+                        </li>
+                        <li class="breadcrumb-item active"><spring:message code="label.thongTinHopDong" />
 						</ol>
 					</div>
 				</div>
@@ -67,8 +69,7 @@
 					<div class="col-md-12">
 						<div class="card">
 							<div class="card-header">
-								<h4 class="card-title" id="horz-layout-basic">Thông tin hồ
-									sơ</h4>
+								<h4 class="card-title" id="horz-layout-basic"><spring:message code="label.thongTinHopDong" /></h4>
 								<a class="heading-elements-toggle"><i
 									class="fa fa-ellipsis-v font-medium-3"></i></a>
 								<div class="heading-elements">
@@ -90,7 +91,7 @@
 													<div class="row">
 														<div class="col-md-6">
 															<div class="form-group">
-																<label>Mã nhân viên</label>
+																<label><spring:message code="label.maNhanVien" /></label>
 																<fmt:formatNumber type="number" var="maNhanVienFormat"
 																	minIntegerDigits="5" groupingUsed="false"
 																	value="${hoSoNhanVien.maNhanVien}" />
@@ -100,7 +101,7 @@
 														</div>
 														<div class="col-md-6">
 															<div class="form-group">
-																<label>Trạng thái hồ sơ</label> <select
+																<label><spring:message code="label.trangThai" /></label> <select
 																	class="form-control" disabled>
 																	<option>${hoSoNhanVien.trangThai == 1 ? "Đang làm việc" : "Nghỉ việc"}</option>
 																</select>
@@ -110,7 +111,7 @@
 													<div class="row">
 														<div class="col-md-6">
 															<div class="form-group">
-																<label>Phòng ban</label> <select class="form-control"
+																<label><spring:message code="label.phongBan" /></label> <select class="form-control"
 																	disabled>
 																	<option>${hoSoNhanVien.phongBan.tenPhongBan}</option>
 																</select>
@@ -118,7 +119,7 @@
 														</div>
 														<div class="col-md-6">
 															<div class="form-group">
-																<label>Chức danh</label> <select class="form-control"
+																<label><spring:message code="label.chucDanh" /></label> <select class="form-control"
 																	disabled>
 																	<option>${hoSoNhanVien.chucDanh.tenChucDanh}</option>
 																</select>
@@ -132,12 +133,12 @@
 												</div>
 											</div>
 											<h4 class="form-section">
-												<i class="ft-user"></i> Thông tin hợp đồng
+												<i class="ft-user"></i> <spring:message code="label.thongTinHopDong" />
 											</h4>
 											<div class="row">
 												<div class="col-md-4">
 													<div class="form-group">
-														<label>Mã hợp đồng</label>
+														<label><spring:message code="label.maHopDong" /></label>
 														<form:input class="form-control" path="maHopDong" value="${maHopDongFormat}"  readonly="true" disabled="true"/>
 															<fmt:formatNumber type="number" var="maHopDongFormat" minIntegerDigits="5" groupingUsed="false" value="${quanLyHopDong.maHopDong}" />
 										              
@@ -149,9 +150,9 @@
 												</div>
 												<div class="col-md-4">
 													<div class="form-group">
-														<label>Tên hợp đồng</label>
+														<label><spring:message code="label.tenHopDong" /></label>
 														<form:select multiple="single" path="loaiHopDong.maLoaiHopDong" class="form-control">
-															<form:option selected="true" disabled="true" value="0" label="Chọn hợp đồng" />
+															<form:option selected="true" disabled="true" value="0" ><spring:message code="label.chonHopDong" /></form:option>
 															<form:options items="${listLoaiHopDong}" itemValue="maLoaiHopDong" itemLabel="tenHopDong" />
 														</form:select>
 														<form:errors path="loaiHopDong" cssClass="invalid-feedback d-block" />
@@ -159,13 +160,12 @@
 												</div>
 												<div class="col-md-4">
 													<div class="form-group">
-														<label>Trạng Thái</label>
+														<label><spring:message code="label.trangThai" /></label>
 														<form:select multiple="single" path="trangThai"
 															class="form-control">
-															<form:option selected="true" disabled="true" value="0"
-																label="Chọn trạng thái" />
-															<form:option value="1" label="Còn hợp đồng" />
-															<form:option value="2" label="Hết hợp đồng" />
+															<form:option selected="true" disabled="true" value="0"><spring:message code="label.chonTrangThai" /></form:option>
+															<form:option value="1"><spring:message code="label.conHopDong" /></form:option>
+															<form:option value="2"><spring:message code="label.hetHopDong" /></form:option>
 														</form:select>
 														<form:errors path="trangThai" cssClass="invalid-feedback d-block" />
 													</div>
@@ -174,25 +174,25 @@
 											<div class="row">
 												<div class="col-md-3">
 													<div class="form-group">
-														<label>Lương tháng 13</label>
+														<label><spring:message code="label.luongThang13" /></label>
 														 <form:select multiple="single" path="luongThang13" class="form-control">
-													   		  <form:option selected = "true" disabled = "true" value="" label="Chọn lương tháng 13" />
-													   		  <form:option value="1" label="Có" />
-													   		  <form:option value="2" label="Không" />
+													   		  <form:option selected = "true" disabled = "true" value=""><spring:message code="label.chonLuongThang13" /></form:option>
+													   		  <form:option value="1"><spring:message code="label.co" /></form:option>
+													   		  <form:option value="2" ><spring:message code="label.khong" /></form:option>
 											  			 </form:select>
 													</div>
 												</div>
 												<div class="col-md-3">
 													<div class="form-group">
-														<label>Số ngày phép</label>
+														<label><spring:message code="label.soNgayPhep" /></label>
 														<form:input class="form-control" path="soNgayPhep"
-															placeholder="Số Ngày Phép" />
+															placeholder="..." />
 														<form:errors path="soNgayPhep" cssClass="invalid-feedback d-block" />
 													</div>
 												</div>
 												<div class="col-md-3">
 													<div class="form-group">
-														<label>Ngày ký hợp đồng</label>
+														<label><spring:message code="label.ngayKyHopDong" /></label>
 														<form:input type="date" class="form-control" 
 															path="ngayKyKet" placeholder="Ngày ký kết"
 															data-toggle="tooltip" data-trigger="hover"
@@ -202,7 +202,7 @@
 												</div>
 												<div class="col-md-3">
 													<div class="form-group">
-														<label>Ngày kết thúc</label>
+														<label><spring:message code="label.ngayKetThucHopDong" /></label>
 														<form:input type="date" class="form-control"
 															path="ngayKetThuc" placeholder="Ngày kết thúc"
 															data-toggle="tooltip" data-trigger="hover"
@@ -214,10 +214,10 @@
 										</div>
 										<div class="form-actions center">
 											<button type="button" class="btn btn-warning mr-1">
-												<i class="ft-x"></i> Hủy
+												<i class="ft-x"></i> <spring:message code="label.huy" />
 											</button>
 											<button type="submit" class="btn btn-primary">
-												<i class="fa fa-check-square-o"></i> Lưu
+												<i class="fa fa-check-square-o"></i> <spring:message code="label.luu" />
 											</button>
 										</div>
 									</form:form>

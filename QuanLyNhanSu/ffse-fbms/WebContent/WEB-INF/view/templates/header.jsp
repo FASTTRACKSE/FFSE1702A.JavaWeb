@@ -408,8 +408,6 @@
 					   </li>
 					</ul>
                   </li>
-                  <li class="nshop_dongadd"><a href="<c:url value = "/ns/hop_dong/add"/>" class="menu-item"><spring:message code="label.themHopDong" /></a>
-                  </li>
                </ul>
             </li>
          </ul>

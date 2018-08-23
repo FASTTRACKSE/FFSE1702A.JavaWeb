@@ -161,13 +161,13 @@
 												</div>
 												<div class="col-md-3">
 													<div class="form-group">
-														<label>Ngày ký hợp đồng</label>
+														<label><spring:message code="label.ngayKyHopDong" /></label>
 														<div style="word-wrap: break-word;" class="form-control well">${hopDong.ngayKyKet }</div>
 													</div>
 												</div>
 												<div class="col-md-3">
 													<div class="form-group">
-														<label>Ngày kết thúc</label>
+														<label><spring:message code="label.ngayKetThucHopDong" /></label>
 														<div style="word-wrap: break-word;" class="form-control well">${hopDong.ngayKetThuc }</div>
 													</div>
 												</div>

@@ -14,11 +14,11 @@
                <div class="row breadcrumbs-top">
                   <div class="breadcrumb-wrapper col-xs-12">
                      <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="javascript:void(0)"><spring:message code="label.trangChu" /></a>
+                       	<li class="breadcrumb-item"><a href="<c:url value = "/"/>"><spring:message code="label.trangChu" /></a>
                         </li>
-                        <li class="breadcrumb-item"><a href="javascript:void(0)"><spring:message code="label.quanLyNhanSu" /></a>
+                        <li class="breadcrumb-item"><a href="<c:url value = "/ns/ho_so"/>"><spring:message code="label.quanLyNhanSu" /></a>
                         </li>
-                        <li class="breadcrumb-item"><a href="<c:url value = "/ns/ho_so"/>"><spring:message code="label.quanLyHoSo" /></a>
+                        <li class="breadcrumb-item"><a href="<c:url value = "/ns/hop_dong"/>"><spring:message code="label.quanLyHopDong" /></a>
                         </li>
                         <li class="breadcrumb-item active"><spring:message code="label.danhSachHopDong" />
                         </li>
@@ -39,7 +39,7 @@
                            <%-- <div style="margin-top: 1.5rem">
                               <div style="margin: 0 auto!important; <?php echo isset($_SESSION['success_msg']) ? 'display:block' : 'display:none'; ?>" class="alert alert-icon-left alert-success alert-dismissible mb-2" role="alert">
                                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                    <span aria-hidden="true">×</span>
+                                    <span aria-hidden="true">◊</span>
                                  </button>
                                  xxxxxxxxxxxxxxxxxxxxxxx
                               </div>
@@ -69,10 +69,10 @@
                                        <th><spring:message code="label.maNhanVien" /></th>
                                        <th><spring:message code="label.hoDem" /></th>
                                        <th><spring:message code="label.ten" /></th>
-                                       <th>Tên hợp đồng</th>
-                                       <th>Ngày ký kết</th>
-                                       <th>Ngày kết thúc</th>
-                                       <th>Trạng thái</th>
+                                       <th><spring:message code="label.tenHopDong" /></th>
+                                       <th><spring:message code="label.ngayKyHopDong" /></th>
+                                       <th><spring:message code="label.ngayKetThucHopDong" /></th>
+                                       <th><spring:message code="label.trangThai" /></th>
                                        <th></th>
                                     </tr>
                                  </thead>
@@ -86,48 +86,15 @@
                                        <td>${hshd.ngayKyKet}</td>    
                                        <td>${hshd.ngayKetThuc}</td>   
                                        <td>
-                                       ${hshd.trangThai == 1 ? "Còn hợp đồng" : "Hết hợp đồng"}</td>                                    
+                                       		<c:if test="${hshd.trangThai == 1}"><spring:message code="label.conHopDong" /></c:if>
+						               		<c:if test="${hshd.trangThai == 2}"><spring:message code="label.hetHopDong" /></c:if>
+                                       </td>                                    
                                        <td style="letter-spacing: 5px; min-width: 75px;text-align: center !important;">
+                                          <a href="<c:url value = "/ns/hop_dong/xem_hop_dong/${hshd.hoSoNhanVien.maNhanVien}"/>"><i class="fa fa-eye"></i></a>
                                           <a href="<c:url value = "/ns/hop_dong/edit/${hshd.hoSoNhanVien.maNhanVien}"/>"><i class="fa fa-pencil"></i></a>
                                        </td>
                                     </tr>
                                     </c:forEach>
-                                    <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                       <div class="modal-dialog">
-                                          <div class="modal-content">
-      
-                                             <div class="modal-header">
-                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                <h4 class="modal-title" id="myModalLabel">Confirm Delete</h4>
-                                             </div>
-      
-                                             <div class="modal-body">
-                                                <p>You are about to delete one product, this procedure is irreversible.</p>
-                                                <p>Do you want to proceed?</p>
-                                                <p class="debug-url"></p>
-                                             </div>
-      
-                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                                                <a class="btn btn-danger btn-ok">Delete</a>
-                                             </div>
-                                          </div>
-                                       </div>
-                                    </div>
-                                    <script>
-                                    	window.onload = function(){
-                                    		$('#confirm-delete').on('show.bs.modal', function(e) {
-    	                                        $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
-    	                                    });
-                                    		$("#datatable").dataTable().fnDestroy();
-  									        $("#datatable").dataTable({
-  									    	  responsive: true,
-  									    	  "order": [[6 , "asc" ], [0, "desc"]],
-  									          "bServerSide" : true,
-  									          "sAjaxSource" : "/ffse-fbms/${maPhongBan}/getListHopDong",
-  									        });
-                                    	};
-                                    </script>
                                  </tbody>
                               </table>
                            </div>
