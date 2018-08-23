@@ -88,7 +88,7 @@
 				</div>
 			</c:if>
 			<!-- End Show message -->
-			
+
 			<div class="row">
 				<div class="col-xs-12">
 					<div class="card">
@@ -112,6 +112,7 @@
 										<tr>
 											<th>STT</th>
 											<th>Tên đăng nhập</th>
+											<th>Reset password</th>
 											<th>Trạng thái</th>
 											<th>Hành động</th>
 										</tr>
@@ -124,9 +125,13 @@
 													<td>${counter.index + 1}</td>
 													<td>${item.maNhanVien}</td>
 													<td class="tbl_actions"><a
+														href="<c:url value="/tai-khoan/resetPassword/${item.maNhanVien}" />"
+														title="Reset Password"> <i class="fa fa-check green" aria-hidden="true"></i>Reset password
+													</a></td>
+													<td class="tbl_actions"><a
 														href="<c:url value="/tai-khoan/kich-hoat/${item.maNhanVien}" />"
 														title="Hiển thị"> <c:choose>
-																<c:when test="${item.trang_thai == 1}">
+																<c:when test="${item.trangThai == 1}">
 																	<i class="fa fa-check green" aria-hidden="true"></i>Hiển thị
 																</c:when>
 																<c:otherwise>
@@ -135,9 +140,8 @@
 															</c:choose>
 													</a></td>
 													<td class="tbl_actions"><a
-														href="<c:url value="/tai-khoan/sua/${item.maNhanVien}" />" title="Sửa">
-															<i class="fa fa-pencil-square-o blue" aria-hidden="true"></i>Sửa
-													</a> <a href="<c:url value="/tai-khoan/xoa/${item.maNhanVien}" />" title="Xóa"
+														href="<c:url value="/tai-khoan/xoa/${item.maNhanVien}" />"
+														title="Xóa"
 														onclick="return confirm('Bạn có chắc muốn xóa ?')"> <i
 															class="fa fa-trash red" aria-hidden="true"></i>Delete
 													</a></td>
@@ -182,11 +186,11 @@
 	</div>
 </div>
 <script type="text/javascript">
-window.setTimeout(function() {
-	$(".alert").fadeTo(500, 0).slideUp(500, function(){
-		$(this).remove(); 
-	});
-}, 2500);
+	window.setTimeout(function() {
+		$(".alert").fadeTo(500, 0).slideUp(500, function() {
+			$(this).remove();
+		});
+	}, 2500);
 </script>
 
 <jsp:include page="/WEB-INF/view/templates/footer.jsp" />

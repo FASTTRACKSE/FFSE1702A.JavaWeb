@@ -9,13 +9,13 @@
 		<!-- Path -->
 		<div class="content-header row">
 			<div class="content-header-left col-md-6 col-xs-12 mb-2">
-				<h3 class="content-header-title mb-0">Sửa chức năng</h3>
+				<h3 class="content-header-title mb-0">Sửa tài khoản</h3>
 				<div class="row breadcrumbs-top">
 					<div class="breadcrumb-wrapper col-xs-12">
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item"><a href='<c:url value="/home" />'>Home</a></li>
-							<li class="breadcrumb-item"><a href='<c:url value="/chuc-nang/danh-sach" />'>Danh sách chức năng</a></li>
-							<li class="breadcrumb-item active">Sửa chức năng</li>
+							<li class="breadcrumb-item"><a href='<c:url value="/tai-khoan/" />'>Danh sách tài khoản</a></li>
+							<li class="breadcrumb-item active">Sửa tài khoản</li>
 						</ol>
 					</div>
 				</div>
@@ -26,13 +26,13 @@
 		<div class="content-body">
 			<div class="main-content">
 				<div class="row">
-					<c:url var="post_url"  value="/chuc-nang/sua/luu" />
-					<form:form method="POST" modelAttribute="chucNang" action="${post_url}">
-						<form:input type="hidden" path="ma_chuc_nang" value="${chucNang.ma_chuc_nang}"/>
-						<form:input type="hidden" path="trang_thai" value="${chucNang.trang_thai}"/>
+					<c:url var="post_url"  value="/tai-khoan/sua/luu" />
+					<form:form method="POST" modelAttribute="taiKhoan" action="${post_url}">
+						<form:input type="hidden" path="maNhanVien" value="${taiKhoan.maNhanVien}"/>
+						<form:input type="hidden" path="trangThai" value="${taiKhoan.trangThai}"/>
 						<div class="form-group col-sm-6">
-						  	<label>Tên chức năng</label>
-						  	<form:input class="form-control" path="ten_chuc_nang" value="${chucNang.ten_chuc_nang}" placeholder="Tên chức năng" />
+						  	<label>Tên tài khoản</label>
+						  	<form:input class="form-control" path="ten_chuc_nang" value="${taiKhoan.maNhanVien}" />
 						</div>
 						<div class="col-sm-12 text-center">
 							<button type="submit" class="btn btn-success">Lưu thông tin</button>

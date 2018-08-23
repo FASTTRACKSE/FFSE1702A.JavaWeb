@@ -35,6 +35,7 @@
 						<div class="form-group col-sm-6">
 						  	<label>Mã chức danh</label>
 						  	<form:input class="form-control" path="maChucDanh" placeholder="Mã chức danh" />
+						  	<form:errors path="maChucDanh" cssClass="error" />
 						</div>
 						<div class="col-sm-12 text-center">
 							<button type="submit" class="btn btn-success">Lưu thông tin</button>
