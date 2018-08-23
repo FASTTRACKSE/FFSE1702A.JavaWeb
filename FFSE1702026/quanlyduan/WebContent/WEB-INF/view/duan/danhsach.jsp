@@ -72,8 +72,149 @@
 				</div>
 
 			</div>
+			<div class="text-xs-right">
+			
+				<c:set var="count" scope="page" value="${total}" />
+				<c:if test="${count>=3 }">
+					<ul class="pagination firstLast1-links">
+
+						<!--First-->
+						<li
+							class="page-item <c:set var="page" scope="page" value="${param.page}"/>  
+			<c:choose>  
+			    <c:when test="${page==1}">disabled</c:when>  
+			    <c:when test="${page==null}">disabled</c:when>    
+			</c:choose>">
+							<a class="page-link" href="list?page=1">First</a>
+						</li>
+
+						<!--Arrow left-->
+						<li
+							class="page-item <c:choose>  
+			    <c:when test="${page==1}">disabled</c:when>  
+			    <c:when test="${page==null}">disabled</c:when>    
+			</c:choose>">
+							<a class="page-link" aria-label="Previous"
+							href="<c:if test="${param.page !=null }" ><c:if test="${param.page !=1 }" >list?page=${param.page-1 }</c:if></c:if>">
+								<span aria-hidden="true">&laquo;</span> <span class="sr-only">Previous</span>
+						</a>
+						</li>
+
+						<!--Numbers-->
+						<c:set var="page" scope="page" value="${param.page }"></c:set>
+
+						<c:if test="${param.page != null }">
+							<c:if test="${page<count }">
+								<c:if test="${page==1 }">
+									<c:forEach var="j" begin="1" end="3">
+										<li class="page-item <c:if test="${j==1 }">active</c:if>"><a
+											href="list?page=${j }" class="page-link">${j }</a></li>
+									</c:forEach>
+								</c:if>
+
+								<c:if test="${page!=1 }">
+									<c:forEach var="j" begin="${page-1 }" end="${page+1 }">
+										<li class="page-item <c:if test="${j==page }">active</c:if>"><a
+											href="list?page=${j }" class="page-link">${j }</a></li>
+									</c:forEach>
+								</c:if>
+
+							</c:if>
+							<c:if test="${page>=count }">
+								<c:forEach var="j" begin="${page-1 }" end="${page }">
+									<li class="page-item <c:if test="${j==page }">active</c:if>"><a
+										href="list?page=${j }" class="page-link">${j }</a></li>
+								</c:forEach>
+							</c:if>
+
+						</c:if>
+						<c:if test="${param.page == null }">
+							<c:forEach var="j" begin="1" end="3">
+								<li class="page-item <c:if test="${j==page }">active</c:if>"><a
+									href="list?page=${j }" class="page-link">${j }</a></li>
+							</c:forEach>
+						</c:if>
+
+
+						<!--Arrow right-->
+						<li
+							class="page-item  <c:if test="${page==count }">disabled</c:if>">
+							<a class="page-link" aria-label="Next"
+							href="<c:if test="${param.page !=null }"><c:if test="${page !=count }">list?page=${page+1 }</c:if></c:if>">
+								<span aria-hidden="true">&raquo;</span> <span class="sr-only">Next</span>
+						</a>
+						</li>
+
+						<!--Last-->
+						<li
+							class="page-item  <c:if test="${page!= null }"><c:if test="${page== count }">disabled</c:if></c:if>">
+							<a class="page-link" href="list?page=${count }">Last</a>
+						</li>
+
+					</ul>
+				</c:if>
+				<c:if test="${total==2 }">
+					<ul class="pagination firstLast1-links">
+
+						<!--First-->
+						<li
+							class="page-item <c:set var="page" scope="page" value="${param.page}"/>  
+			<c:choose>  
+			    <c:when test="${page==1}">disabled</c:when>  
+			    <c:when test="${page==null}">disabled</c:when>    
+			</c:choose>">
+							<a class="page-link" href="list?page=1">First</a>
+						</li>
+
+						<!--Arrow left-->
+						<li
+							class="page-item <c:choose>  
+			    <c:when test="${page==1}">disabled</c:when>  
+			    <c:when test="${page==null}">disabled</c:when>    
+			</c:choose>">
+							<a class="page-link" aria-label="Previous"
+							href="<c:if test="${param.page !=null }" ><c:if test="${param.page !=1 }" >list?page=1</c:if></c:if>">
+								<span aria-hidden="true">&laquo;</span> <span class="sr-only">Previous</span>
+						</a>
+						</li>
+
+						<!--Numbers-->
+						<c:set var="page" scope="page" value="${param.page }"></c:set>
+
+
+						<li
+							class="page <c:if test="${page==1||page==null }">active</c:if> page-item"><a
+							href="?page=1" class="page-link">1</a></li>
+						<li class="page <c:if test="${page==2 }">active</c:if> page-item"><a
+							href="?page=2" class="page-link">2</a></li>
+
+
+
+						<!--Arrow right-->
+						<li
+							class="page-item  <c:if test="${page==count }">disabled</c:if>">
+							<a class="page-link" aria-label="Next"
+							href="<c:if test="${param.page !=null }"><c:if test="${page !=count }">list?page=${page+1 }</c:if></c:if>">
+								<span aria-hidden="true">&raquo;</span> <span class="sr-only">Next</span>
+						</a>
+						</li>
+
+						<!--Last-->
+						<li
+							class="page-item  <c:if test="${page!= null }"><c:if test="${page== count }">disabled</c:if></c:if>">
+							<a class="page-link" href="list?page=${count }">Last</a>
+						</li>
+
+					</ul>
+
+
+				</c:if>
+
+			</div>
+
 		</div>
 	</div>
+
 </div>
 
 <script>

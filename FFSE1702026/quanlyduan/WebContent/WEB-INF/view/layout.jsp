@@ -33,7 +33,7 @@
 
 	<%@ include file="layout/menu.jsp"%>
 
-	<%-- <h3 style="float:right">${url }</h3> --%>
+
 
 
 	<div class="app-content content container-fluid">
@@ -45,11 +45,11 @@
 					</h3>
 					<div class="row breadcrumbs-top">
 						<div class="breadcrumb-wrapper col-xs-12">
-							<ol class="breadcrumb">
+							<!-- <ol class="breadcrumb">
 								<li class="breadcrumb-item"><a href="index.html">Home</a></li>
 								<li class="breadcrumb-item"><a href="#">Tables</a></li>
 								<li class="breadcrumb-item active">Table Styling</li>
-							</ol>
+							</ol> -->
 						</div>
 					</div>
 				</div>

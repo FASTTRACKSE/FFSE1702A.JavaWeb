@@ -1,5 +1,6 @@
 eclipse.preferences.version=1
 encoding//WebContent/WEB-INF/view/layout.jsp=UTF-8
+encoding//WebContent/WEB-INF/view/layout/header_navbar.jsp=UTF-8
 encoding//WebContent/WEB-INF/view/ngonngu/create.jsp=UTF-8
 encoding//WebContent/resources/i18n/messages_vi.properties=UTF-8
 encoding//src/main/java/fasttrackse1702a/fbms/quanlyduan/controller/DatabaseController.java=UTF-8
