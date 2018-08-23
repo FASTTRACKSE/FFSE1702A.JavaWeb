@@ -2,6 +2,7 @@ package fasttrackse.ffse1702a.fbms.QuanLyNhanSu.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,10 +13,12 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import fasttrackse.ffse1702a.fbms.QuanLyNhanSu.model.entity.HoSoNhanVien;
 import fasttrackse.ffse1702a.fbms.QuanLyNhanSu.model.entity.HopDong;
 import fasttrackse.ffse1702a.fbms.QuanLyNhanSu.model.entity.LoaiHopDong;
+import fasttrackse.ffse1702a.fbms.QuanLyNhanSu.service.DatatableService;
 import fasttrackse.ffse1702a.fbms.QuanLyNhanSu.service.LoaiHopDongService;
 import fasttrackse.ffse1702a.fbms.QuanLyNhanSu.service.QuanLyHoSoService;
 import fasttrackse.ffse1702a.fbms.QuanLyNhanSu.service.QuanLyHopDongService;
@@ -29,23 +32,35 @@ public class QuanLyHopDongController {
 	private LoaiHopDongService loaiHopDongService;
 	@Autowired
 	private QuanLyHopDongService quanLyHopDongService;
-	
+	@Autowired
+	private DatatableService datatableService;
+
 	@RequestMapping(value = "/{maPhongBan}/hop_dong", method = RequestMethod.GET)
-	public String listHopDong(@PathVariable("maPhongBan") String maPhongBan,Model model) {
-		if (maPhongBan.equals("ns")) {
-			model.addAttribute("listHopDong", this.quanLyHopDongService.getAllHopDong());
-		} else {
-			model.addAttribute("listHopDong", this.quanLyHopDongService.getHopDongByPhongBan(maPhongBan));
-		}
-		
+	public String viewHopDong(@PathVariable("maPhongBan") String maPhongBan, Model model) {
+		model.addAttribute("maPhongBan", maPhongBan);
 		return "QuanLyNhanSu/QuanLyHopDong/HopDong";
 	}
 
+	@RequestMapping(value = "/{maPhongBan}/getListHopDong", produces = "text/plain;charset=UTF-8")
+	@ResponseBody
+	public String listHopDong(@PathVariable("maPhongBan") String maPhongBan, Model model, HttpServletRequest request) {
+
+		int iDisplayStart = Integer.parseInt(request.getParameter("iDisplayStart"));
+		int iDisplayLength = Integer.parseInt(request.getParameter("iDisplayLength"));
+		String sql = this.quanLyHopDongService.getSQL(request, maPhongBan);
+		List<HopDong> listHopDong = this.quanLyHopDongService.getAllHopDong(iDisplayStart, iDisplayLength, sql);
+
+		String recordsTotal = this.quanLyHopDongService.getRecordsTotal(maPhongBan);
+		String recordsFiltered = this.quanLyHopDongService.getRecordsFiltered(sql);
+		String json = this.datatableService.getJsonHopDong(recordsTotal, recordsFiltered, listHopDong);
+
+		return json;
+	}
 
 	@RequestMapping(value = "/ns/hop_dong/edit/{maNhanVien}", method = RequestMethod.GET)
 	public String editQuanLyHopDong(@PathVariable("maNhanVien") int maNhanVien, Model model) {
 		HoSoNhanVien hsnv = this.quanLyHoSoService.getHoSoNhanVienById(maNhanVien);
-		
+
 		model.addAttribute("hoSoNhanVien", hsnv);
 		HopDong hopDong = new HopDong();
 		hopDong.setMaHopDong(Integer.valueOf(this.quanLyHopDongService.getAutoId()));
@@ -53,7 +68,7 @@ public class QuanLyHopDongController {
 		// nếu nv có hợp đồng
 		if (listHD.size() != 0) {
 			// lấy cái mới nhất
-			HopDong hd = listHD.get(listHD.size()-1);
+			HopDong hd = listHD.get(listHD.size() - 1);
 			if (hd.getTrangThai() == 1) {
 				hopDong = hd;
 			}

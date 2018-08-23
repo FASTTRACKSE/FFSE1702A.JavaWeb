@@ -76,6 +76,7 @@
                                        <th>Tên hợp đồng</th>
                                        <th>Ngày ký kết</th>
                                        <th>Ngày kết thúc</th>
+                                       <th>Trạng thái</th>
                                        <th></th>
                                     </tr>
                                  </thead>
@@ -89,7 +90,6 @@
                                        <td>${hshd.ngayKyKet}</td>    
                                        <td>${hshd.ngayKetThuc}</td>                                     
                                        <td style="letter-spacing: 5px; min-width: 75px;text-align: center !important;">
-                                          <a href="<c:url value = "/ns/hop_dong/${hshd.hoSoNhanVien.maNhanVien}"/>"><i class="fa fa-eye"></i></a>
                                           <a href="<c:url value = "/ns/hop_dong/edit/${hshd.hoSoNhanVien.maNhanVien}"/>"><i class="fa fa-pencil"></i></a>
                                        </td>
                                     </tr>
@@ -121,10 +121,13 @@
                                     		$('#confirm-delete').on('show.bs.modal', function(e) {
     	                                        $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
     	                                    });
-                                    		$("#datatable").DataTable({
-                                    			destroy: true,
-                                    	        "order": [[7 , "desc" ], [0, "desc"]],
-                                    	    });
+                                    		$("#datatable").dataTable().fnDestroy();
+  									        $("#datatable").dataTable({
+  									    	  responsive: true,
+  									    	  "order": [[6 , "asc" ], [0, "desc"]],
+  									          "bServerSide" : true,
+  									          "sAjaxSource" : "/ffse-fbms/${maPhongBan}/getListHopDong",
+  									        });
                                     	};
                                     </script>
                                  </tbody>

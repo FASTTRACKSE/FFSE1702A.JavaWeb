@@ -2,12 +2,15 @@ package fasttrackse.ffse1702a.fbms.QuanLyNhanSu.service.impl;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import fasttrackse.ffse1702a.fbms.QuanLyNhanSu.model.dao.QuanLyHoSoDAO;
 import fasttrackse.ffse1702a.fbms.QuanLyNhanSu.model.entity.HoSoNhanVien;
+import fasttrackse.ffse1702a.fbms.QuanLyNhanSu.service.DatatableService;
 import fasttrackse.ffse1702a.fbms.QuanLyNhanSu.service.QuanLyHoSoService;
 
 @Service
@@ -15,6 +18,8 @@ public class QuanLyHoSoServiceImpl implements QuanLyHoSoService {
 
 	@Autowired
 	private QuanLyHoSoDAO quanLyHoSoDAO;
+	@Autowired
+	private DatatableService datatableService;
 
 	@Override
 	@Transactional
@@ -98,5 +103,19 @@ public class QuanLyHoSoServiceImpl implements QuanLyHoSoService {
 
 		return "[\"" + maNhanVien + "\",\"" + hoDem + "\",\"" + ten + "\",\"" + gioiTinh + "\",\"" + phongBan + "\",\""
 				+ chucDanh + "\",\"" + trangThai + "\",\"" + action + "\"]";
+	}
+
+	@Override
+	@Transactional
+	public String getSQL(HttpServletRequest request, String maPhongBan) {
+		String selectQuery = "select hs from HoSoNhanVien hs inner join hs.phongBan ";
+		String[] columnNames = { "hs.maNhanVien", "hs.hoDem", "hs.ten", "hs.gioiTinh", "hs.phongBan.tenPhongBan",
+				"hs.chucDanh.tenChucDanh", "hs.trangThai" };
+		String customCondition = maPhongBan.equals("ns") ? ""
+				: ("hs.phongBan.maPhongBan = '" + maPhongBan + "' and hs.trangThai = 1");
+
+		String sql = this.datatableService.getSqlQuery(selectQuery, request, columnNames, customCondition);
+
+		return sql;
 	}
 }

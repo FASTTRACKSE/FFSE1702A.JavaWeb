@@ -61,22 +61,14 @@ public class QuanLyHoSoController {
 	@ResponseBody
 	public String getListHoSo(@PathVariable("maPhongBan") String maPhongBan, Model model, HttpServletRequest request) {
 
-		String[] columnNames = { "ma_nhan_vien", "ho_dem", "ten", "gioi_tinh", "ma_phong_ban", "ma_chuc_danh",
-				"trang_thai" };
 		int iDisplayStart = Integer.parseInt(request.getParameter("iDisplayStart"));
 		int iDisplayLength = Integer.parseInt(request.getParameter("iDisplayLength"));
-
-		String custom = maPhongBan.equals("ns") ? "" : ("ma_phong_ban = '" + maPhongBan + "' and trang_thai = 1");
-
-		String sql = this.datatableService.getSqlQuery("HoSoNhanVien", request, columnNames, custom);
-		// System.out.println(sql);
-		List<HoSoNhanVien> listHoSo = null;
-
-		listHoSo = this.quanLyHoSoService.getAllHoSo(iDisplayStart, iDisplayLength, sql);
+		String sql = this.quanLyHoSoService.getSQL(request, maPhongBan);
+		List<HoSoNhanVien> listHoSo = this.quanLyHoSoService.getAllHoSo(iDisplayStart, iDisplayLength, sql);
 
 		String recordsTotal = this.quanLyHoSoService.getRecordsTotal(maPhongBan);
 		String recordsFiltered = this.quanLyHoSoService.getRecordsFiltered(sql);
-		String json = this.datatableService.getJson(recordsTotal, recordsFiltered, listHoSo);
+		String json = this.datatableService.getJsonHoSo(recordsTotal, recordsFiltered, listHoSo);
 
 		return json;
 	}
