@@ -141,8 +141,8 @@
 														<form:input class="form-control" path="maHopDong" value="${maHopDongFormat}"  readonly="true" disabled="true"/>
 															<fmt:formatNumber type="number" var="maHopDongFormat" minIntegerDigits="5" groupingUsed="false" value="${quanLyHopDong.maHopDong}" />
 										              
-														<c:if test="${empty maHopDong}">
-															
+														<c:if test="${!empty edit}">
+															<form:hidden path="maHopDong" />
 														</c:if>
 										      			<form:hidden path="hoSoNhanVien.maNhanVien" value="${hoSoNhanVien.maNhanVien}" />
 													</div>
@@ -175,9 +175,11 @@
 												<div class="col-md-3">
 													<div class="form-group">
 														<label>Lương tháng 13</label>
-														<form:input class="form-control" path="luongThang13"
-															placeholder="Lương Tháng 13" />
-															<form:errors path="luongThang13" cssClass="invalid-feedback d-block" />
+														 <form:select multiple="single" path="luongThang13" class="form-control">
+													   		  <form:option selected = "true" disabled = "true" value="" label="Chọn lương tháng 13" />
+													   		  <form:option value="1" label="Có" />
+													   		  <form:option value="2" label="Không" />
+											  			 </form:select>
 													</div>
 												</div>
 												<div class="col-md-3">
