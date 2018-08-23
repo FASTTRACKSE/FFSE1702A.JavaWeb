@@ -29,7 +29,7 @@ public class ThongTinKinhNghiemController {
 	@Autowired
 	private VaiTroService vaiTroService;
 
-	@RequestMapping(value = "ns/ho_so/kinh_nghiem/{maNhanVien}", method = RequestMethod.GET)
+	@RequestMapping(value = "ns/ho_so/xem_kinh_nghiem/{maNhanVien}", method = RequestMethod.GET)
 	public String thongtinKinhNghiem(@PathVariable("maNhanVien") int maNhanVien, Model model) {
 		HoSoNhanVien hsnv = this.quanLyHoSoService.getHoSoNhanVienById(maNhanVien);
 		
