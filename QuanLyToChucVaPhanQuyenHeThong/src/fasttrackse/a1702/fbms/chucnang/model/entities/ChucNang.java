@@ -11,9 +11,10 @@ import javax.persistence.Table;
 public class ChucNang {
 
 	@Id
-	@Column(name = "ma_chuc_nang")
+	@Column(name = "ma_chuc_nang", unique = true, nullable = false)
 	private String ma_chuc_nang;
 
+	@Column(name = "ten_chuc_nang", nullable = false, length = 100)
 	private String ten_chuc_nang;
 
 	private int trang_thai;

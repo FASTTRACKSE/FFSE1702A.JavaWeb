@@ -50,6 +50,7 @@ public class ChucNangDaoImpl implements ChucNangDao {
 		return list;
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<ChucNang> findAllForPaging(int startPosition, int maxResult){
 		Session session = this.sessionFactory.openSession();
@@ -88,6 +89,7 @@ public class ChucNangDaoImpl implements ChucNangDao {
 		session.close();
 	}
 
+	@SuppressWarnings("rawtypes")
 	@Override
 	public void active(String ma_chuc_nang) {
 		Session session = this.sessionFactory.openSession();
@@ -100,6 +102,7 @@ public class ChucNangDaoImpl implements ChucNangDao {
 		session.close();
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public ChucNang getChucNangByCode(String ma_chuc_nang) {
 		Session session = this.sessionFactory.openSession();

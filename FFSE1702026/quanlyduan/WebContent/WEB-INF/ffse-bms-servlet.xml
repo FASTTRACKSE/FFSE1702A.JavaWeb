@@ -20,6 +20,7 @@
 
 	<!-- Add support for conversion, formatting and validation support -->
 	<mvc:annotation-driven/>
+	
 
 	<!-- Define Spring MVC view resolver -->
 	<bean
@@ -66,11 +67,13 @@
 
     <!-- Resources theme location -->
      <mvc:resources mapping="/resources/**" location="/resources/stack-admin/" cache-period="31556926" />
+     
 	<bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource" >
 		<property name="basename" value="resources/i18n/messages"></property>
 		<property name="defaultEncoding" value="UTF-8"></property>
 	</bean>
-	<bean id="localeResolver" class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
+	<bean id="localeRe
+	solver" class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
 		<property name="cookieName" value="myAppLocaleCookie"></property>
 		<property name="cookieMaxAge" value="3600"></property>
 		<property name="defaultLocale" value="en"></property>

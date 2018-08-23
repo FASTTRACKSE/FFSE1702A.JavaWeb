@@ -2,9 +2,12 @@ package fasttrackse.ffse1702a.fbms.QuanLyNhanSu.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,9 +39,13 @@ public class QuanLyChucDanhController {
 
 	// For add and update person both
 	@RequestMapping(value = "/ns/chuc_danh/save", method = RequestMethod.POST)
-	public String addPerson(@ModelAttribute("chucdanh") ChucDanh p) {
+	public String addPerson(@ModelAttribute("chucdanh") @Valid ChucDanh p, BindingResult bindingResult, Model model) {
 		ChucDanh cd = this.quanlychucdanhService.getChucDanhByMa(p.getMaChucDanh());
-
+		System.out.println(p.getMaChucDanh());
+		if (bindingResult.hasErrors()) {
+			return "QuanLyNhanSu/QuanLyChucDanh/FormChucDanh";
+		}
+		
 		if (cd == null) {
 			// new person, add it
 			this.quanlychucdanhService.addChucDanh(p);

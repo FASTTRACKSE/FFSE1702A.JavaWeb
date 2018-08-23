@@ -31,21 +31,30 @@
 						<button id="btnGroupDrop1" type="button" data-toggle="dropdown"
 							aria-haspopup="true" aria-expanded="false"
 							class="btn btn-outline-primary dropdown-toggle">
-							<i class="ft-settings icon-left"></i> Thông tin khác
+							<i class="ft-settings icon-left"></i>
+							<spring:message code="label.thongTinKhac" />
 						</button>
 						<div aria-labelledby="btnGroupDrop1"
 							class="dropdown-menu dropdown-menu-right">
-							<a href="#" class="dropdown-item"><i class="ft-user"></i>
-								Thông tin hồ sơ</a> <a href="#" class="dropdown-item"><i
-								class="ft-user"></i> Thông tin bằng cấp</a> <a href="#"
-								class="dropdown-item"><i class="ft-user"></i> Thông tin
-								chứng chỉ chuyên môn</a> <a href="#" class="dropdown-item"><i
-								class="ft-user"></i> Thông tin gia đình</a> <a href="#"
-								class="dropdown-item"><i class="ft-user"></i> Thông tin hợp
-								đồng</a> <a href="#" class="dropdown-item"><i class="ft-user"></i>
-								Thông tin kinh nghiệm dự án</a>
+							<a
+								href="<c:url value = "/ns/ho_so/edit/${hoSoNhanVien.maNhanVien}"/>"
+								class="dropdown-item"><i class="fa fa-id-card-o"></i> <spring:message
+									code="label.thongTinHoSo" /></a> <a
+								href="<c:url value = "/ns/ho_so/bang_cap/edit/${hoSoNhanVien.maNhanVien}"/>"
+								class="dropdown-item"><i class="fa fa-graduation-cap"></i> <spring:message
+									code="label.thongTinBangCap" /></a> <a
+								href="<c:url value = "/ns/ho_so/gia_dinh/edit/${hoSoNhanVien.maNhanVien}"/>"
+								class="dropdown-item"><i class="fa fa-users"></i> <spring:message
+									code="label.thongTinGiaDinh" /></a> <a
+								href="<c:url value = "/ns/ho_so/kinh_nghiem/${hoSoNhanVien.maNhanVien}"/>"
+								class="dropdown-item"><i class="fa fa-file-code-o"></i> <spring:message
+									code="label.thongTinKinhNghiem" /></a> <a
+								href="<c:url value = "/ns/hop_dong/edit/${hoSoNhanVien.maNhanVien}"/>"
+								class="dropdown-item"><i class="fa fa-handshake-o"></i> <spring:message
+									code="label.thongTinHopDong" /></a>
 							<div class="dropdown-divider"></div>
-							<a href="#" class="dropdown-item text-xs-center">Xem tất cả</a>
+							<a href="#" class="dropdown-item text-xs-center"><spring:message
+									code="label.xemTatCa" /></a>
 						</div>
 					</div>
 				</div>
@@ -132,8 +141,8 @@
 														<form:input class="form-control" path="maHopDong" value="${maHopDongFormat}"  readonly="true" disabled="true"/>
 															<fmt:formatNumber type="number" var="maHopDongFormat" minIntegerDigits="5" groupingUsed="false" value="${quanLyHopDong.maHopDong}" />
 										              
-														<c:if test="${empty maHopDong}">
-															
+														<c:if test="${!empty edit}">
+															<form:hidden path="maHopDong" />
 														</c:if>
 										      			<form:hidden path="hoSoNhanVien.maNhanVien" value="${hoSoNhanVien.maNhanVien}" />
 													</div>
@@ -141,13 +150,11 @@
 												<div class="col-md-4">
 													<div class="form-group">
 														<label>Tên hợp đồng</label>
-														<form:select multiple="single"
-															path="loaiHopDong.maLoaiHopDong" class="form-control">
-															<form:option selected="true" disabled="true" value="0"
-																label="Chọn hợp đồng" />
-															<form:options items="${listLoaiHopDong}"
-																itemValue="maLoaiHopDong" itemLabel="tenHopDong" />
+														<form:select multiple="single" path="loaiHopDong.maLoaiHopDong" class="form-control">
+															<form:option selected="true" disabled="true" value="0" label="Chọn hợp đồng" />
+															<form:options items="${listLoaiHopDong}" itemValue="maLoaiHopDong" itemLabel="tenHopDong" />
 														</form:select>
+														<form:errors path="loaiHopDong" cssClass="invalid-feedback d-block" />
 													</div>
 												</div>
 												<div class="col-md-4">
@@ -160,6 +167,7 @@
 															<form:option value="1" label="Còn hợp đồng" />
 															<form:option value="2" label="Hết hợp đồng" />
 														</form:select>
+														<form:errors path="trangThai" cssClass="invalid-feedback d-block" />
 													</div>
 												</div>
 											</div>
@@ -167,8 +175,11 @@
 												<div class="col-md-3">
 													<div class="form-group">
 														<label>Lương tháng 13</label>
-														<form:input class="form-control" path="luongThang13"
-															placeholder="Lương Tháng 13" />
+														 <form:select multiple="single" path="luongThang13" class="form-control">
+													   		  <form:option selected = "true" disabled = "true" value="" label="Chọn lương tháng 13" />
+													   		  <form:option value="1" label="Có" />
+													   		  <form:option value="2" label="Không" />
+											  			 </form:select>
 													</div>
 												</div>
 												<div class="col-md-3">
@@ -176,15 +187,17 @@
 														<label>Số ngày phép</label>
 														<form:input class="form-control" path="soNgayPhep"
 															placeholder="Số Ngày Phép" />
+														<form:errors path="soNgayPhep" cssClass="invalid-feedback d-block" />
 													</div>
 												</div>
 												<div class="col-md-3">
 													<div class="form-group">
 														<label>Ngày ký hợp đồng</label>
-														<form:input type="date" class="form-control"
+														<form:input type="date" class="form-control" 
 															path="ngayKyKet" placeholder="Ngày ký kết"
 															data-toggle="tooltip" data-trigger="hover"
 															data-placement="top" data-title="Date Opened" />
+														<form:errors path="ngayKyKet" cssClass="invalid-feedback d-block" />
 													</div>
 												</div>
 												<div class="col-md-3">
@@ -194,6 +207,7 @@
 															path="ngayKetThuc" placeholder="Ngày kết thúc"
 															data-toggle="tooltip" data-trigger="hover"
 															data-placement="top" data-title="Date Opened" />
+														<form:errors path="ngayKetThuc" cssClass="invalid-feedback d-block" />
 													</div>
 												</div>
 											</div>

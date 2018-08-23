@@ -20,14 +20,6 @@ public class ChucNangController {
 	@Autowired
 	ChucNangService cnService;
 
-	protected ChucNangService getcnService() {
-		return cnService;
-	}
-
-	protected void setcnService(ChucNangService cnService) {
-		this.cnService = cnService;
-	}
-
 	@RequestMapping(value = "/danh-sach", method = RequestMethod.GET)
 	public String danhSachChucNang(Model model, @RequestParam(name = "page", required = false, defaultValue = "1") int currentPage) {
 		int totalRecords = cnService.findAll().size();

@@ -27,6 +27,7 @@
                   </div>
                </div>
             </div>
+            <style> i.fa { width: 20px; } </style>
             <div class="content-header-right col-md-3 col-xs-12">
 	            <div role="group" aria-label="Button group with nested dropdown" class="dropdown nav-item float-md-right">
 	               <div role="group" class="btn-group">
@@ -40,7 +41,7 @@
 	                  	<a href="<c:url value = "/ns/ho_so/kinh_nghiem/${hoSoNhanVien.maNhanVien}"/>" class="dropdown-item"><i class="fa fa-file-code-o"></i> <spring:message code="label.thongTinKinhNghiem" /></a>
 	                  	<a href="<c:url value = "/ns/hop_dong/edit/${hoSoNhanVien.maNhanVien}"/>" class="dropdown-item"><i class="fa fa-handshake-o"></i> <spring:message code="label.thongTinHopDong" /></a>
 	                  	<div class="dropdown-divider"></div>
-	                  	<a href="#" class="dropdown-item text-xs-center"><spring:message code="label.xemTatCa" /></a>
+	                  	<a href="<c:url value = "/ns/ho_so/xem_tat_ca/${hoSoNhanVien.maNhanVien}"/>" class="dropdown-item text-xs-center"><spring:message code="label.xemTatCa" /></a>
 	                  </div>
 	               </div>
 				</div>
@@ -66,6 +67,16 @@
 	                     </div>
 	                     <div class="card-body collapse in">
 	                        <div class="card-block">
+		                      <c:if test="${!empty SUCCESS}">
+								<div class="html_success mb-2">
+								   <div style="margin: 0 auto!important;?>" class="alert alert-icon-left alert-success alert-dismissible mb-2" role="alert">
+								   <button style="margin-top: 2px" type="button" class="close" data-dismiss="alert" aria-label="Close">
+								   		<span aria-hidden="true">×</span>
+								   </button>
+								   <span><spring:message code="message.updateSuccess" />!</span>
+								 </div>
+								</div>
+							  </c:if>
 								<form:form class="form form-horizontal" method="POST" action="/ffse-fbms/ns/ho_so/gia_dinh/save" modelAttribute="thongTinGiaDinhForm">
 								   <div class="form-body">
 								      <div class="row">

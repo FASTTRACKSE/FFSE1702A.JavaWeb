@@ -103,7 +103,8 @@ public class QuanLyHoSoController {
 			BindingResult bindingResult, @RequestParam(value = "image", required = false) MultipartFile image,
 			HttpServletRequest request, Model model, RedirectAttributes redirectAttributes) {
 
-		boolean addAction = (hsnv.getMaNhanVien() == 0);
+		int maNhanVien = hsnv.getMaNhanVien();
+		boolean addAction = (maNhanVien == 0);
 		int autoID = Integer.valueOf(this.quanLyHoSoService.getAutoId());
 		String filename = uploadImageService.checkImage(image, bindingResult);
 
@@ -111,7 +112,7 @@ public class QuanLyHoSoController {
 		if (bindingResult.hasErrors() || (filename != null && filename.equals("err"))) {
 			System.out.println(hsnv);
 			if (addAction) {
-				model.addAttribute("add", "add");
+				model.addAttribute("add", "TRUE");
 				hsnv.setMaNhanVien(autoID);
 				// add action - chưa thêm ảnh
 				if (filename == null) {
@@ -129,14 +130,15 @@ public class QuanLyHoSoController {
 			// thêm
 			hsnv.setAnhDaiDien(filename);
 			this.quanLyHoSoService.addHoSoNhanVien(hsnv);
-			redirectAttributes.addFlashAttribute("ADD_SUCCESS_ID", String.format("%05d", hsnv.getMaNhanVien()));
+			redirectAttributes.addFlashAttribute("ADD_SUCCESS_ID", String.format("%05d", maNhanVien));
 		} else {
 			// sửa
 			if (filename != null) {
 				hsnv.setAnhDaiDien(filename);
 			}
 			this.quanLyHoSoService.updateHoSoNhanVien(hsnv);
-			redirectAttributes.addFlashAttribute("UPDATE_SUCCESS_ID", String.format("%05d", hsnv.getMaNhanVien()));
+			redirectAttributes.addFlashAttribute("UPDATE_SUCCESS_ID", String.format("%05d", maNhanVien));
+			return "redirect:/ns/ho_so/edit/" + maNhanVien;
 		}
 
 		redirectAttributes.addFlashAttribute("SUCCESS", "TRUE");

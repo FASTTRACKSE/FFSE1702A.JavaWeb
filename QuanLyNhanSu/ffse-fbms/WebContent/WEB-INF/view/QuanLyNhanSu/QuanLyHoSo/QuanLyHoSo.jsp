@@ -49,9 +49,6 @@
 							   <c:if test="${!empty DELETE_SUCCESS_ID}">
 							   	<span><spring:message code="message.deleteSuccess" /> #${DELETE_SUCCESS_ID}!</span>
 							   </c:if>
-							   <c:if test="${!empty UPDATE_SUCCESS_ID}">
-							   	<span><spring:message code="message.updateSuccess" /> #${UPDATE_SUCCESS_ID}!</span>
-							   </c:if>
 							   <c:if test="${!empty ADD_SUCCESS_ID}">
 							   	<span><spring:message code="message.addSuccess" /> #${ADD_SUCCESS_ID}!</span>
 							   </c:if>

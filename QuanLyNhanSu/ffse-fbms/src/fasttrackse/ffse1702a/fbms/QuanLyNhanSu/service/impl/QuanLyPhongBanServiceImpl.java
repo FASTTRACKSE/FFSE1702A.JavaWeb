@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import fasttrackse.ffse1702a.fbms.QuanLyNhanSu.model.dao.*;
-import fasttrackse.ffse1702a.fbms.QuanLyNhanSu.model.entity.*;
+import fasttrackse.ffse1702a.fbms.QuanLyNhanSu.model.dao.QuanLyPhongBanDao;
+import fasttrackse.ffse1702a.fbms.QuanLyNhanSu.model.entity.PhongBan;
 import fasttrackse.ffse1702a.fbms.QuanLyNhanSu.service.QuanLyPhongBanService;
 
 @Service
@@ -43,6 +43,12 @@ public class QuanLyPhongBanServiceImpl implements QuanLyPhongBanService {
 	@Transactional
 	public void removePhongBan(String id) {
 		this.quanLyPhongBanDao.removePhongBan(id);
+	}
+
+	@Override
+	@Transactional
+	public boolean checkPhongBan(String maPhongBan) {
+		return this.quanLyPhongBanDao.checkPhongBan(maPhongBan);
 	}
 
 }

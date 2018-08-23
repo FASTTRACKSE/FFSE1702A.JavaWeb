@@ -10,7 +10,7 @@
       <div class="content-wrapper">
          <div class="content-header row">
             <div class="content-header-left col-md-9 col-xs-12 mb-2">
-               <h3 class="content-header-title mb-0"><spring:message code="label.danhSachHoSo" /></h3>
+               <h3 class="content-header-title mb-0"><spring:message code="label.danhSachHopDong" /></h3>
                <div class="row breadcrumbs-top">
                   <div class="breadcrumb-wrapper col-xs-12">
                      <ol class="breadcrumb">
@@ -20,17 +20,13 @@
                         </li>
                         <li class="breadcrumb-item"><a href="<c:url value = "/ns/ho_so"/>"><spring:message code="label.quanLyHoSo" /></a>
                         </li>
-                        <li class="breadcrumb-item active"><spring:message code="label.danhSachHoSo" />
+                        <li class="breadcrumb-item active"><spring:message code="label.danhSachHopDong" />
                         </li>
                      </ol>
                   </div>
                </div>
             </div>
-            <div class="content-header-right col-md-3 col-xs-12">
-               <div role="group" aria-label="Button group with nested dropdown" class="btn-group float-md-right" id="add-new">
-                  <a href="<c:url value = "/ns/ho_so/add"/>" class="btn btn-primary"><span class="fa fa-plus"></span> <spring:message code="label.themHoSo" /></a>
-               </div>
-            </div>
+            
          </div>
          <div class="content-body">
             <!-- Zero configuration table -->
@@ -76,6 +72,7 @@
                                        <th>Tên hợp đồng</th>
                                        <th>Ngày ký kết</th>
                                        <th>Ngày kết thúc</th>
+                                       <th>Trạng thái</th>
                                        <th></th>
                                     </tr>
                                  </thead>
@@ -87,7 +84,9 @@
                                        <td>${hshd.hoSoNhanVien.ten}</td>
                                        <td>${hshd.loaiHopDong.tenHopDong}</td>
                                        <td>${hshd.ngayKyKet}</td>    
-                                       <td>${hshd.ngayKetThuc}</td>                                     
+                                       <td>${hshd.ngayKetThuc}</td>   
+                                       <td>
+                                       ${hshd.trangThai == 1 ? "Còn hợp đồng" : "Hết hợp đồng"}</td>                                    
                                        <td style="letter-spacing: 5px; min-width: 75px;text-align: center !important;">
                                           <a href="<c:url value = "/ns/hop_dong/${hshd.hoSoNhanVien.maNhanVien}"/>"><i class="fa fa-eye"></i></a>
                                           <a href="<c:url value = "/ns/hop_dong/edit/${hshd.hoSoNhanVien.maNhanVien}"/>"><i class="fa fa-pencil"></i></a>

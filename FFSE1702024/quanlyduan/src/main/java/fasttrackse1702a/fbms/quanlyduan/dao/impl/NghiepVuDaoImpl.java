@@ -30,7 +30,7 @@ public class NghiepVuDaoImpl implements NghiepVuDao {
 	@Override
 	public List<NghiepVu> getAll() {
 		Session session=sessionFactory.getCurrentSession();
-		return session.createQuery("from NghiepVu",NghiepVu.class).list();
+		return session.createQuery("from NghiepVu where isDelete = 0",NghiepVu.class).list();
 	}
 	@Override
 	public void update(NghiepVu nghiepVu) {
@@ -41,9 +41,9 @@ public class NghiepVuDaoImpl implements NghiepVuDao {
 	@Override
 	public void delete(String maNghiepVu) {
 		Session session=sessionFactory.getCurrentSession();
-		NghiepVu fr=session.get(NghiepVu.class,maNghiepVu);
-		fr.setIsDelete(1);
-		session.update(fr);	
+		NghiepVu nghiepVu=session.get(NghiepVu.class,maNghiepVu);
+		nghiepVu.setIsDelete(1);
+		session.update(nghiepVu);	
 	}
 	
 

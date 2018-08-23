@@ -1,4 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
 <html>
@@ -11,25 +13,25 @@
    <meta name="keywords" content="admin template, stack admin template, dashboard template, flat admin template, responsive admin template, web app">
    <meta name="author" content="PIXINVENT">
    <title>FastTrackSE - The Business Management System - Login</title>
-   <link rel="apple-touch-icon" href="<c:url value=" /resources/images/ico/apple-icon-120.png "/>">
-   <link rel="shortcut icon" type="image/x-icon" href="<c:url value=" /resources/images/ico/favicon.ico "/>">
+   <link rel="apple-touch-icon" href="<c:url value="resources/images/ico/apple-icon-120.png "/>">
+   <link rel="shortcut icon" type="image/x-icon" href="<c:url value="resources/images/ico/favicon.ico "/>">
    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i%7COpen+Sans:300,300i,400,400i,600,600i,700,700i" rel="stylesheet" />
    <!-- BEGIN VENDOR CSS-->
-   <link rel="stylesheet" type="text/css" href="<c:url value=" /resources/css/bootstrap.css "/>">
-   <link rel="stylesheet" type="text/css" href="<c:url value=" /resources/fonts/feather/style.min.css "/>">
-   <link rel="stylesheet" type="text/css" href="<c:url value=" /resources/fonts/font-awesome/css/font-awesome.min.css "/>">
-   <link rel="stylesheet" type="text/css" href="<c:url value=" /resources/fonts/flag-icon-css/css/flag-icon.min.css "/>">
-   <link rel="stylesheet" type="text/css" href="<c:url value=" /resources/vendors/css/extensions/pace.css "/>">
+   <link rel="stylesheet" type="text/css" href="<c:url value="resources/css/bootstrap.css "/>">
+   <link rel="stylesheet" type="text/css" href="<c:url value="resources/fonts/feather/style.min.css "/>">
+   <link rel="stylesheet" type="text/css" href="<c:url value="resources/fonts/font-awesome/css/font-awesome.min.css "/>">
+   <link rel="stylesheet" type="text/css" href="<c:url value="resources/fonts/flag-icon-css/css/flag-icon.min.css "/>">
+   <link rel="stylesheet" type="text/css" href="<c:url value="resources/vendors/css/extensions/pace.css "/>">
    <!-- END VENDOR CSS-->
    <!-- BEGIN STACK CSS-->
-   <link rel="stylesheet" type="text/css" href="<c:url value=" /resources/css/bootstrap-extended.css "/>">
-   <link rel="stylesheet" type="text/css" href="<c:url value=" /resources/css/app.css "/>">
-   <link rel="stylesheet" type="text/css" href="<c:url value=" /resources/css/colors.css "/>">
+   <link rel="stylesheet" type="text/css" href="<c:url value="resources/css/bootstrap-extended.css "/>">
+   <link rel="stylesheet" type="text/css" href="<c:url value="resources/css/app.css "/>">
+   <link rel="stylesheet" type="text/css" href="<c:url value="resources/css/colors.css "/>">
    <!-- END STACK CSS-->
    <!-- BEGIN Page Level CSS-->
-   <link rel="stylesheet" type="text/css" href="<c:url value=" /resources/css/core/menu/menu-types/vertical-menu.css "/>">
-   <link rel="stylesheet" type="text/css" href="<c:url value=" /resources/css/core/menu/menu-types/vertical-overlay-menu.css "/>">
-   <link rel="stylesheet" type="text/css" href="<c:url value=" /resources/css/core/colors/palette-gradient.css "/>">
+   <link rel="stylesheet" type="text/css" href="<c:url value="resources/css/core/menu/menu-types/vertical-menu.css "/>">
+   <link rel="stylesheet" type="text/css" href="<c:url value="resources/css/core/menu/menu-types/vertical-overlay-menu.css "/>">
+   <link rel="stylesheet" type="text/css" href="<c:url value="resources/css/core/colors/palette-gradient.css "/>">
    <!-- END Page Level CSS-->
 </head>
 
@@ -45,24 +47,36 @@
                      <div class="card-header no-border">
                         <div class="card-title text-xs-center">
                            <div class="p-1">
-                              <img src="<c:url value=" /resources/images/logo/stack-logo-dark.png " alt="branding logo "/>">
+                              <img src="<c:url value="resources/images/logo/stack-logo-dark.png" />" alt="branding logo">
                            </div>
                         </div>
                         <h6 class="card-subtitle line-on-side text-muted text-xs-center font-small-3 pt-2">
                            <span>Login with Stack</span>
                         </h6>
                      </div>
+                    
                      <div class="card-body collapse in">
                         <div class="card-block">
-                           <form class="form-horizontal form-simple" action="index.html" novalidate>
+                        	<!-- Show message -->
+							<c:if test="${message ne null}">
+								<div class="alert alert-danger alert-dismissable" role="alert">
+									<button type="button" class="close" data-dismiss="alert">
+										<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+									</button>
+									${message}
+								</div>
+							</c:if>
+							<!-- End Show message -->
+           					<c:url var="post_url" value="/loginProcess" />
+                           <form:form class="form-horizontal form-simple" action="${post_url}" modelAttribute="login" method="POST">
                               <fieldset class="form-group position-relative has-icon-left mb-0">
-                                 <input type="text" class="form-control form-control-lg input-lg" id="user-name" placeholder="Your Username" required>
+                              	 <form:input class="form-control form-control-lg input-lg" path="username" placeholder="Tên đăng nhập" required="required"/>
                                  <div class="form-control-position">
                                     <i class="ft-user"></i>
                                  </div>
-                              </fieldset>
+                              </fieldset><br/>
                               <fieldset class="form-group position-relative has-icon-left">
-                                 <input type="password" class="form-control form-control-lg input-lg" id="user-password" placeholder="Enter Password" required>
+                                 <form:input type="password" class="form-control form-control-lg input-lg" path="password" placeholder="Mật khẩu" required="required" />
                                  <div class="form-control-position">
                                     <i class="fa fa-key"></i>
                                  </div>
@@ -70,7 +84,7 @@
                               <fieldset class="form-group row">
                                  <div class="col-md-6 col-xs-12 text-xs-center text-md-left">
                                     <fieldset>
-                                       <input type="checkbox" id="remember-me" class="chk-remember"> <label for="remember-me">
+                                       <input type="checkbox" name="remember-me" value="1" class="chk-remember" /> <label for="remember-me">
                                           Remember Me</label>
                                     </fieldset>
                                  </div>
@@ -82,7 +96,7 @@
                               <button type="submit" class="btn btn-primary btn-lg btn-block">
                                  <i class="ft-unlock"></i> Login
                               </button>
-                           </form>
+                           </form:form>
                         </div>
                      </div>
                      <div class="card-footer">
@@ -107,25 +121,33 @@
    <!-- ////////////////////////////////////////////////////////////////////////////-->
 
    <!-- BEGIN VENDOR JS-->
-   <script src="<c:url value=" /resources/vendors/js/vendors.min.js " type="text/javascript "/>">
+   <script src="<c:url value="resources/vendors/js/vendors.min.js " />" type="text/javascript ">
    </script>
    <!-- BEGIN VENDOR JS-->
    <!-- BEGIN PAGE VENDOR JS-->
-   <script src="<c:url value=" /resources/vendors/js/forms/icheck/icheck.min.js " type="text/javascript "/>">
+   <script src="<c:url value="resources/vendors/js/forms/icheck/icheck.min.js " />" type="text/javascript ">
    </script>
-   <script src="<c:url value=" /resources/vendors/js/forms/validation/jqBootstrapValidation.js " type="text/javascript "/>">
+   <script src="<c:url value="resources/vendors/js/forms/validation/jqBootstrapValidation.js "/>" type="text/javascript ">
    </script>
    <!-- END PAGE VENDOR JS-->
    <!-- BEGIN STACK JS-->
-   <script src="<c:url value=" /resources/js/core/app-menu.js " type="text/javascript "/>">
+   <script src="<c:url value="resources/js/core/app-menu.js "/>" type="text/javascript ">
    </script>
-   <script src="<c:url value=" /resources/js/core/app.js " type="text/javascript "/>">
+   <script src="<c:url value="resources/js/core/app.js "/>" type="text/javascript ">
    </script>
    <!-- END STACK JS-->
    <!-- BEGIN PAGE LEVEL JS-->
-   <script src="<c:url value=" /resources/js/scripts/forms/form-login-register.js " type="text/javascript "/>">
+   <script src="<c:url value="resources/js/scripts/forms/form-login-register.js "/>" type="text/javascript ">
    </script>
    <!-- END PAGE LEVEL JS-->
+   <script type="text/javascript">
+	window.setTimeout(function() {
+		$(".alert").fadeTo(500, 0).slideUp(500, function(){
+			$(this).remove(); 
+		});
+	}, 2500);
+	</script>
+	   
 </body>
 
 </html>

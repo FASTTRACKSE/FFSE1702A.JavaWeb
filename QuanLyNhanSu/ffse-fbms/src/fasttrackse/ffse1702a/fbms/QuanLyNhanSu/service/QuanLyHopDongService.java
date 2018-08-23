@@ -9,4 +9,5 @@ public interface QuanLyHopDongService {
 	public void addHopDong(HopDong tthd);
 	public void updateHopDong(HopDong tthd);
 	public String getAutoId() ;
+	
 }

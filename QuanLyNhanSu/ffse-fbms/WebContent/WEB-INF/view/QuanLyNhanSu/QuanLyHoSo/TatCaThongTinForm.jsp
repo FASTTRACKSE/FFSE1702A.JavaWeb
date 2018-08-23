@@ -7,6 +7,14 @@
 <%@page import="java.io.File"%>
 <%@page import="java.io.*"%>
 <%@page import="javax.servlet.*"%>
+<<<<<<< HEAD
+<<<<<<< HEAD
+
+=======
+>>>>>>> 67cb89c1e9adf5fa7e110d6a7957855308daf61c
+>>>>>>> 47858687edeaa782cd01ec673dcd1a57a61e47cf
+=======
+>>>>>>> a2bbaf84c8b2e76d27b6b2c0bafebcfce4661f4a
 
 <jsp:include page="/WEB-INF/view/templates/header.jsp" />
 
@@ -30,6 +38,10 @@
                   </div>
                </div>
             </div>
+<<<<<<< HEAD
+
+=======
+>>>>>>> 47858687edeaa782cd01ec673dcd1a57a61e47cf
             <div class="content-header-right col-md-3 col-xs-12">
 	            <div role="group" aria-label="Button group with nested dropdown" class="dropdown nav-item float-md-right">
 	               <div role="group" class="btn-group">

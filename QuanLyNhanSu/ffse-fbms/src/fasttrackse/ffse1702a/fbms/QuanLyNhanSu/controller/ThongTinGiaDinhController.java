@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import fasttrackse.ffse1702a.fbms.QuanLyNhanSu.model.entity.HoSoNhanVien;
 import fasttrackse.ffse1702a.fbms.QuanLyNhanSu.model.entity.ThongTinGiaDinh;
@@ -47,15 +48,15 @@ public class ThongTinGiaDinhController {
 	@RequestMapping(value = "/ns/ho_so/gia_dinh/save", method = RequestMethod.POST)
 	public String saveHoSoNhanVien(
 			@ModelAttribute("thongTinGiaDinhForm") @Valid ThongTinGiaDinhForm thongTinGiaDinhForm,
-			BindingResult bindingResult, Model model) {
+			BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes) {
 
 		List<ThongTinGiaDinh> listThongTinGiaDinh = thongTinGiaDinhForm.getListThongTinGiaDinh();
 
 		List<String> errorList = thongTinGiaDinhService.getErrorList(bindingResult);
 		List<String> deleteList = thongTinGiaDinhService.getDeleteList(listThongTinGiaDinh);
 
+		int maNhanVien = thongTinGiaDinhForm.getListThongTinGiaDinh().get(0).getHoSoNhanVien().getMaNhanVien();
 		if (bindingResult.hasErrors() && !errorList.equals(deleteList)) {
-			int maNhanVien = thongTinGiaDinhForm.getListThongTinGiaDinh().get(0).getHoSoNhanVien().getMaNhanVien();
 			HoSoNhanVien hsnv = this.quanLyHoSoService.getHoSoNhanVienById(maNhanVien);
 			model.addAttribute("hoSoNhanVien", hsnv);
 			return "QuanLyNhanSu/QuanLyHoSo/ThongTinGiaDinhForm";
@@ -72,6 +73,7 @@ public class ThongTinGiaDinhController {
 			}
 		}
 
-		return "redirect:/ns/ho_so/";
+		redirectAttributes.addFlashAttribute("SUCCESS", "TRUE");
+		return "redirect:/ns/ho_so/gia_dinh/edit/" + maNhanVien;
 	}
 }

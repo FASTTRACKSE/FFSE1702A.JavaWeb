@@ -1,5 +1,6 @@
 package fasttrackse.ffse1702a.fbms.QuanLyNhanSu.model.dao.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -28,10 +29,16 @@ public class QuanLyHopDongDAOImpl implements QuanLyHopDongDAO {
 	@Override
 	public List<HopDong> getHopDongByPhongBan(String maPhongBan) {
 		Session session = this.sessionFactory.getCurrentSession();
-		Query query = session.createSQLQuery(
-				"SELECT * FROM hop_dong INNER JOIN ho_so_nhan_vien  ON hop_dong.ma_nhan_vien = ho_so_nhan_vien.ma_nhan_vien");
-		
-		List<HopDong> listHopDong = query.list();
+		PhongBan pb = session.load(PhongBan.class, maPhongBan);
+		List<HoSoNhanVien> listHoSo = pb.getHoSoNhanViens();
+		List<HopDong> listHopDong = new ArrayList<HopDong>();
+		for (HoSoNhanVien hsnv : listHoSo) {
+			List<HopDong> hdnv = hsnv.getHopDongs();
+			int lastIndex = hdnv.size()-1;
+			if (hdnv.size() != 0 && hdnv.get(lastIndex).getTrangThai() == 1) {
+				listHopDong.add(hdnv.get(lastIndex));
+			}
+		}
 		return listHopDong;
 	}
 

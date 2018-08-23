@@ -21,7 +21,7 @@ public class DuAnServiceImpl implements DuAnService {
 	}
 
 	@Override
-	public DuAn getById(String maDuAn) {
+	public DuAn getById(int maDuAn) {
 		return this.duAnDao.getById(maDuAn);
 	}
 
