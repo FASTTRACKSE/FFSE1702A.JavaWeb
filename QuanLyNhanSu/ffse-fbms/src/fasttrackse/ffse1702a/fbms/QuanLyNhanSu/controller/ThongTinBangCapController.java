@@ -41,6 +41,22 @@ public class ThongTinBangCapController {
 		model.addAttribute("thongTinBangCapForm", thongTinBangCapForm);
 		return "QuanLyNhanSu/QuanLyHoSo/ThongTinBangCapForm";
 	}
+	
+	@RequestMapping(value = "/ns/ho_so/xem_bang_cap/{maNhanVien}", method = RequestMethod.GET)
+	public String viewThongTinBangCap(@PathVariable("maNhanVien") int maNhanVien, Model model) {
+		HoSoNhanVien hsnv = this.quanLyHoSoService.getHoSoNhanVienById(maNhanVien);
+		ThongTinBangCapForm thongTinBangCapForm = new ThongTinBangCapForm(hsnv.getThongTinBangCaps());
+		List<ThongTinBangCap> listThongTinBangCap = thongTinBangCapForm.getListThongTinBangCap();
+		if (listThongTinBangCap.size() == 0) {
+			ThongTinBangCap ttbc = new ThongTinBangCap();
+			ttbc.setHoSoNhanVien(hsnv);
+			listThongTinBangCap.add(ttbc);
+			thongTinBangCapForm.setListThongTinBangCap(listThongTinBangCap);
+		}
+		model.addAttribute("hoSoNhanVien", hsnv);
+		model.addAttribute("thongTinBangCapForm", thongTinBangCapForm);
+		return "QuanLyNhanSu/QuanLyHoSo/View/ThongTinBangCapView";
+	}
 
 	@RequestMapping(value = "/ns/ho_so/bang_cap/save", method = RequestMethod.POST)
 	public String saveHoSoNhanVien(@ModelAttribute("thongTinBangCapForm") @Valid ThongTinBangCapForm thongTinBangCapForm,

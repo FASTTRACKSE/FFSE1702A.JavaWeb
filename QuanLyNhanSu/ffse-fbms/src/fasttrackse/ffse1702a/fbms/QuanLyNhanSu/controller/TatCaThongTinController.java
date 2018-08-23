@@ -67,6 +67,6 @@ public class TatCaThongTinController {
 		model.addAttribute("listDatabase", database);
 		model.addAttribute("listNgonNgu", ngonngu);
 		model.addAttribute("hoSoNhanVien", hsnvDTO);
-		return "QuanLyNhanSu/QuanLyHoSo/TatCaThongTinForm";
+		return "QuanLyNhanSu/QuanLyHoSo/View/TatCaThongTinView";
 	}
 }

@@ -57,6 +57,6 @@ public class ThongTinKinhNghiemController {
 			duan.setVaiTro(vaiTro);
 		}
 		model.addAttribute("hoSoNhanVien", hoSoNhanVienDTO);
-		return "QuanLyNhanSu/QuanLyHoSo/ThongTinKinhNghiemForm";
+		return "QuanLyNhanSu/QuanLyHoSo/View/ThongTinKinhNghiemView";
 	}
 }

@@ -65,6 +65,30 @@ public class QuanLyHopDongController {
 		return "QuanLyNhanSu/QuanLyHopDong/QuanLyHopDongForm";
 
 	}
+	
+	@RequestMapping(value = "/ns/hop_dong/xem_hop_dong/{maNhanVien}", method = RequestMethod.GET)
+	public String viewQuanLyHopDong(@PathVariable("maNhanVien") int maNhanVien, Model model) {
+		HoSoNhanVien hsnv = this.quanLyHoSoService.getHoSoNhanVienById(maNhanVien);
+		
+		model.addAttribute("hoSoNhanVien", hsnv);
+		HopDong hopDong = new HopDong();
+		hopDong.setMaHopDong(Integer.valueOf(this.quanLyHopDongService.getAutoId()));
+		List<HopDong> listHD = hsnv.getHopDongs();
+		// nếu nv có hợp đồng
+		if (listHD.size() != 0) {
+			// lấy cái mới nhất
+			HopDong hd = listHD.get(listHD.size()-1);
+			if (hd.getTrangThai() == 1) {
+				hopDong = hd;
+				model.addAttribute("edit", "true");
+			}
+		}
+		model.addAttribute("hopDong", hopDong);
+		model.addAttribute("loaiHopDong", new LoaiHopDong());
+		model.addAttribute("listLoaiHopDong", this.loaiHopDongService.listLoaiHopDong());
+		return "QuanLyNhanSu/QuanLyHopDong/View/QuanLyHopDongView";
+
+	}
 
 	@RequestMapping(value = "/ns/hop_dong/save", method = RequestMethod.POST)
 	public String addHopDong(@Valid @ModelAttribute("hopDong") HopDong hd, BindingResult bindingResult, Model model) {

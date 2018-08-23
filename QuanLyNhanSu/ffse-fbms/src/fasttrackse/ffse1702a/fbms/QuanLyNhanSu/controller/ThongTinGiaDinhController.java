@@ -44,6 +44,24 @@ public class ThongTinGiaDinhController {
 		model.addAttribute("thongTinGiaDinhForm", thongTinGiaDinhForm);
 		return "QuanLyNhanSu/QuanLyHoSo/ThongTinGiaDinhForm";
 	}
+	
+	@RequestMapping(value = "/ns/ho_so/xem_gia_dinh/{maNhanVien}", method = RequestMethod.GET)
+	public String viewThongTinGiaDinh(@PathVariable("maNhanVien") int maNhanVien, Model model) {
+
+		HoSoNhanVien hsnv = this.quanLyHoSoService.getHoSoNhanVienById(maNhanVien);
+		ThongTinGiaDinhForm thongTinGiaDinhForm = new ThongTinGiaDinhForm(hsnv.getThongTinGiaDinhs());
+		List<ThongTinGiaDinh> listThongTinGiaDinh = thongTinGiaDinhForm.getListThongTinGiaDinh();
+
+		if (listThongTinGiaDinh.size() == 0) {
+			ThongTinGiaDinh ttgd = new ThongTinGiaDinh();
+			ttgd.setHoSoNhanVien(hsnv);
+			listThongTinGiaDinh.add(ttgd);
+			thongTinGiaDinhForm.setListThongTinGiaDinh(listThongTinGiaDinh);
+		}
+		model.addAttribute("hoSoNhanVien", hsnv);
+		model.addAttribute("thongTinGiaDinhForm", thongTinGiaDinhForm);
+		return "QuanLyNhanSu/QuanLyHoSo/View/ThongTinGiaDinhView";
+	}
 
 	@RequestMapping(value = "/ns/ho_so/gia_dinh/save", method = RequestMethod.POST)
 	public String saveHoSoNhanVien(

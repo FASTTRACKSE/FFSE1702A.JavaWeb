@@ -97,6 +97,13 @@ public class QuanLyHoSoController {
 		model.addAttribute("hoSoNhanVien", this.quanLyHoSoService.getHoSoNhanVienById(maNhanVien));
 		return "QuanLyNhanSu/QuanLyHoSo/QuanLyHoSoForm";
 	}
+	
+	@RequestMapping(value = "/ns/ho_so/xem_thong_tin_ho_so/{maNhanVien}", method = RequestMethod.GET)
+	public String viewHoSoNhanVien(@PathVariable("maNhanVien") int maNhanVien, Model model) {
+
+		model.addAttribute("hoSoNhanVien", this.quanLyHoSoService.getHoSoNhanVienById(maNhanVien));
+		return "QuanLyNhanSu/QuanLyHoSo/View/ThongTinCaNhanView";
+	}
 
 	@RequestMapping(value = "/ns/ho_so/save", method = RequestMethod.POST)
 	public String saveHoSoNhanVien(@ModelAttribute("hoSoNhanVien") @Valid HoSoNhanVien hsnv,

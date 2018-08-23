@@ -15,9 +15,9 @@
                <div class="row breadcrumbs-top">
                   <div class="breadcrumb-wrapper col-xs-12">
                      <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="javascript:void(0)"><spring:message code="label.trangChu" /></a>
+                        <li class="breadcrumb-item"><a href="<c:url value = "/"/>"><spring:message code="label.trangChu" /></a>
                         </li>
-                        <li class="breadcrumb-item"><a href="javascript:void(0)"><spring:message code="label.quanLyNhanSu" /></a>
+                        <li class="breadcrumb-item"><a href="<c:url value = "/ns/ho_so"/>"><spring:message code="label.quanLyNhanSu" /></a>
                         </li>
                         <li class="breadcrumb-item"><a href="<c:url value = "/ns/ho_so"/>"><spring:message code="label.quanLyHoSo" /></a>
                         </li>
@@ -34,13 +34,13 @@
 	                  	<i class="ft-settings icon-left"></i> <spring:message code="label.thongTinKhac" />
 	                  </button>
 	                  <div aria-labelledby="btnGroupDrop1" class="dropdown-menu dropdown-menu-right">
-	                  	<a href="<c:url value = "/ns/ho_so/edit/"/>" class="dropdown-item"><i class="fa fa-id-card-o"></i> <spring:message code="label.thongTinHoSo" /></a>
-	                  	<a href="<c:url value = "/ns/ho_so/bang_cap/edit/"/>" class="dropdown-item"><i class="fa fa-graduation-cap"></i> <spring:message code="label.thongTinBangCap" /></a>
-	                  	<a href="<c:url value = "/ns/ho_so/gia_dinh/edit/"/>" class="dropdown-item"><i class="fa fa-users"></i> <spring:message code="label.thongTinGiaDinh" /></a>
-	                  	<a href="<c:url value = "/ns/ho_so/kinh_nghiem/edit/"/>" class="dropdown-item"><i class="fa fa-file-code-o"></i> <spring:message code="label.thongTinKinhNghiem" /></a>
-	                  	<a href="<c:url value = "/ns/hop_dong/edit/"/>" class="dropdown-item"><i class="fa fa-handshake-o"></i> <spring:message code="label.thongTinHopDong" /></a>
+	                  	<a href="<c:url value = "/ns/ho_so/xem_thong_tin_ho_so/${hoSoNhanVien.maNhanVien }"/>" class="dropdown-item"><i class="fa fa-id-card-o"></i> <spring:message code="label.thongTinHoSo" /></a>
+	                  	<a href="<c:url value = "/ns/ho_so/xem_bang_cap/${hoSoNhanVien.maNhanVien }"/>" class="dropdown-item"><i class="fa fa-graduation-cap"></i> <spring:message code="label.thongTinBangCap" /></a>
+	                  	<a href="<c:url value = "/ns/ho_so/xem_gia_dinh/${hoSoNhanVien.maNhanVien }"/>" class="dropdown-item"><i class="fa fa-users"></i> <spring:message code="label.thongTinGiaDinh" /></a>
+	                  	<a href="<c:url value = "/ns/ho_so/xem_kinh_nghiem/${hoSoNhanVien.maNhanVien }"/>" class="dropdown-item"><i class="fa fa-file-code-o"></i> <spring:message code="label.thongTinKinhNghiem" /></a>
+	                  	<a href="<c:url value = "/ns/hop_dong/xem_hop_dong/${hoSoNhanVien.maNhanVien }"/>" class="dropdown-item"><i class="fa fa-handshake-o"></i> <spring:message code="label.thongTinHopDong" /></a>
 	                  	<div class="dropdown-divider"></div>
-	                  	<a href="#" class="dropdown-item text-xs-center"><spring:message code="label.xemTatCa" /></a>
+	                  	<a href="<c:url value = "/ns/ho_so/xem_tat_ca/${hoSoNhanVien.maNhanVien }"/>" class="dropdown-item text-xs-center"><spring:message code="label.xemTatCa" /></a>
 	                  </div>
 	               </div>
 				</div>
@@ -75,15 +75,16 @@
 									         		<div class="form-group">
 										               <label><spring:message code="label.maNhanVien" /></label>
 										               <fmt:formatNumber type="number" var="maNhanVienFormat" minIntegerDigits="5" groupingUsed="false" value="${hoSoNhanVien.maNhanVien}" />
-													   <input placeholder="" class="form-control" value="${maNhanVienFormat}" disabled type="text">
+													   <div style="word-wrap: break-word;" class="form-control well">${maNhanVienFormat}</div>
 										            </div>
 								         		</div>
 								         		<div class="col-md-6">
 										            <div class="form-group">
 										               <label><spring:message code="label.trangThai" /></label>
-										               <select class="form-control" disabled> 
-												   		  <option>${hoSoNhanVien.trangThai == 1 ? "Đang làm việc" : "Nghỉ việc"}</option>
-													   </select>
+										               <div style="word-wrap: break-word;" class="form-control well">
+										               		<c:if test="${hoSoNhanVien.trangThai == 1 }"><spring:message code="label.dangLamViec" /></c:if>
+										               		<c:if test="${hoSoNhanVien.trangThai == 2 }"><spring:message code="label.daNghiViec" /></c:if>
+										               </div>
 										            </div>
 								         		</div>
 								         	</div>
@@ -91,17 +92,13 @@
 									         	<div class="col-md-6">
 										            <div class="form-group">
 										               <label><spring:message code="label.phongBan" /></label>
-										               <select class="form-control" disabled>
-												   		  <option>${hoSoNhanVien.phongBan.tenPhongBan}</option>
-													   </select>
+										               <div style="word-wrap: break-word;" class="form-control well">${hoSoNhanVien.phongBan.tenPhongBan}</div>
 													</div>
 										         </div>
 										         <div class="col-md-6">
 										            <div class="form-group">
 										               <label><spring:message code="label.chucDanh" /></label>
-										               <select class="form-control" disabled>
-												   		  <option>${hoSoNhanVien.chucDanh.tenChucDanh}</option>
-													   </select>
+										               <div style="word-wrap: break-word;" class="form-control well">${hoSoNhanVien.chucDanh.tenChucDanh}</div>
 										            </div>
 										         </div>
 								         	</div>
