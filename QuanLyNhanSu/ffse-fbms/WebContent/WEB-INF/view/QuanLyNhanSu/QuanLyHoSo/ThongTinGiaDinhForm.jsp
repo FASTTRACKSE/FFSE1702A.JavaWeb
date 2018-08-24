@@ -273,7 +273,7 @@
 	                                    		selectIdTTGD = "#listThongTinGiaDinh" + index + "\\.id";
 
 	                                    	    valSelect = $(selectIdTTGD).val();
-	                                    	    if (valSelect == "NULL") {
+	                                    	    if (valSelect == "0") {
 	                                    	    	$(ele).remove();
 	                                        	} else if (valSelect > 0) {
 	                                        		$(selectIdTTGD).val("-" + valSelect);

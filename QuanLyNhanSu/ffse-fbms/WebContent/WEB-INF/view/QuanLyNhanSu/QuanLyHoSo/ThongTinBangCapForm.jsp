@@ -90,6 +90,16 @@
 							</div>
 							<div class="card-body collapse in">
 								<div class="card-block">
+								 <c:if test="${!empty SUCCESS}">
+									<div class="html_success mb-2">
+									   <div style="margin: 0 auto!important;?>" class="alert alert-icon-left alert-success alert-dismissible mb-2" role="alert">
+									   <button style="margin-top: 2px" type="button" class="close" data-dismiss="alert" aria-label="Close">
+									   		<span aria-hidden="true">×</span>
+									   </button>
+									   <span><spring:message code="message.updateSuccess" />!</span>
+									 </div>
+									</div>
+								  </c:if>
 									<form:form class="form form-horizontal" method="POST"
 										action="/ffse-fbms/ns/ho_so/bang_cap/save"
 										modelAttribute="thongTinBangCapForm">
@@ -155,45 +165,47 @@
 																path="listThongTinBangCap[${status.index}].id" />
 															<form:hidden
 																path="listThongTinBangCap[${status.index}].hoSoNhanVien.maNhanVien" />
-															<div class="row" data-repeater-item>
-																<div class="col-md-6">
-																	<div class="form-group">
-																		<label><spring:message code="label.tenBangCap" /></label>
-																		<form:input class="form-control" path="listThongTinBangCap[${status.index}].tenBangCap" placeholder=""/>
-																		 <form:errors path="listThongTinBangCap[${status.index}].tenBangCap" cssClass="invalid-feedback d-block" />
+															<div class="list-row">
+																<div class="row" data-repeater-item>
+																	<div class="col-md-6">
+																		<div class="form-group">
+																			<label><spring:message code="label.tenBangCap" /></label>
+																			<form:input class="form-control" path="listThongTinBangCap[${status.index}].tenBangCap" placeholder=""/>
+																			 <form:errors path="listThongTinBangCap[${status.index}].tenBangCap" cssClass="invalid-feedback d-block" />
+																		</div>
+																	</div>
+																	<div class="col-md-6">
+																		<div class="form-group">
+																			<label><spring:message code="label.loaiBangCap" /></label>
+																			<form:input class="form-control" path="listThongTinBangCap[${status.index}].loaiBangCap" placeholder=""/>
+																			<form:errors path="listThongTinBangCap[${status.index}].loaiBangCap" cssClass="invalid-feedback d-block" />
+																		</div>
 																	</div>
 																</div>
-																<div class="col-md-6">
-																	<div class="form-group">
-																		<label><spring:message code="label.loaiBangCap" /></label>
-																		<form:input class="form-control" path="listThongTinBangCap[${status.index}].loaiBangCap" placeholder=""/>
-																		<form:errors path="listThongTinBangCap[${status.index}].loaiBangCap" cssClass="invalid-feedback d-block" />
+																<div class="row">
+																	<div class="col-md-6">
+																		<div class="form-group">
+																			<label><spring:message code="label.noiCapBang" /></label>
+																			<form:input class="form-control" path="listThongTinBangCap[${status.index}].donViCap" placeholder=""/>
+																			<form:errors path="listThongTinBangCap[${status.index}].donViCap" cssClass="invalid-feedback d-block" />
+																		</div>
 																	</div>
+																	<div class="col-md-3">
+																		<div class="form-group">
+																			<label><spring:message code="label.ngayCap" /></label>
+																			<form:input type="date" class="form-control" path="listThongTinBangCap[${status.index}].ngayCap" placeholder="" data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="Date Opened" />
+																			<form:errors path="listThongTinBangCap[${status.index}].ngayCap" cssClass="invalid-feedback d-block" />
+																		</div>
+																	</div>
+															         <div class="col-md-3">
+															            <div class="form-group mt-2" style=" text-align: center; ">
+															               <button type="button" class="btn btn-danger" id="listThongTinBangCap${status.index}-delete" data-onclick="#listThongTinBangCap${status.index}-delete" data-toggle="modal" data-target="#confirm-delete"> <i class="ft-x"></i> <spring:message code="label.xoa" /></button>
+															            </div>
+															         </div>
 																</div>
+	
+																<div class="form-section"></div>
 															</div>
-															<div class="row">
-																<div class="col-md-6">
-																	<div class="form-group">
-																		<label><spring:message code="label.noiCapBang" /></label>
-																		<form:input class="form-control" path="listThongTinBangCap[${status.index}].donViCap" placeholder=""/>
-																		<form:errors path="listThongTinBangCap[${status.index}].donViCap" cssClass="invalid-feedback d-block" />
-																	</div>
-																</div>
-																<div class="col-md-3">
-																	<div class="form-group">
-																		<label><spring:message code="label.ngayCap" /></label>
-																		<form:input type="date" class="form-control" path="listThongTinBangCap[${status.index}].ngayCap" placeholder="" data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="Date Opened" />
-																		<form:errors path="listThongTinBangCap[${status.index}].ngayCap" cssClass="invalid-feedback d-block" />
-																	</div>
-																</div>
-														         <div class="col-md-3">
-														            <div class="form-group mt-2" style=" text-align: center; ">
-														               <button type="button" class="btn btn-danger" id="listThongTinBangCap${status.index}-delete" data-onclick="#listThongTinBangCap${status.index}-delete" data-toggle="modal" data-target="#confirm-delete"> <i class="ft-x"></i> <spring:message code="label.xoa" /></button>
-														            </div>
-														         </div>
-															</div>
-
-															<div class="form-section"></div>
 														</div>
 													</c:forEach>
 													<div class="modal fade" id="confirm-delete" tabindex="-1"
@@ -227,7 +239,7 @@
 															</div>
 														</div>
 													</div>
-													<script>
+	                                    	<script>
 	                                    	window.onload = function(){
 	                                    		$('#confirm-delete').on('show.bs.modal', function(e) {
 	                                    			$(this).find('.btn-ok').click(function(){
@@ -235,6 +247,13 @@
 	                                    				$('#confirm-delete .close').click();
 		                                    		});
 	    	                                    });
+	                                    		var i = $('.repeater-item').length;
+	                                    		for (j = 0; j < i; j++) { 
+	                                    			selectId = "#listThongTinBangCap" + j + "\\.id";
+	                                    			if ($(selectId).val() < 0) {
+	                                    				$("#repeater-item" + j + " .list-row").remove();
+		                                    		}
+	                                    		}
 	                                    	};
 	                                    	function add_form(ele) {
 	                                    		var countForm = $('.repeater-item').length;
@@ -264,18 +283,20 @@
 	                                    	        }
 	                                    	    });
 	                                    	    selectIdTTGD = "#listThongTinBangCap" + countForm + "\\.id";
-	                                    	    $(selectIdTTGD).val("NULL");
+	                                    	    $(selectIdTTGD).val("0");
+	                                    	    $("#repeater-item" + countForm + " .invalid-feedback").remove();
 	                                    	}
 	                                    	function delete_form(ele) {
 	                                        	index = ele.match(/\d+/);
 	                                        	ele = "#repeater-item" + index;
 	                                    		$(ele).hide();
 	                                    		selectIdTTGD = "#listThongTinBangCap" + index + "\\.id";
-	                                    	    
-	                                    	    if ($(selectIdTTGD).val() == "NULL") {
+	                                    	    valSelect = $(selectIdTTGD).val();
+	                                    	    if (valSelect == "0") {
 	                                    	    	$(ele).remove();
-	                                        	} else {
-	                                        		$(selectIdTTGD).val("-"+$(selectIdTTGD).val());
+	                                        	} else if (valSelect > 0) {
+	                                        		$(selectIdTTGD).val("-" + valSelect);
+	                                        		// $(ele + " .list-row").remove();
 	                                            }
 	                                    	}
 	                                      	</script>

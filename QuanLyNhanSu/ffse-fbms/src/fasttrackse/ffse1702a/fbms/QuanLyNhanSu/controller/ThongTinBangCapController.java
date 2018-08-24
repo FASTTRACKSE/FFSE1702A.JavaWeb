@@ -12,8 +12,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import fasttrackse.ffse1702a.fbms.QuanLyNhanSu.model.entity.HoSoNhanVien;
+import fasttrackse.ffse1702a.fbms.QuanLyNhanSu.model.entity.ThongTinBangCap;
+import fasttrackse.ffse1702a.fbms.QuanLyNhanSu.model.entity.ThongTinBangCapForm;
 import fasttrackse.ffse1702a.fbms.QuanLyNhanSu.model.entity.ThongTinBangCap;
 import fasttrackse.ffse1702a.fbms.QuanLyNhanSu.model.entity.ThongTinBangCapForm;
 import fasttrackse.ffse1702a.fbms.QuanLyNhanSu.service.QuanLyHoSoService;
@@ -59,30 +62,34 @@ public class ThongTinBangCapController {
 	}
 
 	@RequestMapping(value = "/ns/ho_so/bang_cap/save", method = RequestMethod.POST)
-	public String saveHoSoNhanVien(@ModelAttribute("thongTinBangCapForm") @Valid ThongTinBangCapForm thongTinBangCapForm,
-			BindingResult bindingResult, Model model) {
-		if (bindingResult.hasErrors()) {
-			int maNhanVien = thongTinBangCapForm.getListThongTinBangCap().get(0).getHoSoNhanVien().getMaNhanVien();
+	public String saveHoSoNhanVien(
+			@ModelAttribute("thongTinBangCapForm") @Valid ThongTinBangCapForm thongTinBangCapForm,
+			BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes) {
+
+		List<ThongTinBangCap> listThongTinBangCap = thongTinBangCapForm.getListThongTinBangCap();
+
+		List<String> errorList = thongTinBangCapService.getErrorList(bindingResult);
+		List<String> deleteList = thongTinBangCapService.getDeleteList(listThongTinBangCap);
+
+		int maNhanVien = thongTinBangCapForm.getListThongTinBangCap().get(0).getHoSoNhanVien().getMaNhanVien();
+		if (bindingResult.hasErrors() && !errorList.equals(deleteList)) {
 			HoSoNhanVien hsnv = this.quanLyHoSoService.getHoSoNhanVienById(maNhanVien);
 			model.addAttribute("hoSoNhanVien", hsnv);
 			return "QuanLyNhanSu/QuanLyHoSo/ThongTinBangCapForm";
 		}
-		
-		List<ThongTinBangCap> listThongTinBangCap = thongTinBangCapForm.getListThongTinBangCap();
 
-		if (listThongTinBangCap != null && listThongTinBangCap.size() > 0) {
-			for (ThongTinBangCap ttbc : listThongTinBangCap) {
-				int id = ttbc.getId();
-				if (id == 0) {
-					this.thongTinBangCapService.addThongTinBangCap(ttbc);
-				} else if (id < 0) {
-					this.thongTinBangCapService.deleteThongTinBangCap(Math.abs(id));
-				} else {
-					this.thongTinBangCapService.updateThongTinBangCap(ttbc);
-				}
+		for (ThongTinBangCap ttbc : listThongTinBangCap) {
+			int id = ttbc.getId();
+			if (id == 0) {
+				this.thongTinBangCapService.addThongTinBangCap(ttbc);
+			} else if (id < 0) {
+				this.thongTinBangCapService.deleteThongTinBangCap(Math.abs(id));
+			} else {
+				this.thongTinBangCapService.updateThongTinBangCap(ttbc);
 			}
 		}
 
-		return "redirect:/ns/ho_so/";
+		redirectAttributes.addFlashAttribute("SUCCESS", "TRUE");
+		return "redirect:/ns/ho_so/bang_cap/edit/" + maNhanVien;
 	}
 }
