@@ -263,7 +263,7 @@
 	                                    	        }
 	                                    	    });
 	                                    	    selectIdTTGD = "#listThongTinGiaDinh" + countForm + "\\.id";
-	                                    	    $(selectIdTTGD).val("NULL");
+	                                    	    $(selectIdTTGD).val("0");
 	                                    	    $("#repeater-item" + countForm + " .invalid-feedback").remove();
 	                                    	}
 	                                    	function delete_form(ele) {

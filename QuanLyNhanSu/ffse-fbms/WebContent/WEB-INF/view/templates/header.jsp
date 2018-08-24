@@ -67,11 +67,9 @@
 				$("." + listClass[i]).addClass('open');
              }
          }
-
          if (selector.includes('ho_so') && !selector.includes('nsho_so')) {
         	 $(".pbho_so").addClass('open');
          }
-
          if (selector.includes('hop_dong') && !selector.includes('nshop_dong')) {
         	 $(".pbhop_dong").addClass('open');
          }
