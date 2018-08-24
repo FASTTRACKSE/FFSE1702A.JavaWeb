@@ -71,9 +71,9 @@ public class DocumentController {
 		document.setTai_ve(filename.get("urlImage"));
 		Icon ic= new Icon();
 		ic.setMa_icon(filename.get("extensionImage"));	
-		
 		document.setMa_icon(ic);
-		document.setMa_trang_thai("nhap");
+		
+		//document.setMa_trang_thai("nhap");
 		// System.out.println(document.getMa_danh_muc());
 		documentService.saveDraft(document);
 		return "redirect:/list";
