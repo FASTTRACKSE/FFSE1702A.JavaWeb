@@ -8,35 +8,42 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
+
 import fasttrackse.ffse1702a.fbms.quanlytailieu.entity.Category;
 import fasttrackse.ffse1702a.fbms.quanlytailieu.entity.Document;
 
 public interface DocumentService {
 	
 	//list
-	public List<Document> getAll(Integer offset, Integer maxResult);
+	public List<Document> getAll();
+	
+	//
+	public Document findById(int id); 
 	
 	//list category
 	public List<Category> listCategory();
 	
 	//----------------   insert    ------------------//
-	// by draft
+		// by draft
 	public void saveDraft(Document document);
-	//by pending approve
+		//by pending approve
 	
 	//----------------------------------------------//
+	
 	//delete
 	public void delete(int id);
 	
-	public Document findById(int id);
+	//mydraft
+	public List<Document> getAllDraft();
 	
+	//pending approve
+	public List<Document> getAllPendingApprove();
+	
+	//public document
+	public List<Document> getAllPublicDocument();
+	
+	//upload file
 	public Map<String, String> uploadfile(@RequestParam(value="file") CommonsMultipartFile commonsMultipartFiles,HttpServletRequest request,ModelMap modelMap);
 
-	public void updateDocument(Document document);
 	
-	public Long count();
-	
-
-
-
 }

@@ -1,41 +1,83 @@
 package fasttrackse.ffse1702a.fbms.quanlytailieu.dao;
 
-import java.io.File;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Join;
+import javax.persistence.criteria.Root;
 
-import org.apache.commons.io.FilenameUtils;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.criterion.Projections;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+import fasttrackse.ffse1702a.fbms.quanlytailieu.entity.Category;
+import fasttrackse.ffse1702a.fbms.quanlytailieu.entity.Document;
+import fasttrackse.ffse1702a.fbms.quanlytailieu.entity.Status;
+import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
+import javax.servlet.http.HttpServletRequest;
+import org.apache.commons.io.FilenameUtils;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
-import fasttrackse.ffse1702a.fbms.quanlytailieu.entity.Category;
-import fasttrackse.ffse1702a.fbms.quanlytailieu.entity.Document;
+
 
 @Repository
 @Transactional(rollbackFor = Exception.class)
 public class DocumentDAOImpl implements DocumentDAO {
 	@Autowired
 	private SessionFactory sessionFactory;
-	
-	//list 
-	@SuppressWarnings("unchecked")
-	public List<Document> getAll(Integer offset, Integer maxResult) {
-	    @SuppressWarnings("deprecation")
-		List<Document> listDocument = sessionFactory.getCurrentSession().createCriteria(Document.class)
-				.setFirstResult(offset != null ? offset : 0).setMaxResults(maxResult != null ? maxResult : 10)
-				.list();
+
+	// list
+	public List<Document> getAll() {
+		Session session = sessionFactory.getCurrentSession();
+		System.out.println("<br 1 />");
+		Query<Document> query = session.createQuery("from Document", Document.class);
+		List<Document> listDocument = (List<Document>) query.list();
 		return listDocument;
 	}
+
+	// list my draft
+	public List<Document> getAllDraft() {
+		Session session = sessionFactory.getCurrentSession();
+		CriteriaBuilder cb = session.getCriteriaBuilder();
+		CriteriaQuery<Document> cq = cb.createQuery(Document.class);
+		Root<Document> root = cq.from(Document.class);
+		Join<Document, Status> MaTrangThaiJoin = root.join("ma_trang_thai");
+		cq.select(root).where(cb.equal(MaTrangThaiJoin.get("ma_trang_thai"), "nhap"));
+		List<Document> listDraft = session.createQuery(cq).getResultList();
+		return listDraft;
+	}
+
+	// list pending approve
+	public List<Document> getAllPendingApprove() {
+		Session session = sessionFactory.getCurrentSession();
+		CriteriaBuilder cb = session.getCriteriaBuilder();
+		CriteriaQuery<Document> cq = cb.createQuery(Document.class);
+		Root<Document> root = cq.from(Document.class);
+		Join<Document, Status> MaTrangThaiJoin = root.join("ma_trang_thai");
+		cq.select(root).where(cb.equal(MaTrangThaiJoin.get("ma_trang_thai"), "cho_phe_duyet"));
+		List<Document> listPendingApprove = session.createQuery(cq).getResultList();
+		return listPendingApprove;
+	}
+
+	// list public document
+	public List<Document> getAllPublicDocument() {
+		Session session = sessionFactory.getCurrentSession();
+		CriteriaBuilder cb = session.getCriteriaBuilder();
+		CriteriaQuery<Document> cq = cb.createQuery(Document.class);
+		Root<Document> root = cq.from(Document.class);
+		Join<Document, Status> MaTrangThaiJoin = root.join("ma_trang_thai");
+		cq.select(root).where(cb.and(cb.equal(MaTrangThaiJoin.get("ma_trang_thai"), "da_phe_duyet"),
+				cb.equal(root.get("quyen_truy_cap"), "all")));
+		List<Document> listPublicDocument = session.createQuery(cq).getResultList();
+		return listPublicDocument;
+	}
+
 	// list category
 	public List<Category> listCategory() {
 		Session session = sessionFactory.getCurrentSession();
@@ -45,19 +87,18 @@ public class DocumentDAOImpl implements DocumentDAO {
 		return listCategory;
 	}
 
-					
-	//-----------------   insert    --------------//
-	
+	// ----------------- insert --------------//
+
 	// by draft
 	public void saveDraft(final Document document) {
 		Session session = this.sessionFactory.getCurrentSession();
-		System.out.println("<br 3 />");	
+		System.out.println("<br 3 />");
 		session.persist(document);
 	}
-	
-	//by pending approve
-	
-	//---------------//////////////----------------//
+
+	// by pending approve
+
+	// ---------------//////////////----------------//
 
 	// delete
 	public void delete(final int id) {
@@ -65,18 +106,13 @@ public class DocumentDAOImpl implements DocumentDAO {
 		Document document = findById(id);
 		session.remove(document);
 	}
-	
-	//find by id
+
+	// find by id
 	public Document findById(final int id) {
 		Session session = this.sessionFactory.getCurrentSession();
 		return session.get(Document.class, id);
 	}
-	//Update Document
-	@Transactional
-	 public void updateDocument(Document document) {
-		 Session session = sessionFactory.getCurrentSession();
-		 session.update(document);
-	}
+	
 	//Upload File
 	public Map<String, String> uploadfile(@RequestParam(value="file") CommonsMultipartFile commonsMultipartFiles,HttpServletRequest request,ModelMap modelMap) {
 		Map<String, String> result = new HashMap<String, String>();
@@ -111,12 +147,6 @@ public class DocumentDAOImpl implements DocumentDAO {
 			}
 		}
 		return result;
-	}
-	
-	@SuppressWarnings("deprecation")
-	public Long count() {
-		 return (Long) sessionFactory.getCurrentSession().createCriteria(Document.class)
-					.setProjection(Projections.rowCount()).uniqueResult();
 	}
 
 }

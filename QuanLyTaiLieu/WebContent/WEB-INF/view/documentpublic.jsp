@@ -10,12 +10,12 @@
 	<div class="content-wrapper">
 		<div class="content-header row">
 			<div class="content-header-left col-md-6 col-xs-12 mb-2">
-				<h3 class="content-header-title mb-0"><spring:message code="label.menu.mydraft"/></h3>
+				<h3 class="content-header-title mb-0"><spring:message code="label.menu.documentpublic"/></h3>
 				<div class="row breadcrumbs-top">
 					<div class="breadcrumb-wrapper col-xs-12">
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item"><a href="<%=request.getContextPath()%>/index">Home</a></li>
-							<li class="breadcrumb-item active"><spring:message code="label.menu.mydraft"/></li>
+							<li class="breadcrumb-item active"><spring:message code="label.menu.documentpublic"/></li>
 						</ol>
 					</div>
 				</div>
@@ -35,8 +35,9 @@
 			</div>
 		</div>
 		<div style="text-align: center; color: red;">
-			<h1><spring:message code="label.menu.mydraft"/></h1>
+			<h1><spring:message code="label.menu.documentpublic"/></h1>
 		</div>
+
 		<!-- Border color end-->
 		<div class="row">
 			<div class="col-xs-12">
@@ -62,22 +63,18 @@
 										<th><spring:message code="label.nameDocument"/></th>
 										<th><spring:message code="label.describe"/></th>
 										<th><spring:message code="label.category"/></th>
-										<th><spring:message code="label.status"/></th>
-										<th><spring:message code="label.access"/></th>
 										<th><spring:message code="label.function"/></th>
 									</tr>
 								</thead>
 								<tbody>
-									<c:if test="${not empty listDraft}">
-										<c:forEach var="document" items="${listDraft}" varStatus="stt">
+									<c:if test="${not empty listPublicDocument}">
+										<c:forEach var="document" items="${listPublicDocument}" varStatus="stt">
 											<tr class="border-bottom-success border-custom-color">
 												<td>${stt.count}</td>
 												<td><img src="<c:url value="${document.ma_icon.hinh_anh}"/>" width="20" height="20"> ${document.ten_tai_lieu}</td>
 												<td>${document.mo_ta}</td>
 												<td>${document.ma_danh_muc.ten_danh_muc}</td>
-												<td>${document.ma_trang_thai.ten_trang_thai}</td>
-												<td>${document.quyen_truy_cap}</td>
-												<td><a href="documentDelete/${document.id}" class="btn-warning btn"><spring:message code="label.delete"/></a><a href="documentEdit/${document.id}" class="btn-warning btn" > <spring:message code="label.edit"/> </a></td>
+												<td><a href="//${document.tai_ve}" class="btn-warning btn"> <spring:message code="label.download"/> </a></td>
 											</tr>
 										</c:forEach>
 									</c:if>

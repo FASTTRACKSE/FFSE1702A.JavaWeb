@@ -1,7 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" pageEncoding="UTF-8"%>
 <%@ page contentType="text/html;charset=UTF-8" %>
-
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
 <jsp:include page="/WEB-INF/view/templates/header.jsp" />
 
@@ -10,12 +10,12 @@
 	<div class="content-wrapper">
 		<div class="content-header row">
 			<div class="content-header-left col-md-6 col-xs-12 mb-2">
-				<h3 class="content-header-title mb-0">my document</h3>
+				<h3 class="content-header-title mb-0"><spring:message code="label.menu.mydocument"/></h3>
 				<div class="row breadcrumbs-top">
 					<div class="breadcrumb-wrapper col-xs-12">
 						<ol class="breadcrumb">
-							<li class="breadcrumb-item"><a href="index.html">Home</a></li>
-							<li class="breadcrumb-item active">my document</li>
+							<li class="breadcrumb-item"><a href="<%=request.getContextPath()%>/index">Home</a></li>
+							<li class="breadcrumb-item active"><spring:message code="label.menu.mydocument"/></li>
 						</ol>
 					</div>
 				</div>
@@ -35,8 +35,8 @@
 			</div>
 		</div>
 		<div style="text-align: center; color: red;">
-			<h1>My Document</h1>
-			<a href="documentInsert">add</a>
+			<h1><spring:message code="label.menu.mydocument"/></h1>
+			<a href="<%=request.getContextPath()%>/documentInsert"><spring:message code="label.add"/></a>
 		</div>
 
 		<!-- Border color end-->
@@ -61,12 +61,12 @@
 								<thead>
 									<tr class="border-bottom-active border-custom-color">
 										<th>STT</th>
-										<th>Tên tài liệu</th>
-										<th>Mô tả</th>
-										<th>Loại danh mục</th>
-										<th>Trạng thái</th>
-										<th>Quyền truy cập</th>
-										<th>Chức năng</th>
+										<th><spring:message code="label.nameDocument"/></th>
+										<th><spring:message code="label.describe"/></th>
+										<th><spring:message code="label.category"/></th>
+										<th><spring:message code="label.status"/></th>
+										<th><spring:message code="label.access"/></th>
+										<th><spring:message code="label.function"/></th>
 									</tr>
 								</thead>
 								<tbody>
@@ -79,8 +79,7 @@
 												<td>${document.ma_danh_muc.ten_danh_muc}</td>
 												<td>${document.ma_trang_thai.ten_trang_thai}</td>
 												<td>${document.quyen_truy_cap}</td>
-												<td><a href="documentView/${document.id}" class="btn-warning btn"> view </a><a href="documentDelete/${document.id}" class="btn-warning btn"> delete </a><a
-													href="//${document.tai_ve}" class="btn-warning btn"> download </a><a href="documentUpdate/${document.id}" class="btn-warning btn" > edit </a></td>
+												<td><a href="documentDelete/${document.id}" class="btn-warning btn"><spring:message code="label.delete"/></a><a href="documentEdit/${document.id}" class="btn-warning btn" > <spring:message code="label.edit"/> </a></td>
 											</tr>
 										</c:forEach>
 									</c:if>
@@ -95,4 +94,3 @@
 	</div>
 </div>
 <jsp:include page="/WEB-INF/view/templates/footer.jsp" />
-<tag:paginate offset="${offset}" count="${count}" uri="/fasttrackse.ffse1702a.fbms.quanlytailieu" next="&raquo;" previous="&laquo;"/>

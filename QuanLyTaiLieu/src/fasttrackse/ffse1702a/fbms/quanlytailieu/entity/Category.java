@@ -15,6 +15,18 @@ import javax.persistence.Table;
 @Table(name = "danh_muc")
 public class Category implements Serializable {
 	
+	@Id
+	@Column(name = "id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
+	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	@OneToMany(mappedBy="ma_danh_muc")
 	private List<Document> Document;
 	public List<Document> getDocument() {
@@ -24,35 +36,11 @@ public class Category implements Serializable {
 		Document = document;
 	}
 
-	@Id
-	@Column(name = "id")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
-	
 	@Column(name = "ten_danh_muc")
 	private String ten_danh_muc;
 
 	@Column(name = "ma_danh_muc")
 	private String ma_danh_muc;
-	
-	public Category() {
-		super();
-	}
-
-	public Category(int id, String ten_danh_muc, String ma_danh_muc) {
-		super();
-		this.id = id;
-		this.ten_danh_muc = ten_danh_muc;
-		this.ma_danh_muc = ma_danh_muc;
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
 
 	public String getTen_danh_muc() {
 		return ten_danh_muc;
