@@ -213,9 +213,11 @@
 											</div>
 										</div>
 										<div class="form-actions center">
+										<a href="/ffse-fbms/ns/hop_dong">
 											<button type="button" class="btn btn-warning mr-1">
 												<i class="ft-x"></i> <spring:message code="label.huy" />
 											</button>
+											</a>
 											<button type="submit" class="btn btn-primary">
 												<i class="fa fa-check-square-o"></i> <spring:message code="label.luu" />
 											</button>

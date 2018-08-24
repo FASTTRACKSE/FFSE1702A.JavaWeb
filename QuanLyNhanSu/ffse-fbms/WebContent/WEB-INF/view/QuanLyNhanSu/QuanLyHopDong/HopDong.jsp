@@ -95,6 +95,20 @@
                                        </td>
                                     </tr>
                                     </c:forEach>
+                                    <script>
+                                     	window.onload = function(){
+                                     		$('#confirm-delete').on('show.bs.modal', function(e) {
+     	                                        $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
+     	                                    });
+                                     		$("#datatable").dataTable().fnDestroy();
+   									        $("#datatable").dataTable({
+   									    	  responsive: true,
+   									    	  "order": [[6 , "asc" ], [0, "desc"]],
+   									          "bServerSide" : true,
+   									          "sAjaxSource" : "/ffse-fbms/${maPhongBan}/getListHopDong",
+   									        });
+                                     	};
+                                     </script>
                                  </tbody>
                               </table>
                            </div>
