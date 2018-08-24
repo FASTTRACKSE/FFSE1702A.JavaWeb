@@ -4,18 +4,21 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name = "tai_khoan")
 public class TaiKhoan {
 	@Id
-	@Column(name = "ten_dang_nhap")
+	@Column(name = "ten_dang_nhap", nullable = false, length = 30)
 	private String tenDangNhap;
 	
-	@Column(name = "ma_nhan_vien")
+	@Column(name = "ma_nhan_vien", nullable = false, length = 30)
+	@NotEmpty
 	private String maNhanVien;
 	
-	@Column(name = "mat_khau")
+	@Column(name = "mat_khau", nullable = false, length = 30)
+	@NotEmpty
 	private String matKhau;
 	
 	@Column(name = "trang_thai")

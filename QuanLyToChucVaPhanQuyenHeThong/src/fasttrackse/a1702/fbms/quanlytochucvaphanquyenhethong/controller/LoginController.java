@@ -15,10 +15,10 @@ public class LoginController {
 		return "login";
 	}
 
-	@RequestMapping("/admin")
-	public String admin() {
-		return "admin";
-	}
+//	@RequestMapping("/admin")
+//	public String admin() {
+//		return "jsp/admin";
+//	}
 	
 	//for 403 access denied page
 	@RequestMapping("/403")
@@ -27,14 +27,15 @@ public class LoginController {
 	}
 
 
-	@RequestMapping("/user")
-	public String user() {
-		return "user";
-	}
+//	@RequestMapping("/user")
+//	public String user() {
+//		return "jsp/user";
+//	}
 
 	@RequestMapping("/logout")
 	public String logout(final Model model) {
 		model.addAttribute("message", "Logged out!");
 		return "login";
 	}
+	
 }

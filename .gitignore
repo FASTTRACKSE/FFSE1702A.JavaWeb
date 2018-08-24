@@ -148,3 +148,139 @@ hs_err_pid*
 +# End of https://www.gitignore.io/api/eclipse,windows,macos
 /.metadata/
 /.recommenders/
+FFSE1701003/JSFProject/.classpath
+FFSE1701003/JSFProject/.settings/org.eclipse.wst.common.project.facet.core.xml
+Servers/.settings/org.eclipse.wst.server.core.prefs
+Servers/Tomcat v9.0 Server at localhost (2)-config/catalina.policy
+Servers/Tomcat v9.0 Server at localhost (2)-config/catalina.properties
+Servers/Tomcat v9.0 Server at localhost (2)-config/context.xml
+Servers/Tomcat v9.0 Server at localhost (2)-config/server.xml
+Servers/Tomcat v9.0 Server at localhost (2)-config/tomcat-users.xml
+Servers/Tomcat v9.0 Server at localhost (2)-config/web.xml
+Servers/Tomcat v9.0 Server at localhost-config/server.xml
+SpringSecurityHibernate/.classpath
+SpringSecurityHibernate/.project
+SpringSecurityHibernate/.settings/.jsdtscope
+SpringSecurityHibernate/.settings/org.eclipse.jdt.core.prefs
+SpringSecurityHibernate/.settings/org.eclipse.m2e.core.prefs
+SpringSecurityHibernate/.settings/org.eclipse.wst.common.component
+SpringSecurityHibernate/.settings/org.eclipse.wst.common.project.facet.core.xml
+SpringSecurityHibernate/.settings/org.eclipse.wst.jsdt.ui.superType.container
+SpringSecurityHibernate/.settings/org.eclipse.wst.jsdt.ui.superType.name
+SpringSecurityHibernate/.settings/org.eclipse.wst.validation.prefs
+SpringSecurityHibernate/.settings/org.hibernate.eclipse.console.prefs
+SpringSecurityHibernate/.springBeans
+SpringSecurityHibernate/.tern-project
+SpringSecurityHibernate/pom.xml
+SpringSecurityHibernate/src/main/java/stackjava/com/springsecurityhibernate/controller/BaseController.java
+SpringSecurityHibernate/src/main/java/stackjava/com/springsecurityhibernate/dao/UserDAO.java
+SpringSecurityHibernate/src/main/java/stackjava/com/springsecurityhibernate/entities/Role.java
+SpringSecurityHibernate/src/main/java/stackjava/com/springsecurityhibernate/entities/User.java
+SpringSecurityHibernate/src/main/java/stackjava/com/springsecurityhibernate/entities/UsersRoles.java
+SpringSecurityHibernate/src/main/java/stackjava/com/springsecurityhibernate/service/MyUserDetailsService.java
+SpringSecurityHibernate/src/main/resources/hibernate.properties
+SpringSecurityHibernate/src/main/webapp/WEB-INF/spring-mvc-servlet.xml
+SpringSecurityHibernate/src/main/webapp/WEB-INF/spring-security.xml
+SpringSecurityHibernate/src/main/webapp/WEB-INF/views/jsp/admin.jsp
+SpringSecurityHibernate/src/main/webapp/WEB-INF/views/jsp/login.jsp
+SpringSecurityHibernate/src/main/webapp/WEB-INF/views/jsp/user.jsp
+SpringSecurityHibernate/src/main/webapp/WEB-INF/web.xml
+SpringSecurityHibernate/target/classes/hibernate.properties
+SpringSecurityHibernate/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst
+SpringSecurityHibernate/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst
+SpringSecurityHibernate/target/tomcat/conf/tomcat-users.xml
+SpringSecurityHibernate/target/tomcat/conf/web.xml
+SpringSecurityJDBC/.classpath
+SpringSecurityJDBC/.project
+SpringSecurityJDBC/.settings/.jsdtscope
+SpringSecurityJDBC/.settings/org.eclipse.jdt.core.prefs
+SpringSecurityJDBC/.settings/org.eclipse.m2e.core.prefs
+SpringSecurityJDBC/.settings/org.eclipse.wst.common.component
+SpringSecurityJDBC/.settings/org.eclipse.wst.common.project.facet.core.xml
+SpringSecurityJDBC/.settings/org.eclipse.wst.jsdt.ui.superType.container
+SpringSecurityJDBC/.settings/org.eclipse.wst.jsdt.ui.superType.name
+SpringSecurityJDBC/.settings/org.eclipse.wst.validation.prefs
+SpringSecurityJDBC/.springBeans
+SpringSecurityJDBC/.tern-project
+SpringSecurityJDBC/bin/.project
+SpringSecurityJDBC/pom.xml
+SpringSecurityJDBC/src/main/java/stackjava/com/springsecurityjdbc/controller/BaseController.java
+SpringSecurityJDBC/src/main/resources/stackjava/com/springsecurityjdbc/controller/BaseController.java
+SpringSecurityJDBC/src/main/webapp/index.jsp
+SpringSecurityJDBC/src/main/webapp/WEB-INF/spring-mvc-servlet.xml
+SpringSecurityJDBC/src/main/webapp/WEB-INF/spring-security.xml
+SpringSecurityJDBC/src/main/webapp/WEB-INF/views/jsp/admin.jsp
+SpringSecurityJDBC/src/main/webapp/WEB-INF/views/jsp/login.jsp
+SpringSecurityJDBC/src/main/webapp/WEB-INF/views/jsp/user.jsp
+SpringSecurityJDBC/src/main/webapp/WEB-INF/web.xml
+SpringSecurityTest/.classpath
+SpringSecurityTest/.project
+SpringSecurityTest/.settings/.jsdtscope
+SpringSecurityTest/.settings/org.eclipse.jdt.core.prefs
+SpringSecurityTest/.settings/org.eclipse.ltk.core.refactoring.prefs
+SpringSecurityTest/.settings/org.eclipse.m2e.core.prefs
+SpringSecurityTest/.settings/org.eclipse.wst.common.component
+SpringSecurityTest/.settings/org.eclipse.wst.common.project.facet.core.xml
+SpringSecurityTest/.settings/org.eclipse.wst.jsdt.ui.superType.container
+SpringSecurityTest/.settings/org.eclipse.wst.jsdt.ui.superType.name
+SpringSecurityTest/.settings/org.eclipse.wst.validation.prefs
+SpringSecurityTest/.settings/org.eclipse.wst.ws.service.policy.prefs
+SpringSecurityTest/pom.xml
+SpringSecurityTest/src/main/java/stackjava/com/springsecurityjdbc/controller/BaseController.java
+SpringSecurityTest/src/main/webapp/WEB-INF/spring-mvc-servlet.xml
+SpringSecurityTest/src/main/webapp/WEB-INF/spring-security.xml
+SpringSecurityTest/src/main/webapp/WEB-INF/views/jsp/admin.jsp
+SpringSecurityTest/src/main/webapp/WEB-INF/views/jsp/login.jsp
+SpringSecurityTest/src/main/webapp/WEB-INF/views/jsp/user.jsp
+SpringSecurityTest/src/main/webapp/WEB-INF/web.xml
+Servers/.settings/org.eclipse.wst.server.core.prefs
+Servers/Tomcat v9.0 Server at localhost-config/server.xml
+Servers/.settings/org.eclipse.wst.server.core.prefs
+Servers/Tomcat v9.0 Server at localhost-config/server.xml
+Servers/.settings/org.eclipse.wst.server.core.prefs
+Servers/Tomcat v9.0 Server at localhost-config/server.xml
+Servers/.settings/org.eclipse.wst.server.core.prefs
+Servers/Tomcat v9.0 Server at localhost-config/server.xml
+SpringSecurityTest1/.classpath
+SpringSecurityTest1/.project
+SpringSecurityTest1/.settings/.jsdtscope
+SpringSecurityTest1/.settings/org.eclipse.jdt.core.prefs
+SpringSecurityTest1/.settings/org.eclipse.ltk.core.refactoring.prefs
+SpringSecurityTest1/.settings/org.eclipse.wst.common.component
+SpringSecurityTest1/.settings/org.eclipse.wst.common.project.facet.core.xml
+SpringSecurityTest1/.settings/org.eclipse.wst.jsdt.ui.superType.container
+SpringSecurityTest1/.settings/org.eclipse.wst.jsdt.ui.superType.name
+SpringSecurityTest1/bin/.project
+SpringSecurityTest1/src/springsecurity/controller/BaseController.java
+SpringSecurityTest1/WebContent/hello.jsp
+SpringSecurityTest1/WebContent/META-INF/MANIFEST.MF
+SpringSecurityTest1/WebContent/WEB-INF/spring-mvc-servlet.xml
+SpringSecurityTest1/WebContent/WEB-INF/spring-security.xml
+SpringSecurityTest1/WebContent/WEB-INF/views/jsp/403.jsp
+SpringSecurityTest1/WebContent/WEB-INF/views/jsp/admin.jsp
+SpringSecurityTest1/WebContent/WEB-INF/views/jsp/login.jsp
+SpringSecurityTest1/WebContent/WEB-INF/views/jsp/user.jsp
+SpringSecurityTest1/WebContent/WEB-INF/web.xml
+SpringSecurityTest2/.classpath
+SpringSecurityTest2/.project
+SpringSecurityTest2/.settings/.jsdtscope
+SpringSecurityTest2/.settings/org.eclipse.jdt.core.prefs
+SpringSecurityTest2/.settings/org.eclipse.ltk.core.refactoring.prefs
+SpringSecurityTest2/.settings/org.eclipse.wst.common.component
+SpringSecurityTest2/.settings/org.eclipse.wst.common.project.facet.core.xml
+SpringSecurityTest2/.settings/org.eclipse.wst.jsdt.ui.superType.container
+SpringSecurityTest2/.settings/org.eclipse.wst.jsdt.ui.superType.name
+SpringSecurityTest2/bin/.project
+SpringSecurityTest2/src/springsecurity/controller/BaseController.java
+SpringSecurityTest2/WebContent/hello.jsp
+SpringSecurityTest2/WebContent/META-INF/MANIFEST.MF
+SpringSecurityTest2/WebContent/WEB-INF/spring-mvc-servlet.xml
+SpringSecurityTest2/WebContent/WEB-INF/spring-security.xml
+SpringSecurityTest2/WebContent/WEB-INF/views/jsp/admin.jsp
+SpringSecurityTest2/WebContent/WEB-INF/views/jsp/login.jsp
+SpringSecurityTest2/WebContent/WEB-INF/views/jsp/user.jsp
+SpringSecurityTest2/WebContent/WEB-INF/web.xml
+Servers/Tomcat v9.0 Server at localhost-config/server.xml
+Servers/.settings/org.eclipse.wst.server.core.prefs
+Servers/Tomcat v9.0 Server at localhost-config/server.xml
+Servers/.settings/org.eclipse.wst.server.core.prefs

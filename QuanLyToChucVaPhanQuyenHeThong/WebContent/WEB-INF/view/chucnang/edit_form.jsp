@@ -31,7 +31,7 @@
 						<form:input type="hidden" path="ma_chuc_nang" value="${chucNang.ma_chuc_nang}"/>
 						<form:input type="hidden" path="trang_thai" value="${chucNang.trang_thai}"/>
 						<div class="form-group col-sm-6">
-						  	<label>Tên chức năng</label>
+						  	<label>Tên chức năng </label><small> (Ghi chữ in hoa, bắt đầu bằng ROLE_ + tên phòng ban + tên chức danh)</small>
 						  	<form:input class="form-control" path="ten_chuc_nang" value="${chucNang.ten_chuc_nang}" placeholder="Tên chức năng" />
 						</div>
 						<div class="col-sm-12 text-center">

@@ -29,28 +29,28 @@ public class ChucNangPhongBanServiceImpl implements ChucNangPhongBanService {
 	}
 
 	@Override
-	public void addNew(String maPhongBan, List<String> maChucNang) {
-		chucNangPhongBanDao.addNew(maPhongBan, maChucNang);
+	public void addNew(ChucNangPhongBan cd) {
+		chucNangPhongBanDao.addNew(cd);
 	}
 
 	@Override
-	public void update(String maPhongBan, List<String> maChucNang) {
-		chucNangPhongBanDao.update(maPhongBan, maChucNang);
+	public void update(ChucNangPhongBan cd) {
+		chucNangPhongBanDao.update(cd);
 	}
 
 	@Override
-	public List<Object> findAllForPaging(int startPosition, int maxResult) {
+	public void delete(int id) {
+		chucNangPhongBanDao.delete(id);
+	}
+
+	@Override
+	public List<ChucNangPhongBan> findAllForPaging(int startPosition, int maxResult) {
 		return chucNangPhongBanDao.findAllForPaging(startPosition, maxResult);
 	}
 
 	@Override
-	public List<Object> getMaChucNangByMaPhongBan(String maPhongBan) {
-		return chucNangPhongBanDao.getMaChucNangByMaPhongBan(maPhongBan);
-	}
-
-	@Override
-	public void delete(String maPhongBan) {
-		chucNangPhongBanDao.delete(maPhongBan);
+	public ChucNangPhongBan findById(int id) {
+		return chucNangPhongBanDao.findById(id);
 	}
 
 }
