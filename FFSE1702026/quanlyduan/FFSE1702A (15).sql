@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Aug 24, 2018 at 05:42 AM
+-- Generation Time: Aug 24, 2018 at 07:52 AM
 -- Server version: 5.6.37
 -- PHP Version: 5.6.31
 
@@ -64,43 +64,40 @@ CREATE TABLE IF NOT EXISTS `database_du_an` (
 --
 
 INSERT INTO `database_du_an` (`ma_database`, `ma_du_an`) VALUES
-('2', 1),
-('2', 2),
-('2', 3),
-('DB01', 6),
-('DB01', 10),
-('DB01', 15),
-('DB01', 25),
-('DB01', 30),
-('DB01', 37),
 ('DB02', 4),
 ('DB02', 5),
+('DB01', 6),
+('DB04', 7),
+('DB03', 8),
+('DB03', 9),
+('DB01', 10),
 ('DB02', 11),
 ('DB02', 12),
+('DB04', 13),
+('DB03', 14),
+('DB01', 15),
 ('DB02', 16),
 ('DB02', 17),
 ('DB02', 18),
-('DB02', 20),
-('DB02', 23),
-('DB02', 24),
-('DB02', 32),
-('DB02', 33),
-('DB03', 8),
-('DB03', 9),
-('DB03', 14),
 ('DB03', 19),
+('DB02', 20),
 ('DB03', 21),
 ('DB03', 22),
+('DB02', 23),
+('DB02', 24),
+('DB01', 25),
 ('DB03', 26),
 ('DB03', 27),
 ('DB03', 28),
 ('DB03', 29),
+('DB01', 30),
 ('DB03', 31),
+('DB02', 32),
+('DB02', 33),
 ('DB03', 34),
 ('DB03', 35),
-('DB04', 7),
-('DB04', 13),
-('DB04', 36);
+('DB04', 36),
+('DB01', 37);
 
 -- --------------------------------------------------------
 
@@ -209,7 +206,7 @@ CREATE TABLE IF NOT EXISTS `du_an` (
   `end_date` date DEFAULT NULL,
   `is_delete` tinyint(1) NOT NULL,
   `update_link` tinyint(1) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `du_an`
@@ -252,7 +249,9 @@ INSERT INTO `du_an` (`ma_du_an`, `ten_du_an`, `ma_khach_hang`, `mo_ta_du_an`, `m
 (34, 'website Túi Sách', 'KH004', 'túi sách da thú cá loại', 'TT04', 'NV02', '2018-08-14', '2018-08-17', 0, 0),
 (35, 'website  FastFood', 'KH003', 'Chuyên cung cấp các đồ ăn nhanh ( liên hệ; 01294067734)', 'TT02', 'NV01', '2018-08-23', '2018-08-31', 0, 0),
 (36, 'website Du Lịch', 'KH012', 'cung cấp thông tin về các địa điểm du lịch trên toàn quốc', 'TT02', 'NV02', '2018-08-23', '2018-08-31', 0, 0),
-(37, 'website Bán đồ điện tử', 'KH020', 'chuyên cung cấp các phụ kiện điện tử', 'TT02', 'NV02', '2018-08-23', '2018-08-31', 0, 0);
+(37, 'website Bán đồ điện tử', 'KH020', 'chuyên cung cấp các phụ kiện điện tử', 'TT02', 'NV02', '2018-08-23', '2018-08-31', 0, 0),
+(38, '', 'KH001', '', 'TT01', 'NV01', NULL, NULL, 0, 0),
+(39, 'website bán hàng online', NULL, NULL, NULL, NULL, NULL, NULL, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -301,78 +300,78 @@ CREATE TABLE IF NOT EXISTS `framework_du_an` (
 
 INSERT INTO `framework_du_an` (`ma_framework`, `ma_du_an`) VALUES
 ('FR01', 1),
-('FR01', 6),
-('FR01', 7),
-('FR01', 8),
-('FR01', 10),
-('FR01', 12),
-('FR01', 13),
-('FR01', 15),
-('FR01', 16),
-('FR01', 17),
-('FR01', 18),
-('FR01', 19),
-('FR01', 21),
-('FR01', 22),
-('FR01', 23),
-('FR01', 25),
-('FR01', 26),
-('FR01', 27),
-('FR01', 29),
-('FR01', 31),
-('FR01', 34),
-('FR01', 35),
-('FR01', 36),
-('FR01', 37),
 ('FR02', 2),
 ('FR02', 3),
 ('FR02', 4),
 ('FR02', 5),
-('FR02', 7),
-('FR02', 9),
-('FR02', 10),
-('FR02', 14),
-('FR02', 15),
-('FR02', 16),
-('FR02', 17),
-('FR02', 18),
-('FR02', 20),
-('FR02', 21),
-('FR02', 24),
-('FR02', 28),
-('FR02', 31),
-('FR02', 32),
-('FR02', 33),
-('FR02', 34),
-('FR02', 35),
-('FR02', 36),
-('FR02', 37),
 ('FR03', 5),
+('FR01', 6),
 ('FR03', 6),
+('FR01', 7),
+('FR02', 7),
+('FR01', 8),
 ('FR03', 8),
+('FR02', 9),
+('FR04', 9),
+('FR01', 10),
+('FR02', 10),
 ('FR03', 11),
+('FR04', 11),
+('FR01', 12),
 ('FR03', 12),
+('FR01', 13),
 ('FR03', 13),
+('FR02', 14),
 ('FR03', 14),
+('FR01', 15),
+('FR02', 15),
+('FR01', 16),
+('FR02', 16),
+('FR01', 17),
+('FR02', 17),
+('FR01', 18),
+('FR02', 18),
+('FR01', 19),
 ('FR03', 19),
+('FR02', 20),
 ('FR03', 20),
+('FR01', 21),
+('FR02', 21),
+('FR01', 22),
 ('FR03', 22),
+('FR01', 23),
 ('FR03', 23),
+('FR02', 24),
 ('FR03', 24),
+('FR04', 24),
+('FR01', 25),
 ('FR03', 25),
+('FR01', 26),
 ('FR03', 26),
+('FR01', 27),
 ('FR03', 27),
+('FR02', 28),
 ('FR03', 28),
+('FR01', 29),
 ('FR03', 29),
 ('FR03', 30),
+('FR04', 30),
+('FR01', 31),
+('FR02', 31),
+('FR02', 32),
 ('FR03', 32),
+('FR02', 33),
 ('FR03', 33),
+('FR01', 34),
+('FR02', 34),
+('FR01', 35),
+('FR02', 35),
+('FR01', 36),
+('FR02', 36),
 ('FR03', 36),
-('FR03', 37),
-('FR04', 9),
-('FR04', 11),
-('FR04', 24),
-('FR04', 30);
+('FR01', 37),
+('FR02', 37),
+('FR03', 37);
 
 -- --------------------------------------------------------
 
@@ -770,7 +769,7 @@ INSERT INTO `ngon_ngu_du_an` (`ma_ngon_ngu`, `ma_du_an`) VALUES
 
 CREATE TABLE IF NOT EXISTS `nhiem_vu` (
   `ma_vai_tro` varchar(30) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
-  `ma_nhan_vien` int(11) NOT NULL DEFAULT '0',
+  `ma_nhan_vien` int(5) unsigned zerofill NOT NULL DEFAULT '00000',
   `ma_du_an` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -779,183 +778,183 @@ CREATE TABLE IF NOT EXISTS `nhiem_vu` (
 --
 
 INSERT INTO `nhiem_vu` (`ma_vai_tro`, `ma_nhan_vien`, `ma_du_an`) VALUES
-('VT01', 1, 1),
-('VT01', 6, 13),
-('VT01', 6, 31),
-('VT01', 6, 32),
-('VT01', 6, 33),
-('VT01', 6, 35),
-('VT01', 6, 36),
-('VT01', 6, 37),
-('VT01', 10, 4),
-('VT01', 10, 16),
-('VT01', 10, 17),
-('VT01', 10, 29),
-('VT01', 23, 3),
-('VT01', 23, 15),
-('VT01', 23, 18),
-('VT01', 23, 30),
-('VT01', 51, 19),
-('VT01', 51, 20),
-('VT01', 51, 26),
-('VT01', 52, 22),
-('VT01', 52, 23),
-('VT01', 66, 21),
-('VT01', 68, 7),
-('VT01', 68, 10),
-('VT01', 70, 11),
-('VT01', 70, 12),
-('VT01', 70, 14),
-('VT01', 76, 24),
-('VT01', 76, 34),
-('VT01', 82, 6),
-('VT01', 82, 9),
-('VT01', 106, 8),
-('VT01', 106, 28),
-('VT01', 109, 27),
-('VT01', 160, 5),
-('VT01', 190, 25),
-('VT02', 1, 1),
-('VT02', 1, 2),
-('VT02', 2, 1),
-('VT02', 4, 3),
-('VT02', 6, 30),
-('VT02', 8, 4),
-('VT02', 8, 33),
-('VT02', 8, 36),
-('VT02', 8, 37),
-('VT02', 23, 16),
-('VT02', 23, 18),
-('VT02', 51, 24),
-('VT02', 51, 28),
-('VT02', 52, 34),
-('VT02', 66, 17),
-('VT02', 66, 22),
-('VT02', 68, 27),
-('VT02', 68, 32),
-('VT02', 76, 31),
-('VT02', 79, 9),
-('VT02', 79, 35),
-('VT02', 82, 19),
-('VT02', 82, 29),
-('VT02', 85, 25),
-('VT02', 90, 7),
-('VT02', 90, 14),
-('VT02', 90, 20),
-('VT02', 90, 21),
-('VT02', 106, 15),
-('VT02', 108, 23),
-('VT02', 109, 5),
-('VT02', 115, 12),
-('VT02', 174, 11),
-('VT02', 181, 6),
-('VT02', 181, 10),
-('VT02', 185, 13),
-('VT02', 192, 8),
-('VT02', 192, 26),
-('VT03', 6, 29),
-('VT03', 10, 30),
-('VT03', 23, 19),
-('VT03', 23, 31),
-('VT03', 23, 33),
-('VT03', 66, 16),
-('VT03', 66, 37),
-('VT03', 68, 4),
-('VT03', 70, 18),
-('VT03', 70, 24),
-('VT03', 76, 8),
-('VT03', 76, 17),
-('VT03', 76, 22),
-('VT03', 76, 34),
-('VT03', 79, 32),
-('VT03', 82, 21),
-('VT03', 85, 28),
-('VT03', 90, 14),
-('VT03', 106, 9),
-('VT03', 106, 12),
-('VT03', 108, 7),
-('VT03', 108, 20),
-('VT03', 108, 35),
-('VT03', 115, 13),
-('VT03', 115, 15),
-('VT03', 115, 23),
-('VT03', 163, 6),
-('VT03', 169, 36),
-('VT03', 185, 10),
-('VT03', 185, 25),
-('VT03', 199, 5),
-('VT03', 199, 11),
-('VT03', 199, 26),
-('VT04', 6, 27),
-('VT04', 8, 16),
-('VT04', 10, 15),
-('VT04', 23, 17),
-('VT04', 23, 34),
-('VT04', 52, 33),
-('VT04', 66, 5),
-('VT04', 70, 23),
-('VT04', 70, 27),
-('VT04', 70, 29),
-('VT04', 76, 36),
-('VT04', 76, 37),
-('VT04', 79, 14),
-('VT04', 79, 18),
-('VT04', 85, 32),
-('VT04', 85, 37),
-('VT04', 90, 35),
-('VT04', 106, 4),
-('VT04', 106, 8),
-('VT04', 106, 22),
-('VT04', 106, 24),
-('VT04', 108, 21),
-('VT04', 108, 28),
-('VT04', 109, 9),
-('VT04', 109, 12),
-('VT04', 109, 20),
-('VT04', 115, 30),
-('VT04', 115, 31),
-('VT04', 135, 6),
-('VT04', 185, 26),
-('VT04', 192, 13),
-('VT04', 192, 25),
-('VT04', 193, 7),
-('VT04', 193, 10),
-('VT04', 193, 19),
-('VT04', 200, 11),
-('VT05', 6, 8),
-('VT05', 6, 27),
-('VT05', 6, 28),
-('VT05', 23, 14),
-('VT05', 51, 9),
-('VT05', 51, 33),
-('VT05', 52, 18),
-('VT05', 70, 5),
-('VT05', 76, 15),
-('VT05', 76, 35),
-('VT05', 82, 4),
-('VT05', 82, 16),
-('VT05', 82, 30),
-('VT05', 82, 31),
-('VT05', 85, 24),
-('VT05', 85, 37),
-('VT05', 90, 32),
-('VT05', 106, 29),
-('VT05', 108, 22),
-('VT05', 108, 23),
-('VT05', 108, 34),
-('VT05', 116, 6),
-('VT05', 171, 11),
-('VT05', 171, 17),
-('VT05', 174, 25),
-('VT05', 192, 12),
-('VT05', 192, 20),
-('VT05', 192, 36),
-('VT05', 193, 10),
-('VT05', 193, 13),
-('VT05', 199, 19),
-('VT05', 199, 21),
-('VT05', 200, 7),
-('VT05', 200, 26);
+('VT01', 00001, 1),
+('VT02', 00001, 1),
+('VT02', 00001, 2),
+('VT02', 00002, 1),
+('VT02', 00004, 3),
+('VT01', 00006, 13),
+('VT01', 00006, 31),
+('VT01', 00006, 32),
+('VT01', 00006, 33),
+('VT01', 00006, 35),
+('VT01', 00006, 36),
+('VT01', 00006, 37),
+('VT02', 00006, 30),
+('VT03', 00006, 29),
+('VT04', 00006, 27),
+('VT05', 00006, 8),
+('VT05', 00006, 27),
+('VT05', 00006, 28),
+('VT02', 00008, 4),
+('VT02', 00008, 33),
+('VT02', 00008, 36),
+('VT02', 00008, 37),
+('VT04', 00008, 16),
+('VT01', 00010, 4),
+('VT01', 00010, 16),
+('VT01', 00010, 17),
+('VT01', 00010, 29),
+('VT03', 00010, 30),
+('VT04', 00010, 15),
+('VT01', 00023, 3),
+('VT01', 00023, 15),
+('VT01', 00023, 18),
+('VT01', 00023, 30),
+('VT02', 00023, 16),
+('VT02', 00023, 18),
+('VT03', 00023, 19),
+('VT03', 00023, 31),
+('VT03', 00023, 33),
+('VT04', 00023, 17),
+('VT04', 00023, 34),
+('VT05', 00023, 14),
+('VT01', 00051, 19),
+('VT01', 00051, 20),
+('VT01', 00051, 26),
+('VT02', 00051, 24),
+('VT02', 00051, 28),
+('VT05', 00051, 9),
+('VT05', 00051, 33),
+('VT01', 00052, 22),
+('VT01', 00052, 23),
+('VT02', 00052, 34),
+('VT04', 00052, 33),
+('VT05', 00052, 18),
+('VT01', 00066, 21),
+('VT02', 00066, 17),
+('VT02', 00066, 22),
+('VT03', 00066, 16),
+('VT03', 00066, 37),
+('VT04', 00066, 5),
+('VT01', 00068, 7),
+('VT01', 00068, 10),
+('VT02', 00068, 27),
+('VT02', 00068, 32),
+('VT03', 00068, 4),
+('VT01', 00070, 11),
+('VT01', 00070, 12),
+('VT01', 00070, 14),
+('VT03', 00070, 18),
+('VT03', 00070, 24),
+('VT04', 00070, 23),
+('VT04', 00070, 27),
+('VT04', 00070, 29),
+('VT05', 00070, 5),
+('VT01', 00076, 24),
+('VT01', 00076, 34),
+('VT02', 00076, 31),
+('VT03', 00076, 8),
+('VT03', 00076, 17),
+('VT03', 00076, 22),
+('VT03', 00076, 34),
+('VT04', 00076, 36),
+('VT04', 00076, 37),
+('VT05', 00076, 15),
+('VT05', 00076, 35),
+('VT02', 00079, 9),
+('VT02', 00079, 35),
+('VT03', 00079, 32),
+('VT04', 00079, 14),
+('VT04', 00079, 18),
+('VT01', 00082, 6),
+('VT01', 00082, 9),
+('VT02', 00082, 19),
+('VT02', 00082, 29),
+('VT03', 00082, 21),
+('VT05', 00082, 4),
+('VT05', 00082, 16),
+('VT05', 00082, 30),
+('VT05', 00082, 31),
+('VT02', 00085, 25),
+('VT03', 00085, 28),
+('VT04', 00085, 32),
+('VT04', 00085, 37),
+('VT05', 00085, 24),
+('VT05', 00085, 37),
+('VT02', 00090, 7),
+('VT02', 00090, 14),
+('VT02', 00090, 20),
+('VT02', 00090, 21),
+('VT03', 00090, 14),
+('VT04', 00090, 35),
+('VT05', 00090, 32),
+('VT01', 00106, 8),
+('VT01', 00106, 28),
+('VT02', 00106, 15),
+('VT03', 00106, 9),
+('VT03', 00106, 12),
+('VT04', 00106, 4),
+('VT04', 00106, 8),
+('VT04', 00106, 22),
+('VT04', 00106, 24),
+('VT05', 00106, 29),
+('VT02', 00108, 23),
+('VT03', 00108, 7),
+('VT03', 00108, 20),
+('VT03', 00108, 35),
+('VT04', 00108, 21),
+('VT04', 00108, 28),
+('VT05', 00108, 22),
+('VT05', 00108, 23),
+('VT05', 00108, 34),
+('VT01', 00109, 27),
+('VT02', 00109, 5),
+('VT04', 00109, 9),
+('VT04', 00109, 12),
+('VT04', 00109, 20),
+('VT02', 00115, 12),
+('VT03', 00115, 13),
+('VT03', 00115, 15),
+('VT03', 00115, 23),
+('VT04', 00115, 30),
+('VT04', 00115, 31),
+('VT05', 00116, 6),
+('VT04', 00135, 6),
+('VT01', 00160, 5),
+('VT03', 00163, 6),
+('VT03', 00169, 36),
+('VT05', 00171, 11),
+('VT05', 00171, 17),
+('VT02', 00174, 11),
+('VT05', 00174, 25),
+('VT02', 00181, 6),
+('VT02', 00181, 10),
+('VT02', 00185, 13),
+('VT03', 00185, 10),
+('VT03', 00185, 25),
+('VT04', 00185, 26),
+('VT01', 00190, 25),
+('VT02', 00192, 8),
+('VT02', 00192, 26),
+('VT04', 00192, 13),
+('VT04', 00192, 25),
+('VT05', 00192, 12),
+('VT05', 00192, 20),
+('VT05', 00192, 36),
+('VT04', 00193, 7),
+('VT04', 00193, 10),
+('VT04', 00193, 19),
+('VT05', 00193, 10),
+('VT05', 00193, 13),
+('VT03', 00199, 5),
+('VT03', 00199, 11),
+('VT03', 00199, 26),
+('VT05', 00199, 19),
+('VT05', 00199, 21),
+('VT04', 00200, 11),
+('VT05', 00200, 7),
+('VT05', 00200, 26);
 
 -- --------------------------------------------------------
 
@@ -1034,7 +1033,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `ma_tai_khoan` int(11) NOT NULL,
   `username` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
   `password` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `ma_nhan_vien` int(11) NOT NULL,
+  `ma_nhan_vien` int(5) unsigned zerofill NOT NULL,
   `enabled` int(1) DEFAULT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -1043,9 +1042,9 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`ma_tai_khoan`, `username`, `password`, `ma_nhan_vien`, `enabled`) VALUES
-(1, 'thiphuoc', '$2a$04$GYGsaJj9l6kH2GikK6QVzO0v3sOCxt3vdkiA2/tcoSw8erI85ZYDG', 6, 1),
-(2, 'thitai', '$2a$04$GYGsaJj9l6kH2GikK6QVzO0v3sOCxt3vdkiA2/tcoSw8erI85ZYDG', 115, 1),
-(3, 'sangnguyen', '$2a$04$GYGsaJj9l6kH2GikK6QVzO0v3sOCxt3vdkiA2/tcoSw8erI85ZYDG', 5, 1);
+(1, 'thiphuoc', '$2a$04$GYGsaJj9l6kH2GikK6QVzO0v3sOCxt3vdkiA2/tcoSw8erI85ZYDG', 00006, 1),
+(2, 'thitai', '$2a$04$GYGsaJj9l6kH2GikK6QVzO0v3sOCxt3vdkiA2/tcoSw8erI85ZYDG', 00115, 1),
+(3, 'sangnguyen', '$2a$04$GYGsaJj9l6kH2GikK6QVzO0v3sOCxt3vdkiA2/tcoSw8erI85ZYDG', 00005, 1);
 
 -- --------------------------------------------------------
 
@@ -1105,7 +1104,8 @@ ALTER TABLE `co_so_du_lieu`
 -- Indexes for table `database_du_an`
 --
 ALTER TABLE `database_du_an`
-  ADD PRIMARY KEY (`ma_database`,`ma_du_an`);
+  ADD PRIMARY KEY (`ma_database`,`ma_du_an`),
+  ADD KEY `ma_du_an` (`ma_du_an`);
 
 --
 -- Indexes for table `doi_tac`
@@ -1127,7 +1127,9 @@ ALTER TABLE `du_an`
   ADD UNIQUE KEY `MaDuAn` (`ma_du_an`),
   ADD KEY `MaDuAn_2` (`ma_du_an`),
   ADD KEY `MaDuAn_3` (`ma_du_an`),
-  ADD KEY `ma_tinh_trang` (`ma_tinh_trang`);
+  ADD KEY `ma_tinh_trang` (`ma_tinh_trang`),
+  ADD KEY `ma_nghiep_vu` (`ma_nghiep_vu`),
+  ADD KEY `ma_khach_hang` (`ma_khach_hang`);
 
 --
 -- Indexes for table `framework`
@@ -1139,7 +1141,8 @@ ALTER TABLE `framework`
 -- Indexes for table `framework_du_an`
 --
 ALTER TABLE `framework_du_an`
-  ADD PRIMARY KEY (`ma_framework`,`ma_du_an`);
+  ADD PRIMARY KEY (`ma_framework`,`ma_du_an`),
+  ADD KEY `ma_du_an` (`ma_du_an`);
 
 --
 -- Indexes for table `ho_so_nhan_vien`
@@ -1180,7 +1183,9 @@ ALTER TABLE `ngon_ngu_du_an`
 -- Indexes for table `nhiem_vu`
 --
 ALTER TABLE `nhiem_vu`
-  ADD PRIMARY KEY (`ma_vai_tro`,`ma_nhan_vien`,`ma_du_an`);
+  ADD PRIMARY KEY (`ma_vai_tro`,`ma_nhan_vien`,`ma_du_an`),
+  ADD KEY `ma_nhan_vien` (`ma_nhan_vien`),
+  ADD KEY `ma_du_an` (`ma_du_an`);
 
 --
 -- Indexes for table `phong_ban`
@@ -1231,7 +1236,7 @@ ALTER TABLE `vai_tro_thanh_vien`
 -- AUTO_INCREMENT for table `du_an`
 --
 ALTER TABLE `du_an`
-  MODIFY `ma_du_an` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=38;
+  MODIFY `ma_du_an` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=40;
 --
 -- AUTO_INCREMENT for table `ho_so_nhan_vien`
 --
@@ -1252,16 +1257,47 @@ ALTER TABLE `users`
 --
 
 --
+-- Constraints for table `database_du_an`
+--
+ALTER TABLE `database_du_an`
+  ADD CONSTRAINT `database_du_an_ibfk_1` FOREIGN KEY (`ma_database`) REFERENCES `co_so_du_lieu` (`ma_database`),
+  ADD CONSTRAINT `database_du_an_ibfk_2` FOREIGN KEY (`ma_du_an`) REFERENCES `du_an` (`ma_du_an`);
+
+--
 -- Constraints for table `du_an`
 --
 ALTER TABLE `du_an`
-  ADD CONSTRAINT `du_an_ibfk_1` FOREIGN KEY (`ma_tinh_trang`) REFERENCES `tinh_trang` (`ma_tinh_trang`);
+  ADD CONSTRAINT `du_an_ibfk_1` FOREIGN KEY (`ma_tinh_trang`) REFERENCES `tinh_trang` (`ma_tinh_trang`),
+  ADD CONSTRAINT `du_an_ibfk_2` FOREIGN KEY (`ma_nghiep_vu`) REFERENCES `nghiep_vu` (`ma_nghiep_vu`),
+  ADD CONSTRAINT `du_an_ibfk_3` FOREIGN KEY (`ma_khach_hang`) REFERENCES `khach_hang` (`ma_khach_hang`);
+
+--
+-- Constraints for table `framework_du_an`
+--
+ALTER TABLE `framework_du_an`
+  ADD CONSTRAINT `framework_du_an_ibfk_1` FOREIGN KEY (`ma_du_an`) REFERENCES `du_an` (`ma_du_an`),
+  ADD CONSTRAINT `framework_du_an_ibfk_2` FOREIGN KEY (`ma_framework`) REFERENCES `framework` (`ma_framework`);
 
 --
 -- Constraints for table `ngon_ngu_du_an`
 --
 ALTER TABLE `ngon_ngu_du_an`
-  ADD CONSTRAINT `ngon_ngu_du_an_ibfk_2` FOREIGN KEY (`ma_ngon_ngu`) REFERENCES `ngon_ngu` (`ma_ngon_ngu`);
+  ADD CONSTRAINT `ngon_ngu_du_an_ibfk_2` FOREIGN KEY (`ma_ngon_ngu`) REFERENCES `ngon_ngu` (`ma_ngon_ngu`),
+  ADD CONSTRAINT `ngon_ngu_du_an_ibfk_3` FOREIGN KEY (`ma_du_an`) REFERENCES `du_an` (`ma_du_an`);
+
+--
+-- Constraints for table `nhiem_vu`
+--
+ALTER TABLE `nhiem_vu`
+  ADD CONSTRAINT `nhiem_vu_ibfk_1` FOREIGN KEY (`ma_vai_tro`) REFERENCES `vai_tro_thanh_vien` (`ma_vai_tro`),
+  ADD CONSTRAINT `nhiem_vu_ibfk_2` FOREIGN KEY (`ma_nhan_vien`) REFERENCES `ho_so_nhan_vien` (`ma_nhan_vien`),
+  ADD CONSTRAINT `nhiem_vu_ibfk_3` FOREIGN KEY (`ma_du_an`) REFERENCES `du_an` (`ma_du_an`);
+
+--
+-- Constraints for table `users`
+--
+ALTER TABLE `users`
+  ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`ma_nhan_vien`) REFERENCES `ho_so_nhan_vien` (`ma_nhan_vien`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

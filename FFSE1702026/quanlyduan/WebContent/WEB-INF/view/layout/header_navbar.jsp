@@ -11,7 +11,7 @@
 						alt="stack admin logo"
 						src="<c:url value="/resources/images/logo/stack-logo.png"/>"
 						class="brand-logo">
-						<h2 class="brand-text">Stack <c:out value="${local }"/></h2></a></li>
+						<h2 class="brand-text">FFSE <c:out value="${local }"/></h2></a></li>
 				<li class="nav-item hidden-md-up float-xs-right"><a
 					data-toggle="collapse" data-target="#navbar-mobile"
 					class="nav-link open-navbar-container"><i

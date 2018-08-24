@@ -32,6 +32,7 @@ import fasttrackse1702a.fbms.quanlyduan.dao.UserDao;
 import fasttrackse1702a.fbms.quanlyduan.entity.Database;
 import fasttrackse1702a.fbms.quanlyduan.entity.DoiTac;
 import fasttrackse1702a.fbms.quanlyduan.entity.DuAn;
+import fasttrackse1702a.fbms.quanlyduan.entity.DuAnTruongPhong;
 import fasttrackse1702a.fbms.quanlyduan.entity.Framework;
 import fasttrackse1702a.fbms.quanlyduan.entity.HoSoNhanVien;
 import fasttrackse1702a.fbms.quanlyduan.entity.KhachHang;
@@ -44,6 +45,7 @@ import fasttrackse1702a.fbms.quanlyduan.entity.VaiTro;
 import fasttrackse1702a.fbms.quanlyduan.service.DatabaseService;
 import fasttrackse1702a.fbms.quanlyduan.service.DoiTacService;
 import fasttrackse1702a.fbms.quanlyduan.service.DuAnService;
+import fasttrackse1702a.fbms.quanlyduan.service.DuAnTruongPhongService;
 import fasttrackse1702a.fbms.quanlyduan.service.FrameworkService;
 import fasttrackse1702a.fbms.quanlyduan.service.HoSoNhanVienService;
 import fasttrackse1702a.fbms.quanlyduan.service.KhachHangService;
@@ -82,6 +84,8 @@ public class DuAnController {
 	UserDao userDao;
 	@Autowired
 	MessageSource messageSource;
+	@Autowired
+	DuAnTruongPhongService duAnTruongPhongService;
 
 	@RequestMapping(value = { "/phancongnhiemvu/create/{maDuAn}" })
 	public String phanCongNhiemVu(@PathVariable("maDuAn") int maDuAn, ModelMap mm, Principal pr) {
@@ -217,7 +221,7 @@ public class DuAnController {
 		if (checkRoleTPP()) {
 			mm.put("view", "duan/create.jsp");
 			mm.put("title", "duan.add");
-			mm.put("duan", new DuAn());
+			mm.put("duan", new DuAnTruongPhong());
 			getData(mm);
 			return "layout";
 		} else {
@@ -227,19 +231,19 @@ public class DuAnController {
 
 	@RequestMapping(value = { "/create" }, method = RequestMethod.POST)
 	public String create(final RedirectAttributes redirectAttributes, ModelMap mm,
-			@ModelAttribute("duan") @Validated DuAn duan, BindingResult result) {
-		if (duan.getStartDate().after(duan.getEndDate())) {
+			@ModelAttribute("duan") @Validated DuAnTruongPhong duan, BindingResult result) {
+		/*if (duan.getStartDate().after(duan.getEndDate())) {
 			FieldError error = new FieldError("duan", "startDate", messageSource.getMessage("Erorr.duan.startDate",
 					new String[] { duan.getEndDate().toString() }, Locale.getDefault()));
 			result.addError(error);
-		}
+		}*/
 		if (result.hasErrors()) {
 			getData(mm);
-			mm.put("view", "duan/create.jsp");
-			mm.put("title", "duan.add");
+		mm.put("view", "duan/create.jsp");
+		mm.put("title", "duan.add");
 			return "layout";
 		}
-		duAnService.save(duan);
+		duAnTruongPhongService.save(duan);
 		redirectAttributes.addFlashAttribute("message", "Add successfully.");
 		return "redirect:list";
 	}

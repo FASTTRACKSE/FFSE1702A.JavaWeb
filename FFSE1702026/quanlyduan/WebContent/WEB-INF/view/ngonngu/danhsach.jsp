@@ -48,11 +48,11 @@
                                     <th scope="row">${count.count  }</th>
                                     <td>${ngonngu.maNgonNgu }</td>
                                     <td>${ngonngu.tenNgonNgu }</td>
-                                    <td><a href="${updatelink }${framework.maFramework }" data-toggle="tooltip" title="edit!"><button type="button" class="btn btn-icon btn-outline-warning"><i class="fa fa-gavel"></i></button></a>
+                                    <td><a href="${updatelink }${ngonngu.maNgonNgu }" data-toggle="tooltip" title="edit!"><button type="button" class="btn btn-icon btn-outline-warning"><i class="fa fa-gavel"></i></button></a>
                                     	<button type="button"
 												class="btn btn-outline-danger btn-icon checkid"
 												data-toggle="modal"
-												data-link="${deletelink }${framework.maFramework }"
+												data-link="${deletelink }${ngonngu.maNgonNgu }"
 												data-target="#danger">
 												<i class="fa fa-trash-o"></i>
 											</button>
