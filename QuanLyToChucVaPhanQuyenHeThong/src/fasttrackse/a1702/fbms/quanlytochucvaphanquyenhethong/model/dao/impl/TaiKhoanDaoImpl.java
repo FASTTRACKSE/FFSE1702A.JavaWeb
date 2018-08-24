@@ -52,22 +52,22 @@ public class TaiKhoanDaoImpl implements TaiKhoanDao {
 	}
 
 	@Override
-	public void delete(String maNhanVien) {
+	public void delete(String tenDangNhap) {
 		Session session = this.sessionFactory.openSession();
 		Transaction cn = session.beginTransaction();
-		session.delete(session.get(TaiKhoan.class, maNhanVien));
+		session.delete(session.get(TaiKhoan.class, tenDangNhap));
 		cn.commit();
 		session.close();
 	}
 
 	@SuppressWarnings({ "rawtypes" })
 	@Override
-	public void active(String maNhanVien) {
+	public void active(String tenDangNhap) {
 		Session session = this.sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
 		SQLQuery sql = session
-				.createSQLQuery("UPDATE tai_khoan SET `trang_thai`=if(`trang_thai`=1,0,1) WHERE `ma_nhan_vien` in ('"
-						+ maNhanVien + "')");
+				.createSQLQuery("UPDATE tai_khoan SET `trang_thai`=if(`trang_thai`=1,0,1) WHERE `ten_dang_nhap` in ('"
+						+ tenDangNhap + "')");
 		sql.executeUpdate();
 		tx.commit();
 		session.close();
@@ -89,17 +89,25 @@ public class TaiKhoanDaoImpl implements TaiKhoanDao {
 	@Override
 	public TaiKhoan validateTaiKhoan(Login login) {
 		Session session = this.sessionFactory.openSession();
-		Query q = session.createQuery("FROM TaiKhoan WHERE maNhanVien='" + login.getUsername() 
-		+ "' and matKhau='" + login.getPassword() + "'");
+		Query q = session.createQuery("FROM TaiKhoan WHERE maNhanVien='" + login.getUsername() + "' and matKhau='"
+				+ login.getPassword() + "'");
 		List<TaiKhoan> users = q.getResultList();
-	    session.close();
-	    return users.size() > 0 ? users.get(0) : null;
+		session.close();
+		return users.size() > 0 ? users.get(0) : null;
 	}
 
 	@Override
 	public TaiKhoan findByMaNhanVien(String maNhanVien) {
 		Session session = this.sessionFactory.openSession();
 		TaiKhoan tk = session.get(TaiKhoan.class, maNhanVien);
+		session.close();
+		return tk;
+	}
+
+	@Override
+	public TaiKhoan findByTenDangNhap(String tenDangNhap) {
+		Session session = this.sessionFactory.openSession();
+		TaiKhoan tk = session.get(TaiKhoan.class, tenDangNhap);
 		session.close();
 		return tk;
 	}

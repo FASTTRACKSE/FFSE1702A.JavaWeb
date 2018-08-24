@@ -21,6 +21,7 @@
    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/fonts/font-awesome/css/font-awesome.min.css "/>">
    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/fonts/flag-icon-css/css/flag-icon.min.css "/>">
    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/vendors/css/extensions/pace.css "/>">
+   <link rel="stylesheet" type="text/css" href="<c:url value="/resources/vendors/css/tables/datatable/dataTables.bootstrap4.min.css"/>">
    <!-- END VENDOR CSS-->
    <!-- BEGIN STACK CSS-->
    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/bootstrap-extended.css "/>">
