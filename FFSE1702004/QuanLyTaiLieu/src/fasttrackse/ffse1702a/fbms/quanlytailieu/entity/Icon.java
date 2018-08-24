@@ -25,7 +25,7 @@ public class Icon implements Serializable {
 		this.id = id;
 	}
 
-	@Column(name = "ma_icon")
+	@Column(name = "ma_icon",insertable = true , updatable = false)
 	private String ma_icon;
 
 	@Column(name = "hinh_anh")

@@ -37,6 +37,9 @@ public interface DocumentDAO {
 	
 	//delete
 	public void delete(final int id);
+	
+	//accept
+	public void accept(final int id);
 
 	// list category
 	public List<Category> listCategory();

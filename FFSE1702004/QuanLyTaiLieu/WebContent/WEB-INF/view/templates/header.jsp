@@ -59,23 +59,7 @@
                </ul>
                <ul class="nav navbar-nav float-xs-right">
                   <li class="dropdown dropdown-language nav-item">
-                  <a id="dropdown-flag" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle nav-link">
-                  <!-- ========================= -->
-                  <c:choose>
-   					 <c:when test="${not empty param.theLocale}">
-      					  <c:set var="theLocale" value="${param.theLocale}" scope="session" /> 
-					   		 <i class="flag-icon flag-icon-gb"></i>      					
-  					  </c:when>    
-    				<c:otherwise>
-						<c:if test="${empty theLocale}">
-					   		 <i class="flag-icon flag-icon-gb"></i>      
-						</c:if>
-    				</c:otherwise>
-				</c:choose>
-			 <!-- ========================= -->
-				
-                  	<span class="selected-language"></span>
-                  </a>                    
+                  <a id="dropdown-flag" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle nav-link"><spring:message code="label.selectlanguages"/> <span class="selected-language" >  </span> </a>                    
                      <div aria-labelledby="dropdown-flag" class="dropdown-menu"> <a href="${baseURL}?theLocale=en_US" class="dropdown-item"> <i class="flag-icon flag-icon-gb"></i> English</a> <a href="${baseURL}?theLocale=vi_VN" class="dropdown-item"><i class="flag-icon flag-icon-vn"></i> Vietnamese </a></div>
                   </li>
                   <li class="dropdown dropdown-user nav-item"><a href="#" data-toggle="dropdown" class="dropdown-toggle nav-link dropdown-user-link"><span class="avatar avatar-online">  <img src=" <c:url value="resources/images/portrait/small/avatar-s-1.png"/> " alt="avatar"><i></i></span><span class="user-name">admin</span></a>

@@ -62,6 +62,12 @@ public class DocumentServiceImpl implements DocumentService {
 		documentDAO.delete(id);
 	}
 	
+	//accept
+	public void accept(int id) {
+		documentDAO.accept(id);
+	}
+	
+	
 	//update
 	public void updateDocument(Document document) {
 		documentDAO.updateDocument(document);

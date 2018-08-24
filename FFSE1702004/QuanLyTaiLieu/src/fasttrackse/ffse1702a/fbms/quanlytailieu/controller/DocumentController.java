@@ -33,9 +33,23 @@ public class DocumentController {
 		model.addAttribute("listDocument", documentService.getAll());
 		return "index";
 	}
-	
+
+	// approve document
+	@RequestMapping(value = "/documentAccept/{id}", method = RequestMethod.GET)
+	public String documentAccept(@PathVariable int id, Model model) {
+		documentService.accept(id);
+		return "redirect:/";
+	}
+
+	// ----------------- delete ----------------//
+	@RequestMapping(value = "/documentDelete/{id}", method = RequestMethod.GET)
+	public String documentDelete(@PathVariable int id, Model model) {
+		documentService.delete(id);
+		return "redirect:/";
+	}
+
 	// edit document
-	@RequestMapping(value = "/documentEdit/{id}" , method = RequestMethod.GET)
+	@RequestMapping(value = "/documentEdit/{id}", method = RequestMethod.GET)
 	public String documentEdit(@PathVariable int id, Model model) {
 		model.addAttribute("document", documentService.findById(id));
 		return "documentInsert";
@@ -51,77 +65,72 @@ public class DocumentController {
 
 	// draft
 	@RequestMapping(value = "/documentSave/draft")
-	public String saveDraft(@ModelAttribute("document") DocumentDTO DocumentDTO, HttpServletRequest request, ModelMap modelMap) {
-		
-		if(DocumentDTO.getId() == 0) {	
-		Document document = new Document();
-		BeanUtils.copyProperties(DocumentDTO, document);
-		Map<String, String> filename = documentService.uploadfile(DocumentDTO.getFile(), request, modelMap);
-		document.setFile(filename.get("urlImage"));
-		Icon ic= new Icon();
-		Status st = new Status();
-		st.setMa_trang_thai("nhap");
-		ic.setMa_icon(filename.get("extensionImage"));	
-		document.setMa_icon(ic);
-		document.setMa_trang_thai(st);
-		documentService.saveDraft(document);
-		
-		} 
-		else {	
+	public String saveDraft(@ModelAttribute("document") DocumentDTO DocumentDTO, HttpServletRequest request,
+			ModelMap modelMap) {
+
+		if (DocumentDTO.getId() == 0) {
 			Document document = new Document();
-			if(document.getFile() == null) {
+			BeanUtils.copyProperties(DocumentDTO, document);
+			Map<String, String> filename = documentService.uploadfile(DocumentDTO.getFile(), request, modelMap);
+			document.setFile(filename.get("urlImage"));
+			Icon ic = new Icon();
+			Status st = new Status();
+			st.setMa_trang_thai("nhap");
+			ic.setMa_icon(filename.get("extensionImage"));
+			document.setMa_icon(ic);
+			document.setMa_trang_thai(st);
+			documentService.saveDraft(document);
+
+		} else {
+			Document document = new Document();
+			if (document.getFile() == null) {
 				Map<String, String> filename = documentService.uploadfile(DocumentDTO.getFile(), request, modelMap);
 				document.setFile(filename.get("urlImage"));
-				Icon ic= new Icon();
+				Icon ic = new Icon();
 				ic.setMa_icon(filename.get("extensionImage"));
 				document.setMa_icon(ic);
 			}
 			Status st = new Status();
 			st.setMa_trang_thai("nhap");
 			document.setMa_trang_thai(st);
-			documentService.updateDocument(document);	
+			documentService.updateDocument(document);
 		}
 		return "redirect:/";
-		
+
 	}
-	// ----------------- delete ----------------//
-		@RequestMapping(value = "/documentDelete/{id}", method = RequestMethod.GET)
-		public String documentDelete(@PathVariable int id, Model model) {
-			documentService.delete(id);
-			return "redirect:/";
-		}
-	
+
 	// submit pendding approve
 	@RequestMapping(value = "/documentSave")
-	public String saveDocument(@ModelAttribute("document") DocumentDTO DocumentDTO, HttpServletRequest request, ModelMap modelMap) {
-		if(DocumentDTO.getId() == 0) {	
+	public String saveDocument(@ModelAttribute("document") DocumentDTO DocumentDTO, HttpServletRequest request,
+			ModelMap modelMap) {
+		if (DocumentDTO.getId() == 0) {
 			Document document = new Document();
 			BeanUtils.copyProperties(DocumentDTO, document);
 			Map<String, String> filename = documentService.uploadfile(DocumentDTO.getFile(), request, modelMap);
 			document.setFile(filename.get("urlImage"));
-			Icon ic= new Icon();
+			Icon ic = new Icon();
 			Status st = new Status();
 			st.setMa_trang_thai("cho_phe_duyet");
-			ic.setMa_icon(filename.get("extensionImage"));	
+			ic.setMa_icon(filename.get("extensionImage"));
 			document.setMa_icon(ic);
 			document.setMa_trang_thai(st);
 			documentService.saveDraft(document);
-			} else {
-				Document document = new Document();
-				BeanUtils.copyProperties(DocumentDTO, document);
-				if(document.getFile() == null) {
-					Map<String, String> filename = documentService.uploadfile(DocumentDTO.getFile(), request, modelMap);
-					document.setFile(filename.get("urlImage"));
-					Icon ic= new Icon();
-					ic.setMa_icon(filename.get("extensionImage"));
-					document.setMa_icon(ic);
-				}
-				Status st = new Status();
-				st.setMa_trang_thai("cho_phe_duyet");
-				document.setMa_trang_thai(st);
-				documentService.updateDocument(document);	
+		} else {
+			Document document = new Document();
+			BeanUtils.copyProperties(DocumentDTO, document);
+			if (document.getFile() == null) {
+				Map<String, String> filename = documentService.uploadfile(DocumentDTO.getFile(), request, modelMap);
+				document.setFile(filename.get("urlImage"));
+				Icon ic = new Icon();
+				ic.setMa_icon(filename.get("extensionImage"));
+				document.setMa_icon(ic);
 			}
-			return "redirect:/";
+			Status st = new Status();
+			st.setMa_trang_thai("cho_phe_duyet");
+			document.setMa_trang_thai(st);
+			documentService.updateDocument(document);
+		}
+		return "redirect:/";
 	}
 	// ------------------------------------//
 

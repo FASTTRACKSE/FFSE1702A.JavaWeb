@@ -58,7 +58,7 @@ public class Document {
 	}
 
 	@ManyToOne
-	@JoinColumn(name = "ma_icon", referencedColumnName = "ma_icon",insertable = true, updatable = false)
+	@JoinColumn(name = "ma_icon", referencedColumnName = "ma_icon")
 	private Icon ma_icon;
 
 	public Icon getMa_icon() {

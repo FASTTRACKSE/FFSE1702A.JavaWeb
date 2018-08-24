@@ -74,7 +74,7 @@
 												<td><img src="<c:url value="${document.ma_icon.hinh_anh}"/>" width="20" height="20"> ${document.ten_tai_lieu}</td>
 												<td>${document.mo_ta}</td>
 												<td>${document.ma_danh_muc.ten_danh_muc}</td>
-												<td><a href="//${document.file}" class="btn-warning btn"> <spring:message code="label.download"/> </a></td>
+												<td><a href="<c:url value="${document.file} "/>" class="btn-warning btn"> <spring:message code="label.download"/> </a></td>
 											</tr>
 										</c:forEach>
 									</c:if>

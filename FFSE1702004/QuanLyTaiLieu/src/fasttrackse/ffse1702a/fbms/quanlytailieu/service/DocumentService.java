@@ -33,6 +33,9 @@ public interface DocumentService {
 	//delete
 	public void delete(int id);
 	
+	//accept
+	public void accept(int id);
+	
 	//update
 	public void updateDocument(Document document);
 	

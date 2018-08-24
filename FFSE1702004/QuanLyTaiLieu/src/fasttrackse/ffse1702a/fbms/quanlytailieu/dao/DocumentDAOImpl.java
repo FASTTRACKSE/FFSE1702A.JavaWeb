@@ -111,7 +111,16 @@ public class DocumentDAOImpl implements DocumentDAO {
 		Document document = findById(id);
 		session.remove(document);
 	}
-
+	//accept
+	public void accept(final int id) {
+		Session session = this.sessionFactory.getCurrentSession();
+		Document document = findById(id);
+		Status st = new Status();
+		st.setMa_trang_thai("da_phe_duyet");
+		document.setMa_trang_thai(st);
+		session.update(document);
+		
+	}
 	// find by id
 	public Document findById(final int id) {
 		Session session = this.sessionFactory.getCurrentSession();
@@ -143,7 +152,7 @@ public class DocumentDAOImpl implements DocumentDAO {
 			try {
 				//Upload file lên sever
 				commonsMultipartFiles.transferTo(new File(fileDir+File.separator+nameFile));
-				result.put("urlImage", request.getServerName() + ":" + request.getServerPort() + request.getContextPath() + "/upload/" + nameFile);
+				result.put("urlImage","/upload/" + nameFile);
 				System.out.println("Upload file thành công!");
 //				modelMap.addAttribute("filename", nameFile);
 			} catch (Exception e) {

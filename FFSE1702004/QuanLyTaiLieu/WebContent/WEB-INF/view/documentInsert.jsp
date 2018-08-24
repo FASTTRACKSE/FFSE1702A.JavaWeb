@@ -96,18 +96,18 @@
 					</div>
 				</div>
 				<!-- ///////////////////// -->
+			
 				<div class="form-group row">
 					<label class="col-md-3 label-control"> <spring:message
 							code="label.selectFile" />
 					</label>
 					<div class="col-md-9">
 						<label id="projectinput8" class="file center-block">
-						
-							 <form:input type="file" path="file" value="${document.file}" /> <span class="file-custom"></span>
+							 <form:input type="file" path="file" /> <span class="file-custom"></span>
 						</label>
 					</div>
-					
 				</div>
+				
 				<!-- ///////////////////// -->
 
 				<div class="form-actions">

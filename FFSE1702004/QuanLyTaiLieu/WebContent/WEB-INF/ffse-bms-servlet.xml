@@ -66,7 +66,17 @@
     <!-- Resources theme location -->
     <mvc:resources mapping="/resources/**" location="/resources/stack-admin/" />
     
+    <!-- upload  -->
+    <mvc:resources mapping="/upload/**" location="/upload/" />
+    
     <!-- validate va da ngon ngu  -->
+    
+    
+ 
+    <bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver" >
+    <property  name ="defaultLocale" value = "en" />
+    </bean>
+         
     <bean id="messageSource"
     class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
     <property name="basename" value="/i18n/messages" />
@@ -76,6 +86,10 @@
         <property name="paramName" value="theLocale" />
         </bean>
     </mvc:interceptors>
+    
+    
+    
+    
  
           <bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
