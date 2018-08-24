@@ -64,7 +64,7 @@
 										<td>${tenDuAn }</td>
 										<td><c:forEach var="nhanVien"
 												items="${duan.hoSoNhanVien }">
-												<c:if test="${nhanVien.maNhanVien==nv.maNhanVien }">${nhanVien.ten }</c:if>
+												<c:if test="${nhanVien.maNhanVien==nv.maNhanVien }">${nhanVien.hoDem }${nhanVien.ten }</c:if>
 
 											</c:forEach></td>
 										<td><c:forEach var="nhanVien"

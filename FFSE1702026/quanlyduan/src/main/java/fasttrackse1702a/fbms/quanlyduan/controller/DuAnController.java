@@ -182,7 +182,7 @@ public class DuAnController {
 
 	@RequestMapping(value = { "/phancongnhiemvu/update" }, method = RequestMethod.POST)
 	public String phanCongNhiemVuUpdate(final RedirectAttributes redirectAttributes, ModelMap mm,
-			@ModelAttribute("nhiemvu") @Validated NhiemVu nhiemvu, BindingResult result) {
+			@ModelAttribute("nhiemvu") @Validated NhiemVu nhiemvu, BindingResult result,@RequestParam("oldVaitro") String oldVaiTro) {
 		int maDuAn = nhiemvu.getMaDuAn();
 		if (result.hasErrors()) {
 			mm.put("view", "duan/phancongnhiemvu/capnhat.jsp");
@@ -190,7 +190,11 @@ public class DuAnController {
 			mm.put("vaitro", vaiTroService.getAll());
 			return "layout";
 		}
-		nhiemVuService.update(nhiemvu);
+		NhiemVu oldNhiemVu=new NhiemVu();
+		oldNhiemVu.setMaDuAn(maDuAn);
+		oldNhiemVu.setMaNhanVien(nhiemvu.getMaNhanVien());
+		oldNhiemVu.setMaVaiTro(oldVaiTro);
+		nhiemVuService.update(nhiemvu,oldNhiemVu);
 		redirectAttributes.addFlashAttribute("message", "Update successfully.");
 		return "redirect:list/" + maDuAn;
 	}
@@ -283,7 +287,7 @@ public class DuAnController {
 
 			}
 		}
-		mm.put("total", Math.ceil(((float) listDuAn(pr).size() / 5)));
+		mm.put("total",(int) Math.ceil(((float) listDuAn(pr).size() / 5)));
 		mm.put("view", "duan/danhsach.jsp");
 		mm.put("title", "duan.list");
 		mm.put("list", newListDuAn);
