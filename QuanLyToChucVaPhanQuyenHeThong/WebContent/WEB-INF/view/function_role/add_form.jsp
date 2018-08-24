@@ -9,13 +9,13 @@
 		<!-- Path -->
 		<div class="content-header row">
 			<div class="content-header-left col-md-6 col-xs-12 mb-2">
-				<h3 class="content-header-title mb-0">Thêm mới tài khoản</h3>
+				<h3 class="content-header-title mb-0">Thêm mới quyền chức năng</h3>
 				<div class="row breadcrumbs-top">
 					<div class="breadcrumb-wrapper col-xs-12">
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item"><a href='<c:url value="/home" />'>Home</a></li>
-							<li class="breadcrumb-item"><a href='<c:url value="/tai-khoan/" />'>Danh sách tài khoản</a></li>
-							<li class="breadcrumb-item active">Thêm mới tài khoản</li>
+							<li class="breadcrumb-item"><a href='<c:url value="/function-role/" />'>Danh sách quyền chức năng</a></li>
+							<li class="breadcrumb-item active">Thêm mới quyền chức năng</li>
 						</ol>
 					</div>
 				</div>
@@ -26,23 +26,31 @@
 		<div class="content-body">
 			<div class="main-content">
 				<div class="row">
-					<c:url var="post_url"  value="/tai-khoan/them-moi/luu" />
-					<form:form method="POST" modelAttribute="taiKhoan" action="${post_url}">
+					<c:url var="post_url"  value="/function-role/them-moi" />
+					<form:form method="POST" modelAttribute="functionRole" action="${post_url}">
 						<div class="form-group col-sm-6">
-						  	<label>Tên tài khoản</label>
-						  	<form:input class="form-control" path="tenDangNhap" placeholder="Tên tài khoản" />
-						</div>
-						<div class="form-group col-sm-6">
-						  	<label>Mã nhân viên</label>
-						  	<select name='maNhanVien' class="form-control">
-							  	<c:forEach items="${listNhanVien}" var="item">
-							        <option value="${item.ma}">${item.tenChucDanh}</option>
+						  	<label>Mã phòng ban</label>
+						  	<select name='maPhongBan' class="form-control">
+							  	<c:forEach items="${listPhongBan}" var="item">
+							        <option value="${item.maPhongBan}">${item.tenPhongBan}</option>
 							    </c:forEach>
 						  	</select>
 						</div>
 						<div class="form-group col-sm-6">
-						  	<label>Mã tài khoản</label>
-						  	<form:input class="form-control" path="matKhau" placeholder="Mật khẩu" />
+						  	<label>Mã chức danh</label>
+						  	<select name='maChucDanh' class="form-control">
+							  	<c:forEach items="${listChucDanh}" var="item">
+							        <option value="${item.maChucDanh}">${item.tenChucDanh}</option>
+							    </c:forEach>
+						  	</select>
+						</div>
+						<div class="form-group col-sm-6">
+						  	<label>Mã chức năng</label>
+						  	<select name='roleID' class="form-control">
+							  	<c:forEach items="${listChucNang}" var="item">
+							        <option value="${item.ma_chuc_nang}">${item.ten_chuc_nang}</option>
+							    </c:forEach>
+						  	</select>
 						</div>
 						<div class="col-sm-12 text-center">
 							<button type="submit" class="btn btn-success">Lưu thông tin</button>

@@ -68,15 +68,16 @@
 							</c:if>
 							<!-- End Show message -->
            					<c:url var="post_url" value="/loginProcess" />
-                           <form:form class="form-horizontal form-simple" action="${post_url}" modelAttribute="login" method="POST">
+           					
+                           <form class="form-horizontal form-simple" name="loginForm" action="<c:url value='j_spring_security_login' />" method="POST">
                               <fieldset class="form-group position-relative has-icon-left mb-0">
-                              	 <form:input class="form-control form-control-lg input-lg" path="username" placeholder="Tên đăng nhập" required="required"/>
+                              	 <input class="form-control form-control-lg input-lg" name="usermame" placeholder="Tên đăng nhập" required="required"/>
                                  <div class="form-control-position">
                                     <i class="ft-user"></i>
                                  </div>
                               </fieldset><br/>
                               <fieldset class="form-group position-relative has-icon-left">
-                                 <form:input type="password" class="form-control form-control-lg input-lg" path="password" placeholder="Mật khẩu" required="required" />
+                                 <input type="password" class="form-control form-control-lg input-lg" name="password" placeholder="Mật khẩu" required="required" />
                                  <div class="form-control-position">
                                     <i class="fa fa-key"></i>
                                  </div>
@@ -96,7 +97,9 @@
                               <button type="submit" class="btn btn-primary btn-lg btn-block">
                                  <i class="ft-unlock"></i> Login
                               </button>
-                           </form:form>
+                              <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+                           </form>
+                           
                         </div>
                      </div>
                      <div class="card-footer">

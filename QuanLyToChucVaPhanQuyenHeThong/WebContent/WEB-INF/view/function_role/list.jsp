@@ -35,13 +35,13 @@
 		<!-- Path -->
 		<div class="content-header row">
 			<div class="content-header-left col-md-6 col-xs-12 mb-2">
-				<h3 class="content-header-title mb-0">Danh sách tài khoản</h3>
+				<h3 class="content-header-title mb-0">Danh sách quyền chức năng</h3>
 				<div class="row breadcrumbs-top">
 					<div class="breadcrumb-wrapper col-xs-12">
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item"><a
 								href='<c:url value="/home" />'>Home</a></li>
-							<li class="breadcrumb-item active">Danh sách tài khoản</li>
+							<li class="breadcrumb-item active">Danh sách quyền chức năng</li>
 						</ol>
 					</div>
 				</div>
@@ -52,7 +52,7 @@
 		<div class="content-body">
 			<!-- Form search -->
 			<div class="row mb-2">
-				<form class="col-xs-12" action='<c:url value="/tai-khoan/"></c:url>'
+				<form class="col-xs-12" action='<c:url value="/function-role/"></c:url>'
 					method="get" enctype="multipart/form-data">
 					<!-- <div class="frm-search-box form-inline pull-left">
 						<label class="mr-sm-2" for="">Từ khóa: </label> <input
@@ -62,7 +62,7 @@
 							kiếm</button>
 					</div> -->
 					<div class="pull-right">
-						<a href="<c:url value="/tai-khoan/them-moi"></c:url>"
+						<a href="<c:url value="/function-role/them-moi"></c:url>"
 							class="btn btn-success button"><i class="fa fa-plus"
 							aria-hidden="true"></i> Thêm mới</a>
 					</div>
@@ -88,12 +88,12 @@
 				</div>
 			</c:if>
 			<!-- End Show message -->
-
+			
 			<div class="row">
 				<div class="col-xs-12">
 					<div class="card">
 						<div class="card-header">
-							<h4 class="card-title">Danh sách tài khoản</h4>
+							<h4 class="card-title">Danh sách quyền chức năng</h4>
 							<a class="heading-elements-toggle"><i
 								class="fa fa-ellipsis-v font-medium-3"></i></a>
 							<div class="heading-elements">
@@ -111,37 +111,25 @@
 									<thead class="bg-success">
 										<tr>
 											<th>STT</th>
-											<th>Tên đăng nhập</th>
-											<th>Reset password</th>
-											<th>Trạng thái</th>
+											<th>Mã phòng ban</th>
+											<th>Mã chức danh</th>
+											<th>Mã chức năng</th>
 											<th>Hành động</th>
 										</tr>
 									</thead>
 									<tbody>
-										<c:if test="${not empty listTaiKhoan}">
-											<c:forEach var="item" items="${listTaiKhoan}" begin="0"
+										<c:if test="${not empty listFunctionRole}">
+											<c:forEach var="item" items="${listFunctionRole}" begin="0"
 												varStatus="counter">
 												<tr>
 													<td>${counter.index + 1}</td>
-													<td>${item.tenDangNhap}</td>
+													<td>${item.maPhongBan}</td>
+													<td>${item.maChucDanh}</td>
+													<td>${item.roleID}</td>
 													<td class="tbl_actions"><a
-														href="<c:url value="/tai-khoan/resetPassword/${item.tenDangNhap}" />"
-														title="Reset Password"> <i class="fa fa-check green" aria-hidden="true"></i>Reset password
-													</a></td>
-													<td class="tbl_actions"><a
-														href="<c:url value="/tai-khoan/kich-hoat/${item.tenDangNhap}" />"
-														title="Hiển thị"> <c:choose>
-																<c:when test="${item.trangThai == 1}">
-																	<i class="fa fa-check green" aria-hidden="true"></i>Hiển thị
-																</c:when>
-																<c:otherwise>
-																	<i class="fa fa-times red" aria-hidden="true"></i>Ẩn
-																</c:otherwise>
-															</c:choose>
-													</a></td>
-													<td class="tbl_actions"><a
-														href="<c:url value="/tai-khoan/xoa/${item.tenDangNhap}" />"
-														title="Xóa"
+														href="<c:url value="/function-role/sua/${item.id}" />" title="Sửa">
+															<i class="fa fa-pencil-square-o blue" aria-hidden="true"></i>Sửa
+													</a> <a href="<c:url value="/function-role/xoa/${item.id}" />" title="Xóa"
 														onclick="return confirm('Bạn có chắc muốn xóa ?')"> <i
 															class="fa fa-trash red" aria-hidden="true"></i>Delete
 													</a></td>
@@ -186,11 +174,11 @@
 	</div>
 </div>
 <script type="text/javascript">
-	window.setTimeout(function() {
-		$(".alert").fadeTo(500, 0).slideUp(500, function() {
-			$(this).remove();
-		});
-	}, 2500);
+window.setTimeout(function() {
+	$(".alert").fadeTo(500, 0).slideUp(500, function(){
+		$(this).remove(); 
+	});
+}, 2500);
 </script>
 
 <jsp:include page="/WEB-INF/view/templates/footer.jsp" />

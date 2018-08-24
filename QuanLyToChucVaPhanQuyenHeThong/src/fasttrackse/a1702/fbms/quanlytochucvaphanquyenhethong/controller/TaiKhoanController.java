@@ -65,8 +65,8 @@ public class TaiKhoanController {
 	}
 
 	@RequestMapping(value = "/sua/{code}", method = RequestMethod.GET)
-	public String editForm(@PathVariable("code") String code, Model model) {
-		model.addAttribute("taiKhoan", taiKhoanService.findByMaNhanVien(code));
+	public String editForm(@PathVariable("code") String tenDangNhap, Model model) {
+		model.addAttribute("taiKhoan", taiKhoanService.findByTenDangNhap(tenDangNhap));
 		return "taikhoan/edit_form";
 	}
 

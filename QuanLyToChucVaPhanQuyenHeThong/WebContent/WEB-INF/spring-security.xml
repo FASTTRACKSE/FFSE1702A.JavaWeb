@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans
+	xmlns="http://www.springframework.org/schema/security"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
+	<http auto-config="true">
+		<intercept-url pattern="/admin**"
+			access="hasRole('ROLE_ADMIN')" />
+		<intercept-url pattern="/user**"
+			access="hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')" />
+
+		<form-login login-page="/login"
+			login-processing-url="/j_spring_security_login"
+			default-target-url="/chuc-nang/danh-sach"
+			authentication-failure-url="/login?error"
+			username-parameter="username=?" password-parameter="password" />
+
+		<logout logout-url="/j_spring_security_logout"
+			logout-success-url="/logout" delete-cookies="JSESSIONID" />
+	</http>
+	<authentication-manager>
+		<authentication-provider>
+			<jdbc-user-service data-source-ref="theDataSource"
+				users-by-username-query="SELECT * FROM tai_khoan tk, ho_so_nhan_vien nv WHERE tk.ma_nhan_vien = nv.ma_nhan_vien AND tk.ma_nhan_vien=?"
+				authorities-by-username-query="SELECT hs.ma_nhan_vien, func.RoleID FROM ho_so_nhan_vien hs, func_role func
+WHERE ma_nhan_vien=? AND hs.ma_chuc_danh = func.ChucDanh AND hs.ma_phong_ban = func.PhongBan" />
+		</authentication-provider>
+	</authentication-manager>
+</beans:beans>

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:context="http://www.springframework.org/schema/context"
-    xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:tx="http://www.springframework.org/schema/tx"
 	xmlns:mvc="http://www.springframework.org/schema/mvc"
 	xsi:schemaLocation="
 		http://www.springframework.org/schema/beans
@@ -15,10 +15,11 @@
 		http://www.springframework.org/schema/tx/spring-tx.xsd">
 
 	<!-- Add support for component scanning -->
-	<context:component-scan base-package="fasttrackse.a1702.fbms" />
+	<context:component-scan
+		base-package="fasttrackse.a1702.fbms.quanlytochucvaphanquyenhethong" />
 
 	<!-- Add support for conversion, formatting and validation support -->
-	<mvc:annotation-driven/>
+	<mvc:annotation-driven />
 
 	<!-- Define Spring MVC view resolver -->
 	<bean
@@ -27,92 +28,116 @@
 		<property name="suffix" value=".jsp" />
 	</bean>
 
-    <!-- Define Database DataSource / connection pool -->
-	<bean id="theDataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
-          destroy-method="close">
-        <property name="driverClass" value="com.mysql.jdbc.Driver" />
-        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/ffse1702a?useEncoding=true&amp;characterEncoding=UTF-8" />
-        <property name="user" value="ffse1702a" />
-        <property name="password" value="123456" /> 
+	<!-- Define Database DataSource / connection pool -->
+	<bean id="theDataSource"
+		class="com.mchange.v2.c3p0.ComboPooledDataSource"
+		destroy-method="close">
+		<property name="driverClass" value="com.mysql.jdbc.Driver" />
+		<property name="jdbcUrl"
+			value="jdbc:mysql://localhost:3306/ffse1702a?useEncoding=true&amp;characterEncoding=UTF-8" />
+		<property name="user" value="ffse1702a" />
+		<property name="password" value="123456" />
 
-        <!-- these are connection pool properties for C3P0 -->
-        <property name="minPoolSize" value="3" />
-        <property name="maxPoolSize" value="20" />
-        <property name="maxIdleTime" value="30000" />
-	</bean>  
-	
-    <!-- Hibernate session factory -->
+		<!-- these are connection pool properties for C3P0 -->
+		<property name="minPoolSize" value="3" />
+		<property name="maxPoolSize" value="20" />
+		<property name="maxIdleTime" value="30000" />
+	</bean>
+
+	<!-- Hibernate session factory -->
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
 		<property name="dataSource" ref="theDataSource" />
-		<property name="packagesToScan" value="fasttrackse.a1702.fbms" />
+		<property name="packagesToScan"
+			value="fasttrackse.a1702.fbms" />
 		<property name="hibernateProperties">
-		   <props>
-		      <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
-		      <prop key="hibernate.show_sql">true</prop>
-		      <prop key="logging.level.org.hibernate.SQL">DEBUG</prop>
-		      <prop key="logging.level.org.hibernate.type.descriptor.sql.BasicBinder">TRACE</prop>
-		   </props>
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="logging.level.org.hibernate.SQL">DEBUG</prop>
+				<prop
+					key="logging.level.org.hibernate.type.descriptor.sql.BasicBinder">TRACE</prop>
+			</props>
 		</property>
-   </bean>	  
+	</bean>
 
-    <!-- Hibernate transaction manager -->
+	<!-- Hibernate transaction manager -->
 	<bean id="myTransactionManager"
-            class="org.springframework.orm.hibernate5.HibernateTransactionManager">
-        <property name="sessionFactory" ref="sessionFactory"/>
-    </bean>
-    
-    <!-- Enable configuration of transactional behavior based on annotations -->
-	<tx:annotation-driven transaction-manager="myTransactionManager" />
+		class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
 
-    <!-- Resources theme location -->
-    <mvc:resources mapping="/resources/**" location="/resources/stack-admin/" />
-    
-    <bean id="chucNangDaoImpl" class="fasttrackse.a1702.fbms.quanlytochucvaphanquyenhethong.model.dao.impl.ChucNangDaoImpl">
-    	<property name="sessionFactory" ref="sessionFactory"/>
-    </bean>
-    <bean id="chucNangServiceImpl" class="fasttrackse.a1702.fbms.quanlytochucvaphanquyenhethong.service.impl.ChucNangServiceImpl">
-    	<property name="chucNangDao" ref="chucNangDaoImpl"/>
-    </bean>
-    
-    <bean id="taiKhoanImpl" class="fasttrackse.a1702.fbms.quanlytochucvaphanquyenhethong.model.dao.impl.TaiKhoanDaoImpl">
-    	<property name="sessionFactory" ref="sessionFactory"/>
-    </bean>
-    <bean id="taiKhoanServiceImpl" class="fasttrackse.a1702.fbms.quanlytochucvaphanquyenhethong.service.impl.TaiKhoanServiceImpl">
-    	<property name="taiKhoanDao" ref="taiKhoanImpl"/>
-    </bean>
-    
-    <bean id="chucNangPhongBanImpl" class="fasttrackse.a1702.fbms.quanlytochucvaphanquyenhethong.model.dao.impl.ChucNangPhongBanImpl">
-    	<property name="sessionFactory" ref="sessionFactory"/>
-    </bean>
-    <bean id="chucNangPhongBanServiceImpl" class="fasttrackse.a1702.fbms.quanlytochucvaphanquyenhethong.service.impl.ChucNangPhongBanServiceImpl">
-    	<property name="chucNangPhongBanDao" ref="chucNangPhongBanImpl"/>
-    </bean>
-    
-    <bean id="chucNangChucDanhImpl" class="fasttrackse.a1702.fbms.quanlytochucvaphanquyenhethong.model.dao.impl.ChucNangChucDanhDaoImpl">
-    	<property name="sessionFactory" ref="sessionFactory"/>
-    </bean>
-    <bean id="chucNangChucDanhServiceImpl" class="fasttrackse.a1702.fbms.quanlytochucvaphanquyenhethong.service.impl.ChucNangChucDanhServiceImpl">
-    	<property name="chucNangChucDanhDao" ref="chucNangChucDanhImpl"/>
-    </bean>
-    
-    <bean id="phongBanImpl" class="fasttrackse.a1702.fbms.quanlytochucvaphanquyenhethong.model.dao.impl.PhongBanDaoImpl">
-    	<property name="sessionFactory" ref="sessionFactory"/>
-    </bean>
-    <bean id="phongBanServiceImpl" class="fasttrackse.a1702.fbms.quanlytochucvaphanquyenhethong.service.impl.PhongBanServiceImpl">
-    	<property name="phongBanDao" ref="phongBanImpl"/>
-    </bean>
-    
-    <bean id="chucDanhImpl" class="fasttrackse.a1702.fbms.quanlytochucvaphanquyenhethong.model.dao.impl.ChucDanhDaoImpl">
-    	<property name="sessionFactory" ref="sessionFactory"/>
-    </bean>
-    <bean id="chucDanhServiceImpl" class="fasttrackse.a1702.fbms.quanlytochucvaphanquyenhethong.service.impl.ChucDanhServiceImpl">
-    	<property name="chucDanhDao" ref="chucDanhImpl"/>
-    </bean>
+	<!-- Enable configuration of transactional behavior based on annotations -->
+	<tx:annotation-driven
+		transaction-manager="myTransactionManager" />
+
+	<!-- Resources theme location -->
+	<mvc:resources mapping="/resources/**"
+		location="/resources/stack-admin/" />
+
+	<bean id="chucNangDaoImpl"
+		class="fasttrackse.a1702.fbms.quanlytochucvaphanquyenhethong.model.dao.impl.ChucNangDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="chucNangServiceImpl"
+		class="fasttrackse.a1702.fbms.quanlytochucvaphanquyenhethong.service.impl.ChucNangServiceImpl">
+		<property name="chucNangDao" ref="chucNangDaoImpl" />
+	</bean>
+
+	<bean id="taiKhoanImpl"
+		class="fasttrackse.a1702.fbms.quanlytochucvaphanquyenhethong.model.dao.impl.TaiKhoanDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="taiKhoanServiceImpl"
+		class="fasttrackse.a1702.fbms.quanlytochucvaphanquyenhethong.service.impl.TaiKhoanServiceImpl">
+		<property name="taiKhoanDao" ref="taiKhoanImpl" />
+	</bean>
+
+	<bean id="chucNangPhongBanImpl"
+		class="fasttrackse.a1702.fbms.quanlytochucvaphanquyenhethong.model.dao.impl.ChucNangPhongBanImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="chucNangPhongBanServiceImpl"
+		class="fasttrackse.a1702.fbms.quanlytochucvaphanquyenhethong.service.impl.ChucNangPhongBanServiceImpl">
+		<property name="chucNangPhongBanDao"
+			ref="chucNangPhongBanImpl" />
+	</bean>
+
+	<bean id="chucNangChucDanhImpl"
+		class="fasttrackse.a1702.fbms.quanlytochucvaphanquyenhethong.model.dao.impl.ChucNangChucDanhDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="chucNangChucDanhServiceImpl"
+		class="fasttrackse.a1702.fbms.quanlytochucvaphanquyenhethong.service.impl.ChucNangChucDanhServiceImpl">
+		<property name="chucNangChucDanhDao"
+			ref="chucNangChucDanhImpl" />
+	</bean>
+
+	<bean id="phongBanImpl"
+		class="fasttrackse.a1702.fbms.quanlytochucvaphanquyenhethong.model.dao.impl.PhongBanDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="phongBanServiceImpl"
+		class="fasttrackse.a1702.fbms.quanlytochucvaphanquyenhethong.service.impl.PhongBanServiceImpl">
+		<property name="phongBanDao" ref="phongBanImpl" />
+	</bean>
+
+	<bean id="chucDanhImpl"
+		class="fasttrackse.a1702.fbms.quanlytochucvaphanquyenhethong.model.dao.impl.ChucDanhDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="chucDanhServiceImpl"
+		class="fasttrackse.a1702.fbms.quanlytochucvaphanquyenhethong.service.impl.ChucDanhServiceImpl">
+		<property name="chucDanhDao" ref="chucDanhImpl" />
+	</bean>
+	
+	<bean id="functionRoleImpl"
+		class="fasttrackse.a1702.fbms.quanlytochucvaphanquyenhethong.model.dao.impl.FunctionRoleDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="functionRoleServiceImpl"
+		class="fasttrackse.a1702.fbms.quanlytochucvaphanquyenhethong.service.impl.FunctionRoleServiceImpl">
+		<property name="functionRoleDao" ref="functionRoleImpl" />
+	</bean>
 
 </beans>
-
-
-
-
-

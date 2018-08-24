@@ -59,7 +59,7 @@ public class TaiKhoanServiceImpl implements TaiKhoanService{
 	}
 
 	@Override
-	public TaiKhoan findByMaNhanVien(String maNhanVien) {
-		return taiKhoanDao.findByMaNhanVien(maNhanVien);
+	public TaiKhoan findByTenDangNhap(String tenDangNhap) {
+		return taiKhoanDao.findByTenDangNhap(tenDangNhap);
 	}
 }
