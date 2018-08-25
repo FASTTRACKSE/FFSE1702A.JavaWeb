@@ -25,9 +25,14 @@ public class DocumentServiceImpl implements DocumentService {
 
 	// list
 	@Transactional
-	public List<Document> getAll() {
-		return documentDAO.getAll();
+	public List<Document> getAll(Integer offset, Integer maxResult) {
+		return documentDAO.getAll(offset, maxResult);
 	}
+	
+	//count
+	public Long count() {
+        return documentDAO.count();
+    }
 	//finbyid
 	public Document findById(int id){
 		return documentDAO.findById(id);
@@ -66,7 +71,10 @@ public class DocumentServiceImpl implements DocumentService {
 	public void accept(int id) {
 		documentDAO.accept(id);
 	}
-	
+	//refuse 
+		public void refuse(int id) {
+			documentDAO.refuse(id);
+		}	
 	
 	//update
 	public void updateDocument(Document document) {

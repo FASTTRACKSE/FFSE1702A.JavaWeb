@@ -91,14 +91,14 @@ public class QuanLyHoSoServiceImpl implements QuanLyHoSoService {
 		String hoDem = hsnv.getHoDem();
 		String ten = hsnv.getTen();
 		String gioiTinh = hsnv.getGioiTinh() == 1 ? "Nam" : "Nữ";
-		String phongBan = "<a href='/ffse-fbms/" + hsnv.getPhongBan().getMaPhongBan() + "/ho_so'>"
+		String phongBan = "<a href='/ffse-fbms/qlns/" + hsnv.getPhongBan().getMaPhongBan() + "/view/ho_so'>"
 				+ hsnv.getPhongBan().getTenPhongBan() + "</a>";
 		String chucDanh = hsnv.getChucDanh().getTenChucDanh();
 		String trangThai = hsnv.getTrangThai() == 1 ? "Đang làm việc" : "Nghỉ việc";
-		String action = "<a href='/ffse-fbms/ns/ho_so/xem_tat_ca/" + hsnv.getMaNhanVien()
-				+ "'><i class='fa fa-eye'></i></a>" + "<a href='/ffse-fbms/ns/ho_so/edit/" + hsnv.getMaNhanVien()
-				+ "'><i class='fa fa-pencil'></i></a>"
-				+ "<a href='javascript:void(0);' data-toggle='modal' data-target='#confirm-delete' data-href='/ffse-fbms/ns/ho_so/delete/"
+		String action = "<a href='/ffse-fbms/qlns/" + hsnv.getPhongBan().getMaPhongBan() + "/view/ho_so_tong_hop/"
+				+ hsnv.getMaNhanVien() + "'><i class='fa fa-eye'></i></a>" + "<a href='/ffse-fbms/qlns/ho_so/edit/"
+				+ hsnv.getMaNhanVien() + "'><i class='fa fa-pencil'></i></a>"
+				+ "<a href='javascript:void(0);' data-toggle='modal' data-target='#confirm-delete' data-href='/ffse-fbms/qlns/ho_so/delete/"
 				+ hsnv.getMaNhanVien() + "'><i class='fa fa-trash'></i></a>";
 
 		return "[\"" + maNhanVien + "\",\"" + hoDem + "\",\"" + ten + "\",\"" + gioiTinh + "\",\"" + phongBan + "\",\""

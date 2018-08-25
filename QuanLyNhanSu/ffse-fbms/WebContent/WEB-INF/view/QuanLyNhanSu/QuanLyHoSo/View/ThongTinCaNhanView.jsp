@@ -4,6 +4,23 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%> 
 
+<c:if test="${empty role_nv}">
+	<c:url var="linkhs" value = "/qlns/${hoSoNhanVien.phongBan.maPhongBan}/view/ho_so/${hoSoNhanVien.maNhanVien}"/>
+	<c:url var="linkbc" value = "/qlns/${hoSoNhanVien.phongBan.maPhongBan}/view/bang_cap/${hoSoNhanVien.maNhanVien}"/>
+	<c:url var="linkgd" value = "/qlns/${hoSoNhanVien.phongBan.maPhongBan}/view/gia_dinh/${hoSoNhanVien.maNhanVien}"/>
+	<c:url var="linkkn" value = "/qlns/${hoSoNhanVien.phongBan.maPhongBan}/view/kinh_nghiem/${hoSoNhanVien.maNhanVien}"/>
+	<c:url var="linkhd" value = "/qlns/${hoSoNhanVien.phongBan.maPhongBan}/view/hop_dong/${hoSoNhanVien.maNhanVien}"/>
+	<c:url var="linkall" value = "/qlns/${hoSoNhanVien.phongBan.maPhongBan}/view/ho_so_tong_hop/${hoSoNhanVien.maNhanVien}"/>
+</c:if>
+<c:if test="${!empty role_nv}">
+	<c:url var="linkhs" value = "/qlns/nv/ho_so"/>
+	<c:url var="linkbc" value = "/qlns/nv/bang_cap"/>
+	<c:url var="linkgd" value = "/qlns/nv/gia_dinh"/>
+	<c:url var="linkkn" value = "/qlns/nv/kinh_nghiem"/>
+	<c:url var="linkhd" value = "/qlns/nv/hop_dong"/>
+	<c:url var="linkall" value = "/qlns/nv/ho_so_tong_hop"/>
+</c:if>
+
 <jsp:include page="/WEB-INF/view/templates/header.jsp" /> 
 	<spring:message var="titleHeader" code="label.thongTinHoSo" />
    <div class="app-content content container-fluid">
@@ -16,9 +33,9 @@
                      <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="<c:url value = "/"/>"><spring:message code="label.trangChu" /></a>
                         </li>
-                        <li class="breadcrumb-item"><a href="<c:url value = "/ns/ho_so"/>"><spring:message code="label.quanLyNhanSu" /></a>
+                        <li class="breadcrumb-item"><a href="javascript:void(0)"><spring:message code="label.quanLyNhanSu" /></a>
                         </li>
-                        <li class="breadcrumb-item"><a href="<c:url value = "/ns/ho_so"/>"><spring:message code="label.quanLyHoSo" /></a>
+                        <li class="breadcrumb-item"><a href="javascript:void(0)"><spring:message code="label.quanLyHoSo" /></a>
                         </li>
                         <li class="breadcrumb-item active"><c:out value="${titleHeader}"/>
                         </li>
@@ -35,13 +52,13 @@
 	                  	<i class="ft-settings icon-left"></i> <spring:message code="label.thongTinKhac" />
 	                  </button>
 	                  <div aria-labelledby="btnGroupDrop1" class="dropdown-menu dropdown-menu-right">
-	                  	<a href="<c:url value = "/ns/ho_so/xem_thong_tin_ho_so/${hoSoNhanVien.maNhanVien }"/>" class="dropdown-item"><i class="fa fa-id-card-o"></i> <spring:message code="label.thongTinHoSo" /></a>
-	                  	<a href="<c:url value = "/ns/ho_so/xem_bang_cap/${hoSoNhanVien.maNhanVien }"/>" class="dropdown-item"><i class="fa fa-graduation-cap"></i> <spring:message code="label.thongTinBangCap" /></a>
-	                  	<a href="<c:url value = "/ns/ho_so/xem_gia_dinh/${hoSoNhanVien.maNhanVien }"/>" class="dropdown-item"><i class="fa fa-users"></i> <spring:message code="label.thongTinGiaDinh" /></a>
-	                  	<a href="<c:url value = "/ns/ho_so/xem_kinh_nghiem/${hoSoNhanVien.maNhanVien }"/>" class="dropdown-item"><i class="fa fa-file-code-o"></i> <spring:message code="label.thongTinKinhNghiem" /></a>
-	                  	<a href="<c:url value = "/ns/hop_dong/xem_hop_dong/${hoSoNhanVien.maNhanVien }"/>" class="dropdown-item"><i class="fa fa-handshake-o"></i> <spring:message code="label.thongTinHopDong" /></a>
+	                  	<a href="${linkhs}" class="dropdown-item"><i class="fa fa-id-card-o"></i> <spring:message code="label.thongTinHoSo" /></a>
+	                  	<a href="${linkbc}" class="dropdown-item"><i class="fa fa-graduation-cap"></i> <spring:message code="label.thongTinBangCap" /></a>
+	                  	<a href="${linkgd}" class="dropdown-item"><i class="fa fa-users"></i> <spring:message code="label.thongTinGiaDinh" /></a>
+	                  	<a href="${linkkn}" class="dropdown-item"><i class="fa fa-file-code-o"></i> <spring:message code="label.thongTinKinhNghiem" /></a>
+	                  	<a href="${linkhd}" class="dropdown-item"><i class="fa fa-handshake-o"></i> <spring:message code="label.thongTinHopDong" /></a>
 	                  	<div class="dropdown-divider"></div>
-	                  	<a href="<c:url value = "/ns/ho_so/xem_tat_ca/${hoSoNhanVien.maNhanVien }"/>" class="dropdown-item text-xs-center"><spring:message code="label.xemTatCa" /></a>
+	                  	<a href="${linkall}" class="dropdown-item text-xs-center"><spring:message code="label.xemTatCa" /></a>
 	                  </div>
 	               </div>
 				</div>
@@ -78,7 +95,7 @@
 								 </div>
 								</div>
 							  </c:if>
-								<form:form class="form form-horizontal" method="POST" action="/ffse-fbms/ns/ho_so/save" modelAttribute="hoSoNhanVien" enctype="multipart/form-data">
+								<form:form class="form form-horizontal" modelAttribute="hoSoNhanVien" enctype="multipart/form-data">
 								   <div class="form-body">
 								      <div class="row">
 								         <div class="col-md-8">

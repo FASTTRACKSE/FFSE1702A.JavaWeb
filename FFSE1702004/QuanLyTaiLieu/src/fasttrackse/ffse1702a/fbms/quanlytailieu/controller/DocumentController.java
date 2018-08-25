@@ -10,10 +10,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import com.sun.corba.se.spi.orbutil.fsm.Guard.Result;
+
 import fasttrackse.ffse1702a.fbms.quanlytailieu.dto.DocumentDTO;
 import fasttrackse.ffse1702a.fbms.quanlytailieu.entity.Category;
 import fasttrackse.ffse1702a.fbms.quanlytailieu.entity.Document;
@@ -29,8 +34,12 @@ public class DocumentController {
 
 	// -------------- my document ----------//
 	@RequestMapping(value = { "/", "/index" }, method = RequestMethod.GET)
-	public String index(Model model) {
-		model.addAttribute("listDocument", documentService.getAll());
+	public String index(Model model ,Integer offset, Integer maxResults) {
+		
+		List<Document> list =  documentService.getAll(offset, maxResults);
+        model.addAttribute("count", documentService.count());
+        model.addAttribute("offset", offset);
+        model.addAttribute("listDocument", list);		
 		return "index";
 	}
 
@@ -40,6 +49,12 @@ public class DocumentController {
 		documentService.accept(id);
 		return "redirect:/";
 	}
+	// approve document
+		@RequestMapping(value = "/documentRefuse/{id}", method = RequestMethod.GET)
+		public String documentRefuse(@PathVariable int id, Model model) {
+			documentService.refuse(id);
+			return "redirect:/";
+		}
 
 	// ----------------- delete ----------------//
 	@RequestMapping(value = "/documentDelete/{id}", method = RequestMethod.GET)
@@ -52,8 +67,14 @@ public class DocumentController {
 	@RequestMapping(value = "/documentEdit/{id}", method = RequestMethod.GET)
 	public String documentEdit(@PathVariable int id, Model model) {
 		model.addAttribute("document", documentService.findById(id));
-		return "documentInsert";
+		return "documentUpdate";
 	}
+	// view document
+		@RequestMapping(value = "/documentView/{id}", method = RequestMethod.GET)
+		public String documentView(@PathVariable int id, Model model) {
+			model.addAttribute("document", documentService.findById(id));
+			return "documentView";
+		}
 
 	// ------------- insert --------------//
 	// redirect page add document
@@ -83,15 +104,9 @@ public class DocumentController {
 
 		} else {
 			Document document = new Document();
-			if (document.getFile() == null) {
-				Map<String, String> filename = documentService.uploadfile(DocumentDTO.getFile(), request, modelMap);
-				document.setFile(filename.get("urlImage"));
-				Icon ic = new Icon();
-				ic.setMa_icon(filename.get("extensionImage"));
-				document.setMa_icon(ic);
-			}
+			BeanUtils.copyProperties(DocumentDTO, document);	
 			Status st = new Status();
-			st.setMa_trang_thai("nhap");
+			st.setMa_trang_thai("cho_phe_duyet");
 			document.setMa_trang_thai(st);
 			documentService.updateDocument(document);
 		}
@@ -101,13 +116,16 @@ public class DocumentController {
 
 	// submit pendding approve
 	@RequestMapping(value = "/documentSave")
-	public String saveDocument(@ModelAttribute("document") DocumentDTO DocumentDTO, HttpServletRequest request,
+	public String saveDocument(@ModelAttribute("document") @Validated DocumentDTO DocumentDTO, BindingResult bindingResult, HttpServletRequest request,
 			ModelMap modelMap) {
 		if (DocumentDTO.getId() == 0) {
 			Document document = new Document();
 			BeanUtils.copyProperties(DocumentDTO, document);
 			Map<String, String> filename = documentService.uploadfile(DocumentDTO.getFile(), request, modelMap);
 			document.setFile(filename.get("urlImage"));
+			if(bindingResult.hasErrors()) {
+				return "documentInsert";
+ 			}
 			Icon ic = new Icon();
 			Status st = new Status();
 			st.setMa_trang_thai("cho_phe_duyet");
@@ -118,13 +136,6 @@ public class DocumentController {
 		} else {
 			Document document = new Document();
 			BeanUtils.copyProperties(DocumentDTO, document);
-			if (document.getFile() == null) {
-				Map<String, String> filename = documentService.uploadfile(DocumentDTO.getFile(), request, modelMap);
-				document.setFile(filename.get("urlImage"));
-				Icon ic = new Icon();
-				ic.setMa_icon(filename.get("extensionImage"));
-				document.setMa_icon(ic);
-			}
 			Status st = new Status();
 			st.setMa_trang_thai("cho_phe_duyet");
 			document.setMa_trang_thai(st);

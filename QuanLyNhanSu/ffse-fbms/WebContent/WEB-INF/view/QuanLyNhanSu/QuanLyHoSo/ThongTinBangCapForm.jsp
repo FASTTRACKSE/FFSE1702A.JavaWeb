@@ -22,8 +22,7 @@
 										code="label.trangChu" /></a></li>
 							<li class="breadcrumb-item"><a href="javascript:void(0)"><spring:message
 										code="label.quanLyNhanSu" /></a></li>
-							<li class="breadcrumb-item"><a
-								href="<c:url value = "/ns/ho_so"/>"><spring:message
+							<li class="breadcrumb-item"><a href="javascript:void(0)"><spring:message
 										code="label.quanLyHoSo" /></a></li>
 							<li class="breadcrumb-item active"><spring:message
 									code="label.thongTinBangCap" /></li>
@@ -35,35 +34,19 @@
 				<div role="group" aria-label="Button group with nested dropdown"
 					class="dropdown nav-item float-md-right">
 					<div role="group" class="btn-group">
-						<button id="btnGroupDrop1" type="button" data-toggle="dropdown"
-							aria-haspopup="true" aria-expanded="false"
-							class="btn btn-outline-primary dropdown-toggle">
-							<i class="ft-settings icon-left"></i>
-							<spring:message code="label.thongTinKhac" />
-						</button>
-						<div aria-labelledby="btnGroupDrop1"
-							class="dropdown-menu dropdown-menu-right">
-							<a
-								href="<c:url value = "/ns/ho_so/edit/${hoSoNhanVien.maNhanVien}"/>"
-								class="dropdown-item"><i class="fa fa-id-card-o"></i> <spring:message
-									code="label.thongTinHoSo" /></a> <a
-								href="<c:url value = "/ns/ho_so/bang_cap/edit/${hoSoNhanVien.maNhanVien}"/>"
-								class="dropdown-item"><i class="fa fa-graduation-cap"></i> <spring:message
-									code="label.thongTinBangCap" /></a> <a
-								href="<c:url value = "/ns/ho_so/gia_dinh/edit/${hoSoNhanVien.maNhanVien}"/>"
-								class="dropdown-item"><i class="fa fa-users"></i> <spring:message
-									code="label.thongTinGiaDinh" /></a> <a
-								href="<c:url value = "/ns/ho_so/kinh_nghiem/${hoSoNhanVien.maNhanVien}"/>"
-								class="dropdown-item"><i class="fa fa-file-code-o"></i> <spring:message
-									code="label.thongTinKinhNghiem" /></a> <a
-								href="<c:url value = "/ns/hop_dong/edit/${hoSoNhanVien.maNhanVien}"/>"
-								class="dropdown-item"><i class="fa fa-handshake-o"></i> <spring:message
-									code="label.thongTinHopDong" /></a>
-							<div class="dropdown-divider"></div>
-							<a href="#" class="dropdown-item text-xs-center"><spring:message
-									code="label.xemTatCa" /></a>
-						</div>
-					</div>
+	                  <button id="btnGroupDrop1" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="btn btn-outline-primary dropdown-toggle">
+	                  	<i class="ft-settings icon-left"></i> <spring:message code="label.thongTinKhac" />
+	                  </button>
+	                  <div aria-labelledby="btnGroupDrop1" class="dropdown-menu dropdown-menu-right">
+	                  	<a href="<c:url value = "/qlns/ho_so/edit/${hoSoNhanVien.maNhanVien}"/>" class="dropdown-item"><i class="fa fa-id-card-o"></i> <spring:message code="label.thongTinHoSo" /></a>
+	                  	<a href="<c:url value = "/qlns/bang_cap/edit/${hoSoNhanVien.maNhanVien}"/>" class="dropdown-item"><i class="fa fa-graduation-cap"></i> <spring:message code="label.thongTinBangCap" /></a>
+	                  	<a href="<c:url value = "/qlns/gia_dinh/edit/${hoSoNhanVien.maNhanVien}"/>" class="dropdown-item"><i class="fa fa-users"></i> <spring:message code="label.thongTinGiaDinh" /></a>
+	                  	<a href="<c:url value = "/qlns/${hoSoNhanVien.phongBan.maPhongBan}/view/kinh_nghiem/${hoSoNhanVien.maNhanVien}"/>" class="dropdown-item"><i class="fa fa-file-code-o"></i> <spring:message code="label.thongTinKinhNghiem" /></a>
+	                  	<a href="<c:url value = "/qlns/hop_dong/edit/${hoSoNhanVien.maNhanVien}"/>" class="dropdown-item"><i class="fa fa-handshake-o"></i> <spring:message code="label.thongTinHopDong" /></a>
+	                  	<div class="dropdown-divider"></div>
+	                  	<a href="<c:url value = "/qlns/${hoSoNhanVien.phongBan.maPhongBan}/view/ho_so_tong_hop/${hoSoNhanVien.maNhanVien}"/>" class="dropdown-item text-xs-center"><spring:message code="label.xemTatCa" /></a>
+	                  </div>
+	               </div>
 				</div>
 			</div>
 		</div>
@@ -92,7 +75,7 @@
 								<div class="card-block">
 								 <c:if test="${!empty SUCCESS}">
 									<div class="html_success mb-2">
-									   <div style="margin: 0 auto!important;?>" class="alert alert-icon-left alert-success alert-dismissible mb-2" role="alert">
+									   <div style="margin: 0 auto!important;" class="alert alert-icon-left alert-success alert-dismissible mb-2" role="alert">
 									   <button style="margin-top: 2px" type="button" class="close" data-dismiss="alert" aria-label="Close">
 									   		<span aria-hidden="true">×</span>
 									   </button>
@@ -101,7 +84,7 @@
 									</div>
 								  </c:if>
 									<form:form class="form form-horizontal" method="POST"
-										action="/ffse-fbms/ns/ho_so/bang_cap/save"
+										action="/ffse-fbms/qlns/bang_cap/save"
 										modelAttribute="thongTinBangCapForm">
 										<div class="form-body">
 											<div class="row">

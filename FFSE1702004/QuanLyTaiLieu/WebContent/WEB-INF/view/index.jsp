@@ -1,6 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" pageEncoding="UTF-8"%>
 <%@ page contentType="text/html;charset=UTF-8" %>
+<%@ taglib prefix="tag" uri="/WEB-INF/taglibs/customTaglib.tld" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
 <jsp:include page="/WEB-INF/view/templates/header.jsp" />
@@ -91,6 +92,8 @@
 			</div>
 		</div>
 		<!-- Border color end -->
+		<tag:paginate  offset="${offset}" count="${count}" uri="index" next="&raquo;" previous="&laquo;"/>
+		
 	</div>
 </div>
 <jsp:include page="/WEB-INF/view/templates/footer.jsp" />

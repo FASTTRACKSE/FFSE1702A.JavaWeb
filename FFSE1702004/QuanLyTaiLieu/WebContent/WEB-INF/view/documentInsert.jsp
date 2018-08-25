@@ -55,6 +55,7 @@
 					<div class="col-md-9">
 						<form:input path="ten_tai_lieu" class="form-control"
 							id="projectinput5" value="${document.ten_tai_lieu}" />
+							<form:errors path="ten_tai_lieu" cssClass="invalid-feedback d-block" />
 					</div>
 				</div>
 				<!-- //////////////////// -->
@@ -78,7 +79,9 @@
 					</label>
 					<div class="col-md-9">
 						<form:textarea path="mo_ta" class="form-control"
-							id="basicTextarea"></form:textarea>
+							id="basicTextarea" />
+						<form:errors path="mo_ta" cssClass="invalid-feedback d-block" />
+							
 					</div>
 				</div>
 				<!-- ///////////////////// -->

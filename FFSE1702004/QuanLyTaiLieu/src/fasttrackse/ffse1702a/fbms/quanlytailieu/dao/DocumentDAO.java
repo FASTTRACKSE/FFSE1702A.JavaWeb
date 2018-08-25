@@ -12,9 +12,12 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import fasttrackse.ffse1702a.fbms.quanlytailieu.entity.Category;
 import fasttrackse.ffse1702a.fbms.quanlytailieu.entity.Document;
 
-public interface DocumentDAO {
+public interface DocumentDAO  {
 	// list
-	public List<Document> getAll();
+	public List<Document> getAll(Integer offset, Integer maxResult);
+	
+	//count
+	public Long count();
 	
 	//list my draft
 	public List<Document> getAllDraft();
@@ -41,6 +44,9 @@ public interface DocumentDAO {
 	//accept
 	public void accept(final int id);
 
+	//refuse
+	public void refuse(final int id);
+	
 	// list category
 	public List<Category> listCategory();
 	

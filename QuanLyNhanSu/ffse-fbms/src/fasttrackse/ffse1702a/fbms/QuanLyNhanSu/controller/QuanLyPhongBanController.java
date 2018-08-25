@@ -20,7 +20,7 @@ public class QuanLyPhongBanController {
 	@Autowired
 	private QuanLyPhongBanService quanlyphongbanService;
 
-	@RequestMapping(value = "/ns/phong_ban", method = RequestMethod.GET)
+	@RequestMapping(value = "/qlns/phong_ban", method = RequestMethod.GET)
 
 	public String listPhongBan(Model model) {
 		model.addAttribute("phongBan", new PhongBan());
@@ -28,7 +28,7 @@ public class QuanLyPhongBanController {
 		return "QuanLyNhanSu/QuanLyPhongBan/PhongBan";
 	}
 
-	@RequestMapping(value = "/ns/phong_ban/add", method = RequestMethod.GET)
+	@RequestMapping(value = "/qlns/phong_ban/add", method = RequestMethod.GET)
 	public String addPhongBanForm(Model model) {
 
 		model.addAttribute("add", "TRUE");
@@ -36,7 +36,7 @@ public class QuanLyPhongBanController {
 		return "QuanLyNhanSu/QuanLyPhongBan/FormPhongBan";
 	}
 
-	@RequestMapping(value = "/ns/phong_ban/save", method = RequestMethod.POST)
+	@RequestMapping(value = "/qlns/phong_ban/save", method = RequestMethod.POST)
 	public String addPhongBan(@ModelAttribute("phongBan") @Valid PhongBan p, BindingResult bindingResult, Model model,
 			HttpServletRequest request) {
 		PhongBan pb = this.quanlyphongbanService.getMaPhongBan(p.getMaPhongBan());
@@ -57,18 +57,18 @@ public class QuanLyPhongBanController {
 			this.quanlyphongbanService.updatePhongBan(p);
 		}
 
-		return "redirect:/ns/phong_ban";
+		return "redirect:/qlns/phong_ban";
 
 	}
 
-	@RequestMapping("/ns/phong_ban/remove/{maPhongBan}")
+	@RequestMapping("/qlns/phong_ban/remove/{maPhongBan}")
 	public String removePhongBan(@PathVariable("maPhongBan") String id) {
 
 		this.quanlyphongbanService.removePhongBan(id);
-		return "redirect:/ns/phong_ban";
+		return "redirect:/qlns/phong_ban";
 	}
 
-	@RequestMapping("/ns/phong_ban/edit/{maPhongBan}")
+	@RequestMapping("/qlns/phong_ban/edit/{maPhongBan}")
 	public String editPhongBan(@PathVariable("maPhongBan") String id, Model model) {
 		model.addAttribute("phongBan", this.quanlyphongbanService.getMaPhongBan(id));
 		return "QuanLyNhanSu/QuanLyPhongBan/FormPhongBan";

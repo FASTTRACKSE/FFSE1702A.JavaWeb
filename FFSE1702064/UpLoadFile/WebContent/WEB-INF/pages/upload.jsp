@@ -29,11 +29,12 @@
 </style>
 </head>
 <body style="margin:0 auto; width:1024px">
+<c:url var="upload" value="/upload"></c:url>
 	<div id="upload">
 		<h1>Upload file </h1>
 		<div>
 			<div class="left"> 
-				<form action="${pageContext.request.contextPath}/uploadfile" method="post" enctype="multipart/form-data">
+				<form action="${upload}" method="post" enctype="multipart/form-data">
 					Chọn file : <input type="file"  value="Upload File"  name="file" /><br /><br />
 					<input name="submit" value="Upload" type="submit" />
 				</form>

@@ -14,9 +14,9 @@
 					<div class="breadcrumb-wrapper col-xs-12">
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item"><a href="<c:url value='/'></c:url>"><spring:message code="label.trangChu" /></a></li>
-							<li class="breadcrumb-item"><a href="<c:url value='/ns/ho_so'></c:url>"><spring:message code="label.quanLyNhanSu" /></a>
+							<li class="breadcrumb-item"><a href="javascript:void(0)"><spring:message code="label.quanLyNhanSu" /></a>
 							</li>
-							<li class="breadcrumb-item"><a href="<c:url value='/ns/phong_ban'></c:url>"><spring:message code="label.quanLyPhongBan" /></a></li>
+							<li class="breadcrumb-item"><a href="<c:url value='/qlns/phong_ban'></c:url>"><spring:message code="label.quanLyPhongBan" /></a></li>
 							<li class="breadcrumb-item active"><spring:message code="label.danhSachPhongBan" /></li>
 						</ol>
 					</div>
@@ -25,7 +25,7 @@
 			<div class="content-header-right col-md-6 col-xs-12">
 				<div role="group" aria-label="Button group with nested dropdown"
 					class="btn-group float-md-right" id="add-new">
-					<a  href="<c:url value="/ns/phong_ban/add" />" class="btn btn-primary"><span class="fa fa-plus"></span>
+					<a  href="<c:url value="/qlns/phong_ban/add" />" class="btn btn-primary"><span class="fa fa-plus"></span>
 						<spring:message code="label.themMoi" /></a>
 				</div>
 			</div>
@@ -67,8 +67,8 @@
 													<td>${phongban.maPhongBan}</td>
 													<td>${phongban.tenPhongBan}</td>
 													<td style="letter-spacing: 5px; min-width: 75px;">
-													<a href="<c:url value='/ns/phong_ban/edit/${phongban.maPhongBan}' />"><i class="fa fa-pencil"></i></a> 
-													<a href="javascript:void(0);" data-toggle="modal" data-target="#confirm-delete" data-href="<c:url value='/ns/phong_ban/remove/${phongban.maPhongBan}' />"><i class="fa fa-trash"></i></a> </td>
+													<a href="<c:url value='/qlns/phong_ban/edit/${phongban.maPhongBan}' />"><i class="fa fa-pencil"></i></a> 
+													<a href="javascript:void(0);" data-toggle="modal" data-target="#confirm-delete" data-href="<c:url value='/qlns/phong_ban/remove/${phongban.maPhongBan}' />"><i class="fa fa-trash"></i></a> </td>
 												
 												</tr>
 											</c:forEach>

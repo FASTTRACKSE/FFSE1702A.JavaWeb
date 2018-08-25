@@ -1,5 +1,7 @@
 package fasttrackse.ffse1702a.fbms.quanlytailieu.dto;
 
+import javax.validation.constraints.NotEmpty;
+
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import fasttrackse.ffse1702a.fbms.quanlytailieu.entity.Category;
@@ -9,11 +11,11 @@ import fasttrackse.ffse1702a.fbms.quanlytailieu.entity.Status;
 public class DocumentDTO {
 
 	private int id;
-
+	@NotEmpty
 	private String ten_tai_lieu;
 
 	private String tai_ve;
-
+	@NotEmpty
 	private String mo_ta;
 
 	private String ghi_chu;

@@ -12,11 +12,13 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import fasttrackse.ffse1702a.fbms.quanlytailieu.entity.Category;
 import fasttrackse.ffse1702a.fbms.quanlytailieu.entity.Document;
 
-public interface DocumentService {
+public interface DocumentService  {
 	
 	//list
-	public List<Document> getAll();
+	public List<Document> getAll(Integer offset, Integer maxResult);
 	
+	//count
+	 public Long count();
 	//
 	public Document findById(int id); 
 	
@@ -35,6 +37,9 @@ public interface DocumentService {
 	
 	//accept
 	public void accept(int id);
+	
+	//refuse
+	public void refuse(int id);
 	
 	//update
 	public void updateDocument(Document document);

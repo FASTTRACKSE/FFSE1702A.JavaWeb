@@ -22,8 +22,8 @@ public class QuanLyChucDanhController {
 
 	@Autowired(required = true)
 	private QuanLyChucDanhService quanlychucdanhService;
-	
-	@RequestMapping(value = "/ns/chuc_danh", method = RequestMethod.GET)
+
+	@RequestMapping(value = "/qlns/chuc_danh", method = RequestMethod.GET)
 	public String listChucDanh(Model model) {
 		List<ChucDanh> list = quanlychucdanhService.listChucDanh();
 		model.addAttribute("chucdanh", new ChucDanh());
@@ -31,7 +31,7 @@ public class QuanLyChucDanhController {
 		return "QuanLyNhanSu/QuanLyChucDanh/ChucDanh";
 	}
 
-	@RequestMapping(value = "/ns/chuc_danh/add", method = RequestMethod.GET)
+	@RequestMapping(value = "/qlns/chuc_danh/add", method = RequestMethod.GET)
 	public String addChucDanh(Model model) {
 
 		model.addAttribute("add", "TRUE");
@@ -40,11 +40,11 @@ public class QuanLyChucDanhController {
 	}
 
 	// For add and update person both
-	@RequestMapping(value = "/ns/chuc_danh/save", method = RequestMethod.POST)
+	@RequestMapping(value = "/qlns/chuc_danh/save", method = RequestMethod.POST)
 	public String addPerson(@ModelAttribute("chucdanh") @Valid ChucDanh p, BindingResult bindingResult, Model model,
 			HttpServletRequest request) {
 		ChucDanh cd = this.quanlychucdanhService.getChucDanhByMa(p.getMaChucDanh());
-		boolean addAction= request.getParameter("add") != null;
+		boolean addAction = request.getParameter("add") != null;
 		boolean checkMaChucDanh = this.quanlychucdanhService.checkChucDanh(p.getMaChucDanh());
 		if (addAction) {
 			model.addAttribute("add", "TRUE");
@@ -53,7 +53,7 @@ public class QuanLyChucDanhController {
 		if (bindingResult.hasErrors() || (addAction && !checkMaChucDanh)) {
 			return "QuanLyNhanSu/QuanLyChucDanh/FormChucDanh";
 		}
-		
+
 		if (cd == null) {
 			// new person, add it
 			this.quanlychucdanhService.addChucDanh(p);
@@ -62,20 +62,20 @@ public class QuanLyChucDanhController {
 			this.quanlychucdanhService.updateChucDanh(p);
 		}
 
-		return "redirect:/ns/chuc_danh";
+		return "redirect:/qlns/chuc_danh";
 
 	}
-	
-	@RequestMapping("/ns/chuc_danh/edit/{maChucDanh}")
-	public String editChucDanh(@PathVariable("maChucDanh") String maChucDanh, Model model){
+
+	@RequestMapping("/qlns/chuc_danh/edit/{maChucDanh}")
+	public String editChucDanh(@PathVariable("maChucDanh") String maChucDanh, Model model) {
 		model.addAttribute("chucdanh", this.quanlychucdanhService.getChucDanhByMa(maChucDanh));
 		return "QuanLyNhanSu/QuanLyChucDanh/FormChucDanh";
 	}
-	
-	@RequestMapping("/ns/chuc_danh/remove/{maChucDanh}")
-    public String removeChucDanh(@PathVariable("maChucDanh") String maChucDanh){
-		
-        this.quanlychucdanhService.removeChucDanh(maChucDanh);
-        return "redirect:/ns/chuc_danh";
-    }
+
+	@RequestMapping("/qlns/chuc_danh/remove/{maChucDanh}")
+	public String removeChucDanh(@PathVariable("maChucDanh") String maChucDanh) {
+
+		this.quanlychucdanhService.removeChucDanh(maChucDanh);
+		return "redirect:/qlns/chuc_danh";
+	}
 }

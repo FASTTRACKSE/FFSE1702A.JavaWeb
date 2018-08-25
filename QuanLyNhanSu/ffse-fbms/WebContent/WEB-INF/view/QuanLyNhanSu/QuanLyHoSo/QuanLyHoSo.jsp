@@ -3,6 +3,7 @@
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <jsp:include page="/WEB-INF/view/templates/header.jsp" /> 
 
@@ -18,7 +19,7 @@
                         </li>
                         <li class="breadcrumb-item"><a href="javascript:void(0)"><spring:message code="label.quanLyNhanSu" /></a>
                         </li>
-                        <li class="breadcrumb-item"><a href="<c:url value = "/ns/ho_so"/>"><spring:message code="label.quanLyHoSo" /></a>
+                        <li class="breadcrumb-item"><a href="javascript:void(0)"><spring:message code="label.quanLyHoSo" /></a>
                         </li>
                         <li class="breadcrumb-item active"><spring:message code="label.danhSachHoSo" />
                         </li>
@@ -26,11 +27,13 @@
                   </div>
                </div>
             </div>
+            <sec:authorize access="hasRole('ROLE_PNS')">
             <div class="content-header-right col-md-3 col-xs-12">
                <div role="group" aria-label="Button group with nested dropdown" class="btn-group float-md-right" id="add-new">
-                  <a href="<c:url value = "/ns/ho_so/add"/>" class="btn btn-primary"><span class="fa fa-plus"></span> <spring:message code="label.themHoSo" /></a>
+                  <a href="<c:url value = "/qlns/ho_so/add"/>" class="btn btn-primary"><span class="fa fa-plus"></span> <spring:message code="label.themHoSo" /></a>
                </div>
             </div>
+            </sec:authorize>
          </div>
          <div class="content-body">
             <!-- Zero configuration table -->
@@ -133,7 +136,7 @@
 									    	  responsive: true,
 									    	  "order": [[6 , "asc" ], [0, "desc"]],
 									          "bServerSide" : true,
-									          "sAjaxSource" : "/ffse-fbms/${maPhongBan}/getListHoSo",
+									          "sAjaxSource" : "/ffse-fbms/qlns/${maPhongBan}/view/getListHoSo",
 									      });
 									   };				   
 									</script>

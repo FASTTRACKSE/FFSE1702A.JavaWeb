@@ -17,9 +17,9 @@
                      <ol class="breadcrumb">
                        	<li class="breadcrumb-item"><a href="<c:url value = "/"/>"><spring:message code="label.trangChu" /></a>
                         </li>
-                        <li class="breadcrumb-item"><a href="<c:url value = "/ns/ho_so"/>"><spring:message code="label.quanLyNhanSu" /></a>
+                        <li class="breadcrumb-item"><a href="javascript:void(0)"><spring:message code="label.quanLyNhanSu" /></a>
                         </li>
-                        <li class="breadcrumb-item"><a href="<c:url value = "/ns/hop_dong"/>"><spring:message code="label.quanLyHopDong" /></a>
+                        <li class="breadcrumb-item"><a href="javascript:void(0)"><spring:message code="label.quanLyHopDong" /></a>
                         </li>
                         <li class="breadcrumb-item active"><spring:message code="label.thongTinHopDong" />
 						</ol>
@@ -27,38 +27,21 @@
 				</div>
 			</div>
 			<div class="content-header-right col-md-3 col-xs-12">
-				<div role="group" aria-label="Button group with nested dropdown"
-					class="dropdown nav-item float-md-right">
-					<div role="group" class="btn-group">
-						<button id="btnGroupDrop1" type="button" data-toggle="dropdown"
-							aria-haspopup="true" aria-expanded="false"
-							class="btn btn-outline-primary dropdown-toggle">
-							<i class="ft-settings icon-left"></i>
-							<spring:message code="label.thongTinKhac" />
-						</button>
-						<div aria-labelledby="btnGroupDrop1"
-							class="dropdown-menu dropdown-menu-right">
-							<a
-								href="<c:url value = "/ns/ho_so/edit/${hoSoNhanVien.maNhanVien}"/>"
-								class="dropdown-item"><i class="fa fa-id-card-o"></i> <spring:message
-									code="label.thongTinHoSo" /></a> <a
-								href="<c:url value = "/ns/ho_so/bang_cap/edit/${hoSoNhanVien.maNhanVien}"/>"
-								class="dropdown-item"><i class="fa fa-graduation-cap"></i> <spring:message
-									code="label.thongTinBangCap" /></a> <a
-								href="<c:url value = "/ns/ho_so/gia_dinh/edit/${hoSoNhanVien.maNhanVien}"/>"
-								class="dropdown-item"><i class="fa fa-users"></i> <spring:message
-									code="label.thongTinGiaDinh" /></a> <a
-								href="<c:url value = "/ns/ho_so/kinh_nghiem/${hoSoNhanVien.maNhanVien}"/>"
-								class="dropdown-item"><i class="fa fa-file-code-o"></i> <spring:message
-									code="label.thongTinKinhNghiem" /></a> <a
-								href="<c:url value = "/ns/hop_dong/edit/${hoSoNhanVien.maNhanVien}"/>"
-								class="dropdown-item"><i class="fa fa-handshake-o"></i> <spring:message
-									code="label.thongTinHopDong" /></a>
-							<div class="dropdown-divider"></div>
-							<a href="#" class="dropdown-item text-xs-center"><spring:message
-									code="label.xemTatCa" /></a>
-						</div>
-					</div>
+				<div role="group" aria-label="Button group with nested dropdown" class="dropdown nav-item float-md-right">
+	               <div role="group" class="btn-group">
+	                  <button id="btnGroupDrop1" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="btn btn-outline-primary dropdown-toggle">
+	                  	<i class="ft-settings icon-left"></i> <spring:message code="label.thongTinKhac" />
+	                  </button>
+	                  <div aria-labelledby="btnGroupDrop1" class="dropdown-menu dropdown-menu-right">
+	                  	<a href="<c:url value = "/qlns/ho_so/edit/${hoSoNhanVien.maNhanVien}"/>" class="dropdown-item"><i class="fa fa-id-card-o"></i> <spring:message code="label.thongTinHoSo" /></a>
+	                  	<a href="<c:url value = "/qlns/bang_cap/edit/${hoSoNhanVien.maNhanVien}"/>" class="dropdown-item"><i class="fa fa-graduation-cap"></i> <spring:message code="label.thongTinBangCap" /></a>
+	                  	<a href="<c:url value = "/qlns/gia_dinh/edit/${hoSoNhanVien.maNhanVien}"/>" class="dropdown-item"><i class="fa fa-users"></i> <spring:message code="label.thongTinGiaDinh" /></a>
+	                  	<a href="<c:url value = "/qlns/${hoSoNhanVien.phongBan.maPhongBan}/view/kinh_nghiem/${hoSoNhanVien.maNhanVien}"/>" class="dropdown-item"><i class="fa fa-file-code-o"></i> <spring:message code="label.thongTinKinhNghiem" /></a>
+	                  	<a href="<c:url value = "/qlns/hop_dong/edit/${hoSoNhanVien.maNhanVien}"/>" class="dropdown-item"><i class="fa fa-handshake-o"></i> <spring:message code="label.thongTinHopDong" /></a>
+	                  	<div class="dropdown-divider"></div>
+	                  	<a href="<c:url value = "/qlns/${hoSoNhanVien.phongBan.maPhongBan}/view/ho_so_tong_hop/${hoSoNhanVien.maNhanVien}"/>" class="dropdown-item text-xs-center"><spring:message code="label.xemTatCa" /></a>
+	                  </div>
+	               </div>
 				</div>
 			</div>
 		</div>
@@ -84,7 +67,7 @@
 							<div class="card-body collapse in">
 								<div class="card-block">
 									<form:form class="form form-horizontal" method="POST"
-										action="/ffse-fbms/ns/hop_dong/save" modelAttribute="hopDong">
+										action="/ffse-fbms/qlns/hop_dong/save" modelAttribute="hopDong">
 										<div class="form-body">
 											<div class="row">
 												<div class="col-md-8">
@@ -213,7 +196,7 @@
 											</div>
 										</div>
 										<div class="form-actions center">
-										<a href="/ffse-fbms/ns/hop_dong">
+										<a href="/ffse-fbms/qlns/ns/view/hop_dong">
 											<button type="button" class="btn btn-warning mr-1">
 												<i class="ft-x"></i> <spring:message code="label.huy" />
 											</button>

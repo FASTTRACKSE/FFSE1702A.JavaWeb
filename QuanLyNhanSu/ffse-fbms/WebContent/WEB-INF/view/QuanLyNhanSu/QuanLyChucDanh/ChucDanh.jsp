@@ -14,9 +14,9 @@
                      <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="<c:url value='/'></c:url>"><spring:message code="label.trangChu" /></a>
                         </li>
-                        <li class="breadcrumb-item"><a href="<c:url value='/ns/ho_so'></c:url>"><spring:message code="label.quanLyNhanSu" /></a>
+                        <li class="breadcrumb-item"><a href="javascript:void(0)"><spring:message code="label.quanLyNhanSu" /></a>
                         </li>
-                        <li class="breadcrumb-item"><a href="<c:url value='/ns/chuc_danh'></c:url>"><spring:message code="label.quanLyChucDanh" /></a>
+                        <li class="breadcrumb-item"><a href="<c:url value='/qlns/chuc_danh'></c:url>"><spring:message code="label.quanLyChucDanh" /></a>
                         </li>
                         <li class="breadcrumb-item active"><spring:message code="label.danhSachChucDanh" />
                         </li>
@@ -26,7 +26,7 @@
             </div>
             <div class="content-header-right col-md-6 col-xs-12">
                <div role="group" aria-label="Button group with nested dropdown" class="btn-group float-md-right" id="add-new">
-                  <a href="chuc_danh/add" class="btn btn-primary"><span class="fa fa-plus"></span> <spring:message code="label.themMoi" /></a>
+                  <a href="qlns/chuc_danh/add" class="btn btn-primary"><span class="fa fa-plus"></span> <spring:message code="label.themMoi" /></a>
                </div>
             </div>
          </div>
@@ -65,8 +65,8 @@
                                        <td>${chucdanh.maChucDanh }</td>
                                        <td>${chucdanh.tenChucDanh }</td>
                                        <td style="letter-spacing: 5px; min-width: 75px;">
-                                          <a href="<c:url value='/ns/chuc_danh/edit/${chucdanh.maChucDanh }' />"><i class="fa fa-pencil"></i></a>
-                                          <a href="javascript:void(0);" data-toggle="modal" data-target="#confirm-delete" data-href="<c:url value='/ns/chuc_danh/remove/${chucdanh.maChucDanh }' />"><i class="fa fa-trash"></i></a>
+                                          <a href="<c:url value='/qlns/chuc_danh/edit/${chucdanh.maChucDanh }' />"><i class="fa fa-pencil"></i></a>
+                                          <a href="javascript:void(0);" data-toggle="modal" data-target="#confirm-delete" data-href="<c:url value='/qlns/chuc_danh/remove/${chucdanh.maChucDanh }' />"><i class="fa fa-trash"></i></a>
                                        </td>
                                     </tr>
                                     </c:forEach>

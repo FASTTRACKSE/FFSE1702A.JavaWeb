@@ -1,1 +1,1 @@
-<% response.sendRedirect("ns/chuc_danh"); %>
+<% response.sendRedirect("qlns/nv/ho_so"); %>

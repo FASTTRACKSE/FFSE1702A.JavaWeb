@@ -9,6 +9,7 @@ import javax.persistence.criteria.Root;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Projections;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -33,13 +34,19 @@ public class DocumentDAOImpl implements DocumentDAO {
 	private SessionFactory sessionFactory;
 
 	// list
-	public List<Document> getAll() {
-		Session session = sessionFactory.getCurrentSession();
-		System.out.println("<br 1 />");
-		Query<Document> query = session.createQuery("from Document", Document.class);
-		List<Document> listDocument = (List<Document>) query.list();
-		return listDocument;
+	@SuppressWarnings({ "unchecked", "deprecation" })
+	public List<Document> getAll(Integer offset, Integer maxResults) {
+		 return sessionFactory.openSession().createCriteria(Document.class).setFirstResult(offset!=null?offset:0).setMaxResults(maxResults!=null?maxResults:5).list();
 	}
+	
+	//count
+	@SuppressWarnings("deprecation")
+	public Long count() {
+        return (Long)sessionFactory.openSession()
+                .createCriteria(Document.class)
+                .setProjection(Projections.rowCount())
+                .uniqueResult();
+    }
 
 	// list my draft
 	public List<Document> getAllDraft() {
@@ -121,6 +128,15 @@ public class DocumentDAOImpl implements DocumentDAO {
 		session.update(document);
 		
 	}
+	//refuse
+		public void refuse(final int id) {
+			Session session = this.sessionFactory.getCurrentSession();
+			Document document = findById(id);
+			Status st = new Status();
+			st.setMa_trang_thai("tu_choi");
+			document.setMa_trang_thai(st);
+			session.update(document);
+		}
 	// find by id
 	public Document findById(final int id) {
 		Session session = this.sessionFactory.getCurrentSession();
