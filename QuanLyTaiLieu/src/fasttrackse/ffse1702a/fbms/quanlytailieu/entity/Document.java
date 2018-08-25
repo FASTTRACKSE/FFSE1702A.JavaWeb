@@ -1,5 +1,7 @@
 package fasttrackse.ffse1702a.fbms.quanlytailieu.entity;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -46,15 +48,13 @@ public class Document {
 
 	@ManyToOne
 	@JoinColumn(name = "ma_trang_thai", referencedColumnName = "ma_trang_thai")
-	private String ma_trang_thai;
+	private Status ma_trang_thai;
 
-	
-
-	public String getMa_trang_thai() {
+	public Status getMa_trang_thai() {
 		return ma_trang_thai;
 	}
 
-	public void setMa_trang_thai(String ma_trang_thai) {
+	public void setMa_trang_thai(Status ma_trang_thai) {
 		this.ma_trang_thai = ma_trang_thai;
 	}
 

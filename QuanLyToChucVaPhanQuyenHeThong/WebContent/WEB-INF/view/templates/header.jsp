@@ -21,6 +21,7 @@
    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/fonts/font-awesome/css/font-awesome.min.css "/>">
    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/fonts/flag-icon-css/css/flag-icon.min.css "/>">
    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/vendors/css/extensions/pace.css "/>">
+   <link rel="stylesheet" type="text/css" href="<c:url value="/resources/vendors/css/tables/datatable/dataTables.bootstrap4.min.css"/>">
    <!-- END VENDOR CSS-->
    <!-- BEGIN STACK CSS-->
    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/bootstrap-extended.css "/>">
@@ -261,9 +262,18 @@
                         <li class="dropdown-menu-footer"><a href="javascript:void(0)" class="dropdown-item text-muted text-xs-center">Read all messages</a></li>
                      </ul>
                   </li>
-                  <li class="dropdown dropdown-user nav-item"><a href="#" data-toggle="dropdown" class="dropdown-toggle nav-link dropdown-user-link"><span class="avatar avatar-online"><img src="<c:url value="/resources/images/portrait/small/avatar-s-1.png" />" alt="avatar"><i></i></span><span class="user-name">John Doe</span></a>
-                     <div class="dropdown-menu dropdown-menu-right"><a href="#" class="dropdown-item"><i class="ft-user"></i> Edit Profile</a><a href="#" class="dropdown-item"><i class="ft-mail"></i> My Inbox</a><a href="#" class="dropdown-item"><i class="ft-check-square"></i> Task</a><a href="#" class="dropdown-item"><i class="ft-message-square"></i> Chats</a>
-                        <div class="dropdown-divider"></div><a href="#" class="dropdown-item"><i class="ft-power"></i> Logout</a>
+                  <li class="dropdown dropdown-user nav-item"><a href="#" data-toggle="dropdown" class="dropdown-toggle nav-link dropdown-user-link"><span class="avatar avatar-online"><img src="<c:url value="/resources/images/portrait/small/avatar-s-1.png" />" alt="avatar"><i></i></span><span class="user-name">${pageContext.request.userPrincipal.name}</span></a>
+                     <div class="dropdown-menu dropdown-menu-right">
+	                     <a href="#" class="dropdown-item"><i class="ft-user"></i> Edit Profile</a>
+	                     <a href="#" class="dropdown-item"><i class="ft-mail"></i> My Inbox</a>
+	                     <a href="#" class="dropdown-item"><i class="ft-check-square"></i> Task</a>
+	                     <a href="#" class="dropdown-item"><i class="ft-message-square"></i> Chats</a>
+                         <div class="dropdown-divider"></div>
+                         <%-- <a href="<c:url value="/j_spring_security_logout" />" class="dropdown-item"><i class="ft-power"></i> Logout</a> --%>
+                         <form class="dropdown-item" action="<c:url value="/j_spring_security_logout" />" method="post">
+							<input type="hidden" name="${_csrf.parameterName}"
+								value="${_csrf.token}" /> <i class="ft-power"></i> <input type="submit" value="Logout" />
+						</form>
                      </div>
                   </li>
                </ul>

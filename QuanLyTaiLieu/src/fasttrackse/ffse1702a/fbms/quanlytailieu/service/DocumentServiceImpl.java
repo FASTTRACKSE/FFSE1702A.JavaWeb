@@ -3,6 +3,7 @@ package fasttrackse.ffse1702a.fbms.quanlytailieu.service;
 import java.util.List;
 import java.util.Map;
 
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,10 +25,28 @@ public class DocumentServiceImpl implements DocumentService {
 
 	// list
 	@Transactional
-	public List<Document> getAll(Integer offset, Integer maxResult) {
-		return documentDAO.getAll(offset, maxResult);
+	public List<Document> getAll() {
+		return documentDAO.getAll();
 	}
-
+	//finbyid
+	public Document findById(int id){
+		return documentDAO.findById(id);
+	}
+	
+	// list my draft
+	public List<Document> getAllDraft(){
+		return documentDAO.getAllDraft();
+	}
+	
+	// list pending approve
+	public List<Document> getAllPendingApprove(){
+		return documentDAO.getAllPendingApprove();
+	}
+	
+	//list public document
+	public List<Document> getAllPublicDocument(){
+		return documentDAO.getAllPublicDocument();
+	}
 			 
 	//------------    insert    --------------------//
 	// by draft
@@ -47,22 +66,11 @@ public class DocumentServiceImpl implements DocumentService {
 	public List<Category> listCategory() {
 		return documentDAO.listCategory();
 	}
-	//
-	public Document findById(int id) {
-		return documentDAO.findById(id);
-	}
 	
+	//upload file 
 	public Map<String, String> uploadfile(@RequestParam(value="file") CommonsMultipartFile commonsMultipartFiles,HttpServletRequest request,ModelMap modelMap) {
 		return documentDAO.uploadfile(commonsMultipartFiles, request, modelMap);
 	}
 	
-	public void updateDocument(Document document) {
-		documentDAO.updateDocument(document);
-	}
- 
-	public Long count() {
-		return documentDAO.count();
-	}
-
 
 }

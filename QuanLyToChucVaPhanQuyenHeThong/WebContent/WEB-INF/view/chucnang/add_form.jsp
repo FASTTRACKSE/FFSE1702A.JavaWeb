@@ -29,7 +29,7 @@
 					<c:url var="post_url"  value="/chuc-nang/them-moi/luu" />
 					<form:form method="POST" modelAttribute="chucNang" action="${post_url}">
 						<div class="form-group col-sm-6">
-						  	<label>Tên chức năng</label>
+						  	<label>Tên chức năng </label><small> (Ghi chữ in hoa, bắt đầu bằng ROLE_ + tên phòng ban + tên chức danh)</small>
 						  	<form:input class="form-control" path="ten_chuc_nang" placeholder="Tên chức năng" />
 						</div>
 						<div class="form-group col-sm-6">

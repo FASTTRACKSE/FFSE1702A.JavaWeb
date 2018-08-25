@@ -112,7 +112,7 @@
 										<tr>
 											<th>STT</th>
 											<th>Tên đăng nhập</th>
-											<th>Reset password</th>
+											<!-- <th>Reset password</th> -->
 											<th>Trạng thái</th>
 											<th>Hành động</th>
 										</tr>
@@ -123,13 +123,13 @@
 												varStatus="counter">
 												<tr>
 													<td>${counter.index + 1}</td>
-													<td>${item.maNhanVien}</td>
-													<td class="tbl_actions"><a
-														href="<c:url value="/tai-khoan/resetPassword/${item.maNhanVien}" />"
+													<td>${item.tenDangNhap}</td>
+													<%-- <td class="tbl_actions"><a
+														href="<c:url value="/tai-khoan/resetPassword/${item.tenDangNhap}" />"
 														title="Reset Password"> <i class="fa fa-check green" aria-hidden="true"></i>Reset password
-													</a></td>
+													</a></td> --%>
 													<td class="tbl_actions"><a
-														href="<c:url value="/tai-khoan/kich-hoat/${item.maNhanVien}" />"
+														href="<c:url value="/tai-khoan/kich-hoat/${item.tenDangNhap}" />"
 														title="Hiển thị"> <c:choose>
 																<c:when test="${item.trangThai == 1}">
 																	<i class="fa fa-check green" aria-hidden="true"></i>Hiển thị
@@ -140,7 +140,7 @@
 															</c:choose>
 													</a></td>
 													<td class="tbl_actions"><a
-														href="<c:url value="/tai-khoan/xoa/${item.maNhanVien}" />"
+														href="<c:url value="/tai-khoan/xoa/${item.tenDangNhap}" />"
 														title="Xóa"
 														onclick="return confirm('Bạn có chắc muốn xóa ?')"> <i
 															class="fa fa-trash red" aria-hidden="true"></i>Delete

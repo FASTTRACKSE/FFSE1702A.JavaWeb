@@ -16,27 +16,6 @@ public class Icon implements Serializable {
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
-	@Column(name = "ma_icon")
-	private String ma_icon;
-	
-	@Column(name = "hinh_anh")
-	private String hinh_anh;
-
-	public Icon(String ma_icon) {
-		super();
-	}
-	 
-	public Icon() {
-		super();
-	}
-
-	public Icon(int id, String ma_icon, String hinh_anh) {
-		super();
-		this.id = id;
-		this.ma_icon = ma_icon;
-		this.hinh_anh = hinh_anh;
-	}
 
 	public int getId() {
 		return id;
@@ -46,19 +25,18 @@ public class Icon implements Serializable {
 		this.id = id;
 	}
 
+	@Column(name = "ma_icon")
+	private String ma_icon;
+
+	@Column(name = "hinh_anh")
+	private String hinh_anh;
+
 	public String getMa_icon() {
 		return ma_icon;
 	}
 
 	public void setMa_icon(String ma_icon) {
-		System.out.println(ma_icon);
-		String chk = ma_icon;
-		if(chk == "jpg") {
-			System.out.println("đã vào ");
-			ma_icon = "img";
-		}else {
-			this.ma_icon="soc";
-		}
+		this.ma_icon = ma_icon;
 	}
 
 	public String getHinh_anh() {
@@ -68,6 +46,5 @@ public class Icon implements Serializable {
 	public void setHinh_anh(String hinh_anh) {
 		this.hinh_anh = hinh_anh;
 	}
-	
-	
+
 }

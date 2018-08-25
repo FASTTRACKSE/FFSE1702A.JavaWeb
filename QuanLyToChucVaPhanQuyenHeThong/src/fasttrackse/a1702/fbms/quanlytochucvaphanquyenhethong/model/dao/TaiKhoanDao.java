@@ -12,13 +12,15 @@ public interface TaiKhoanDao {
 	
 	public void update(TaiKhoan cn);
 
-	public void delete(String maNhanVien);
+	public void delete(String tenDangNhap);
 
-	public void active(String maNhanVien);
+	public void active(String tenDangNhap);
 	
 	public List<TaiKhoan> findAllForPaging(int startPosition,int maxResult);
 	
 	public TaiKhoan validateTaiKhoan(Login login);
 	
 	public TaiKhoan findByMaNhanVien(String maNhanVien);
+	
+	public TaiKhoan findByTenDangNhap(String tenDangNhap);
 }

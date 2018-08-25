@@ -18,7 +18,7 @@ import fasttrackse.a1702.fbms.quanlytochucvaphanquyenhethong.service.TaiKhoanSer
 public class TaiKhoanController {
 	@Autowired
 	TaiKhoanService taiKhoanService;
-
+	
 	public TaiKhoanService getTaiKhoanService() {
 		return taiKhoanService;
 	}
@@ -49,6 +49,7 @@ public class TaiKhoanController {
 	@RequestMapping(value = "/them-moi", method = RequestMethod.GET)
 	public String addForm(Model model, final RedirectAttributes redirectAttributes) {
 		model.addAttribute("taiKhoan", new TaiKhoan());
+//		model.addAttribute("listNhanVien", )
 		return "taikhoan/add_form";
 	}
 
@@ -65,8 +66,8 @@ public class TaiKhoanController {
 	}
 
 	@RequestMapping(value = "/sua/{code}", method = RequestMethod.GET)
-	public String editForm(@PathVariable("code") String code, Model model) {
-		model.addAttribute("taiKhoan", taiKhoanService.findByMaNhanVien(code));
+	public String editForm(@PathVariable("code") String tenDangNhap, Model model) {
+		model.addAttribute("taiKhoan", taiKhoanService.findByTenDangNhap(tenDangNhap));
 		return "taikhoan/edit_form";
 	}
 

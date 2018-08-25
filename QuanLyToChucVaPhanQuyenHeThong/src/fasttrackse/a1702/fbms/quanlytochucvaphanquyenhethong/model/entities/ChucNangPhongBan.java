@@ -11,7 +11,7 @@ import javax.validation.constraints.NotEmpty;
 @Entity
 @Table(name = "chuc_nang_phong_ban")
 public class ChucNangPhongBan {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id", unique = true, nullable = false)
@@ -20,6 +20,10 @@ public class ChucNangPhongBan {
 	@Column(name = "ma_phong_ban", nullable = false, length = 100)
 	@NotEmpty
 	private String maPhongBan;
+
+	@Column(name = "ma_chuc_danh", nullable = false, length = 100)
+	@NotEmpty
+	private String maChucDanh;
 
 	@Column(name = "ma_chuc_nang", nullable = false, length = 100)
 	@NotEmpty
@@ -41,6 +45,14 @@ public class ChucNangPhongBan {
 		this.maPhongBan = maPhongBan;
 	}
 
+	public String getMaChucDanh() {
+		return maChucDanh;
+	}
+
+	public void setMaChucDanh(String maChucDanh) {
+		this.maChucDanh = maChucDanh;
+	}
+
 	public String getMaChucNang() {
 		return maChucNang;
 	}
@@ -53,21 +65,18 @@ public class ChucNangPhongBan {
 		super();
 	}
 
-	public ChucNangPhongBan(int id, String maPhongBan, String maChucNang) {
+	public ChucNangPhongBan(int id, String maPhongBan, String maChucDanh, String maChucNang) {
 		super();
 		this.maPhongBan = maPhongBan;
-		this.maChucNang = maChucNang;
-	}
-	
-	public ChucNangPhongBan(String maPhongBan, String maChucNang) {
-		super();
-		this.maPhongBan = maPhongBan;
+		this.maChucDanh = maChucDanh;
 		this.maChucNang = maChucNang;
 	}
 
-	@Override
-	public String toString() {
-		return "ChucNangPhongBan [maPhongBan=" + maPhongBan + ", maChucNang=" + maChucNang + "]";
+	public ChucNangPhongBan(String maPhongBan, String maChucDanh, String maChucNang) {
+		super();
+		this.maPhongBan = maPhongBan;
+		this.maChucDanh = maChucDanh;
+		this.maChucNang = maChucNang;
 	}
 
 }

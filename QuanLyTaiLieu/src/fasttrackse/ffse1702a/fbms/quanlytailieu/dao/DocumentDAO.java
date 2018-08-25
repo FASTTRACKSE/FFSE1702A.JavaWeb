@@ -14,8 +14,17 @@ import fasttrackse.ffse1702a.fbms.quanlytailieu.entity.Document;
 
 public interface DocumentDAO {
 	// list
-	public List<Document> getAll(Integer offset, Integer maxResult);
-
+	public List<Document> getAll();
+	
+	//list my draft
+	public List<Document> getAllDraft();
+	
+	//list pending approve
+	public List<Document> getAllPendingApprove();
+	
+	//list public document
+	public List<Document> getAllPublicDocument();
+	
 	//--------------  insert  -----------------//
 	//by draft
 	public void saveDraft(final Document document);
@@ -30,12 +39,11 @@ public interface DocumentDAO {
 	// list category
 	public List<Category> listCategory();
 	
+	
 	//find by id
 	public Document findById(final int id);
-	//update document
-	public void updateDocument(Document document); 
+	
 	//upload file
 	public Map<String, String> uploadfile(@RequestParam(value="file") CommonsMultipartFile commonsMultipartFiles,HttpServletRequest request,ModelMap modelMap);
 
-	public Long count();
 }

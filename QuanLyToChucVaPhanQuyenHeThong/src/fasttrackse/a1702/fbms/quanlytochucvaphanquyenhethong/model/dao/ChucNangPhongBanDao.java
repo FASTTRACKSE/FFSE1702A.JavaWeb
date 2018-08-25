@@ -7,13 +7,13 @@ import fasttrackse.a1702.fbms.quanlytochucvaphanquyenhethong.model.entities.Chuc
 public interface ChucNangPhongBanDao {
 	public List<ChucNangPhongBan> findAll();
 
-	public void addNew(String maPhongBan, List<String> maChucNang);
+	public void addNew(ChucNangPhongBan cd);
 
-	public void update(String maPhongBan, List<String> maChucNang);
+	public void update(ChucNangPhongBan cd);
 
-	public void delete(String maPhongBan);
+	public void delete(int id);
 
-	public List<Object> findAllForPaging(int startPosition, int maxResult);
-	
-	public List<Object> getMaChucNangByMaPhongBan(String maPhongBan);
+	public List<ChucNangPhongBan> findAllForPaging(int startPosition, int maxResult);
+
+	public ChucNangPhongBan findById(int id);
 }

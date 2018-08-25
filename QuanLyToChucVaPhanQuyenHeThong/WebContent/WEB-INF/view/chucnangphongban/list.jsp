@@ -34,14 +34,14 @@
 
 		<!-- Path -->
 		<div class="content-header row">
-			<div class="content-header-left col-md-12 col-xs-12 mb-2">
-				<h3 class="content-header-title mb-0">Danh sách chức năng theo phòng ban</h3>
+			<div class="content-header-left col-md-6 col-xs-12 mb-2">
+				<h3 class="content-header-title mb-0">Danh sách chức năng phòng ban</h3>
 				<div class="row breadcrumbs-top">
 					<div class="breadcrumb-wrapper col-xs-12">
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item"><a
 								href='<c:url value="/home" />'>Home</a></li>
-							<li class="breadcrumb-item active">Danh sách chức năng theo phòng ban</li>
+							<li class="breadcrumb-item active">Danh sách chức năng phòng ban</li>
 						</ol>
 					</div>
 				</div>
@@ -93,7 +93,7 @@
 				<div class="col-xs-12">
 					<div class="card">
 						<div class="card-header">
-							<h4 class="card-title">Danh sách chức năng theo phòng ban</h4>
+							<h4 class="card-title">Danh sách chức năng phòng ban</h4>
 							<a class="heading-elements-toggle"><i
 								class="fa fa-ellipsis-v font-medium-3"></i></a>
 							<div class="heading-elements">
@@ -112,7 +112,8 @@
 										<tr>
 											<th>STT</th>
 											<th>Mã phòng ban</th>
-											<th>Tên phòng ban</th>
+											<th>Mã chức danh</th>
+											<th>Mã chức năng</th>
 											<th>Hành động</th>
 										</tr>
 									</thead>
@@ -122,11 +123,15 @@
 												varStatus="counter">
 												<tr>
 													<td>${counter.index + 1}</td>
-													<td>${item[0]}</td>
-													<td>${item[1]}</td>
+													<td>${item.maPhongBan}</td>
+													<td>${item.maChucDanh}</td>
+													<td>${item.maChucNang}</td>
 													<td class="tbl_actions"><a
-														href="<c:url value="/chuc-nang-phong-ban/sua/${item[0]}" />" title="Sửa">
-															<i class="fa fa-pencil-square-o blue" aria-hidden="true"></i>Update
+														href="<c:url value="/chuc-nang-phong-ban/sua/${item.id}" />" title="Sửa">
+															<i class="fa fa-pencil-square-o blue" aria-hidden="true"></i>Sửa
+													</a> <a href="<c:url value="/chuc-nang-phong-ban/xoa/${item.id}" />" title="Xóa"
+														onclick="return confirm('Bạn có chắc muốn xóa ?')"> <i
+															class="fa fa-trash red" aria-hidden="true"></i>Delete
 													</a></td>
 												</tr>
 											</c:forEach>

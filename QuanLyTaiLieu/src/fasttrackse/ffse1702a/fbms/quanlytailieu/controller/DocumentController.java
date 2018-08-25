@@ -19,6 +19,7 @@ import fasttrackse.ffse1702a.fbms.quanlytailieu.dto.DocumentDTO;
 import fasttrackse.ffse1702a.fbms.quanlytailieu.entity.Category;
 import fasttrackse.ffse1702a.fbms.quanlytailieu.entity.Document;
 import fasttrackse.ffse1702a.fbms.quanlytailieu.entity.Icon;
+import fasttrackse.ffse1702a.fbms.quanlytailieu.entity.Status;
 import fasttrackse.ffse1702a.fbms.quanlytailieu.service.DocumentService;
 
 @Controller
@@ -27,17 +28,18 @@ public class DocumentController {
 	@Autowired
 	private DocumentService documentService;
 
-	// my document
-	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public String index(Model model,@RequestParam(value = "page", defaultValue = "1") Integer page,
-			Integer maxResult) {
-		Integer offset = (page - 1) * 10;
-		model.addAttribute("count", this.documentService);
-		model.addAttribute("listDocument", documentService.count());
-		model.addAttribute("offset", offset);
-		model.addAttribute("document", new Document());
-		model.addAttribute("documentList", documentService.getAll(offset, maxResult));
-        return "list";
+	// -------------- my document ----------//
+	@RequestMapping(value = { "/", "/index" }, method = RequestMethod.GET)
+	public String index(Model model) {
+		model.addAttribute("listDocument", documentService.getAll());
+		return "index";
+	}
+	
+	// edit document
+	@RequestMapping(value = "/documentEdit/{id}", method = RequestMethod.GET)
+	public String documentEdit(@PathVariable int id, Model model) {
+		model.addAttribute("document", documentService.findById(id));
+		return "documentInsert";
 	}
 
 	// ------------- insert --------------//
@@ -48,48 +50,69 @@ public class DocumentController {
 		return "documentInsert";
 	}
 
-	@RequestMapping(value = "/documentUpdate/{id}")
-	public String documentUpdate(@PathVariable int id, Model model) {
-		Document document = documentService.findById(id);
-		model.addAttribute("document", document);
-		return "documentUpdate";
-	}
-
-	@RequestMapping(value = "update")
-	public String Update(@ModelAttribute("document") Document document, Model model) {
-		documentService.updateDocument(document);
-		return "redirect:/list";
-	}
-
 	// draft
-	@RequestMapping(value = "/documentSaveDraft", method = RequestMethod.POST)
-	public String saveDraft(@ModelAttribute("document") DocumentDTO DocumentDTO,
-			HttpServletRequest request, ModelMap modelMap) {
+	@RequestMapping(value = "/documentSave/draft")
+	public String saveDraft(@ModelAttribute("document") DocumentDTO DocumentDTO, HttpServletRequest request, ModelMap modelMap) {
 		Document document = new Document();
 		BeanUtils.copyProperties(DocumentDTO, document);
 		Map<String, String> filename = documentService.uploadfile(DocumentDTO.getFile(), request, modelMap);
 		document.setTai_ve(filename.get("urlImage"));
 		Icon ic= new Icon();
+		Status st = new Status();
+		st.setMa_trang_thai("nhap");
 		ic.setMa_icon(filename.get("extensionImage"));	
-		
 		document.setMa_icon(ic);
-		document.setMa_trang_thai("nhap");
-		// System.out.println(document.getMa_danh_muc());
+		document.setMa_trang_thai(st);
+		
 		documentService.saveDraft(document);
-		return "redirect:/list";
+		return "redirect:/";
 	}
-
+	
 	// submit pendding approve
+	@RequestMapping(value = "/documentSave")
+	public String saveDocument(@ModelAttribute("document") DocumentDTO DocumentDTO, HttpServletRequest request, ModelMap modelMap) {
+		Document document = new Document();
+		BeanUtils.copyProperties(DocumentDTO, document);
+		Map<String, String> filename = documentService.uploadfile(DocumentDTO.getFile(), request, modelMap);
+		document.setTai_ve(filename.get("urlImage"));
+		Icon ic= new Icon();
+		Status st = new Status();
+		st.setMa_trang_thai("cho_phe_duyet");
+		ic.setMa_icon(filename.get("extensionImage"));	
+		document.setMa_icon(ic);
+		document.setMa_trang_thai(st);
+		documentService.saveDraft(document);
+		return "redirect:/";
+	}
+	// ------------------------------------//
 
-	// --------------------------//
-
-	// ----------- delete ----------------//
+	// ----------------- delete ----------------//
 	@RequestMapping(value = "/documentDelete/{id}", method = RequestMethod.GET)
 	public String documentDelete(@PathVariable int id, Model model) {
 		documentService.delete(id);
 		return "redirect:/";
 	}
-	// --------------------------//
+
+	// -------------- my draft document ----------//
+	@RequestMapping(value = "/myDraft", method = RequestMethod.GET)
+	public String mydraft(Model model) {
+		model.addAttribute("listDraft", documentService.getAllDraft());
+		return "mydraft";
+	}
+
+	// ----------- document pending approve -------//
+	@RequestMapping(value = "/pendingApprove", method = RequestMethod.GET)
+	public String pendingApprove(Model model) {
+		model.addAttribute("listPendingApprove", documentService.getAllPendingApprove());
+		return "pendingapprove";
+	}
+
+	// ----------- document public -------//
+	@RequestMapping(value = "/documentPublic", method = RequestMethod.GET)
+	public String documentPublic(Model model) {
+		model.addAttribute("listPublicDocument", documentService.getAllPublicDocument());
+		return "documentpublic";
+	}
 
 	// get tên danh mục
 	@ModelAttribute("listCategory")

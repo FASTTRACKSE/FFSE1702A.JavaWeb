@@ -22,5 +22,5 @@ public interface TaiKhoanService{
 	
 	public TaiKhoan validateTaiKhoan(Login login);
 	
-	public TaiKhoan findByMaNhanVien(String maNhanVien);
+	public TaiKhoan findByTenDangNhap(String tenDangNhap);
 }
