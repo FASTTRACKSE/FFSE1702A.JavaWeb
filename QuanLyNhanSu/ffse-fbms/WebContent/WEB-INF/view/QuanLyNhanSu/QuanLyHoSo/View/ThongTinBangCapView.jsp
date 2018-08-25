@@ -5,6 +5,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <c:if test="${empty role_nv}">
 	<c:url var="linkhs" value = "/qlns/${hoSoNhanVien.phongBan.maPhongBan}/view/ho_so/${hoSoNhanVien.maNhanVien}"/>
@@ -185,6 +186,15 @@
 												</div>
 											</div>
 										</div>
+										<sec:authorize access="hasRole('ROLE_PNS')">
+	            						   <div class="form-actions center">
+										   	<a href="<c:url value = "/qlns/bang_cap/edit/${hoSoNhanVien.maNhanVien}"/>">
+										      <button type="button" class="btn btn-warning mr-1">
+										         <spring:message code="label.chinhSua" />
+										      </button>
+										    </a>
+										   </div>
+	            						</sec:authorize>
 									</form:form>
 								</div>
 							</div>

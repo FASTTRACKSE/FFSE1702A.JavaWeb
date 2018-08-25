@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Aug 22, 2018 at 05:14 PM
+-- Generation Time: Aug 25, 2018 at 12:40 AM
 -- Server version: 5.6.37
 -- PHP Version: 7.1.8
 
@@ -311,7 +311,7 @@ INSERT INTO `hop_dong` (`ma_hop_dong`, `ma_nhan_vien`, `ma_loai_hop_dong`, `luon
 (00087, 00087, 2, 1, 12, '2018-01-18', '2019-01-18', 1),
 (00088, 00088, 2, 1, 12, '2018-03-11', '2019-03-11', 2),
 (00089, 00089, 2, 1, 12, '2018-03-03', '2019-03-03', 2),
-(00090, 00090, 2, 1, 12, '0000-00-00', '0000-00-00', 1),
+(00090, 00090, 2, 1, 12, '2018-01-08', '2019-01-08', 1),
 (00091, 00091, 2, 1, 12, '2018-08-25', '2019-08-25', 1),
 (00092, 00092, 2, 1, 12, '2018-05-26', '2019-05-26', 1),
 (00093, 00093, 2, 1, 12, '2018-06-18', '2019-06-18', 1),
@@ -457,7 +457,7 @@ CREATE TABLE IF NOT EXISTS `ho_so_nhan_vien` (
 --
 
 INSERT INTO `ho_so_nhan_vien` (`ma_nhan_vien`, `ma_phong_ban`, `ma_chuc_danh`, `ho_dem`, `ten`, `anh_dai_dien`, `nam_sinh`, `gioi_tinh`, `ma_tinh_trang_hon_nhan`, `que_quan`, `dan_toc`, `ma_quoc_tich`, `noi_tam_tru`, `so_dien_thoai`, `email`, `so_cmnd`, `noi_cap`, `ngay_cap`, `trang_thai`) VALUES
-(00001, 'PGD', 'GD', 'Đặng Văn', 'Nam', '1533865835713.jpeg', '1998-07-20', 1, 1, '121 Hoàng Diệu, Hải Châu, Đà Nẵng', 'Kinh', 'VN', '121 Hoàng Diệu, Hải Châu, Đà Nẵng', '01266676809', 'dangvannam98@gmail.com', '201756910', 'Đà Nẵng', '2013-01-12', 1),
+(00001, 'PGD', 'GD', 'Đặng Văn', 'Nam', '1219820798006.png', '1998-07-20', 1, 1, '121 Hoàng Diệu, Hải Châu, Đà Nẵng', 'Kinh', 'VN', '121 Hoàng Diệu, Hải Châu, Đà Nẵng', '01266676809', 'dangvannam98@gmail.com', '201756910', 'Đà Nẵng', '2013-01-12', 1),
 (00002, 'PGD', 'GD', 'Thái Nguyễn Thục', 'Nhi', '1219820798017.png', '1998-01-12', 2, 1, '128 Trần Văn Hai, Phường Hoà Hải, Quận Ngũ Hành Sơn, Thành phố Đà Nẵng', 'Kinh', 'VN', '128 Trần Văn Hai, Phường Hoà Hải, Quận Ngũ Hành Sơn, Thành phố Đà Nẵng', '01694158988', 'doanphiphuc4081@gmail.com', '201127804', 'Đà Nẵng', '2014-10-21', 1),
 (00003, 'PGD', 'NV', 'Trương Thành', 'Ngân', '1219820798019.png', '1985-09-25', 1, 2, '693A/42 Trần Cao Vân, Phường Thanh Khê Đông, Quận Thanh Khê, Thành phố Đà Nẵng', 'Kinh', 'VN', '693A/42 Trần Cao Vân, Phường Thanh Khê Đông, Quận Thanh Khê, Thành phố Đà Nẵng', '01679921408', 'truongthanhngan9451@gmail.com', '201453041', 'Nam Định', '2011-01-19', 2),
 (00004, 'PGD', 'NV', 'Hoàng Phi', 'Bách', '1219820798011.png', '1926-01-02', 2, 1, '06 Nguyễn Lý, Phường Hoà Xuân, Quận Cẩm Lệ, Thành phố Đà Nẵng', 'Kinh', 'VN', '06 Nguyễn Lý, Phường Hoà Xuân, Quận Cẩm Lệ, Thành phố Đà Nẵng', '0947030127', 'hoangphibach6891@gmail.com', '201397509', 'Phú Yên', '2011-02-13', 1),
@@ -1075,16 +1075,21 @@ INSERT INTO `quoc_tich` (`ma_quoc_tich`, `ten_quoc_tich`) VALUES
 CREATE TABLE IF NOT EXISTS `role` (
   `ma_role` int(11) NOT NULL,
   `name` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `role`
 --
 
 INSERT INTO `role` (`ma_role`, `name`) VALUES
-(1, 'ROLE_PM'),
-(2, 'ROLE_NV'),
-(3, 'ROLE_TPP');
+(1, 'ROLE_PNS'),
+(2, 'ROLE_PGD'),
+(3, 'ROLE_TPPDA'),
+(4, 'ROLE_TPPDT'),
+(5, 'ROLE_TPPIT'),
+(6, 'ROLE_TPPKT'),
+(7, 'ROLE_TPPNS'),
+(8, 'ROLE_NV');
 
 -- --------------------------------------------------------
 
@@ -1099,7 +1104,33 @@ CREATE TABLE IF NOT EXISTS `thong_tin_bang_cap` (
   `loai_bang_cap` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   `don_vi_cap` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
   `ngay_cap` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `thong_tin_bang_cap`
+--
+
+INSERT INTO `thong_tin_bang_cap` (`id`, `ma_nhan_vien`, `ten_bang_cap`, `loai_bang_cap`, `don_vi_cap`, `ngay_cap`) VALUES
+(1, 00201, 'Cử nhân công nghệ thông tin', 'Khá', 'Cao đẳng công nghệ thông tin', '2016-06-20'),
+(2, 00196, 'Cử nhân công nghệ thông tin', 'Giỏi', 'Cao đẳng công nghệ thông tin', '2016-06-12'),
+(3, 00193, 'Cử nhân công nghệ thông tin', 'Trung bình', 'Cao đẳng công nghệ thông tin', '2016-06-28'),
+(4, 00192, 'Cử nhân tài chính doanh nghiệp', 'Khá', 'Đại học kinh tế', '2015-06-29'),
+(5, 00190, 'Cử nhân kinh doanh', 'Khá', 'Đại học kinh tế', '2015-06-28'),
+(6, 00188, 'Cử nhân tài chính doanh nghiệp', 'Giỏi', 'Đại học kinh tế', '2014-05-29'),
+(7, 00187, 'Cử nhân toán ứng dụng', 'Giỏi', 'Đại học sư phạm', '2016-06-13'),
+(8, 00185, 'Cử nhân kinh tế', 'Giỏi', 'Đại học kinh tế', '2013-05-23'),
+(9, 00184, 'Cử nhân công nghệ thông tin', 'Khá', 'Đại học bách khoa Đà Nẵng', '2011-05-24'),
+(10, 00181, 'Cử nhân công nghệ thông tin', 'Giỏi', 'Cao đẳng công nghệ thông tin', '2014-04-12'),
+(11, 00001, 'Cử nhân tài chính doanh nghiệp', 'Giỏi', 'Đại học bách khoa Đà Nẵng', '1999-04-12'),
+(12, 00010, 'Cử nhân kinh tế', 'Khá', 'Đại học kinh tế', '2018-08-01'),
+(13, 00003, 'Cử nhân toán ứng dụng', 'Giỏi', 'Đại học sư phạm', '2018-08-24'),
+(14, 00004, 'Cử nhân tài chính doanh nghiệp', 'Khá', 'Đại học kinh tế', '2016-07-06'),
+(15, 00005, 'Cử nhân công nghệ thông tin', 'Giỏi', 'Cao đẳng công nghệ thông tin', '2017-08-11'),
+(16, 00006, 'Cử nhân kinh tế', 'Khá', 'Đại học kinh tế', '2018-03-08'),
+(17, 00007, 'Cử nhân toán ứng dụng', 'Khá', 'Đại học sư phạm', '2017-06-09'),
+(18, 00008, 'Cử nhân kinh tế', 'Khá', 'Đại học kinh tế', '2018-02-16'),
+(19, 00009, 'Cử nhân tài chính doanh nghiệp', 'Khá', 'Đại học kinh tế', '2018-04-12'),
+(21, 00201, 'Cử nhân kinh tế', 'Khá', 'Đại học kinh tế', '2018-08-03');
 
 -- --------------------------------------------------------
 
@@ -1117,7 +1148,7 @@ CREATE TABLE IF NOT EXISTS `thong_tin_gia_dinh` (
   `gioi_tinh` int(1) NOT NULL,
   `so_dien_thoai` varchar(11) COLLATE utf8_unicode_ci NOT NULL,
   `quan_he` varchar(20) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=402 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=403 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `thong_tin_gia_dinh`
@@ -1525,7 +1556,8 @@ INSERT INTO `thong_tin_gia_dinh` (`id`, `ma_nhan_vien`, `ten`, `ho_dem`, `que_qu
 (398, 00200, 'Trang', 'Lê Thị Huyền', 'K523/45 Cách Mạng Tháng Tám, Phường Hoà Thọ Đông, Quận Cẩm Lệ, Thành phố Đà Nẵng', '1994-03-29', 2, '01266676809', 'Mẹ'),
 (399, 00200, 'Hoàng', 'Lê Minh', 'K523/45 Cách Mạng Tháng Tám, Phường Hoà Thọ Đông, Quận Cẩm Lệ, Thành phố Đà Nẵng', '1996-08-26', 1, '01266676809', 'Bố'),
 (400, 00201, 'Trang', 'Lê Thị Huyền', '303 Khúc Hạo, Phường Nại Hiên Đông, Quận Sơn Trà, Thành phố Đà Nẵng', '1994-03-29', 2, '01266676809', 'Mẹ'),
-(401, 00201, 'Hoàng', 'Lê Minh', '303 Khúc Hạo, Phường Nại Hiên Đông, Quận Sơn Trà, Thành phố Đà Nẵng', '1996-08-26', 1, '01266676809', 'Bố');
+(401, 00201, 'Hoàng', 'Lê Minh', '303 Khúc Hạo, Phường Nại Hiên Đông, Quận Sơn Trà, Thành phố Đà Nẵng', '1996-08-26', 1, '01266676809', 'Bố'),
+(402, 00001, 'Nam', 'Đặng Văn', 'Đà Nẵng', '1998-07-20', 1, '01266676809', 'Em');
 
 -- --------------------------------------------------------
 
@@ -1584,16 +1616,30 @@ CREATE TABLE IF NOT EXISTS `users` (
   `password` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `ma_nhan_vien` int(11) NOT NULL,
   `enabled` int(1) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`ma_tai_khoan`, `username`, `password`, `ma_nhan_vien`, `enabled`) VALUES
-(1, 'kai', '$2a$04$GYGsaJj9l6kH2GikK6QVzO0v3sOCxt3vdkiA2/tcoSw8erI85ZYDG', 1, 1),
-(2, 'sena', '$2a$04$GYGsaJj9l6kH2GikK6QVzO0v3sOCxt3vdkiA2/tcoSw8erI85ZYDG', 2, 1),
-(3, 'sangnguyen', '$2a$04$GYGsaJj9l6kH2GikK6QVzO0v3sOCxt3vdkiA2/tcoSw8erI85ZYDG', 5, 1);
+(1, 'giamdoc', '$2a$10$LOqePml/koRGsk2YAIOFI.1YNKZg7EsQ5BAIuYP1nWOyYRl21dlne', 1, 1),
+(2, 'truongphongduan', '$2a$10$LOqePml/koRGsk2YAIOFI.1YNKZg7EsQ5BAIuYP1nWOyYRl21dlne', 7, 1),
+(3, 'truongphongdaotao', '$2a$10$LOqePml/koRGsk2YAIOFI.1YNKZg7EsQ5BAIuYP1nWOyYRl21dlne', 56, 1),
+(4, 'truongphongit', '$2a$10$LOqePml/koRGsk2YAIOFI.1YNKZg7EsQ5BAIuYP1nWOyYRl21dlne', 16, 1),
+(5, 'truongphongketoan', '$2a$10$LOqePml/koRGsk2YAIOFI.1YNKZg7EsQ5BAIuYP1nWOyYRl21dlne', 57, 1),
+(6, 'truongphongnhansu', '$2a$10$LOqePml/koRGsk2YAIOFI.1YNKZg7EsQ5BAIuYP1nWOyYRl21dlne', 42, 1),
+(7, 'phophongduan', '$2a$10$LOqePml/koRGsk2YAIOFI.1YNKZg7EsQ5BAIuYP1nWOyYRl21dlne', 101, 1),
+(8, 'phophongdaotao', '$2a$10$LOqePml/koRGsk2YAIOFI.1YNKZg7EsQ5BAIuYP1nWOyYRl21dlne', 35, 1),
+(9, 'phophongit', '$2a$10$LOqePml/koRGsk2YAIOFI.1YNKZg7EsQ5BAIuYP1nWOyYRl21dlne', 28, 1),
+(10, 'phophongketoan', '$2a$10$LOqePml/koRGsk2YAIOFI.1YNKZg7EsQ5BAIuYP1nWOyYRl21dlne', 86, 1),
+(11, 'phophongnhansu', '$2a$10$LOqePml/koRGsk2YAIOFI.1YNKZg7EsQ5BAIuYP1nWOyYRl21dlne', 124, 1),
+(12, 'phogiamdoc', '$2a$10$LOqePml/koRGsk2YAIOFI.1YNKZg7EsQ5BAIuYP1nWOyYRl21dlne', 60, 1),
+(13, 'nhanvienphongduan', '$2a$10$LOqePml/koRGsk2YAIOFI.1YNKZg7EsQ5BAIuYP1nWOyYRl21dlne', 66, 1),
+(14, 'nhanvienphongdaotao', '$2a$10$LOqePml/koRGsk2YAIOFI.1YNKZg7EsQ5BAIuYP1nWOyYRl21dlne', 69, 1),
+(15, 'nhanvienphongit', '$2a$10$LOqePml/koRGsk2YAIOFI.1YNKZg7EsQ5BAIuYP1nWOyYRl21dlne', 65, 1),
+(16, 'nhanvienphongketoan', '$2a$10$LOqePml/koRGsk2YAIOFI.1YNKZg7EsQ5BAIuYP1nWOyYRl21dlne', 74, 1),
+(17, 'nhanvienphongnhansu', '$2a$10$LOqePml/koRGsk2YAIOFI.1YNKZg7EsQ5BAIuYP1nWOyYRl21dlne', 15, 1);
 
 -- --------------------------------------------------------
 
@@ -1611,10 +1657,26 @@ CREATE TABLE IF NOT EXISTS `users_roles` (
 --
 
 INSERT INTO `users_roles` (`ma_tai_khoan`, `ma_role`) VALUES
-(1, 1),
 (1, 2),
-(2, 2),
-(3, 3);
+(2, 3),
+(3, 4),
+(4, 5),
+(5, 6),
+(6, 1),
+(6, 7),
+(7, 3),
+(8, 4),
+(9, 5),
+(10, 6),
+(11, 1),
+(11, 7),
+(12, 2),
+(13, 8),
+(14, 8),
+(15, 8),
+(16, 8),
+(17, 1),
+(17, 8);
 
 -- --------------------------------------------------------
 
@@ -1845,17 +1907,17 @@ ALTER TABLE `loai_hop_dong`
 -- AUTO_INCREMENT for table `role`
 --
 ALTER TABLE `role`
-  MODIFY `ma_role` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+  MODIFY `ma_role` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `thong_tin_bang_cap`
 --
 ALTER TABLE `thong_tin_bang_cap`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=22;
 --
 -- AUTO_INCREMENT for table `thong_tin_gia_dinh`
 --
 ALTER TABLE `thong_tin_gia_dinh`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=402;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=403;
 --
 -- AUTO_INCREMENT for table `tinh_trang_hon_nhan`
 --
@@ -1865,7 +1927,7 @@ ALTER TABLE `tinh_trang_hon_nhan`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `ma_tai_khoan` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+  MODIFY `ma_tai_khoan` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=19;
 --
 -- Constraints for dumped tables
 --

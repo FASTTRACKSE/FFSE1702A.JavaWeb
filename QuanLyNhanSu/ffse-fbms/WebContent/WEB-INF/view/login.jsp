@@ -102,8 +102,8 @@
                                 </div>
                             </div>
                             <div class="card-footer">
-                                <div class="">
-                                    <center>Welcome to TEAM 404!!!</center>
+                                <div class="center">
+                                    <p>Welcome to TEAM 404!!!</p>
                                 </div>
                             </div>
                         </div>

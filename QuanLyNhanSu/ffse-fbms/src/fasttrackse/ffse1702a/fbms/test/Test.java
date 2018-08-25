@@ -97,7 +97,8 @@ public class Test {
 		String json = "{\"recordsTotal\":" + recordsTotal + ",\"recordsFiltered\":" + recordsFiltered + ",\"aaData\":[";
 		int j = list.size();
 		int i = 0;
-		for (HoSoNhanVien hsnv : list) {
+		for (@SuppressWarnings("unused")
+		HoSoNhanVien hsnv : list) {
 			i++;
 			if (i == j) {
 				// json += hsnv.toJson();
