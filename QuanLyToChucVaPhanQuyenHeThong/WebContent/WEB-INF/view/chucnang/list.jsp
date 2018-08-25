@@ -107,13 +107,13 @@
 						</div>
 						<div class="card-body collapse in">
 							<div class="table-responsive">
-								<table class="table mb-0">
+								<table id="dataTable" class="dataTables_wrapper container-fluid dt-bootstrap4 no-footer table mb-0">
 									<thead class="bg-success">
 										<tr>
 											<th>STT</th>
 											<th>Mã chức năng</th>
 											<th>Tên chức năng</th>
-											<th>Trạng thái</th>
+											<!-- <th>Trạng thái</th> -->
 											<th>Hành động</th>
 										</tr>
 									</thead>
@@ -125,7 +125,7 @@
 													<td>${counter.index + 1}</td>
 													<td>${item.ma_chuc_nang}</td>
 													<td>${item.ten_chuc_nang}</td>
-													<td class="tbl_actions"><a
+													<%-- <td class="tbl_actions"><a
 														href="<c:url value="/chuc-nang/kich-hoat/${item.ma_chuc_nang}" />"
 														title="Hiển thị"> <c:choose>
 																<c:when test="${item.trang_thai == 1}">
@@ -135,7 +135,7 @@
 																	<i class="fa fa-times red" aria-hidden="true"></i>Ẩn
 																</c:otherwise>
 															</c:choose>
-													</a></td>
+													</a></td> --%>
 													<td class="tbl_actions"><a
 														href="<c:url value="/chuc-nang/sua/${item.ma_chuc_nang}" />" title="Sửa">
 															<i class="fa fa-pencil-square-o blue" aria-hidden="true"></i>Sửa
@@ -184,6 +184,8 @@
 	</div>
 </div>
 <script type="text/javascript">
+$('#dataTable').DataTable();
+
 window.setTimeout(function() {
 	$(".alert").fadeTo(500, 0).slideUp(500, function(){
 		$(this).remove(); 
