@@ -34,15 +34,16 @@
 						</div>
 						<div class="form-group col-sm-6">
 						  	<label>Mã nhân viên</label>
-						  	<select name='maNhanVien' class="form-control">
+						  	<form:input class="form-control" path="maNhanVien" placeholder="Mã nhân viên" />
+						  	<%-- <select name='maNhanVien' class="form-control">
 							  	<c:forEach items="${listNhanVien}" var="item">
 							        <option value="${item.ma}">${item.tenChucDanh}</option>
 							    </c:forEach>
-						  	</select>
+						  	</select> --%>
 						</div>
 						<div class="form-group col-sm-6">
-						  	<label>Mã tài khoản</label>
-						  	<form:input class="form-control" path="matKhau" placeholder="Mật khẩu" />
+						  	<label>Mật khẩu</label>
+						  	<form:password showPassword="true" class="form-control" path="matKhau" placeholder="Mật khẩu" />
 						</div>
 						<div class="col-sm-12 text-center">
 							<button type="submit" class="btn btn-success">Lưu thông tin</button>

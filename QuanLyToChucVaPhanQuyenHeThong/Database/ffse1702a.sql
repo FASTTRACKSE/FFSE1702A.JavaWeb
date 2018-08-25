@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2018-08-24 22:56:03
+Date: 2018-08-25 04:23:12
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -49,9 +49,23 @@ CREATE TABLE `chuc_nang` (
 -- Records of chuc_nang
 -- ----------------------------
 INSERT INTO `chuc_nang` VALUES ('1001', 'ROLE_DAOTAO_TPP', '1');
-INSERT INTO `chuc_nang` VALUES ('1002', 'ROLE_DAOTAO_NV', '1');
+INSERT INTO `chuc_nang` VALUES ('1002', 'ROLE_DAOTAO_PP', '1');
+INSERT INTO `chuc_nang` VALUES ('1003', 'ROLE_DAOTAO_NV', '1');
+INSERT INTO `chuc_nang` VALUES ('4001', 'ROLE_GD_GD', '1');
+INSERT INTO `chuc_nang` VALUES ('4002', 'ROLE_GD_PGD', '1');
+INSERT INTO `chuc_nang` VALUES ('4003', 'ROLE_GD_NV', '1');
+INSERT INTO `chuc_nang` VALUES ('5001', 'ROLE_IT_TP', '1');
+INSERT INTO `chuc_nang` VALUES ('5002', 'ROLE_IT_PP', '1');
+INSERT INTO `chuc_nang` VALUES ('5003', 'ROLE_IT_NV', '1');
+INSERT INTO `chuc_nang` VALUES ('6001', 'ROLE_KETOAN_TP', '1');
+INSERT INTO `chuc_nang` VALUES ('6002', 'ROLE_KETOAN_PP', '1');
+INSERT INTO `chuc_nang` VALUES ('6003', 'ROLE_KETOAN_NV', '1');
+INSERT INTO `chuc_nang` VALUES ('7001', 'ROLE_NHANSU_TP', '1');
+INSERT INTO `chuc_nang` VALUES ('7002', 'ROLE_NHANSU_PP', '1');
+INSERT INTO `chuc_nang` VALUES ('7003', 'ROLE_NHANSU_NV', '1');
 INSERT INTO `chuc_nang` VALUES ('8001', 'ROLE_DUAN_TPP', '1');
-INSERT INTO `chuc_nang` VALUES ('8002', 'ROLE_DUAN_NV', '1');
+INSERT INTO `chuc_nang` VALUES ('8002', 'ROLE_DUAN_PP', '1');
+INSERT INTO `chuc_nang` VALUES ('8003', 'ROLE_DUAN_NV', '1');
 
 -- ----------------------------
 -- Table structure for chuc_nang_phong_ban
@@ -59,19 +73,20 @@ INSERT INTO `chuc_nang` VALUES ('8002', 'ROLE_DUAN_NV', '1');
 DROP TABLE IF EXISTS `chuc_nang_phong_ban`;
 CREATE TABLE `chuc_nang_phong_ban` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `PhongBan` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `ChucDanh` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `RoleID` int(11) NOT NULL,
+  `ma_phong_ban` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `ma_chuc_danh` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `ma_chuc_nang` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of chuc_nang_phong_ban
 -- ----------------------------
 INSERT INTO `chuc_nang_phong_ban` VALUES ('1', 'PDA', 'TP', '8001');
-INSERT INTO `chuc_nang_phong_ban` VALUES ('2', 'PDA', 'NV', '8002');
+INSERT INTO `chuc_nang_phong_ban` VALUES ('2', 'PDA', 'NV', '8003');
 INSERT INTO `chuc_nang_phong_ban` VALUES ('3', 'PDT', 'TP', '1001');
 INSERT INTO `chuc_nang_phong_ban` VALUES ('4', 'PDT', 'NV', '1002');
+INSERT INTO `chuc_nang_phong_ban` VALUES ('5', 'PDA', 'PP', '8002');
 
 -- ----------------------------
 -- Table structure for ho_so_nhan_vien
@@ -339,6 +354,25 @@ CREATE TABLE `tai_khoan` (
 -- ----------------------------
 -- Records of tai_khoan
 -- ----------------------------
+INSERT INTO `tai_khoan` VALUES ('binhll', '{noop}123456', '124', '1');
+INSERT INTO `tai_khoan` VALUES ('binhtd', '{noop}123456', '56', '1');
+INSERT INTO `tai_khoan` VALUES ('buituantien', '{noop}123456', '16', '1');
+INSERT INTO `tai_khoan` VALUES ('chauhp', '{noop}123456', '110', '1');
+INSERT INTO `tai_khoan` VALUES ('chidh', '{noop}123456', '7', '1');
+INSERT INTO `tai_khoan` VALUES ('datdt', '{noop}123456', '51', '1');
+INSERT INTO `tai_khoan` VALUES ('duongqua', '{noop}123456', '86', '1');
 INSERT INTO `tai_khoan` VALUES ('hiep', '{noop}123456', '6', '1');
+INSERT INTO `tai_khoan` VALUES ('hungcn', '{noop}123456', '35', '1');
+INSERT INTO `tai_khoan` VALUES ('lechibinh', '{noop}123456', '36', '1');
+INSERT INTO `tai_khoan` VALUES ('longlh', '{noop}123456', '63', '1');
+INSERT INTO `tai_khoan` VALUES ('maiphuongthanh', '{noop}123456', '28', '1');
+INSERT INTO `tai_khoan` VALUES ('phammyson', '{noop}123456', '37', '1');
+INSERT INTO `tai_khoan` VALUES ('phanvanthanh', '{noop}123456', '101', '1');
+INSERT INTO `tai_khoan` VALUES ('quangtb', '{noop}123456', '11', '1');
+INSERT INTO `tai_khoan` VALUES ('thainguyenthucthi', '{noop}123456', '2', '1');
 INSERT INTO `tai_khoan` VALUES ('thanh', '{noop}123456', '7', '1');
+INSERT INTO `tai_khoan` VALUES ('tiendv', '{noop}123456', '21', '1');
+INSERT INTO `tai_khoan` VALUES ('tranlt', '{noop}123456', '42', '1');
+INSERT INTO `tai_khoan` VALUES ('trieuthanhqua', '{noop}123456', '57', '1');
+INSERT INTO `tai_khoan` VALUES ('tungtt', '{noop}123456', '14', '1');
 INSERT INTO `tai_khoan` VALUES ('vu', '{noop}123456', '1', '1');
