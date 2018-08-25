@@ -22,7 +22,7 @@
 					<div class="breadcrumb-wrapper col-xs-12">
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item"><a href="<c:url value='/'></c:url>"><spring:message code="label.trangChu" /></a></li>
-							<li class="breadcrumb-item"><a href="<c:url value='/ns/ho_so'></c:url>"><spring:message code="label.quanLyNhanSu" /></a>
+							<li class="breadcrumb-item"><a href="javascript:void(0)"><spring:message code="label.quanLyNhanSu" /></a>
 							</li>
 							<li class="breadcrumb-item"><a href="<c:url value='/ns/phong_ban'></c:url>"><spring:message code="label.quanLyPhongBan" /></a></li>
 							<li class="breadcrumb-item active"><c:if
@@ -64,7 +64,7 @@
 							<div class="card-body collapse in">
 								<div class="card-block">
 									<div class="card-text"></div>
-									<c:url var="addAction" value="/ns/phong_ban/save"></c:url>
+									<c:url var="addAction" value="/qlns/phong_ban/save"></c:url>
 									<form:form action="${addAction}" modelAttribute="phongBan">
 										<div class="row">
 											<div class="col-md-6 offset-md-3">
@@ -101,7 +101,7 @@
 											</div>
 										</div>
 										<div class="form-actions center">
-											<a href="/ffse-fbms/ns/phong_ban"><button type="button"
+											<a href="/ffse-fbms/qlns/phong_ban"><button type="button"
 													class="btn btn-warning mr-1">
 													<i class="ft-x"></i> <spring:message code="label.quaylai" />
 												</button></a>

@@ -22,6 +22,8 @@ import fasttrackse.ffse1702a.fbms.QuanLyNhanSu.service.DatatableService;
 import fasttrackse.ffse1702a.fbms.QuanLyNhanSu.service.LoaiHopDongService;
 import fasttrackse.ffse1702a.fbms.QuanLyNhanSu.service.QuanLyHoSoService;
 import fasttrackse.ffse1702a.fbms.QuanLyNhanSu.service.QuanLyHopDongService;
+import fasttrackse.ffse1702a.fbms.Security.model.entity.UserAccount;
+import fasttrackse.ffse1702a.fbms.Security.service.UserAccountService;
 
 @Controller
 public class QuanLyHopDongController {
@@ -32,34 +34,37 @@ public class QuanLyHopDongController {
 	private LoaiHopDongService loaiHopDongService;
 	@Autowired
 	private QuanLyHopDongService quanLyHopDongService;
- 	@Autowired
- 	private DatatableService datatableService;
- 	
-	@RequestMapping(value = "/{maPhongBan}/hop_dong", method = RequestMethod.GET)
- 	public String viewHopDong(@PathVariable("maPhongBan") String maPhongBan, Model model) {
- 		model.addAttribute("maPhongBan", maPhongBan);
+	@Autowired
+	private DatatableService datatableService;
+	@Autowired
+	private UserAccountService userAccountService;
+
+	@RequestMapping(value = "/qlns/{maPhongBan}/view/hop_dong", method = RequestMethod.GET)
+	public String viewHopDong(@PathVariable("maPhongBan") String maPhongBan, Model model) {
+		model.addAttribute("maPhongBan", maPhongBan);
 		return "QuanLyNhanSu/QuanLyHopDong/HopDong";
 	}
 
-	@RequestMapping(value = "/{maPhongBan}/getListHopDong", produces = "text/plain;charset=UTF-8")
- 	@ResponseBody
- 	public String listHopDong(@PathVariable("maPhongBan") String maPhongBan, Model model, HttpServletRequest request) {
+	@RequestMapping(value = "/qlns/{maPhongBan}/view/getListHopDong", produces = "text/plain;charset=UTF-8")
+	@ResponseBody
+	public String listHopDong(@PathVariable("maPhongBan") String maPhongBan, Model model, HttpServletRequest request) {
 
- 		int iDisplayStart = Integer.parseInt(request.getParameter("iDisplayStart"));
- 		int iDisplayLength = Integer.parseInt(request.getParameter("iDisplayLength"));
- 		String sql = this.quanLyHopDongService.getSQL(request, maPhongBan);
- 		List<HopDong> listHopDong = this.quanLyHopDongService.getAllHopDong(iDisplayStart, iDisplayLength, sql);
+		int iDisplayStart = Integer.parseInt(request.getParameter("iDisplayStart"));
+		int iDisplayLength = Integer.parseInt(request.getParameter("iDisplayLength"));
+		String sql = this.quanLyHopDongService.getSQL(request, maPhongBan);
+		List<HopDong> listHopDong = this.quanLyHopDongService.getAllHopDong(iDisplayStart, iDisplayLength, sql);
 
- 		String recordsTotal = this.quanLyHopDongService.getRecordsTotal(maPhongBan);
- 		String recordsFiltered = this.quanLyHopDongService.getRecordsFiltered(sql);
- 		String json = this.datatableService.getJsonHopDong(recordsTotal, recordsFiltered, listHopDong);
+		String recordsTotal = this.quanLyHopDongService.getRecordsTotal(maPhongBan);
+		String recordsFiltered = this.quanLyHopDongService.getRecordsFiltered(sql);
+		String json = this.datatableService.getJsonHopDong(recordsTotal, recordsFiltered, listHopDong);
 
- 		return json;
- 	}
-	@RequestMapping(value = "/ns/hop_dong/edit/{maNhanVien}", method = RequestMethod.GET)
+		return json;
+	}
+
+	@RequestMapping(value = "/qlns/hop_dong/edit/{maNhanVien}", method = RequestMethod.GET)
 	public String editQuanLyHopDong(@PathVariable("maNhanVien") int maNhanVien, Model model) {
 		HoSoNhanVien hsnv = this.quanLyHoSoService.getHoSoNhanVienById(maNhanVien);
-		
+
 		model.addAttribute("hoSoNhanVien", hsnv);
 		HopDong hopDong = new HopDong();
 		hopDong.setMaHopDong(Integer.valueOf(this.quanLyHopDongService.getAutoId()));
@@ -67,7 +72,7 @@ public class QuanLyHopDongController {
 		// nếu nv có hợp đồng
 		if (listHD.size() != 0) {
 			// lấy cái mới nhất
-			HopDong hd = listHD.get(listHD.size()-1);
+			HopDong hd = listHD.get(listHD.size() - 1);
 			if (hd.getTrangThai() == 1) {
 				hopDong = hd;
 				model.addAttribute("edit", "true");
@@ -79,11 +84,15 @@ public class QuanLyHopDongController {
 		return "QuanLyNhanSu/QuanLyHopDong/QuanLyHopDongForm";
 
 	}
-	
-	@RequestMapping(value = "/ns/hop_dong/xem_hop_dong/{maNhanVien}", method = RequestMethod.GET)
-	public String viewQuanLyHopDong(@PathVariable("maNhanVien") int maNhanVien, Model model) {
+
+	@RequestMapping(value = "qlns/nv/hop_dong", method = RequestMethod.GET)
+	public String viewOneHopDongNhanVien(HttpServletRequest request, Model model) {
+
+		UserAccount userAccount = this.userAccountService.loadUserByUsername(request.getUserPrincipal().getName());
+		int maNhanVien = userAccount.getNhanVien().getMaNhanVien();
+		model.addAttribute("role_nv", "true");
 		HoSoNhanVien hsnv = this.quanLyHoSoService.getHoSoNhanVienById(maNhanVien);
-		
+
 		model.addAttribute("hoSoNhanVien", hsnv);
 		HopDong hopDong = new HopDong();
 		hopDong.setMaHopDong(Integer.valueOf(this.quanLyHopDongService.getAutoId()));
@@ -91,7 +100,30 @@ public class QuanLyHopDongController {
 		// nếu nv có hợp đồng
 		if (listHD.size() != 0) {
 			// lấy cái mới nhất
-			HopDong hd = listHD.get(listHD.size()-1);
+			HopDong hd = listHD.get(listHD.size() - 1);
+			if (hd.getTrangThai() == 1) {
+				hopDong = hd;
+				model.addAttribute("edit", "true");
+			}
+		}
+		model.addAttribute("hopDong", hopDong);
+		model.addAttribute("loaiHopDong", new LoaiHopDong());
+		model.addAttribute("listLoaiHopDong", this.loaiHopDongService.listLoaiHopDong());
+		return "QuanLyNhanSu/QuanLyHopDong/View/QuanLyHopDongView";
+	}
+
+	@RequestMapping(value = "/qlns/*/view/hop_dong/{maNhanVien}", method = RequestMethod.GET)
+	public String viewQuanLyHopDong(@PathVariable("maNhanVien") int maNhanVien, Model model) {
+		HoSoNhanVien hsnv = this.quanLyHoSoService.getHoSoNhanVienById(maNhanVien);
+
+		model.addAttribute("hoSoNhanVien", hsnv);
+		HopDong hopDong = new HopDong();
+		hopDong.setMaHopDong(Integer.valueOf(this.quanLyHopDongService.getAutoId()));
+		List<HopDong> listHD = hsnv.getHopDongs();
+		// nếu nv có hợp đồng
+		if (listHD.size() != 0) {
+			// lấy cái mới nhất
+			HopDong hd = listHD.get(listHD.size() - 1);
 			if (hd.getTrangThai() == 1) {
 				hopDong = hd;
 				model.addAttribute("edit", "true");
@@ -104,7 +136,7 @@ public class QuanLyHopDongController {
 
 	}
 
-	@RequestMapping(value = "/ns/hop_dong/save", method = RequestMethod.POST)
+	@RequestMapping(value = "/qlns/hop_dong/save", method = RequestMethod.POST)
 	public String addHopDong(@Valid @ModelAttribute("hopDong") HopDong hd, BindingResult bindingResult, Model model) {
 		if (bindingResult.hasErrors()) {
 			int maNhanVien = hd.getHoSoNhanVien().getMaNhanVien();

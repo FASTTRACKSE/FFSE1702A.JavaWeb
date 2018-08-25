@@ -24,7 +24,7 @@
 								href="<c:url value='/'></c:url>"><spring:message
 										code="label.trangChu" /></a></li>
 							<li class="breadcrumb-item"><a
-								href="<c:url value='/ns/ho_so'></c:url>"><spring:message
+								href="javascript:void(0)"><spring:message
 										code="label.quanLyNhanSu" /></a></li>
 							<li class="breadcrumb-item"><a
 								href="<c:url value='/ns/chuc_danh'></c:url>"><spring:message
@@ -75,7 +75,7 @@
 							<div class="card-body collapse in">
 								<div class="card-block">
 									<div class="card-text"></div>
-									<c:url var="addAction" value="/ns/chuc_danh/save"></c:url>
+									<c:url var="addAction" value="/qlns/chuc_danh/save"></c:url>
 									<form:form action="${addAction }" modelAttribute="chucdanh">
 										<div class="row">
 											<div class="col-md-6 offset-md-3">
@@ -110,7 +110,7 @@
 											</div>
 										</div>
 										<div class="form-actions center">
-											<a href="/ffse-fbms/ns/chuc_danh"><button type="button"
+											<a href="/ffse-fbms/qlns/chuc_danh"><button type="button"
 													class="btn btn-warning mr-1">
 													<i class="ft-x"></i>
 													<spring:message code="label.quaylai" />

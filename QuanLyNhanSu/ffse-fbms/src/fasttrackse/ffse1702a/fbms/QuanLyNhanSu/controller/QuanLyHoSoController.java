@@ -31,6 +31,8 @@ import fasttrackse.ffse1702a.fbms.QuanLyNhanSu.service.QuanLyPhongBanService;
 import fasttrackse.ffse1702a.fbms.QuanLyNhanSu.service.QuocTichService;
 import fasttrackse.ffse1702a.fbms.QuanLyNhanSu.service.TinhTrangHonNhanService;
 import fasttrackse.ffse1702a.fbms.QuanLyNhanSu.service.UploadImageService;
+import fasttrackse.ffse1702a.fbms.Security.model.entity.UserAccount;
+import fasttrackse.ffse1702a.fbms.Security.service.UserAccountService;
 
 @Controller
 @SessionAttributes({ "phongBan", "chucDanh", "quocTich", "tinhTrangHonNhan" })
@@ -50,14 +52,17 @@ public class QuanLyHoSoController {
 	private UploadImageService uploadImageService;
 	@Autowired
 	private DatatableService datatableService;
+	@Autowired
+	private UserAccountService userAccountService;
 
-	@RequestMapping(value = "/{maPhongBan}/ho_so", method = RequestMethod.GET)
+	@RequestMapping(value = "/qlns/{maPhongBan}/view/ho_so", method = RequestMethod.GET)
 	public String viewHoSo(@PathVariable("maPhongBan") String maPhongBan, Model model) {
 		model.addAttribute("maPhongBan", maPhongBan);
+
 		return "QuanLyNhanSu/QuanLyHoSo/QuanLyHoSo";
 	}
 
-	@RequestMapping(value = "/{maPhongBan}/getListHoSo", produces = "text/plain;charset=UTF-8")
+	@RequestMapping(value = "/qlns/{maPhongBan}/view/getListHoSo", produces = "text/plain;charset=UTF-8")
 	@ResponseBody
 	public String getListHoSo(@PathVariable("maPhongBan") String maPhongBan, Model model, HttpServletRequest request) {
 
@@ -73,7 +78,7 @@ public class QuanLyHoSoController {
 		return json;
 	}
 
-	@RequestMapping(value = "/ns/ho_so/add", method = RequestMethod.GET)
+	@RequestMapping(value = "/qlns/ho_so/add", method = RequestMethod.GET)
 	public String addHoSoNhanVien(Model model) {
 		HoSoNhanVien hsnv = new HoSoNhanVien();
 		hsnv.setMaNhanVien(Integer.valueOf(this.quanLyHoSoService.getAutoId()));
@@ -83,21 +88,31 @@ public class QuanLyHoSoController {
 		return "QuanLyNhanSu/QuanLyHoSo/QuanLyHoSoForm";
 	}
 
-	@RequestMapping(value = "/ns/ho_so/edit/{maNhanVien}", method = RequestMethod.GET)
+	@RequestMapping(value = "/qlns/ho_so/edit/{maNhanVien}", method = RequestMethod.GET)
 	public String editHoSoNhanVien(@PathVariable("maNhanVien") int maNhanVien, Model model) {
 
 		model.addAttribute("hoSoNhanVien", this.quanLyHoSoService.getHoSoNhanVienById(maNhanVien));
 		return "QuanLyNhanSu/QuanLyHoSo/QuanLyHoSoForm";
 	}
-	
-	@RequestMapping(value = "/ns/ho_so/xem_thong_tin_ho_so/{maNhanVien}", method = RequestMethod.GET)
+
+	@RequestMapping(value = "/qlns/*/view/ho_so/{maNhanVien}", method = RequestMethod.GET)
 	public String viewHoSoNhanVien(@PathVariable("maNhanVien") int maNhanVien, Model model) {
 
 		model.addAttribute("hoSoNhanVien", this.quanLyHoSoService.getHoSoNhanVienById(maNhanVien));
 		return "QuanLyNhanSu/QuanLyHoSo/View/ThongTinCaNhanView";
 	}
 
-	@RequestMapping(value = "/ns/ho_so/save", method = RequestMethod.POST)
+	@RequestMapping(value = "qlns/nv/ho_so", method = RequestMethod.GET)
+	public String viewOneHoSoNhanVien(HttpServletRequest request, Model model) {
+
+		UserAccount userAccount = this.userAccountService.loadUserByUsername(request.getUserPrincipal().getName());
+		int maNhanVien = userAccount.getNhanVien().getMaNhanVien();
+		model.addAttribute("role_nv", "true");
+		model.addAttribute("hoSoNhanVien", this.quanLyHoSoService.getHoSoNhanVienById(maNhanVien));
+		return "QuanLyNhanSu/QuanLyHoSo/View/ThongTinCaNhanView";
+	}
+
+	@RequestMapping(value = "/qlns/ho_so/save", method = RequestMethod.POST)
 	public String saveHoSoNhanVien(@ModelAttribute("hoSoNhanVien") @Valid HoSoNhanVien hsnv,
 			BindingResult bindingResult, @RequestParam(value = "image", required = false) MultipartFile image,
 			HttpServletRequest request, Model model, RedirectAttributes redirectAttributes) {
@@ -137,14 +152,14 @@ public class QuanLyHoSoController {
 			}
 			this.quanLyHoSoService.updateHoSoNhanVien(hsnv);
 			redirectAttributes.addFlashAttribute("UPDATE_SUCCESS_ID", String.format("%05d", maNhanVien));
-			return "redirect:/ns/ho_so/edit/" + maNhanVien;
+			return "redirect:/qlns/" + hsnv.getPhongBan().getMaPhongBan() + "/view/ho_so/" + maNhanVien;
 		}
 
 		redirectAttributes.addFlashAttribute("SUCCESS", "TRUE");
-		return "redirect:/ns/ho_so/";
+		return "redirect:/qlns/ns/view/ho_so";
 	}
 
-	@RequestMapping(value = "/ns/ho_so/delete/{maNhanVien}", method = RequestMethod.GET)
+	@RequestMapping(value = "/qlns/ho_so/delete/{maNhanVien}", method = RequestMethod.GET)
 	public String xoaHoSoNhanVien(@PathVariable("maNhanVien") int maNhanVien, Model model,
 			RedirectAttributes redirectAttributes) {
 
@@ -152,7 +167,7 @@ public class QuanLyHoSoController {
 		redirectAttributes.addFlashAttribute("SUCCESS", "TRUE");
 		redirectAttributes.addFlashAttribute("DELETE_SUCCESS_ID", String.format("%05d", maNhanVien));
 
-		return "redirect:/ns/ho_so/";
+		return "redirect:/qlns/ns/view/ho_so";
 	}
 
 	@ModelAttribute("phongBan")

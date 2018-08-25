@@ -95,8 +95,9 @@ public class QuanLyHopDongServiceImpl implements QuanLyHopDongService {
 		String ngayKyKet = hd.getNgayKyKet().toString();
 		String ngayKetThuc = hd.getNgayKetThuc().toString();
 		String trangThai = hd.getTrangThai() == 1 ? "Còn hợp đồng" : "Hết hợp đồng";
-		String action = "<a href='/ffse-fbms/ns/hop_dong/edit/" + hsnv.getMaNhanVien()
-				+ "'/><i class='fa fa-pencil'></i></a>";
+		String action = "<a href='/ffse-fbms/qlns/" + hsnv.getPhongBan().getMaPhongBan() + "/view/hop_dong/"
+				+ hsnv.getMaNhanVien() + "'><i class='fa fa-eye'></i></a>" + "<a href='/ffse-fbms/qlns/hop_dong/edit/"
+				+ hsnv.getMaNhanVien() + "'><i class='fa fa-pencil'></i></a>";
 
 		return "[\"" + maNhanVien + "\",\"" + hoDem + "\",\"" + ten + "\",\"" + tenHopDong + "\",\"" + ngayKyKet
 				+ "\",\"" + ngayKetThuc + "\",\"" + trangThai + "\",\"" + action + "\"]";

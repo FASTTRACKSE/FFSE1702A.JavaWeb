@@ -2,6 +2,7 @@ package fasttrackse.ffse1702a.fbms.QuanLyNhanSu.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,8 @@ import fasttrackse.ffse1702a.fbms.QuanLyNhanSu.model.entity.ThongTinGiaDinh;
 import fasttrackse.ffse1702a.fbms.QuanLyNhanSu.model.entity.ThongTinGiaDinhForm;
 import fasttrackse.ffse1702a.fbms.QuanLyNhanSu.service.QuanLyHoSoService;
 import fasttrackse.ffse1702a.fbms.QuanLyNhanSu.service.ThongTinGiaDinhService;
+import fasttrackse.ffse1702a.fbms.Security.model.entity.UserAccount;
+import fasttrackse.ffse1702a.fbms.Security.service.UserAccountService;
 
 @Controller
 public class ThongTinGiaDinhController {
@@ -26,8 +29,10 @@ public class ThongTinGiaDinhController {
 	private QuanLyHoSoService quanLyHoSoService;
 	@Autowired
 	private ThongTinGiaDinhService thongTinGiaDinhService;
+	@Autowired
+	private UserAccountService userAccountService;
 
-	@RequestMapping(value = "/ns/ho_so/gia_dinh/edit/{maNhanVien}", method = RequestMethod.GET)
+	@RequestMapping(value = "/qlns/gia_dinh/edit/{maNhanVien}", method = RequestMethod.GET)
 	public String editThongTinGiaDinh(@PathVariable("maNhanVien") int maNhanVien, Model model) {
 
 		HoSoNhanVien hsnv = this.quanLyHoSoService.getHoSoNhanVienById(maNhanVien);
@@ -44,8 +49,29 @@ public class ThongTinGiaDinhController {
 		model.addAttribute("thongTinGiaDinhForm", thongTinGiaDinhForm);
 		return "QuanLyNhanSu/QuanLyHoSo/ThongTinGiaDinhForm";
 	}
-	
-	@RequestMapping(value = "/ns/ho_so/xem_gia_dinh/{maNhanVien}", method = RequestMethod.GET)
+
+	@RequestMapping(value = "qlns/nv/gia_dinh", method = RequestMethod.GET)
+	public String viewOneTTGiaDinh(HttpServletRequest request, Model model) {
+
+		UserAccount userAccount = this.userAccountService.loadUserByUsername(request.getUserPrincipal().getName());
+		int maNhanVien = userAccount.getNhanVien().getMaNhanVien();
+		model.addAttribute("role_nv", "true");
+		HoSoNhanVien hsnv = this.quanLyHoSoService.getHoSoNhanVienById(maNhanVien);
+		ThongTinGiaDinhForm thongTinGiaDinhForm = new ThongTinGiaDinhForm(hsnv.getThongTinGiaDinhs());
+		List<ThongTinGiaDinh> listThongTinGiaDinh = thongTinGiaDinhForm.getListThongTinGiaDinh();
+
+		if (listThongTinGiaDinh.size() == 0) {
+			ThongTinGiaDinh ttgd = new ThongTinGiaDinh();
+			ttgd.setHoSoNhanVien(hsnv);
+			listThongTinGiaDinh.add(ttgd);
+			thongTinGiaDinhForm.setListThongTinGiaDinh(listThongTinGiaDinh);
+		}
+		model.addAttribute("hoSoNhanVien", hsnv);
+		model.addAttribute("thongTinGiaDinhForm", thongTinGiaDinhForm);
+		return "QuanLyNhanSu/QuanLyHoSo/View/ThongTinGiaDinhView";
+	}
+
+	@RequestMapping(value = "/qlns/*/view/gia_dinh/{maNhanVien}", method = RequestMethod.GET)
 	public String viewThongTinGiaDinh(@PathVariable("maNhanVien") int maNhanVien, Model model) {
 
 		HoSoNhanVien hsnv = this.quanLyHoSoService.getHoSoNhanVienById(maNhanVien);
@@ -63,7 +89,7 @@ public class ThongTinGiaDinhController {
 		return "QuanLyNhanSu/QuanLyHoSo/View/ThongTinGiaDinhView";
 	}
 
-	@RequestMapping(value = "/ns/ho_so/gia_dinh/save", method = RequestMethod.POST)
+	@RequestMapping(value = "/qlns/gia_dinh/save", method = RequestMethod.POST)
 	public String saveHoSoNhanVien(
 			@ModelAttribute("thongTinGiaDinhForm") @Valid ThongTinGiaDinhForm thongTinGiaDinhForm,
 			BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes) {
@@ -92,6 +118,6 @@ public class ThongTinGiaDinhController {
 		}
 
 		redirectAttributes.addFlashAttribute("SUCCESS", "TRUE");
-		return "redirect:/ns/ho_so/gia_dinh/edit/" + maNhanVien;
+		return "redirect:/qlns/gia_dinh/edit/" + maNhanVien;
 	}
 }

@@ -16,9 +16,9 @@
                      <ol class="breadcrumb">
                        	<li class="breadcrumb-item"><a href="<c:url value = "/"/>"><spring:message code="label.trangChu" /></a>
                         </li>
-                        <li class="breadcrumb-item"><a href="<c:url value = "/ns/ho_so"/>"><spring:message code="label.quanLyNhanSu" /></a>
+                        <li class="breadcrumb-item"><a href="javascript:void(0)"><spring:message code="label.quanLyNhanSu" /></a>
                         </li>
-                        <li class="breadcrumb-item"><a href="<c:url value = "/ns/hop_dong"/>"><spring:message code="label.quanLyHopDong" /></a>
+                        <li class="breadcrumb-item"><a href="javascript:void(0)"><spring:message code="label.quanLyHopDong" /></a>
                         </li>
                         <li class="breadcrumb-item active"><spring:message code="label.danhSachHopDong" />
                         </li>
@@ -36,14 +36,6 @@
                      <div class="card">
                         <div class="card-header">
                            <h4 class="card-title">Datatable</h4>
-                           <%-- <div style="margin-top: 1.5rem">
-                              <div style="margin: 0 auto!important; <?php echo isset($_SESSION['success_msg']) ? 'display:block' : 'display:none'; ?>" class="alert alert-icon-left alert-success alert-dismissible mb-2" role="alert">
-                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                    <span aria-hidden="true">◊</span>
-                                 </button>
-                                 xxxxxxxxxxxxxxxxxxxxxxx
-                              </div>
-                           </div> --%>
                            <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
                            <div class="heading-elements">
                               <ul class="list-inline mb-0">
@@ -59,6 +51,11 @@
 			                th, td {
 						    	padding-left: 1rem!important;
 						    	padding-right: 1rem!important;
+							}
+							#datatable tr td:last-child {
+							    letter-spacing: 15px;
+							    min-width: 100px;
+							    text-align: center !important;
 							}
 						</style>
                         <div class="card-body collapse in">
@@ -105,7 +102,7 @@
    									    	  responsive: true,
    									    	  "order": [[6 , "asc" ], [0, "desc"]],
    									          "bServerSide" : true,
-   									          "sAjaxSource" : "/ffse-fbms/${maPhongBan}/getListHopDong",
+   									          "sAjaxSource" : "/ffse-fbms/qlns/${maPhongBan}/view/getListHopDong",
    									        });
                                      	};
                                      </script>

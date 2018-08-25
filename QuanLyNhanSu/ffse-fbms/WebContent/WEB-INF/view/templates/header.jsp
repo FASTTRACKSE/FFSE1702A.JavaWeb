@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <!DOCTYPE html>
 
@@ -12,7 +13,7 @@
    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
    <meta name="description" content="Stack admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
    <meta name="keywords" content="admin template, stack admin template, dashboard template, flat admin template, responsive admin template, web app">
-   <meta name="author" content="PIXINVENT">
+   <meta name="author" content="JunBjn">
    <title>FastTrackSE - The Business Management System - Login</title>
    <link rel="apple-touch-icon" href="<c:url value="/resources/images/ico/apple-icon-120.png"/>">
    <link rel="shortcut icon" type="image/x-icon" href="<c:url value="/resources/images/ico/favicon.ico"/>">
@@ -67,10 +68,10 @@
 				$("." + listClass[i]).addClass('open');
              }
          }
-         if (selector.includes('ho_so') && !selector.includes('nsho_so')) {
+         if (selector.includes('ho_so') && !selector.includes('qlnsnsviewho_so')) {
         	 $(".pbho_so").addClass('open');
          }
-         if (selector.includes('hop_dong') && !selector.includes('nshop_dong')) {
+         if (selector.includes('hop_dong') && !selector.includes('qlnsnsviewhop_dong')) {
         	 $(".pbhop_dong").addClass('open');
          }
       });
@@ -303,13 +304,17 @@
                         <li class="dropdown-menu-footer"><a href="javascript:void(0)" class="dropdown-item text-muted text-xs-center">Read all messages</a></li>
                      </ul>
                   </li>
-                  <li class="dropdown dropdown-user nav-item"><a href="#" data-toggle="dropdown" class="dropdown-toggle nav-link dropdown-user-link"><span class="avatar avatar-online"><img src="<c:url value="/resources/images/portrait/small/avatar-s-1.png"/>" alt="avatar"><i></i></span><span class="user-name">JunBjn</span></a>
+                  <li class="dropdown dropdown-user nav-item"><a href="#" data-toggle="dropdown" class="dropdown-toggle nav-link dropdown-user-link"><span class="avatar avatar-online"><img src="<c:url value="/resources/images/portrait/small/avatar-s-1.png"/>" alt="avatar"><i></i></span><span class="user-name">${pageContext.request.userPrincipal.name}</span></a>
                      <div class="dropdown-menu dropdown-menu-right">
                      	<a href="#" class="dropdown-item"><i class="ft-user"></i> <spring:message code="label.suaHoSo" /></a>
                      	<a href="#" class="dropdown-item"><i class="ft-mail"></i> <spring:message code="label.hopThu" /></a>
                      	<a href="#" class="dropdown-item"><i class="ft-check-square"></i> <spring:message code="label.nhiemVu" /></a>
                      	<a href="#" class="dropdown-item"><i class="ft-message-square"></i> <spring:message code="label.tinNhan" /></a>
-                        <div class="dropdown-divider"></div><a href="#" class="dropdown-item"><i class="ft-power"></i> <spring:message code="label.dangXuat" /></a>
+                        <div class="dropdown-divider"></div>
+                        <form class="dropdown-item" action="<c:url value="/j_spring_security_logout" />" method="post">
+							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" /> 
+							<a href="#" onclick="$(this).closest('form').submit()"><i class="ft-power"></i> <spring:message code="label.dangXuat" /></a>
+						</form>
                      </div>
                   </li>
                </ul>
@@ -326,88 +331,142 @@
          <ul id="main-menu-navigation" data-menu="menu-navigation" class="navigation navigation-main">
             <li class=" navigation-header"><span><spring:message code="label.nhanVien" /></span><i data-toggle="tooltip" data-placement="right" data-original-title="Apps" class=" ft-minus"></i>
             </li>
-            <li class=" nav-item"><a href="#"><i class="ft-user"></i><span data-i18n="" class="menu-title"><spring:message code="label.hoSoBanThan" /></span></a>
+            <li class=" nav-item"><a href="<c:url value = "/qlns/nv/ho_so"/>"><i class="ft-user"></i><span data-i18n="" class="menu-title"><spring:message code="label.hoSoBanThan" /></span></a>
             </li>
-            <li class=" nav-item"><a href="#"><i class="ft-file-text"></i><span data-i18n="" class="menu-title"><spring:message code="label.hopDongLaoDong" /></span></a>
+            <li class=" nav-item"><a href="<c:url value = "/qlns/nv/hop_dong"/>"><i class="ft-file-text"></i><span data-i18n="" class="menu-title"><spring:message code="label.hopDongLaoDong" /></span></a>
             </li>
-          <li class=" nav-item"><a href="#"><i class="ft-airplay"></i><span data-i18n="" class="menu-title"><spring:message code="label.xemTatCa" /></span></a>
-            </li>
-            <li class=" navigation-header"><span><spring:message code="label.quanLyNhanSu" /></span><i data-toggle="tooltip" data-placement="right" data-original-title="Quản lý nhân sự" class=" ft-minus"></i>
+          	<li class=" nav-item"><a href="<c:url value = "/qlns/nv/ho_so_tong_hop"/>"><i class="ft-airplay"></i><span data-i18n="" class="menu-title"><spring:message code="label.xemTatCa" /></span></a>
             </li>
             
+            <sec:authorize access="!hasRole('ROLE_NV') or hasRole('ROLE_PNS')">
+            <!-- Phòng nhân sự -->
+            <li class=" navigation-header"><span><spring:message code="label.quanLyNhanSu" /></span><i data-toggle="tooltip" data-placement="right" data-original-title="Quản lý nhân sự" class=" ft-minus"></i>
+            </li>
+            <sec:authorize access="hasRole('ROLE_PNS')">
             <li class=" nav-item phong_ban"><a href="javascript:void(0)"><i class="ft-home"></i><span data-i18n="" class="menu-title"><spring:message code="label.quanLyPhongBan" /></span></a>
                <ul class="menu-content">
-                  <li class="nsphong_ban"><a href="<c:url value = "/ns/phong_ban"/>" class="menu-item"><spring:message code="label.danhSachPhongBan" /></a>
+                  <li class="qlnsphong_ban"><a href="<c:url value = "/qlns/phong_ban"/>" class="menu-item"><spring:message code="label.danhSachPhongBan" /></a>
                   </li>
-                  <li class="nsphong_banadd"><a href="<c:url value = "/ns/phong_ban/add"/>" class="menu-item"><spring:message code="label.themPhongBan" /></a>
+                  <li class="qlnsphong_banadd"><a href="<c:url value = "/qlns/phong_ban/add"/>" class="menu-item"><spring:message code="label.themPhongBan" /></a>
                   </li>
                </ul>
             </li>
             
             <li class=" nav-item chuc_danh"><a href="javascript:void(0)"><i class="ft-award"></i><span data-i18n="" class="menu-title"><spring:message code="label.quanLyChucDanh" /></span></a>
                <ul class="menu-content">
-                  <li class="nschuc_danh"><a href="<c:url value = "/ns/chuc_danh"/>" class="menu-item"><spring:message code="label.danhSachChucDanh" /></a>
+                  <li class="qlnschuc_danh"><a href="<c:url value = "/qlns/chuc_danh"/>" class="menu-item"><spring:message code="label.danhSachChucDanh" /></a>
                   </li>
-                  <li class="nschuc_danhadd"><a href="<c:url value = "/ns/chuc_danh/add"/>" class="menu-item"><spring:message code="label.themChucDanh" /></a>
+                  <li class="qlnschuc_danhadd"><a href="<c:url value = "/qlns/chuc_danh/add"/>" class="menu-item"><spring:message code="label.themChucDanh" /></a>
                   </li>
                </ul>
             </li>
-            <li class=" nav-item"><a href="javascript:void(0)"><i class="ft-users"></i><span data-i18n="" class="menu-title"><spring:message code="label.quanLyHoSo" /></span></a>
-               <ul class="menu-content">
-                  
+            </sec:authorize>
             
+            <!-- Hồ sơ -->
+            <li class=" nav-item pbho_so"><a href="javascript:void(0)"><i class="ft-users"></i><span data-i18n="" class="menu-title"><spring:message code="label.quanLyHoSo" /></span></a>
+               <ul class="menu-content">
                   <li class="nsho_so pbho_so"><a href="javascript:void(0)" class="menu-item "><spring:message code="label.danhSachHoSo" /></a>
                   	<ul class="menu-content">
-					   <li class="nsho_so"><a href="<c:url value = "/ns/ho_so"/>" class="menu-item"><spring:message code="label.xemTatCa" /></a>
+                  	   <!-- Phòng nhân sự + giám đốc -->
+                  	   <sec:authorize access="hasRole('ROLE_PGD') or hasRole('ROLE_PNS')">
+					   <li class="qlnsnsviewho_so"><a href="<c:url value = "/qlns/ns/view/ho_so"/>" class="menu-item"><spring:message code="label.xemTatCa" /></a>
 					   </li>
+            		   </sec:authorize>
+					   <!-- Phòng nhân sự + giám đốc + từng phòng ban -->
 					   <li class="pbho_so"><a href="javascript:void(0)" class="menu-item"><spring:message code="label.phongBan" /></a>
 					      <ul class="menu-content">
-					         <li class="PGDho_so"><a href="<c:url value = "/PGD/ho_so"/>" class="menu-item"><spring:message code="label.phongGiamDoc" /></a>
+					   		 <!-- Phòng giám đốc -->
+                  	   		 <sec:authorize access="hasRole('ROLE_PGD') or hasRole('ROLE_PNS')">
+					         <li class="qlnsPGDviewho_so"><a href="<c:url value = "/qlns/PGD/view/ho_so"/>" class="menu-item"><spring:message code="label.phongGiamDoc" /></a>
 					         </li>
-					         <li class="PNSho_so"><a href="<c:url value = "/PNS/ho_so"/>" class="menu-item"><spring:message code="label.phongNhanSu" /></a>
+            				 </sec:authorize>
+					   		 <!-- Phòng nhân sự -->
+                  	   		 <sec:authorize access="hasRole('ROLE_PGD') or hasRole('ROLE_PNS')">
+					         <li class="qlnsPNSviewho_so"><a href="<c:url value = "/qlns/PNS/view/ho_so"/>" class="menu-item"><spring:message code="label.phongNhanSu" /></a>
 					         </li>
-					         <li class="PKTho_so"><a href="<c:url value = "/PKT/ho_so"/>" class="menu-item"><spring:message code="label.phongKeToan" /></a>
+            				 </sec:authorize>
+					   		 <!-- Phòng kế toán -->
+                  	   		 <sec:authorize access="hasRole('ROLE_TPPKT') or hasRole('ROLE_PGD') or hasRole('ROLE_PNS')">
+					         <li class="qlnsPKTviewho_so"><a href="<c:url value = "/qlns/PKT/view/ho_so"/>" class="menu-item"><spring:message code="label.phongKeToan" /></a>
 					         </li>
-					         <li class="PDAho_so"><a href="<c:url value = "/PDA/ho_so"/>" class="menu-item"><spring:message code="label.phongDuAn" /></a>
+            				 </sec:authorize>
+					   		 <!-- Phòng dự án -->
+                  	   		 <sec:authorize access="hasRole('ROLE_TPPDA') or hasRole('ROLE_PGD') or hasRole('ROLE_PNS')">
+					         <li class="qlnsPDAviewho_so"><a href="<c:url value = "/qlns/PDA/view/ho_so"/>" class="menu-item"><spring:message code="label.phongDuAn" /></a>
 					         </li>
-					         <li class="PDTho_so"><a href="<c:url value = "/PDT/ho_so"/>" class="menu-item"><spring:message code="label.phongDaoTao" /></a>
+            				 </sec:authorize>
+					   		 <!-- Phòng đào tạo -->
+                  	   		 <sec:authorize access="hasRole('ROLE_TPPDT') or hasRole('ROLE_PGD') or hasRole('ROLE_PNS')">
+					         <li class="qlnsPDTviewho_so"><a href="<c:url value = "/qlns/PDT/view/ho_so"/>" class="menu-item"><spring:message code="label.phongDaoTao" /></a>
 					         </li>
-					         <li class="PITho_so"><a href="<c:url value = "/PIT/ho_so"/>" class="menu-item"><spring:message code="label.phongIT" /></a>
+            				 </sec:authorize>
+					   		 <!-- Phòng IT -->
+                  	   		 <sec:authorize access="hasRole('ROLE_TPPIT') or hasRole('ROLE_PGD') or hasRole('ROLE_PNS')">
+					         <li class="qlnsPITviewho_so"><a href="<c:url value = "/qlns/PIT/view/ho_so"/>" class="menu-item"><spring:message code="label.phongIT" /></a>
 					         </li>
+            				 </sec:authorize>
 					      </ul>
 					   </li>
 					</ul>
                   </li>
-                  <li class="nsho_soadd"><a href="<c:url value = "/ns/ho_so/add"/>" class="menu-item"><spring:message code="label.themHoSo" /></a>
+                  <!-- Phòng nhân sự -->
+           		  <sec:authorize access="hasRole('ROLE_PNS')">
+                  <li class="qlnsho_soadd"><a href="<c:url value = "/qlns/ho_so/add"/>" class="menu-item"><spring:message code="label.themHoSo" /></a>
                   </li>
+            	  </sec:authorize>
                </ul>
             </li>
-            <li class=" nav-item"><a href="javascript:void(0)"><i class="ft-file-text"></i><span data-i18n="" class="menu-title"><spring:message code="label.quanLyHopDong" /></span></a>
+            
+            <!-- Hợp đồng -->
+            <li class=" nav-item pbhop_dong"><a href="javascript:void(0)"><i class="ft-file-text"></i><span data-i18n="" class="menu-title"><spring:message code="label.quanLyHopDong" /></span></a>
                <ul class="menu-content">
                   <li class="nshop_dong pbhop_dong"><a href="javascript:void(0)" class="menu-item"><spring:message code="label.danhSachHopDong" /></a>
                   	<ul class="menu-content">
-					   <li class="nshop_dong"><a href="<c:url value = "/ns/hop_dong"/>" class="menu-item"><spring:message code="label.xemTatCa" /></a>
+                  	   <!-- Phòng nhân sự + giám đốc -->
+                  	   <sec:authorize access="hasRole('ROLE_PGD') or hasRole('ROLE_PNS')">
+					   <li class="qlnsnsviewhop_dong"><a href="<c:url value = "/qlns/ns/view/hop_dong"/>" class="menu-item"><spring:message code="label.xemTatCa" /></a>
 					   </li>
+            		   </sec:authorize>
+					   <!-- Phòng nhân sự + giám đốc + từng phòng ban -->
 					   <li class="pbhop_dong"><a href="javascript:void(0)" class="menu-item"><spring:message code="label.phongBan" /></a>
 					      <ul class="menu-content">
-					         <li class="PGDhop_dong"><a href="<c:url value = "/PGD/hop_dong"/>" class="menu-item"><spring:message code="label.phongGiamDoc" /></a>
+					   		 <!-- Phòng giám đốc -->
+                  	   		 <sec:authorize access="hasRole('ROLE_PGD') or hasRole('ROLE_PNS')">
+					         <li class="qlnsPGDviewhop_dong"><a href="<c:url value = "/qlns/PGD/view/hop_dong"/>" class="menu-item"><spring:message code="label.phongGiamDoc" /></a>
 					         </li>
-					         <li class="PNShop_dong"><a href="<c:url value = "/PNS/hop_dong"/>" class="menu-item"><spring:message code="label.phongNhanSu" /></a>
+            				 </sec:authorize>
+					   		 <!-- Phòng nhân sự -->
+                  	   		 <sec:authorize access="hasRole('ROLE_PGD') or hasRole('ROLE_PNS')">
+					         <li class="qlnsPNSviewhop_dong"><a href="<c:url value = "/qlns/PNS/view/hop_dong"/>" class="menu-item"><spring:message code="label.phongNhanSu" /></a>
 					         </li>
-					         <li class="PKThop_dong"><a href="<c:url value = "/PKT/hop_dong"/>" class="menu-item"><spring:message code="label.phongKeToan" /></a>
+            				 </sec:authorize>
+					   		 <!-- Phòng kế toán -->
+                  	   		 <sec:authorize access="hasRole('ROLE_TPPKT') or hasRole('ROLE_PGD') or hasRole('ROLE_PNS')">
+					         <li class="qlnsPKTviewhop_dong"><a href="<c:url value = "/qlns/PKT/view/hop_dong"/>" class="menu-item"><spring:message code="label.phongKeToan" /></a>
 					         </li>
-					         <li class="PDAhop_dong"><a href="<c:url value = "/PDA/hop_dong"/>" class="menu-item"><spring:message code="label.phongDuAn" /></a>
+            				 </sec:authorize>
+					   		 <!-- Phòng dự án -->
+                  	   		 <sec:authorize access="hasRole('ROLE_TPPDA') or hasRole('ROLE_PGD') or hasRole('ROLE_PNS')">
+					         <li class="qlnsPDAviewhop_dong"><a href="<c:url value = "/qlns/PDA/view/hop_dong"/>" class="menu-item"><spring:message code="label.phongDuAn" /></a>
 					         </li>
-					         <li class="PDThop_dong"><a href="<c:url value = "/PDT/hop_dong"/>" class="menu-item"><spring:message code="label.phongDaoTao" /></a>
+            				 </sec:authorize>
+					   		 <!-- Phòng đào tạo -->
+                  	   		 <sec:authorize access="hasRole('ROLE_TPPDT') or hasRole('ROLE_PGD') or hasRole('ROLE_PNS')">
+					         <li class="qlnsPDTviewhop_dong"><a href="<c:url value = "/qlns/PDT/view/hop_dong"/>" class="menu-item"><spring:message code="label.phongDaoTao" /></a>
 					         </li>
-					         <li class="PIThop_dong"><a href="<c:url value = "/PIT/hop_dong"/>" class="menu-item"><spring:message code="label.phongIT" /></a>
+            				 </sec:authorize>
+					   		 <!-- Phòng IT -->
+                  	   		 <sec:authorize access="hasRole('ROLE_TPPIT') or hasRole('ROLE_PGD') or hasRole('ROLE_PNS')">
+					         <li class="qlnsPITviewhop_dong"><a href="<c:url value = "/qlns/PIT/view/hop_dong"/>" class="menu-item"><spring:message code="label.phongIT" /></a>
 					         </li>
+            				 </sec:authorize>
 					      </ul>
 					   </li>
 					</ul>
                   </li>
                </ul>
             </li>
+            </sec:authorize>
          </ul>
       </div>
    </div>
