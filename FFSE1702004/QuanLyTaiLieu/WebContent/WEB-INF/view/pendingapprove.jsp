@@ -79,7 +79,7 @@
 												<td>${document.quyen_truy_cap}</td>
 												<td>
 													<a href="documentAccept/${document.id}" class="btn-warning btn"> <spring:message code="label.accept" /> </a>
-													<a href="documentRefuse/${document.id}" class="btn-warning btn" > <spring:message code="label.refuse"/> </a>
+													<a href="documentRefuse/${document.id}" class="btn-warning btn"> <spring:message code="label.refuse" /> </a>
 												</td>
 											</tr>
 										</c:forEach>

@@ -44,6 +44,9 @@ public interface DocumentDAO  {
 	//accept
 	public void accept(final int id);
 
+	//refuse
+	public void refuse(final int id);
+	
 	// list category
 	public List<Category> listCategory();
 	

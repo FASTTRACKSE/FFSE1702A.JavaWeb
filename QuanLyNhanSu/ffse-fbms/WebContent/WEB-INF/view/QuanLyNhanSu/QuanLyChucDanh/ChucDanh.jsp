@@ -26,7 +26,7 @@
             </div>
             <div class="content-header-right col-md-6 col-xs-12">
                <div role="group" aria-label="Button group with nested dropdown" class="btn-group float-md-right" id="add-new">
-                  <a href="qlns/chuc_danh/add" class="btn btn-primary"><span class="fa fa-plus"></span> <spring:message code="label.themMoi" /></a>
+                  <a href="/ffse-fbms/qlns/chuc_danh/add" class="btn btn-primary"><span class="fa fa-plus"></span> <spring:message code="label.themMoi" /></a>
                </div>
             </div>
          </div>

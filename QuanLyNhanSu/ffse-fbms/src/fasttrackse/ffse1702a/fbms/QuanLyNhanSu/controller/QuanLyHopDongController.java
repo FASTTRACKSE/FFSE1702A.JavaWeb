@@ -151,7 +151,7 @@ public class QuanLyHopDongController {
 			this.quanLyHopDongService.updateHopDong(hd);
 		}
 		String maNhanVien = String.valueOf(hd.getHoSoNhanVien().getMaNhanVien());
-		return "redirect:/ns/hop_dong/edit/" + maNhanVien;
+		return "redirect:/qlns/hop_dong/edit/" + maNhanVien;
 
 	}
 

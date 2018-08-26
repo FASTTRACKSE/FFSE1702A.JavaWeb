@@ -71,7 +71,10 @@ public class DocumentServiceImpl implements DocumentService {
 	public void accept(int id) {
 		documentDAO.accept(id);
 	}
-	
+	//refuse 
+		public void refuse(int id) {
+			documentDAO.refuse(id);
+		}	
 	
 	//update
 	public void updateDocument(Document document) {

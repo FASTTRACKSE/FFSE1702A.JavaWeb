@@ -21,7 +21,7 @@ public class Document {
 	private String ten_tai_lieu;
 	
 
-	@Column(name = "file" ,updatable = false)
+	@Column(name = "file")
 	private String file;
 	
 	@Column(name = "mo_ta")
@@ -58,7 +58,7 @@ public class Document {
 	}
 
 	@ManyToOne
-	@JoinColumn(name = "ma_icon", referencedColumnName = "ma_icon")
+	@JoinColumn(name = "ma_icon", referencedColumnName = "ma_icon",updatable = false)
 	private Icon ma_icon;
 
 	public Icon getMa_icon() {

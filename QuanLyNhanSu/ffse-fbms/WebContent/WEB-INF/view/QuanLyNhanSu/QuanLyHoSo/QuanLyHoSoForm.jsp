@@ -83,7 +83,7 @@
 								 </div>
 								</div>
 							  </c:if>
-								<form:form class="form form-horizontal" method="POST" action="/ffse-fbms/qlns/ho_so/save" modelAttribute="hoSoNhanVien" enctype="multipart/form-data">
+								<form:form class="form form-horizontal" method="POST" action="/ffse-fbms/qlns/ho_so/save" modelAttribute="hoSoNhanVien">
 								   <div class="form-body">
 								      <div class="row">
 								         <div class="col-md-8">
@@ -229,7 +229,7 @@
 								      <div class="form-group">
 									      <label for="file"><spring:message code="label.anhDaiDien" /></label>
 									      <label class="file block">
-										  	<input type="file" id="image" name="image">
+										  	<input type="file" id="image">
 										  	<form:hidden path="anhDaiDien" />
 											<c:if test="${!empty anhDaiDienErrors}">
 												<span class="invalid-feedback d-block"><spring:message code="NotEmpty.hoSoNhanVien.anhDaiDien" /></span>

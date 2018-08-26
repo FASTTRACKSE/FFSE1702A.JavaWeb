@@ -15,10 +15,10 @@ public class LoginController {
 		return "login";
 	}
 
-//	@RequestMapping("/admin")
-//	public String admin() {
-//		return "jsp/admin";
-//	}
+	@RequestMapping(value = {"/trang-chu", "/home"})
+	public String admin() {
+		return "dashboard";
+	}
 	
 	//for 403 access denied page
 	@RequestMapping("/403")

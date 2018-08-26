@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2018-08-25 04:23:12
+Date: 2018-08-25 10:23:57
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -77,7 +77,7 @@ CREATE TABLE `chuc_nang_phong_ban` (
   `ma_chuc_danh` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `ma_chuc_nang` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of chuc_nang_phong_ban
@@ -87,6 +87,7 @@ INSERT INTO `chuc_nang_phong_ban` VALUES ('2', 'PDA', 'NV', '8003');
 INSERT INTO `chuc_nang_phong_ban` VALUES ('3', 'PDT', 'TP', '1001');
 INSERT INTO `chuc_nang_phong_ban` VALUES ('4', 'PDT', 'NV', '1002');
 INSERT INTO `chuc_nang_phong_ban` VALUES ('5', 'PDA', 'PP', '8002');
+INSERT INTO `chuc_nang_phong_ban` VALUES ('6', 'PIT', 'TP', '5001');
 
 -- ----------------------------
 -- Table structure for ho_so_nhan_vien
@@ -356,7 +357,7 @@ CREATE TABLE `tai_khoan` (
 -- ----------------------------
 INSERT INTO `tai_khoan` VALUES ('binhll', '{noop}123456', '124', '1');
 INSERT INTO `tai_khoan` VALUES ('binhtd', '{noop}123456', '56', '1');
-INSERT INTO `tai_khoan` VALUES ('buituantien', '{noop}123456', '16', '1');
+INSERT INTO `tai_khoan` VALUES ('buitientuan', '{noop}123456', '16', '1');
 INSERT INTO `tai_khoan` VALUES ('chauhp', '{noop}123456', '110', '1');
 INSERT INTO `tai_khoan` VALUES ('chidh', '{noop}123456', '7', '1');
 INSERT INTO `tai_khoan` VALUES ('datdt', '{noop}123456', '51', '1');

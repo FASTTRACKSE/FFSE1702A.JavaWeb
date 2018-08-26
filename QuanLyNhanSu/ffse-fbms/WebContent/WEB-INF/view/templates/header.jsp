@@ -58,8 +58,8 @@
     	 listClass = ["phong_ban", "chuc_danh", "ho_so", "hop_dong"];
          url = window.location.href;
          selector = '.' + url.substring(url.lastIndexOf("ffse-fbms")+10);
-         console.log(selector);
-         $(selector.replace(/\//g, '').replace(/[0-9]/g, ''))
+         selector = selector.replace(/\//g, '').replace(/[0-9]/g, '');
+         $(selector)
             .addClass('active open');
          
          var i;
@@ -68,10 +68,11 @@
 				$("." + listClass[i]).addClass('open');
              }
          }
-         if (selector.includes('ho_so') && !selector.includes('qlnsnsviewho_so')) {
+         console.log(selector);
+         if (selector.includes('ho_so') && !selector.includes('viewho_so') && !selector.includes('qlnsnv') && !selector.includes('ho_soedit')) {
         	 $(".pbho_so").addClass('open');
          }
-         if (selector.includes('hop_dong') && !selector.includes('qlnsnsviewhop_dong')) {
+         if (selector.includes('hop_dong') && !selector.includes('viewhop_dong') && !selector.includes('qlnsnv') && !selector.includes('hop_dongedit')) {
         	 $(".pbhop_dong").addClass('open');
          }
       });
@@ -204,7 +205,7 @@
                   </li>
                </ul>
                <ul class="nav navbar-nav float-xs-right">
-                  <li class="dropdown dropdown-language nav-item"><a id="dropdown-flag" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle nav-link"><i class="flag-icon flag-icon-gb"></i><span class="selected-language"></span></a>
+                  <li class="dropdown dropdown-language nav-item"><a id="dropdown-flag" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle nav-link"><spring:message code="label.language" /><span class="selected-language"></span></a>
                      <div aria-labelledby="dropdown-flag" class="dropdown-menu"><a href="?lang=en" class="dropdown-item"><i class="flag-icon flag-icon-gb"></i> English</a><a href="?lang=vi" class="dropdown-item"><i class="flag-icon flag-icon-vn"></i> Việt Nam</a></div>
                   </li>
                   <li class="dropdown dropdown-notification nav-item"><a href="#" data-toggle="dropdown" class="nav-link nav-link-label"><i class="ficon ft-bell"></i><span class="tag tag-pill tag-default tag-danger tag-default tag-up">5</span></a>
@@ -331,11 +332,17 @@
          <ul id="main-menu-navigation" data-menu="menu-navigation" class="navigation navigation-main">
             <li class=" navigation-header"><span><spring:message code="label.nhanVien" /></span><i data-toggle="tooltip" data-placement="right" data-original-title="Apps" class=" ft-minus"></i>
             </li>
-            <li class=" nav-item"><a href="<c:url value = "/qlns/nv/ho_so"/>"><i class="ft-user"></i><span data-i18n="" class="menu-title"><spring:message code="label.hoSoBanThan" /></span></a>
+            <li class=" nav-item qlnsnvho_so"><a href="<c:url value = "/qlns/nv/ho_so"/>"><i class="fa fa-id-card-o"></i><span data-i18n="" class="menu-title"><spring:message code="label.hoSoBanThan" /></span></a>
             </li>
-            <li class=" nav-item"><a href="<c:url value = "/qlns/nv/hop_dong"/>"><i class="ft-file-text"></i><span data-i18n="" class="menu-title"><spring:message code="label.hopDongLaoDong" /></span></a>
+            <li class=" nav-item qlnsnvbang_cap"><a href="<c:url value = "/qlns/nv/bang_cap"/>"><i class="fa fa-graduation-cap"></i><span data-i18n="" class="menu-title"><spring:message code="label.thongTinBangCap" /></span></a>
             </li>
-          	<li class=" nav-item"><a href="<c:url value = "/qlns/nv/ho_so_tong_hop"/>"><i class="ft-airplay"></i><span data-i18n="" class="menu-title"><spring:message code="label.xemTatCa" /></span></a>
+            <li class=" nav-item qlnsnvgia_dinh"><a href="<c:url value = "/qlns/nv/gia_dinh"/>"><i class="fa fa-users"></i><span data-i18n="" class="menu-title"><spring:message code="label.thongTinGiaDinh" /></span></a>
+            </li>
+            <li class=" nav-item qlnsnvkinh_nghiem"><a href="<c:url value = "/qlns/nv/kinh_nghiem"/>"><i class="fa fa-file-code-o"></i><span data-i18n="" class="menu-title"><spring:message code="label.thongTinKinhNghiem" /></span></a>
+            </li>
+            <li class=" nav-item qlnsnvhop_dong"><a href="<c:url value = "/qlns/nv/hop_dong"/>"><i class="fa fa-handshake-o"></i><span data-i18n="" class="menu-title"><spring:message code="label.hopDongLaoDong" /></span></a>
+            </li>
+          	<li class=" nav-item qlnsnvho_so_tong_hop"><a href="<c:url value = "/qlns/nv/ho_so_tong_hop"/>"><i class="ft-airplay"></i><span data-i18n="" class="menu-title"><spring:message code="label.xemTatCa" /></span></a>
             </li>
             
             <sec:authorize access="!hasRole('ROLE_NV') or hasRole('ROLE_PNS')">

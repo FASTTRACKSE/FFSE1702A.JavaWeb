@@ -13,10 +13,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import fasttrackse.ffse1702a.fbms.QuanLyNhanSu.model.entity.ChucDanh;
@@ -114,29 +112,30 @@ public class QuanLyHoSoController {
 
 	@RequestMapping(value = "/qlns/ho_so/save", method = RequestMethod.POST)
 	public String saveHoSoNhanVien(@ModelAttribute("hoSoNhanVien") @Valid HoSoNhanVien hsnv,
-			BindingResult bindingResult, @RequestParam(value = "image", required = false) MultipartFile image,
-			HttpServletRequest request, Model model, RedirectAttributes redirectAttributes) {
+			BindingResult bindingResult, HttpServletRequest request, Model model,
+			RedirectAttributes redirectAttributes) {
 
 		int maNhanVien = hsnv.getMaNhanVien();
 		boolean addAction = (maNhanVien == 0);
 		int autoID = Integer.valueOf(this.quanLyHoSoService.getAutoId());
-		String filename = uploadImageService.checkImage(image, bindingResult);
+		// String filename = uploadImageService.checkImage(image, bindingResult);
+		String filename = "1219820798017.png";
 
-		// check lỗi form + ảnh
-		if (bindingResult.hasErrors() || (filename != null && filename.equals("err"))) {
+		// check lỗi form + ảnh || (filename != null && filename.equals("err"))
+		if (bindingResult.hasErrors()) {
 			System.out.println(hsnv);
 			if (addAction) {
 				model.addAttribute("add", "TRUE");
 				hsnv.setMaNhanVien(autoID);
 				// add action - chưa thêm ảnh
-				if (filename == null) {
-					model.addAttribute("anhDaiDienErrors", "anhDaiDienErrors");
-				}
+				// if (filename == null) {
+				// model.addAttribute("anhDaiDienErrors", "anhDaiDienErrors");
+				// }
 			}
 			// lỗi định dạng ảnh
-			if (filename != null && filename.equals("err")) {
-				model.addAttribute("anhDaiDienErrors", "anhDaiDienErrors");
-			}
+			// if (filename != null && filename.equals("err")) {
+			// model.addAttribute("anhDaiDienErrors", "anhDaiDienErrors");
+			// }
 			return "QuanLyNhanSu/QuanLyHoSo/QuanLyHoSoForm";
 		}
 

@@ -128,6 +128,15 @@ public class DocumentDAOImpl implements DocumentDAO {
 		session.update(document);
 		
 	}
+	//refuse
+		public void refuse(final int id) {
+			Session session = this.sessionFactory.getCurrentSession();
+			Document document = findById(id);
+			Status st = new Status();
+			st.setMa_trang_thai("tu_choi");
+			document.setMa_trang_thai(st);
+			session.update(document);
+		}
 	// find by id
 	public Document findById(final int id) {
 		Session session = this.sessionFactory.getCurrentSession();

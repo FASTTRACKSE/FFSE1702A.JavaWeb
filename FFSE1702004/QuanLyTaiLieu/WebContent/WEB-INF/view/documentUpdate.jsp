@@ -55,7 +55,6 @@
 					<div class="col-md-9">
 						<form:input path="ten_tai_lieu" class="form-control"
 							id="projectinput5" value="${document.ten_tai_lieu}" />
-							<form:errors path="ten_tai_lieu" cssClass="invalid-feedback d-block" />
 					</div>
 				</div>
 				<!-- //////////////////// -->
@@ -79,9 +78,7 @@
 					</label>
 					<div class="col-md-9">
 						<form:textarea path="mo_ta" class="form-control"
-							id="basicTextarea" />
-						<form:errors path="mo_ta" cssClass="invalid-feedback d-block" />
-							
+							id="basicTextarea"></form:textarea>
 					</div>
 				</div>
 				<!-- ///////////////////// -->
@@ -96,18 +93,6 @@
 							<option value="ffse1703">ffse1703</option>
 							<option value="ffse1703">ffse1704</option>
 						</form:select>
-					</div>
-				</div>
-				<!-- ///////////////////// -->
-			
-				<div class="form-group row">
-					<label class="col-md-3 label-control"> <spring:message
-							code="label.selectFile" />
-					</label>
-					<div class="col-md-9">
-						<label id="projectinput8" class="file center-block">
-							 <form:input type="file" path="file" /> <span class="file-custom"></span>
-						</label>
 					</div>
 				</div>
 				

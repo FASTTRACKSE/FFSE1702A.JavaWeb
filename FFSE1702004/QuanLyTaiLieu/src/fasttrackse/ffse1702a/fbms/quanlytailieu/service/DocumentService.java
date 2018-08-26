@@ -38,6 +38,9 @@ public interface DocumentService  {
 	//accept
 	public void accept(int id);
 	
+	//refuse
+	public void refuse(int id);
+	
 	//update
 	public void updateDocument(Document document);
 	
