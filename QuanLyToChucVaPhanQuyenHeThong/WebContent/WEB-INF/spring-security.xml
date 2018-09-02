@@ -7,46 +7,17 @@
     http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
 	<http auto-config="true">
 		
+		<!-- Quản lý phân quyền -->
 		<intercept-url pattern="/chuc-nang/**" access="hasRole('ROLE_IT_TP') or hasRole('ROLE_IT_PP') or hasRole('ROLE_IT_NV') " />
 		<intercept-url pattern="/chuc-danh/**" access="hasRole('ROLE_IT_TP') or hasRole('ROLE_IT_PP') or hasRole('ROLE_IT_NV') " />
 		<intercept-url pattern="/phong-ban/**" access="hasRole('ROLE_IT_TP') or hasRole('ROLE_IT_PP') or hasRole('ROLE_IT_NV') " />
 		<intercept-url pattern="/chuc-nang-phong-ban/**" access="hasRole('ROLE_IT_TP') or hasRole('ROLE_IT_PP') or hasRole('ROLE_IT_NV') " />
-			
 		<intercept-url pattern="/chuc-nang/danh-sach" access="hasRole('ROLE_GD_GD') or hasRole('ROLE_GD_PGD') or hasRole('ROLE_GD_NV') or hasRole('ROLE_NHANSU_TP') or hasRole('ROLE_NHANSU_PP')  or hasRole('ROLE_NHANSU_NV')" />
 		<intercept-url pattern="/chuc-danh/danh-sach" access="hasRole('ROLE_GD_GD') or hasRole('ROLE_GD_PGD') or hasRole('ROLE_GD_NV') or hasRole('ROLE_NHANSU_TP') or hasRole('ROLE_NHANSU_PP')  or hasRole('ROLE_NHANSU_NV')" />
 		<intercept-url pattern="/chuc-danh/" access="hasRole('ROLE_GD_GD') or hasRole('ROLE_GD_PGD') or hasRole('ROLE_GD_NV') or hasRole('ROLE_NHANSU_TP') or hasRole('ROLE_NHANSU_PP')  or hasRole('ROLE_NHANSU_NV')" />
 		<intercept-url pattern="/phong-ban/" access="hasRole('ROLE_GD_GD') or hasRole('ROLE_GD_PGD') or hasRole('ROLE_GD_NV') or hasRole('ROLE_NHANSU_TP') or hasRole('ROLE_NHANSU_PP')  or hasRole('ROLE_NHANSU_NV')" />
 		<intercept-url pattern="/chuc-nang-phong-ban/" access="hasRole('ROLE_GD_GD') or hasRole('ROLE_GD_PGD') or hasRole('ROLE_GD_NV') or hasRole('ROLE_NHANSU_TP') or hasRole('ROLE_NHANSU_PP')  or hasRole('ROLE_NHANSU_NV')" />
 		
-		<intercept-url pattern="/qlns/nv/**" access="hasRole('ROLE_NV') or hasRole('ROLE_PNS') or hasRole('ROLE_PGD') or hasRole('ROLE_TPPDA') or hasRole('ROLE_TPPDT') or hasRole('ROLE_TPPIT') or hasRole('ROLE_TPPKT')" />
-		<intercept-url pattern="/qlns/PDA/view/**" access="hasRole('ROLE_TPPDA') or hasRole('ROLE_PGD') or hasRole('ROLE_PNS')" />
-		<intercept-url pattern="/qlns/PDT/view/**" access="hasRole('ROLE_TPPDT') or hasRole('ROLE_PGD') or hasRole('ROLE_PNS')" />
-		<intercept-url pattern="/qlns/PIT/view/**" access="hasRole('ROLE_TPPIT') or hasRole('ROLE_PGD') or hasRole('ROLE_PNS')" /> 
-		<intercept-url pattern="/qlns/PKT/view/**" access="hasRole('ROLE_TPPKT') or hasRole('ROLE_PGD') or hasRole('ROLE_PNS')" />
-		<intercept-url pattern="/qlns/PGD/view/**" access="hasRole('ROLE_PGD') or hasRole('ROLE_PNS')" /> 
-		<intercept-url pattern="/qlns/PNS/view/**" access="hasRole('ROLE_PGD') or hasRole('ROLE_PNS')" />
-		<intercept-url pattern="/qlns/ns/view/**" access="hasRole('ROLE_PGD') or hasRole('ROLE_PNS')" />
-		<intercept-url pattern="/qlns/**" access="hasRole('ROLE_PNS')" />
-		
-		<intercept-url pattern="/database/**" access="hasRole('ROLE_TPP') or hasRole('ROLE_PM')" />
-		<intercept-url pattern="/framework/**" access="hasRole('ROLE_TPP') or hasRole('ROLE_PM')" />
-		<intercept-url pattern="/ngonngu/**" access="hasRole('ROLE_TPP') or hasRole('ROLE_PM')" />
-		<intercept-url pattern="/khachhang/**" access="hasRole('ROLE_TPP') or hasRole('ROLE_PM')" />
-		<intercept-url pattern="/doitac/**" access="hasRole('ROLE_TPP') or hasRole('ROLE_PM')" />
-		<intercept-url pattern="/nghiepvu/**" access="hasRole('ROLE_TPP') or hasRole('ROLE_PM')" /> 
-		<intercept-url pattern="/duan/list" access="hasRole('ROLE_TPP') or hasRole('ROLE_PM') or hasRole('ROLE_NV')" />
-		<intercept-url pattern="/duan/detail/**" access="hasRole('ROLE_TPP') or hasRole('ROLE_PM') or hasRole('ROLE_NV')" />
-		<intercept-url pattern="/duan/phancongnhiemvu/list/**" access="hasRole('ROLE_TPP') or hasRole('ROLE_PM') or hasRole('ROLE_NV')" />
-		<intercept-url pattern="/duan/create" access="hasRole('ROLE_TPP')" />
-		<intercept-url pattern="/duan/update/**" access="hasRole('ROLE_TPP') or hasRole('ROLE_PM')" />
-		<intercept-url pattern="/duan/phancongnhiemvu/create/**" access="hasRole('ROLE_TPP') or hasRole('ROLE_PM')" />
-		<intercept-url pattern="/duan/phancongnhiemvu/addpm/**" access="hasRole('ROLE_TPP') or hasRole('ROLE_PM')" />
-		<intercept-url pattern="/duan/phancongnhiemvu/update/**" access="hasRole('ROLE_TPP') or hasRole('ROLE_PM')" />
-		<intercept-url pattern="/duan/phancongnhiemvu/list/**" access="hasRole('ROLE_TPP') or hasRole('ROLE_PM') or hasRole('ROLE_NV')" />
-		
-		<intercept-url pattern="/user**"
-			access="hasRole('ROLE_DUAN_TP') or hasRole('ROLE_DUAN_NV')" />
-			
 		<!-- access denied page -->
 		<access-denied-handler error-page="/403" />
 

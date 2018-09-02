@@ -1,1 +1,1 @@
-<% response.sendRedirect("chuc-nang/danh-sach"); %>
+<% response.sendRedirect("chuc-nang-phong-ban/"); %>

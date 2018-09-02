@@ -1,19 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+<<<<<<< HEAD
+		<item value="D:\Java\FFSE1702A.JavaWeb\QuanLyToChucVaPhanQuyenHeThong"/>
+=======
 		<item value="D:\Java\FFSE1702A.JavaWeb1\FFSE1702A.JavaWeb\QuanLyToChucVaPhanQuyenHeThong"/>
+>>>>>>> 0e51b1ff0e40f8898c450c96229566da11dd28e0
 	</list>
 	<section name="ExternalProjectImportWizard">
 		<item value="false" key="WizardProjectsImportPage.STORE_NESTED_PROJECTS"/>
 		<item value="false" key="WizardProjectsImportPage.STORE_COPY_PROJECT_ID"/>
 		<item value="false" key="WizardProjectsImportPage.STORE_ARCHIVE_SELECTED"/>
 		<list key="WizardProjectsImportPage.STORE_DIRECTORIES">
+<<<<<<< HEAD
+			<item value="D:\Java\FFSE1702A.JavaWeb\QuanLyToChucVaPhanQuyenHeThong"/>
+=======
 			<item value="D:\Java\FFSE1702A.JavaWeb1\FFSE1702A.JavaWeb\QuanLyToChucVaPhanQuyenHeThong"/>
+>>>>>>> 0e51b1ff0e40f8898c450c96229566da11dd28e0
 		</list>
 		<list key="WizardProjectsImportPage.STORE_ARCHIVES">
 			<item value=""/>
 		</list>
 	</section>
+<<<<<<< HEAD
+=======
 	<section name="WORKBENCH_SETTINGS">
 		<list key="ENABLED_TRANSFERS">
 		</list>
@@ -22,4 +32,5 @@
 		<item value="381" key="DIALOG_X_ORIGIN"/>
 		<item value="137" key="DIALOG_Y_ORIGIN"/>
 	</section>
+>>>>>>> 0e51b1ff0e40f8898c450c96229566da11dd28e0
 </section>

@@ -1,10 +1,2 @@
 eclipse.preferences.version=1
 encoding//WebContent/WEB-INF/view/login.jsp=UTF-8
-encoding//src/fasttrackse/a1702/fbms/quanlytochucvaphanquyenhethong/controller/ChucDanhController.java=UTF-8
-encoding//src/fasttrackse/a1702/fbms/quanlytochucvaphanquyenhethong/controller/ChucNangChucDanhController.java=UTF-8
-encoding//src/fasttrackse/a1702/fbms/quanlytochucvaphanquyenhethong/controller/ChucNangController.java=UTF-8
-encoding//src/fasttrackse/a1702/fbms/quanlytochucvaphanquyenhethong/controller/ChucNangPhongBanController.java=UTF-8
-encoding//src/fasttrackse/a1702/fbms/quanlytochucvaphanquyenhethong/controller/FunctionRoleController.java=UTF-8
-encoding//src/fasttrackse/a1702/fbms/quanlytochucvaphanquyenhethong/controller/LoginController.java=UTF-8
-encoding//src/fasttrackse/a1702/fbms/quanlytochucvaphanquyenhethong/controller/PhongBanController.java=UTF-8
-encoding//src/fasttrackse/a1702/fbms/quanlytochucvaphanquyenhethong/controller/TaiKhoanController.java=UTF-8
