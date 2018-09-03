@@ -1,16 +1,15 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <!DOCTYPE html>
-
 <html>
-
 <head>
    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
    <meta name="description" content="Stack admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
    <meta name="keywords" content="admin template, stack admin template, dashboard template, flat admin template, responsive admin template, web app">
-   <meta name="author" content="PIXINVENT">
+   <meta name="author" content="JunBjn">
    <title>FastTrackSE - The Business Management System - Login</title>
    <link rel="apple-touch-icon" href="<c:url value="/resources/images/ico/apple-icon-120.png "/>">
    <link rel="shortcut icon" type="image/x-icon" href="<c:url value="/resources/images/ico/favicon.ico "/>">
@@ -32,7 +31,49 @@
    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/core/menu/menu-types/vertical-menu.css "/>">
    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/core/menu/menu-types/vertical-overlay-menu.css "/>">
    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/core/colors/palette-gradient.css "/>">
+   <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/core/colors/palette-callout.min.css"/>">
+   <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/plugins/forms/extended/form-extended.min.css"/>">
    <!-- END Page Level CSS-->
+   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+
+    <style>
+	   .invalid-feedback {
+	   	color: #DC3545;
+	   	padding-top: 10px;
+	   }
+	   .invalid-feedback::before {
+	   content: "•";
+	   padding-left: 10px;
+   	   padding-right: 10px;
+	   }
+   </style>
+
+   <script>
+   $(document)
+      .ready(function () {
+    	 listClass = ["phong_ban", "chuc_danh", "ho_so", "hop_dong"];
+         url = window.location.href;
+         selector = '.' + url.substring(url.lastIndexOf("ffse-fbms")+10);
+         selector = selector.replace(/\//g, '').replace(/[0-9]/g, '');
+         $(selector)
+            .addClass('active open');
+         
+         var i;
+         for (i = 0; i < listClass.length; i++) { 
+             if (selector.includes(listClass[i])) {
+				$("." + listClass[i]).addClass('open');
+             }
+         }
+         console.log(selector);
+         if (selector.includes('ho_so') && !selector.includes('viewho_so') && !selector.includes('qlnsnv') && !selector.includes('ho_soedit')) {
+        	 $(".pbho_so").addClass('open');
+         }
+         if (selector.includes('hop_dong') && !selector.includes('viewhop_dong') && !selector.includes('qlnsnv') && !selector.includes('hop_dongedit')) {
+        	 $(".pbhop_dong").addClass('open');
+         }
+      });
+   </script>
+
 </head>
 
 <body data-open="click" data-menu="vertical-menu" data-col="2-columns" class="vertical-layout vertical-menu 2-columns   menu-expanded fixed-navbar">
@@ -44,7 +85,7 @@
          <div class="navbar-header">
             <ul class="nav navbar-nav">
                <li class="nav-item mobile-menu hidden-md-up float-xs-left"><a href="#" class="nav-link nav-menu-main menu-toggle hidden-xs"><i class="ft-menu font-large-1"></i></a></li>
-               <li class="nav-item"><a href="index.html" class="navbar-brand"><img alt="stack admin logo" src="<c:url value="/resources/images/logo/stack-logo.png"/>" class="brand-logo" />
+               <li class="nav-item"><a href="index.html" class="navbar-brand"><img src="<c:url value="/resources/images/logo/stack-logo.png"/>" alt="stack admin logo" class="brand-logo" />
                      <h2 class="brand-text">Stack</h2></a></li>
                <li class="nav-item hidden-md-up float-xs-right"><a data-toggle="collapse" data-target="#navbar-mobile" class="nav-link open-navbar-container"><i class="fa fa-ellipsis-v"></i></a></li>
             </ul>
@@ -111,7 +152,7 @@
                                  <div id="headingThree" role="tab" class="card-header p-0 pb-2 no-border"><a data-toggle="collapse" data-parent="#accordionWrap" href="#accordionThree" aria-expanded="false" aria-controls="accordionThree" class="collapsed">Accordion Item #3</a></div>
                                  <div id="accordionThree" role="tabpanel" aria-labelledby="headingThree" aria-expanded="false" class="card-collapse collapse">
                                     <div class="card-body">
-                                       <p class="accordion-text">Candy cupcake sugar plum oat cake wafer marzipan jujubes lollipop macaroon. Cake dragée jujubes donut chocolate bar chocolate cake cupcake chocolate topping.</p>
+                                       <p class="accordion-text">Candy cupcake sugar plum oat cake wafer marzipan jujubes lollipop macaroon. Cake dragÃ©e jujubes donut chocolate bar chocolate cake cupcake chocolate topping.</p>
                                     </div>
                                  </div>
                               </div>
@@ -124,7 +165,7 @@
                                  <label for="inputName1" class="col-sm-3 form-control-label">Name</label>
                                  <div class="col-sm-9">
                                     <div class="position-relative has-icon-left">
-                                       <input type="text" id="inputName1" placeholder="John Doe" class="form-control">
+                                       <input type="text" id="inputName1" placeholder="JunBjn" class="form-control">
                                        <div class="form-control-position"><i class="fa fa-user-o pl-1"></i></div>
                                     </div>
                                  </div>

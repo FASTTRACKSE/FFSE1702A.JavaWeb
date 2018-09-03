@@ -14,7 +14,7 @@
 					<div class="breadcrumb-wrapper col-xs-12">
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item"><a href='<c:url value="/home" />'>Home</a></li>
-							<li class="breadcrumb-item"><a href='<c:url value="/chuc-danh/" />'>Danh sách chức danh</a></li>
+							<li class="breadcrumb-item"><a href='<c:url value="/quanlyphanquyen/chuc_danh/view/danhSachChucDanh" />'>Danh sách chức danh</a></li>
 							<li class="breadcrumb-item active">Sửa chức danh</li>
 						</ol>
 					</div>
@@ -26,8 +26,7 @@
 		<div class="content-body">
 			<div class="main-content">
 				<div class="row">
-					<c:url var="post_url"  value="/chuc-danh/sua/luu" />
-					<form:form method="POST" modelAttribute="chucDanh" action="${post_url}">
+					<form:form method="POST" modelAttribute="chucDanh" action="">
 						<form:input type="hidden" path="maChucDanh" style="display:none" value="${chucDanh.maChucDanh}"/>
 						<div class="form-group col-sm-6">
 						  	<label>Tên chức danh</label>

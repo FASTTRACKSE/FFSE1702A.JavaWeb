@@ -2,6 +2,8 @@ package fasttrackse.ffse1702a.fbms.quanlyphanquyenhethong.service;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import fasttrackse.ffse1702a.fbms.quanlyphanquyenhethong.model.entity.PhongBan;
 
 public interface PhongBanService {
@@ -13,7 +15,15 @@ public interface PhongBanService {
 
 	public void delete(String maPhongBan);
 
-	public List<PhongBan> findAllForPaging(int startPosition, int maxResult);
-
 	public PhongBan findByMaPhongBan(String maPhongBan);
+
+	public List<PhongBan> findAll(int iDisplayStart, int iDisplayLength, String sql);
+
+	public String getRecordsTotal();
+
+	public String getRecordsFiltered(String sql);
+
+	public String getSQL(HttpServletRequest request);
+
+	public String toJson(PhongBan pb);
 }

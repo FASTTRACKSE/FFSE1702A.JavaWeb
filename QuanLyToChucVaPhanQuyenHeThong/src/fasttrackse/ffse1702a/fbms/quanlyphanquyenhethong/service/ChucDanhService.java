@@ -15,8 +15,6 @@ public interface ChucDanhService {
 
 	public void delete(String maChucDanh);
 
-	//public List<ChucDanh> findAllForPaging(int startPosition, int maxResult);
-
 	public ChucDanh findByMaChucDanh(String maChucDanh);
 	
 	public List<ChucDanh> findAll(int iDisplayStart, int iDisplayLength, String sql);

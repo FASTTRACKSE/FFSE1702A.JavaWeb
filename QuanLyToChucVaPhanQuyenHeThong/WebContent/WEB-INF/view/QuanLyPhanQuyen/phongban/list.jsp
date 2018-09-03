@@ -28,13 +28,21 @@
 .red {
 	color: #d9534f;
 }
+
+#datatable tr td:last-child {
+	letter-spacing: 15px;
+	min-width: 100px;
+	text-align: center !important;
+}
+#datatable > thead > tr > th:last-child[class*="sort"]::after{content: ""}
+#datatable > thead > tr > th:last-child[class*="sort"]::before{content: ""}
 </style>
 <div class="app-content content container-fluid">
 	<div class="content-wrapper">
 
 		<!-- Path -->
 		<div class="content-header row">
-			<div class="content-header-left col-md-6 col-xs-12 mb-2">
+			<div class="content-header-left col-md-9 col-xs-12 mb-2">
 				<h3 class="content-header-title mb-0">Danh sách phòng ban</h3>
 				<div class="row breadcrumbs-top">
 					<div class="breadcrumb-wrapper col-xs-12">
@@ -46,29 +54,15 @@
 					</div>
 				</div>
 			</div>
+			<div class="content-header-right col-md-3 col-xs-12">
+               <div role="group" aria-label="Button group with nested dropdown" class="btn-group float-md-right" id="add-new">
+                  <a href="<c:url value = "/quanlyphanquyen/phong_ban/add"/>" class="btn btn-primary"><span class="fa fa-plus"></span> Thêm mới</a>
+               </div>
+            </div>
 		</div>
 		<!-- End Path -->
 
 		<div class="content-body">
-			<!-- Form search -->
-			<div class="row mb-2">
-				<form class="col-xs-12" action='<c:url value="/phong-ban/"></c:url>'
-					method="get" enctype="multipart/form-data">
-					<!-- <div class="frm-search-box form-inline pull-left">
-						<label class="mr-sm-2" for="">Từ khóa: </label> <input
-							class="form-control" type="text" value="" name="q"
-							id="txtkeyword" placeholder="Keyword">&nbsp;
-						<button type="submit" id="button" class="btn btn-success">Tìm
-							kiếm</button>
-					</div> -->
-					<div class="pull-right">
-						<a href="<c:url value="/phong-ban/them-moi"></c:url>"
-							class="btn btn-success button"><i class="fa fa-plus"
-							aria-hidden="true"></i> Thêm mới</a>
-					</div>
-				</form>
-			</div>
-			<!-- End Form search -->
 
 			<!-- Show message -->
 			<c:if test="${messageSuccess ne null}">
@@ -106,63 +100,47 @@
 							</div>
 						</div>
 						<div class="card-body collapse in">
-							<div class="table-responsive">
-								<table class="table mb-0">
-									<thead class="bg-success">
-										<tr>
-											<th>STT</th>
+							<div class="card-block card-dashboard">
+								<div class="table-responsive">
+									<table id="datatable"
+										class="table table-striped table-bordered dataex-res-constructor">
+										<thead>
+											<tr>
 											<th>Mã phòng ban</th>
 											<th>Tên phòng ban</th>
-											<th>Hành động</th>
+											<th></th>
 										</tr>
 									</thead>
 									<tbody>
-										<c:if test="${not empty listPhongBan}">
-											<c:forEach var="item" items="${listPhongBan}" begin="0"
-												varStatus="counter">
-												<tr>
-													<td>${counter.index + 1}</td>
-													<td>${item.maPhongBan}</td>
-													<td>${item.tenPhongBan}</td>
-													<td class="tbl_actions"><a
-														href="<c:url value="/phong-ban/sua/${item.maPhongBan}" />" title="Sửa">
-															<i class="fa fa-pencil-square-o blue" aria-hidden="true"></i>Sửa
-													</a> <a href="<c:url value="/phong-ban/xoa/${item.maPhongBan}" />" title="Xóa"
-														onclick="return confirm('Bạn có chắc muốn xóa ?')"> <i
-															class="fa fa-trash red" aria-hidden="true"></i>Delete
-													</a></td>
-												</tr>
-											</c:forEach>
-										</c:if>
-									</tbody>
-								</table>
+											<div class="modal fade" id="confirm-delete" tabindex="-1"
+												role="dialog" aria-labelledby="myModalLabel"
+												aria-hidden="true">
+												<div class="modal-dialog">
+													<div class="modal-content">
 
-								<nav aria-label="Page navigation example">
-									<ul class="pagination">
-										<li class="page-item"><a class="page-link" href="?page=1">First
-												Page</a></li>
-										<c:if test="${currentPage > 2}">
-											<li class="page-item"><a class="page-link"
-												href="?page=${currentPage-2}">${currentPage-2}</a></li>
-										</c:if>
-										<c:if test="${currentPage > 1}">
-											<li class="page-item"><a class="page-link"
-												href="?page=${currentPage-1}">${currentPage-1}</a></li>
-										</c:if>
-										<li class="page-item active"><a class="page-link"
-											href="?page=${currentPage}">${currentPage}</a></li>
-										<c:if test="${currentPage < lastPage}">
-											<li class="page-item"><a class="page-link"
-												href="?page=${currentPage+1}">${currentPage+1}</a></li>
-										</c:if>
-										<c:if test="${currentPage < lastPage - 1}">
-											<li class="page-item"><a class="page-link"
-												href="?page=${currentPage+2}">${currentPage+2}</a></li>
-										</c:if>
-										<li class="page-item"><a class="page-link"
-											href="?page=${lastPage }">Last Page</a></li>
-									</ul>
-								</nav>
+														<div class="modal-header">
+															<button type="button" class="close" data-dismiss="modal"
+																aria-hidden="true">&times;</button>
+															<h4 class="modal-title" id="myModalLabel">Bạn có
+																chắc muốn xóa</h4>
+														</div>
+
+														<div class="modal-body">
+															<p>Bạn có chắc muốn xóa</p>
+															<p class="debug-url"></p>
+														</div>
+
+														<div class="modal-footer">
+															<button type="button" class="btn btn-default"
+																data-dismiss="modal">Quay lại</button>
+															<a class="btn btn-danger btn-ok">Xóa</a>
+														</div>
+													</div>
+												</div>
+											</div>
+										</tbody>
+									</table>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -172,11 +150,31 @@
 	</div>
 </div>
 <script type="text/javascript">
-window.setTimeout(function() {
-	$(".alert").fadeTo(500, 0).slideUp(500, function(){
-		$(this).remove(); 
-	});
-}, 2500);
+	window.onload = function() {
+		$('#confirm-delete').on(
+				'show.bs.modal',
+				function(e) {
+					$(this).find('.btn-ok').attr('href',
+							$(e.relatedTarget).data('href'));
+				});
+
+		$('#datatable').dataTable().fnDestroy();
+
+		$("#datatable")
+				.dataTable(
+						{
+							responsive : true,
+							"order" : [ [ 1, "asc" ], [ 0, "desc" ] ],
+							"bServerSide" : true,
+							"sAjaxSource" : "/QuanLyToChucVaPhanQuyenHeThong/quanlyphanquyen/phong_ban/view/getListPhongBan",
+						});
+	};
+
+	window.setTimeout(function() {
+		$(".alert").fadeTo(500, 0).slideUp(500, function() {
+			$(this).remove();
+		});
+	}, 2500);
 </script>
 
 <jsp:include page="/WEB-INF/view/templates/footer.jsp" />

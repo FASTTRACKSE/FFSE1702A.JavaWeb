@@ -12,8 +12,12 @@ public interface PhongBanDao {
 	public void update(PhongBan pb);
 
 	public void delete(String maPhongBan);
-
-	public List<PhongBan> findAllForPaging(int startPosition, int maxResult);
 	
 	public PhongBan findByMaPhongBan(String maPhongBan);
+	
+	public List<PhongBan> findAll(int iDisplayStart, int iDisplayLength, String sql);
+	
+	public String getRecordsTotal();
+	
+	public String getRecordsFiltered(String sql);
 }

@@ -2,10 +2,12 @@ package fasttrackse.ffse1702a.fbms.quanlyphanquyenhethong.service;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import fasttrackse.ffse1702a.fbms.quanlyphanquyenhethong.model.entity.ChucNang;
 
 public interface ChucNangService {
-	public List<ChucNang> list();
+	public List<ChucNang> findAll();
 
 	public void save(ChucNang cn);
 
@@ -18,8 +20,14 @@ public interface ChucNangService {
 	public ChucNang getChucNangByCode(String ma_chuc_nang);
 
 	public ChucNang findByMaChucNang(String ma_chuc_nang);
+	
+	public List<ChucNang> findAll(int iDisplayStart, int iDisplayLength, String sql);
 
-	public List<ChucNang> findAllForPaging(int startPosition, int maxResult);
+	public String getRecordsTotal();
 
-	public List<ChucNang> findAll();
+	public String getRecordsFiltered(String sql);
+
+	public String getSQL(HttpServletRequest request);
+
+	public String toJson(ChucNang cn);
 }

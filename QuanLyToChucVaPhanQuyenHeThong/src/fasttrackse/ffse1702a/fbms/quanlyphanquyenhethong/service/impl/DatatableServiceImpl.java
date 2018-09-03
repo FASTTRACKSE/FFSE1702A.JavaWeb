@@ -10,14 +10,24 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import fasttrackse.ffse1702a.fbms.quanlyphanquyenhethong.model.entity.ChucDanh;
+import fasttrackse.ffse1702a.fbms.quanlyphanquyenhethong.model.entity.ChucNang;
+import fasttrackse.ffse1702a.fbms.quanlyphanquyenhethong.model.entity.PhongBan;
 import fasttrackse.ffse1702a.fbms.quanlyphanquyenhethong.service.ChucDanhService;
+import fasttrackse.ffse1702a.fbms.quanlyphanquyenhethong.service.ChucNangService;
 import fasttrackse.ffse1702a.fbms.quanlyphanquyenhethong.service.DatatableService;
+import fasttrackse.ffse1702a.fbms.quanlyphanquyenhethong.service.PhongBanService;
 
 @Service
 public class DatatableServiceImpl implements DatatableService {
 
 	@Autowired
 	private ChucDanhService chucDanhService;
+	
+	@Autowired
+	private PhongBanService phongBanService;
+	
+	@Autowired
+	private ChucNangService chucNangService;
 
 	@Override
 	public String getSearchQuery(HttpServletRequest request, String[] columnNames, String customCondition) {
@@ -100,6 +110,42 @@ public class DatatableServiceImpl implements DatatableService {
 				json += chucDanhService.toJson(cd);
 			} else {
 				json += chucDanhService.toJson(cd) + ",";
+			}
+		}
+		json += "]}";
+
+		return json;
+	}
+
+	@Override
+	public String getJsonPhongBan(String recordsTotal, String recordsFiltered, List<PhongBan> list) {
+		String json = "{\"recordsTotal\":" + recordsTotal + ",\"recordsFiltered\":" + recordsFiltered + ",\"aaData\":[";
+		int j = list.size();
+		int i = 0;
+		for (PhongBan pb : list) {
+			i++;
+			if (i == j) {
+				json += phongBanService.toJson(pb);
+			} else {
+				json += phongBanService.toJson(pb) + ",";
+			}
+		}
+		json += "]}";
+
+		return json;
+	}
+	
+	@Override
+	public String getJsonChucNang(String recordsTotal, String recordsFiltered, List<ChucNang> list) {
+		String json = "{\"recordsTotal\":" + recordsTotal + ",\"recordsFiltered\":" + recordsFiltered + ",\"aaData\":[";
+		int j = list.size();
+		int i = 0;
+		for (ChucNang cn : list) {
+			i++;
+			if (i == j) {
+				json += chucNangService.toJson(cn);
+			} else {
+				json += chucNangService.toJson(cn) + ",";
 			}
 		}
 		json += "]}";

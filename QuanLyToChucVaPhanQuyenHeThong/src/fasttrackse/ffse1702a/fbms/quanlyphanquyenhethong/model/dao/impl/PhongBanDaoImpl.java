@@ -54,24 +54,43 @@ public class PhongBanDaoImpl implements PhongBanDao {
 		session.close();
 	}
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<PhongBan> findAllForPaging(int startPosition, int maxResult) {
-		Session session = this.sessionFactory.openSession();
-		Query q = session.createQuery("from PhongBan");
-		q.setFirstResult(startPosition);
-		q.setMaxResults(maxResult);
-		List<PhongBan> list = q.getResultList();
-		session.close();
-		return list;
-	}
-
 	@Override
 	public PhongBan findByMaPhongBan(String maPhongBan) {
 		Session session = this.sessionFactory.openSession();
 		PhongBan pb = session.get(PhongBan.class, maPhongBan);
 		session.close();
 		return pb;
+	}
+
+	@Override
+	public String getRecordsTotal() {
+		Session session = this.sessionFactory.openSession();
+
+		String sql = "SELECT COUNT(*) FROM `phong_ban`";
+		Query query = session.createSQLQuery(sql);
+
+		String recordsTotal = query.getSingleResult().toString();
+		session.close();
+		return recordsTotal;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<PhongBan> findAll(int iDisplayStart, int iDisplayLength, String sql) {
+		Session session = this.sessionFactory.openSession();
+		List<PhongBan> listPhongBan = session.createQuery(sql).setFirstResult(iDisplayStart)
+				.setMaxResults(iDisplayLength).list();
+		session.close();
+		return listPhongBan;
+	}
+	
+	@Override
+	public String getRecordsFiltered(String sql) {
+		Session session = this.sessionFactory.openSession();
+		Query query = session.createQuery(sql.replace("select pb", "select count(*)"));
+		String recordsFiltered = query.getSingleResult().toString();
+		session.close();
+		return recordsFiltered;
 	}
 
 }

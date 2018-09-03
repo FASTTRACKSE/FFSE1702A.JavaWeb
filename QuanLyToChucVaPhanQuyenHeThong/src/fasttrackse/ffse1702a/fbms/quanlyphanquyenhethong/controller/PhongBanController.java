@@ -1,5 +1,9 @@
 package fasttrackse.ffse1702a.fbms.quanlyphanquyenhethong.controller;
 
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -7,45 +11,56 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import fasttrackse.ffse1702a.fbms.quanlyphanquyenhethong.model.entity.PhongBan;
+import fasttrackse.ffse1702a.fbms.quanlyphanquyenhethong.service.DatatableService;
 import fasttrackse.ffse1702a.fbms.quanlyphanquyenhethong.service.PhongBanService;
 
 @Controller
-@RequestMapping("/phong-ban")
+@RequestMapping("/quanlyphanquyen/phong_ban")
 public class PhongBanController {
 
 	@Autowired
 	private PhongBanService phongBanService;
+	
+	@Autowired
+	private DatatableService datatableService;
 
-	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String listPhongBan(Model model,
-			@RequestParam(name = "page", required = false, defaultValue = "1") int currentPage) {
-		int totalRecords = phongBanService.findAll().size();
-		int recordsPerPage = 10;
-		int totalPages = 0;
-		if ((totalRecords / recordsPerPage) % 2 == 0) {
-			totalPages = totalRecords / recordsPerPage;
-		} else {
-			totalPages = totalRecords / recordsPerPage + 1;
-		}
-		int startPosition = recordsPerPage * (currentPage - 1);
-
-		model.addAttribute("listPhongBan", phongBanService.findAllForPaging(startPosition, recordsPerPage));
-		model.addAttribute("lastPage", totalPages);
-		model.addAttribute("currentPage", currentPage);
+	@RequestMapping(value = "/view/danhSachPhongBan", method = RequestMethod.GET)
+	public String viewPhongBan(Model model) {
 		return "QuanLyPhanQuyen/phongban/list";
 	}
+	
+	@RequestMapping(value = "/view/{maPhongBan}", method = RequestMethod.GET)
+	public String viewOnePhongBan(@PathVariable("maPhongBan") String maPhongBan, Model model) {
+		model.addAttribute("phongBan", phongBanService.findByMaPhongBan(maPhongBan));
+		return "QuanLyPhanQuyen/phongban/viewOne";
+	}
+	
+	@RequestMapping(value = "/view/getListPhongBan", produces = "text/plain;charset=UTF-8")
+	@ResponseBody
+	public String getListPhongBan(Model model, HttpServletRequest request) {
+		
+		int iDisplayStart = Integer.parseInt(request.getParameter("iDisplayStart"));
+		int iDisplayLength = Integer.parseInt(request.getParameter("iDisplayLength"));
+		String sql = phongBanService.getSQL(request);
+		List<PhongBan> listPhongBan = phongBanService.findAll(iDisplayStart, iDisplayLength, sql);
 
-	@RequestMapping(value = "/them-moi", method = RequestMethod.GET)
+		String recordsTotal = phongBanService.getRecordsTotal();
+		String recordsFiltered = phongBanService.getRecordsFiltered(sql);
+		String json = datatableService.getJsonPhongBan(recordsTotal, recordsFiltered, listPhongBan);
+		return json;
+	}
+
+	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public String addForm(Model model, final RedirectAttributes redirectAttributes) {
 		model.addAttribute("phongBan", new PhongBan());
 		return "QuanLyPhanQuyen/phongban/add_form";
 	}
 
-	@RequestMapping(value = "/them-moi", method = RequestMethod.POST)
+	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public String doAdd(Model model, @ModelAttribute("phongBan") PhongBan pb,
 			final RedirectAttributes redirectAttributes) {
 		try {
@@ -54,16 +69,16 @@ public class PhongBanController {
 		} catch (Exception e) {
 			redirectAttributes.addFlashAttribute("messageError", "Lỗi. Xin thử lại!");
 		}
-		return "redirect:/phong-ban/";
+		return "redirect:/quanlyphanquyen/phong_ban/view/danhSachPhongBan";
 	}
 
-	@RequestMapping(value = "/sua/{maPhongBan}", method = RequestMethod.GET)
+	@RequestMapping(value = "/edit/{maPhongBan}", method = RequestMethod.GET)
 	public String editForm(@PathVariable("maPhongBan") String maPhongBan, Model model) {
 		model.addAttribute("phongBan", phongBanService.findByMaPhongBan(maPhongBan));
 		return "QuanLyPhanQuyen/phongban/edit_form";
 	}
 
-	@RequestMapping(value = "/sua/luu", method = RequestMethod.POST)
+	@RequestMapping(value = "/edit/{maPhongBan}", method = RequestMethod.POST)
 	public String doEdit(Model model, @ModelAttribute("phongBan") PhongBan pb,
 			final RedirectAttributes redirectAttributes) {
 		try {
@@ -72,10 +87,10 @@ public class PhongBanController {
 		} catch (Exception e) {
 			redirectAttributes.addFlashAttribute("messageError", "Lỗi. Xin thử lại!");
 		}
-		return "redirect:/phong-ban/";
+		return "redirect:/quanlyphanquyen/phong_ban/view/danhSachPhongBan";
 	}
 
-	@RequestMapping(value = "/xoa/{maPhongBan}", method = RequestMethod.GET)
+	@RequestMapping(value = "/delete/{maPhongBan}", method = RequestMethod.GET)
 	public String delete(@PathVariable("maPhongBan") String maPhongBan, final RedirectAttributes redirectAttributes) {
 		try {
 			phongBanService.delete(maPhongBan);
@@ -83,6 +98,6 @@ public class PhongBanController {
 		} catch (Exception e) {
 			redirectAttributes.addFlashAttribute("messageError", "Lỗi. Xin thử lại!");
 		}
-		return "redirect:/phong-ban/";
+		return "redirect:/quanlyphanquyen/phong_ban/view/danhSachPhongBan";
 	}
 }

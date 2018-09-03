@@ -54,18 +54,6 @@ public class ChucDanhDaoImpl implements ChucDanhDao{
 		session.close();
 	}
 
-//	@SuppressWarnings("unchecked")
-//	@Override
-//	public List<ChucDanh> findAllForPaging(int startPosition, int maxResult) {
-//		Session session = this.sessionFactory.openSession();
-//		Query q = session.createQuery("from ChucDanh");
-//		q.setFirstResult(startPosition);
-//		q.setMaxResults(maxResult);
-//		List<ChucDanh> list = q.getResultList();
-//		session.close();
-//		return list;
-//	}
-
 	@Override
 	public ChucDanh findByMaChucDanh(String maChucDanh) {
 		Session session = this.sessionFactory.openSession();

@@ -14,7 +14,7 @@
 					<div class="breadcrumb-wrapper col-xs-12">
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item"><a href='<c:url value="/home" />'>Home</a></li>
-							<li class="breadcrumb-item"><a href='<c:url value="/phong-ban/" />'>Danh sách phòng ban</a></li>
+							<li class="breadcrumb-item"><a href='<c:url value="/quanlyphanquyen/phong_ban/view/danhSachPhongBan" />'>Danh sách phòng ban</a></li>
 							<li class="breadcrumb-item active">Thêm mới phòng ban</li>
 						</ol>
 					</div>
@@ -26,8 +26,7 @@
 		<div class="content-body">
 			<div class="main-content">
 				<div class="row">
-					<c:url var="post_url"  value="/phong-ban/them-moi" />
-					<form:form method="POST" modelAttribute="phongBan" action="${post_url}">
+					<form:form method="POST" modelAttribute="phongBan" action="">
 						<div class="form-group col-sm-6">
 						  	<label>Tên phòng ban</label>
 						  	<form:input class="form-control" path="tenPhongBan" placeholder="Tên phòng ban" />

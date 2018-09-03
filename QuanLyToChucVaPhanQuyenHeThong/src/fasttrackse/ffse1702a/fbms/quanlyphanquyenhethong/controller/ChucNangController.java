@@ -1,5 +1,9 @@
 package fasttrackse.ffse1702a.fbms.quanlyphanquyenhethong.controller;
 
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -7,44 +11,56 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import fasttrackse.ffse1702a.fbms.quanlyphanquyenhethong.model.entity.ChucNang;
 import fasttrackse.ffse1702a.fbms.quanlyphanquyenhethong.service.ChucNangService;
+import fasttrackse.ffse1702a.fbms.quanlyphanquyenhethong.service.DatatableService;
 
 @Controller
-@RequestMapping("/chuc-nang")
+@RequestMapping("/quanlyphanquyen/chuc_nang")
 public class ChucNangController {
 
 	@Autowired
 	private ChucNangService cnService;
 
-	@RequestMapping(value = "/danh-sach", method = RequestMethod.GET)
-	public String danhSachChucNang(Model model, @RequestParam(name = "page", required = false, defaultValue = "1") int currentPage) {
-		int totalRecords = cnService.findAll().size();
-		int recordsPerPage = 10;
-		int totalPages = 0;
-		if ((totalRecords / recordsPerPage) % 2 == 0) {
-			totalPages = totalRecords / recordsPerPage;
-		} else {
-			totalPages = totalRecords / recordsPerPage + 1;
-		}
-		int startPosition = recordsPerPage * (currentPage - 1);
-
-		model.addAttribute("listChucNang", cnService.findAllForPaging(startPosition, recordsPerPage));
-		model.addAttribute("lastPage", totalPages);
-		model.addAttribute("currentPage", currentPage);
+	@Autowired
+	private DatatableService datatableService;
+	
+	@RequestMapping(value = "/view/danhSachChucNang", method = RequestMethod.GET)
+	public String viewChucDanh(Model model) {
 		return "QuanLyPhanQuyen/chucnang/list";
 	}
+	
+	@RequestMapping(value = "/view/{maChucNang}", method = RequestMethod.GET)
+	public String viewOneChucDanh(@PathVariable("maChucNang") String maChucNang, Model model) {
+		model.addAttribute("chucNang", cnService.getChucNangByCode(maChucNang));
+		return "QuanLyPhanQuyen/chucnang/viewOne";
+	}
+	
+	@RequestMapping(value = "/view/getListChucNang", produces = "text/plain;charset=UTF-8")
+	@ResponseBody
+	public String getListChucNang(Model model, HttpServletRequest request) {
+		
+		int iDisplayStart = Integer.parseInt(request.getParameter("iDisplayStart"));
+		int iDisplayLength = Integer.parseInt(request.getParameter("iDisplayLength"));
+		String sql = cnService.getSQL(request);
+		List<ChucNang> listChucNang = cnService.findAll(iDisplayStart, iDisplayLength, sql);
 
-	@RequestMapping(value = "/them-moi", method = RequestMethod.GET)
+		String recordsTotal = cnService.getRecordsTotal();
+		String recordsFiltered = cnService.getRecordsFiltered(sql);
+		String json = datatableService.getJsonChucNang(recordsTotal, recordsFiltered, listChucNang);
+		return json;
+	}
+
+	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public String addForm(Model model, final RedirectAttributes redirectAttributes) {
 		model.addAttribute("chucNang", new ChucNang());
 		return "QuanLyPhanQuyen/chucnang/add_form";
 	}
 
-	@RequestMapping(value = "/them-moi/luu", method = RequestMethod.POST)
+	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public String doAdd(Model model, @ModelAttribute("chucNang") ChucNang cn,
 			final RedirectAttributes redirectAttributes) {
 		try {
@@ -53,16 +69,16 @@ public class ChucNangController {
 		} catch (Exception e) {
 			redirectAttributes.addFlashAttribute("messageError", "Lỗi. Xin thử lại!");
 		}
-		return "redirect:/chuc-nang/danh-sach";
+		return "redirect:/quanlyphanquyen/chuc_nang/view/danhSachChucNang";
 	}
 
-	@RequestMapping(value = "/sua/{code}", method = RequestMethod.GET)
+	@RequestMapping(value = "/edit/{code}", method = RequestMethod.GET)
 	public String editForm(@PathVariable("code") String code, Model model) {
 		model.addAttribute("chucNang", cnService.getChucNangByCode(code));
 		return "QuanLyPhanQuyen/chucnang/edit_form";
 	}
 
-	@RequestMapping(value = "/sua/luu", method = RequestMethod.POST)
+	@RequestMapping(value = "/edit/{code}", method = RequestMethod.POST)
 	public String doEdit(Model model, @ModelAttribute("chucNang") ChucNang cn,
 			final RedirectAttributes redirectAttributes) {
 		try {
@@ -71,10 +87,10 @@ public class ChucNangController {
 		} catch (Exception e) {
 			redirectAttributes.addFlashAttribute("messageError", "Lỗi. Xin thử lại!");
 		}
-		return "redirect:/chuc-nang/danh-sach";
+		return "redirect:/quanlyphanquyen/chuc_nang/view/danhSachChucNang";
 	}
 
-	@RequestMapping(value = "/kich-hoat/{code}", method = RequestMethod.GET)
+	@RequestMapping(value = "/active/{code}", method = RequestMethod.GET)
 	public String active(@PathVariable("code") String ma_chuc_nang, final RedirectAttributes redirectAttributes) {
 		try {
 			cnService.active(ma_chuc_nang);
@@ -82,17 +98,17 @@ public class ChucNangController {
 		} catch (Exception e) {
 			redirectAttributes.addFlashAttribute("messageError", "Lỗi. Xin thử lại!");
 		}
-		return "redirect:/chuc-nang/danh-sach";
+		return "redirect:/quanlyphanquyen/chuc_nang/view/danhSachChucNang";
 	}
 	
-	@RequestMapping(value = "/xoa/{code}", method = RequestMethod.GET)
+	@RequestMapping(value = "/delete/{code}", method = RequestMethod.GET)
 	public String delete(@PathVariable("code") String ma_chuc_nang, final RedirectAttributes redirectAttributes) {
 		try {
 			cnService.delete(ma_chuc_nang);
-			redirectAttributes.addFlashAttribute("messageSuccess", "Xóa thành công..");
+			redirectAttributes.addFlashAttribute("messageSuccess", "Xóa Thành công..");
 		} catch (Exception e) {
 			redirectAttributes.addFlashAttribute("messageError", "Lỗi. Xin thử lại!");
 		}
-		return "redirect:/chuc-nang/danh-sach";
+		return "redirect:/quanlyphanquyen/chuc_nang/view/danhSachChucNang";
 	}
 }

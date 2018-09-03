@@ -2,24 +2,23 @@ package fasttrackse.ffse1702a.fbms.quanlyphanquyenhethong.service.impl;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import fasttrackse.ffse1702a.fbms.quanlyphanquyenhethong.model.dao.ChucNangDao;
 import fasttrackse.ffse1702a.fbms.quanlyphanquyenhethong.model.entity.ChucNang;
 import fasttrackse.ffse1702a.fbms.quanlyphanquyenhethong.service.ChucNangService;
+import fasttrackse.ffse1702a.fbms.quanlyphanquyenhethong.service.DatatableService;
 
 @Service
 public class ChucNangServiceImpl implements ChucNangService {
 
 	@Autowired
 	private ChucNangDao chucNangDao;
-
-	@Override
-	public List<ChucNang> list() {
-		List<ChucNang> list = chucNangDao.list();
-		return list;
-	}
+	@Autowired
+	private DatatableService datatableService;
 
 	@Override
 	public void save(ChucNang cn) {
@@ -49,16 +48,56 @@ public class ChucNangServiceImpl implements ChucNangService {
 	
 	@Override
 	public ChucNang findByMaChucNang(String ma_chuc_nang) {
-		return null;
-	}
-
-	@Override
-	public List<ChucNang> findAllForPaging(int startPosition, int maxResult) {
-		return chucNangDao.findAllForPaging(startPosition, maxResult);
+		return chucNangDao.findByMaChucNang(ma_chuc_nang);
 	}
 
 	@Override
 	public List<ChucNang> findAll() {
 		return chucNangDao.findAll();
+	}
+	
+	@Override
+	public List<ChucNang> findAll(int iDisplayStart, int iDisplayLength, String sql) {
+		return chucNangDao.findAll(iDisplayStart, iDisplayLength, sql);
+	}
+
+	@Override
+	public String getRecordsTotal() {
+		return chucNangDao.getRecordsTotal();
+	}
+
+	@Override
+	public String getRecordsFiltered(String sql) {
+		return chucNangDao.getRecordsFiltered(sql);
+	}
+
+	@Override
+	public String getSQL(HttpServletRequest request) {
+		String selectQuery = "select cn from ChucNang cn ";
+		String[] columnNames = { "cn.ma_chuc_nang", "cn.ten_chuc_nang" };
+		String customCondition = "1 = 1";
+		String sql = datatableService.getSqlQuery(selectQuery, request, columnNames, customCondition);
+		return sql;
+	}
+
+	@Override
+	public String toJson(ChucNang cn) {
+		String maChucNang = cn.getMa_chuc_nang();
+		String tenChucNang = cn.getTen_chuc_nang();
+		int trangThai = cn.getTrang_thai();
+		String enable;
+		if(trangThai == 1) {
+			enable = "<a href='/QuanLyToChucVaPhanQuyenHeThong/quanlyphanquyen/chuc_nang/active/"+ maChucNang + "'>Đang kích hoạt</a>";
+		}else {
+			enable = "<a href='/QuanLyToChucVaPhanQuyenHeThong/quanlyphanquyen/chuc_nang/active/"+ maChucNang + "'>Chưa kích hoạt</a>";
+		}
+		String action = "<a href='/QuanLyToChucVaPhanQuyenHeThong/quanlyphanquyen/chuc_nang/view/" 
+				+ maChucNang + "'><i class='fa fa-eye'></i></a>"
+				+ "<a href='/QuanLyToChucVaPhanQuyenHeThong/quanlyphanquyen/chuc_nang/edit/"
+				+ maChucNang + "'><i class='fa fa-pencil'></i></a>"
+				+ "<a href='javascript:void(0);' data-toggle='modal' data-target='#confirm-delete' data-href='/QuanLyToChucVaPhanQuyenHeThong/quanlyphanquyen/chuc_nang/delete/"
+				+maChucNang + "'><i class='fa fa-trash'></i></a>";
+
+		return "[\"" + maChucNang + "\",\"" + tenChucNang + "\",\"" + enable + "\",\"" + action + "\"]";
 	}
 }

@@ -5,6 +5,8 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import fasttrackse.ffse1702a.fbms.quanlyphanquyenhethong.model.entity.ChucDanh;
+import fasttrackse.ffse1702a.fbms.quanlyphanquyenhethong.model.entity.ChucNang;
+import fasttrackse.ffse1702a.fbms.quanlyphanquyenhethong.model.entity.PhongBan;
 
 public interface DatatableService {
 
@@ -16,4 +18,8 @@ public interface DatatableService {
 			String customCondition);
 	
 	public String getJsonChucDanh(String recordsTotal, String recordsFiltered, List<ChucDanh> list);
+	
+	public String getJsonPhongBan(String recordsTotal, String recordsFiltered, List<PhongBan> list);
+	
+	public String getJsonChucNang(String recordsTotal, String recordsFiltered, List<ChucNang> list);
 }

@@ -23,13 +23,13 @@
 				<div class="col-xs-12">
 					<div class="card">
 						<div class="col-md-3 dash-board-item">
-							<a href="<c:url value="/phong-ban/" />" title="">
+							<a href="<c:url value="/quanlyphanquyen/phong_ban/view/danhSachPhongBan" />" title="">
 								<img src="<c:url value="/resources/images/icon_category.gif" />" alt="" />
 							</a>
 							<div>Quản lý phòng ban</div>
 						</div>
 						<div class="col-md-3 dash-board-item">
-							<a href="<c:url value="/chuc-danh/" />" title="">
+							<a href="<c:url value="/quanlyphanquyen/chuc_danh/view/danhSachChucDanh" />" title="">
 								<img src="<c:url value="/resources/images/icon_category.gif" />" alt="" />
 							</a>
 							<div>Quản lý chức danh</div>
@@ -39,6 +39,12 @@
 								<img src="<c:url value="/resources/images/icon_category.gif" />" alt="" />
 							</a>
 							<div>Quản lý phòng ban</div>
+						</div>
+						<div class="col-md-3 dash-board-item">
+							<a href="<c:url value="/quanlyphanquyen/chuc_nang/view/danhSachChucNang" />" title="">
+								<img src="<c:url value="/resources/images/icon_category.gif" />" alt="" />
+							</a>
+							<div>Quản lý chức năng</div>
 						</div>
 						<div class="col-md-3 dash-board-item">
 							<a href="<c:url value="/tai-khoan/" />" title="">

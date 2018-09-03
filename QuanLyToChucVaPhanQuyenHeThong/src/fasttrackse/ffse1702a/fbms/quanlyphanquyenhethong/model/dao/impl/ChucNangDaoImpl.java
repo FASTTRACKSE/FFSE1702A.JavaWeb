@@ -21,15 +21,6 @@ public class ChucNangDaoImpl implements ChucNangDao {
 
 	@Autowired
 	private SessionFactory sessionFactory;
-
-	@Override
-	public List<ChucNang> list() {
-		Session session = this.sessionFactory.openSession();
-		@SuppressWarnings("unchecked")
-		List<ChucNang> list = session.createQuery("from ChucNang").list();
-		session.close();
-		return list;
-	}
 	
 	@Override
 	public ChucNang findByMaChucNang(String ma_chuc_nang) {
@@ -43,18 +34,6 @@ public class ChucNangDaoImpl implements ChucNangDao {
 	public List<ChucNang> findAll() {
 		Session session = this.sessionFactory.openSession();
 		List<ChucNang> list = session.createQuery("from ChucNang").list();
-		session.close();
-		return list;
-	}
-	
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<ChucNang> findAllForPaging(int startPosition, int maxResult){
-		Session session = this.sessionFactory.openSession();
-		Query q = session.createQuery("from ChucNang");
-		q.setFirstResult(startPosition);
-		q.setMaxResults(maxResult);
-		List<ChucNang> list = q.getResultList();
 		session.close();
 		return list;
 	}
@@ -108,6 +87,35 @@ public class ChucNangDaoImpl implements ChucNangDao {
 
 		session.close();
 		return cn.get(0);
+	}
+
+	@Override
+	@SuppressWarnings("unchecked")
+	public List<ChucNang> findAll(int iDisplayStart, int iDisplayLength, String sql) {
+		Session session = this.sessionFactory.openSession();
+		List<ChucNang> listChucNang = session.createQuery(sql).setFirstResult(iDisplayStart)
+				.setMaxResults(iDisplayLength).list();
+		session.close();
+		return listChucNang;
+	}
+
+	@Override
+	public String getRecordsTotal() {
+		Session session = this.sessionFactory.openSession();
+		String sql = "SELECT COUNT(*) FROM `chuc_nang`";
+		Query query = session.createSQLQuery(sql);
+		String recordsTotal = query.getSingleResult().toString();
+		session.close();
+		return recordsTotal;
+	}
+
+	@Override
+	public String getRecordsFiltered(String sql) {
+		Session session = this.sessionFactory.openSession();
+		Query query = session.createQuery(sql.replace("select cn", "select count(*)"));
+		String recordsFiltered = query.getSingleResult().toString();
+		session.close();
+		return recordsFiltered;
 	}
 
 }

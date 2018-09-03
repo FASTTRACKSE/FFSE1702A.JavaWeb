@@ -40,11 +40,6 @@ public class ChucDanhServiceImpl implements ChucDanhService {
 		chucDanhDao.delete(maChucDanh);
 	}
 
-//	@Override
-//	public List<ChucDanh> findAllForPaging(int startPosition, int maxResult) {
-//		return chucDanhDao.findAllForPaging(startPosition, maxResult);
-//	}
-
 	@Override
 	public ChucDanh findByMaChucDanh(String maChucDanh) {
 		return chucDanhDao.findByMaChucDanh(maChucDanh);
@@ -69,10 +64,8 @@ public class ChucDanhServiceImpl implements ChucDanhService {
 	public String getSQL(HttpServletRequest request) {
 		String selectQuery = "select cd from ChucDanh cd ";
 		String[] columnNames = { "cd.maChucDanh", "cd.tenChucDanh" };
-		String customCondition = "";
-
+		String customCondition = "1=1";
 		String sql = datatableService.getSqlQuery(selectQuery, request, columnNames, customCondition);
-
 		return sql;
 	}
 
@@ -80,10 +73,11 @@ public class ChucDanhServiceImpl implements ChucDanhService {
 	public String toJson(ChucDanh cd) {
 		String maChucDanh = cd.getMaChucDanh();
 		String tenChucDanh = cd.getTenChucDanh();
-		
-		String action = "<a href='/ffse-fbms/quanlyphanquyen/quan-ly-chuc-danh/edit/"
+		String action = "<a href='/QuanLyToChucVaPhanQuyenHeThong/quanlyphanquyen/chuc_danh/view/" 
+				+ maChucDanh + "'><i class='fa fa-eye'></i></a>"
+				+ "<a href='/QuanLyToChucVaPhanQuyenHeThong/quanlyphanquyen/chuc_danh/edit/"
 				+ maChucDanh + "'><i class='fa fa-pencil'></i></a>"
-				+ "<a href='javascript:void(0);' data-toggle='modal' data-target='#confirm-delete' data-href='/ffse-fbms/quanlyphanquyen/quan-ly-chuc-danh/delete/"
+				+ "<a href='javascript:void(0);' data-toggle='modal' data-target='#confirm-delete' data-href='/QuanLyToChucVaPhanQuyenHeThong/quanlyphanquyen/chuc_danh/delete/"
 				+maChucDanh + "'><i class='fa fa-trash'></i></a>";
 
 		return "[\"" + maChucDanh + "\",\"" + tenChucDanh + "\",\"" + action + "\"]";
