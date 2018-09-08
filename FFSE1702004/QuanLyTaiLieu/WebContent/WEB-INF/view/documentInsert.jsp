@@ -89,14 +89,18 @@
 					<label class="col-md-3 label-control" for="projectinput6">
 						<spring:message code="label.access" />
 					</label>
-					<div class="col-md-9">
-						<form:select path="quyen_truy_cap">
-							<option value="all">all</option>
-							<option value="ffse1702">ffse1702</option>
-							<option value="ffse1703">ffse1703</option>
-							<option value="ffse1703">ffse1704</option>
+					<form:select path="ma_truy_cap">
+							<c:forEach var="quyentruycap" items="${listQuyen}">
+							
+								<form:option value="${quyentruycap.ma_truy_cap}"
+									label="${quyentruycap.quyen_truy_cap}" />
+							</c:forEach>
+							
+							<option value="it" >
+							
+							
+							
 						</form:select>
-					</div>
 				</div>
 				<!-- ///////////////////// -->
 			
@@ -107,6 +111,8 @@
 					<div class="col-md-9">
 						<label id="projectinput8" class="file center-block">
 							 <form:input type="file" path="file" /> <span class="file-custom"></span>
+							<form:errors path="file" cssClass="invalid-feedback d-block" />
+
 						</label>
 					</div>
 				</div>

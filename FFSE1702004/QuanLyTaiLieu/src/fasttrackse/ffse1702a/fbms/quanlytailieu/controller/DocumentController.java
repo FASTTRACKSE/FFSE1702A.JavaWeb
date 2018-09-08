@@ -16,17 +16,18 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
-import com.sun.corba.se.spi.orbutil.fsm.Guard.Result;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import fasttrackse.ffse1702a.fbms.quanlytailieu.dto.DocumentDTO;
 import fasttrackse.ffse1702a.fbms.quanlytailieu.entity.Category;
 import fasttrackse.ffse1702a.fbms.quanlytailieu.entity.Document;
 import fasttrackse.ffse1702a.fbms.quanlytailieu.entity.Icon;
+import fasttrackse.ffse1702a.fbms.quanlytailieu.entity.QuyenTruyCap;
 import fasttrackse.ffse1702a.fbms.quanlytailieu.entity.Status;
 import fasttrackse.ffse1702a.fbms.quanlytailieu.service.DocumentService;
 
 @Controller
+@SessionAttributes({"quyenTruyCap"})
 public class DocumentController {
 
 	@Autowired
@@ -171,5 +172,8 @@ public class DocumentController {
 	public List<Category> listCategory() {
 		return this.documentService.listCategory();
 	}
-
+	@ModelAttribute("listQuyen")
+	public List<QuyenTruyCap> listQuyen() {
+		return this.documentService.listQuyen();
+	}
 }

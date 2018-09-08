@@ -29,9 +29,18 @@ public class Document {
 
 	@Column(name = "ghi_chu")
 	private String ghi_chu;
+	
+	@ManyToOne
+	@JoinColumn(name = "ma_truy_cap", referencedColumnName = "ma_truy_cap")
+	private QuyenTruyCap ma_truy_cap;
 
-	@Column(name = "quyen_truy_cap")
-	private String quyen_truy_cap;
+	public QuyenTruyCap getMa_truy_cap() {
+		return ma_truy_cap;
+	}
+
+	public void setMa_truy_cap(QuyenTruyCap ma_truy_cap) {
+		this.ma_truy_cap = ma_truy_cap;
+	}
 
 	@ManyToOne
 	@JoinColumn(name = "ma_danh_muc", referencedColumnName = "ma_danh_muc")
@@ -58,7 +67,7 @@ public class Document {
 	}
 
 	@ManyToOne
-	@JoinColumn(name = "ma_icon", referencedColumnName = "ma_icon",updatable = false)
+	@JoinColumn(name = "ma_icon", referencedColumnName = "ma_icon")
 	private Icon ma_icon;
 
 	public Icon getMa_icon() {
@@ -105,13 +114,7 @@ public class Document {
 		this.file = file;
 	}
 
-	public String getQuyen_truy_cap() {
-		return quyen_truy_cap;
-	}
 
-	public void setQuyen_truy_cap(String quyen_truy_cap) {
-		this.quyen_truy_cap = quyen_truy_cap;
-	}
 
 	public String getGhi_chu() {
 		return ghi_chu;

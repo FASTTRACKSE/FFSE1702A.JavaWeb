@@ -37,6 +37,7 @@
    <!-- END Page Level CSS-->
    <link rel="stylesheet" type="text/javascript" href="<c:url value="/resources/js/jquery.js"/>">
    <link rel="stylesheet" type="text/javascript" href="<c:url value="/resources/js/bootstrap.min.js"/>">
+
 </head>
 
 <body data-open="click" data-menu="vertical-menu" data-col="2-columns" class="vertical-layout vertical-menu 2-columns   menu-expanded fixed-navbar">

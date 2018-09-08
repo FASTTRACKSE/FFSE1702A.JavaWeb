@@ -61,7 +61,7 @@
 							<table class="table mb-0">
 								<thead>
 									<tr class="border-bottom-active border-custom-color">
-										<th>STT</th>
+										<th><spring:message code="label.nameID"/></th>
 										<th><spring:message code="label.nameDocument"/></th>
 										<th><spring:message code="label.describe"/></th>
 										<th><spring:message code="label.category"/></th>
@@ -79,7 +79,7 @@
 												<td>${document.mo_ta}</td>
 												<td>${document.ma_danh_muc.ten_danh_muc}</td>
 												<td>${document.ma_trang_thai.ten_trang_thai}</td>
-												<td>${document.quyen_truy_cap}</td>
+												<td>${document.ma_truy_cap}</td>
 												<td><a href="documentDelete/${document.id}" class="btn-warning btn"><spring:message code="label.delete"/></a><a href="documentEdit/${document.id}" class="btn-warning btn" > <spring:message code="label.edit"/> </a></td>
 											</tr>
 										</c:forEach>

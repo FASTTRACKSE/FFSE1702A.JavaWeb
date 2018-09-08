@@ -21,9 +21,9 @@
 								href="<%=request.getContextPath()%>/index">Home</a></li>
 							<li class="breadcrumb-item"><a
 								href="<%=request.getContextPath()%>/index"><spring:message
-										code="label.menu.mydocument" /></a></li>
+										code="label.documentupdate" /></a></li>
 							<li class="breadcrumb-item active"><spring:message
-									code="label.insert.title" /></li>
+									code="label.update.title" /></li>
 						</ol>
 					</div>
 				</div>
@@ -31,7 +31,7 @@
 		</div>
 		<div style="text-align: center; color: red;">
 			<h1>
-				<spring:message code="label.insert.title" />
+				<spring:message code="label.update.title" />
 			</h1>
 			<a href="<%=request.getContextPath()%>/index"><spring:message
 					code="label.back" /></a>

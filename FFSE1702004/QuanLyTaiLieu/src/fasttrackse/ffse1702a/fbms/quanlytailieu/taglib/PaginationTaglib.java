@@ -53,15 +53,15 @@ public class PaginationTaglib extends SimpleTagSupport {
 
 	private String constructLink(int page, String text, String className, boolean disabled) {
 		StringBuilder link = new StringBuilder("<li");
-		if (className != null) {
-			link.append(" class=\"");
+		//if (className != null) {
+			link.append(" class=\"page-item ");
 			link.append(className);
 			link.append("\"");
-		}
+		//}
 		if(disabled)
-			link.append(">").append("<a href=\"#\">"+text+"</a></li>");
+			link.append(">").append("<a class='page-link' href=\"#\">"+text+"</a></li>");
 		else
-			link.append(">").append("<a href=\""+uri+"?offset="+page + "\">"+text+"</a></li>");
+			link.append(">").append("<a class='page-link' href=\""+uri+"?offset="+page + "\">"+text+"</a></li>");
 		return link.toString();
 	}
 

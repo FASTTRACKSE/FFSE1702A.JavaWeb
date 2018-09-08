@@ -1,11 +1,13 @@
 package fasttrackse.ffse1702a.fbms.quanlytailieu.dto;
 
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import fasttrackse.ffse1702a.fbms.quanlytailieu.entity.Category;
 import fasttrackse.ffse1702a.fbms.quanlytailieu.entity.Icon;
+import fasttrackse.ffse1702a.fbms.quanlytailieu.entity.QuyenTruyCap;
 import fasttrackse.ffse1702a.fbms.quanlytailieu.entity.Status;
 
 public class DocumentDTO {
@@ -19,11 +21,20 @@ public class DocumentDTO {
 	private String mo_ta;
 
 	private String ghi_chu;
+	
+	private QuyenTruyCap ma_truy_cap;
 
-	private String quyen_truy_cap;
+	public QuyenTruyCap getMa_truy_cap() {
+		return ma_truy_cap;
+	}
+
+	public void setMa_truy_cap(QuyenTruyCap ma_truy_cap) {
+		this.ma_truy_cap = ma_truy_cap;
+	}
 
 	private Category ma_danh_muc;
-
+	
+	@NotNull
 	private CommonsMultipartFile file;
 
 	public CommonsMultipartFile getFile() {
@@ -96,13 +107,6 @@ public class DocumentDTO {
 		this.tai_ve = tai_ve;
 	}
 
-	public String getQuyen_truy_cap() {
-		return quyen_truy_cap;
-	}
-
-	public void setQuyen_truy_cap(String quyen_truy_cap) {
-		this.quyen_truy_cap = quyen_truy_cap;
-	}
 
 	public String getGhi_chu() {
 		return ghi_chu;

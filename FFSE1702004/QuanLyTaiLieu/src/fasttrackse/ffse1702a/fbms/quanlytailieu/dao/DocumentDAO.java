@@ -11,6 +11,7 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import fasttrackse.ffse1702a.fbms.quanlytailieu.entity.Category;
 import fasttrackse.ffse1702a.fbms.quanlytailieu.entity.Document;
+import fasttrackse.ffse1702a.fbms.quanlytailieu.entity.QuyenTruyCap;
 
 public interface DocumentDAO  {
 	// list
@@ -56,5 +57,7 @@ public interface DocumentDAO  {
 	
 	//upload file
 	public Map<String, String> uploadfile(@RequestParam(value="file") CommonsMultipartFile commonsMultipartFiles,HttpServletRequest request,ModelMap modelMap);
+
+	public List<QuyenTruyCap> listQuyen();
 
 }

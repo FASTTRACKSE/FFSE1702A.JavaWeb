@@ -16,7 +16,9 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import fasttrackse.ffse1702a.fbms.quanlytailieu.entity.Category;
 import fasttrackse.ffse1702a.fbms.quanlytailieu.entity.Document;
+import fasttrackse.ffse1702a.fbms.quanlytailieu.entity.QuyenTruyCap;
 import fasttrackse.ffse1702a.fbms.quanlytailieu.entity.Status;
+
 import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
@@ -38,6 +40,16 @@ public class DocumentDAOImpl implements DocumentDAO {
 	public List<Document> getAll(Integer offset, Integer maxResults) {
 		 return sessionFactory.openSession().createCriteria(Document.class).setFirstResult(offset!=null?offset:0).setMaxResults(maxResults!=null?maxResults:5).list();
 	}
+	
+
+		public List<QuyenTruyCap> listQuyen() {
+			Session session = sessionFactory.getCurrentSession();
+			System.out.println("<br 2 />");
+			Query<QuyenTruyCap> query = session.createQuery("from QuyenTruyCap", QuyenTruyCap.class);
+			List<QuyenTruyCap> list = (List<QuyenTruyCap>) query.list();
+			return list;
+		}
+	
 	
 	//count
 	@SuppressWarnings("deprecation")
