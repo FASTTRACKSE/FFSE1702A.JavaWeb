@@ -29,7 +29,7 @@ public class DuAnDaoImpl implements DuAnDao {
 	@Override
 	public DuAn getById(int maDuAn) {
 		Session session=sessionFactory.getCurrentSession();
-		return session.get(DuAn.class,maDuAn);
+		return session.createQuery("from DuAn where  maDuAn ="+maDuAn,DuAn.class).getSingleResult();
 	}
 
 	@Override

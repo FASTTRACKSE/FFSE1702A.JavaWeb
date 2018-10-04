@@ -21,8 +21,8 @@ public class NhiemVuServiceImpl implements NhiemVuService {
 	}
 
 	@Override
-	public void update(NhiemVu nhiemVu) {
-		this.nhiemVuDao.update(nhiemVu);
+	public void update(NhiemVu nhiemVu, NhiemVu oldNhiemVu) {
+		this.nhiemVuDao.update(nhiemVu,oldNhiemVu);
 		
 	}
 	@Override

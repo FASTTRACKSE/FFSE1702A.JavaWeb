@@ -42,7 +42,7 @@
 										<h5><spring:message code="duan.employee" /></h5>
 										<div class="controls">
 												<form:select path="maNhanVien" cssClass="form-control">
-												<option value="${nhanvien.maNhanVien }">${nhanvien.tenNhanVien }</option>
+												<option value="${nhanvien.maNhanVien }">${nhanvien.hoDem } ${nhanvien.ten }</option>
 											</form:select>
 											<form:errors path="maNhanVien" cssStyle="color: red"></form:errors>
 										<div class="help-block"></div></div>
@@ -52,8 +52,14 @@
 									<div class="form-group">
 										<h5><spring:message code="duan.vaitro" /></h5>
 										<div class="controls">
-											<form:select path="maVaiTro" cssClass="form-control"  items="${vaitro }" itemValue="maVaiTro" itemLabel="tenVaiTro">
+											<form:select path="maVaiTro" cssClass="form-control"  >
+												<c:forEach items="${vaitro }" var="vt">
+													<option value="${vt.maVaiTro }"
+													<c:if test="${vt.maVaiTro==nhiemvu.maVaiTro }">selected="true"</c:if>
+													
+													>${vt.tenVaiTro}</option>
 												
+												</c:forEach>
 											</form:select>
 											<form:errors path="maVaiTro" cssStyle="color: red"></form:errors>
 										<div class="help-block"></div></div>
@@ -61,7 +67,7 @@
 									</div> 
 									
 									
-									
+										<input name="oldVaitro" type="hidden" value="${nhiemvu.maVaiTro }" />
 									
 									<div class="text-xs-right">
 										<button type="submit" class="btn btn-success">Submit <i class="fa fa-thumbs-o-up position-right"></i></button>

@@ -15,22 +15,25 @@
         <ul id="main-menu-navigation" data-menu="menu-navigation" class="navigation navigation-main">
           <li class=" navigation-header"><span><spring:message code="quanlyduan.titlemenu" /></span><i data-toggle="tooltip" data-placement="right" data-original-title="General" class=" ft-minus"></i>
           </li>
+        
           <li class=" nav-item"><a href="${duan }"><i class="ft-home"></i><span data-i18n="" class="menu-title"><spring:message code="quanlyduan.titlemenu" /></span></a>
             <ul class="menu-content">
-              <li><a href="${duanlink }" class="menu-item"><spring:message code="quanlyduan.duanmenu" /></a>
+              <li  <c:if test="${url.contains('/quanlyduan/duan') }">class="active"</c:if> ><a href="${duanlink }" class="menu-item"><spring:message code="quanlyduan.duanmenu" /></a>
               </li>
-              <li><a href="${databaselink }" class="menu-item"><spring:message code="quanlyduan.databasemenu" /></a>
+              <c:if test="${TPP==true||PM==true }">
+              <li <c:if test="${url.contains('/quanlyduan/database') }">class="active"</c:if>><a href="${databaselink }" class="menu-item"><spring:message code="quanlyduan.databasemenu" /></a>
               </li>
-              <li><a href="${ngonngulink }" class="menu-item"><spring:message code="quanlyduan.language" /></a>
+              <li <c:if test="${url.contains('/quanlyduan/ngonngu') }">class="active"</c:if>><a href="${ngonngulink }" class="menu-item"><spring:message code="quanlyduan.language" /></a>
               </li>
-              <li><a href="${frameworklink }" class="menu-item"><spring:message code="quanlyduan.frameworkmenu" /></a>
+              <li <c:if test="${url.contains('/quanlyduan/framework') }">class="active"</c:if>><a href="${frameworklink }" class="menu-item"><spring:message code="quanlyduan.frameworkmenu" /></a>
               </li>
-              <li><a href="${customerlink }" class="menu-item"><spring:message code="quanlyduan.customer" /></a>
+              <li <c:if test="${url.contains('/quanlyduan/khachhang') }">class="active"</c:if>><a href="${customerlink }" class="menu-item"><spring:message code="quanlyduan.customer" /></a>
               </li>
-              <li><a href="${vendorlink }" class="menu-item"><spring:message code="quanlyduan.vendor" /></a>
+              <li <c:if test="${url.contains('/quanlyduan/doitac') }">class="active"</c:if>><a href="${vendorlink }" class="menu-item"><spring:message code="quanlyduan.vendor" /></a>
               </li>
-              <li><a href="${domainlink }" class="menu-item"><spring:message code="quanlyduan.domain" /></a>
-              </li>
+              <li <c:if test="${url.contains('/quanlyduan/nghiepvu') }">class="active"</c:if>><a href="${domainlink }" class="menu-item"><spring:message code="quanlyduan.domain" /></a>
+              </li> 
+              </c:if>
             </ul>
           </li>
           

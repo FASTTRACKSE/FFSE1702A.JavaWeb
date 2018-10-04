@@ -20,6 +20,7 @@
 
 	<!-- Add support for conversion, formatting and validation support -->
 	<mvc:annotation-driven/>
+	
 
 	<!-- Define Spring MVC view resolver -->
 	<bean
@@ -32,8 +33,8 @@
 	<bean id="theDataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
           destroy-method="close">
         <property name="driverClass" value="com.mysql.jdbc.Driver" />
-        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/ffse1702a?useEncoding=true&amp;characterEncoding=UTF-8" />
-        <property name="user" value="ffse1702" />
+        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/ffse10702a?useEncoding=true&amp;characterEncoding=UTF-8" />
+        <property name="user" value="ffse1702a" />
         <property name="password" value="123456" /> 
 
         <!-- these are connection pool properties for C3P0 -->
@@ -47,10 +48,12 @@
 		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
 		<property name="dataSource" ref="theDataSource" />
 		<property name="packagesToScan" value="fasttrackse1702a.fbms.quanlyduan.entity" />
+		
 		<property name="hibernateProperties">
 		   <props>
 		      <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
 		      <prop key="hibernate.show_sql">false</prop>
+		      <!-- <prop key="javax.persistence.validation.mode">none</prop> -->
 		   </props>
 		</property>
    </bean>	  
@@ -66,6 +69,7 @@
 
     <!-- Resources theme location -->
      <mvc:resources mapping="/resources/**" location="/resources/stack-admin/" cache-period="31556926" />
+     
 	<bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource" >
 		<property name="basename" value="resources/i18n/messages"></property>
 		<property name="defaultEncoding" value="UTF-8"></property>

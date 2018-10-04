@@ -64,12 +64,12 @@ public class DuAn implements Serializable,Comparable<DuAn>{
 	@NotNull
 	private TinhTrang tinhTrang ;
 	
-	@ManyToOne(fetch = FetchType.EAGER,cascade= CascadeType.ALL,optional=true)
+	@ManyToOne(fetch = FetchType.EAGER,cascade= CascadeType.ALL)
 	@JoinColumn(name="ma_khach_hang",referencedColumnName="ma_khach_hang", insertable=true, updatable=true)
 	@NotNull
 	private KhachHang khachHang ;
 	
-	@ManyToOne(fetch = FetchType.EAGER,cascade= CascadeType.ALL,optional=true)
+	@ManyToOne(fetch = FetchType.EAGER,cascade= CascadeType.ALL)
 	@JoinColumn(name="ma_nghiep_vu",referencedColumnName="ma_nghiep_vu", insertable=true, updatable=true)
 	@NotNull
 	private NghiepVu nghiepVu ;

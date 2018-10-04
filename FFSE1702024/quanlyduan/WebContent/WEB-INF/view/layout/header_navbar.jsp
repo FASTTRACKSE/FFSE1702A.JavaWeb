@@ -11,7 +11,7 @@
 						alt="stack admin logo"
 						src="<c:url value="/resources/images/logo/stack-logo.png"/>"
 						class="brand-logo">
-						<h2 class="brand-text">Stack</h2></a></li>
+						<h2 class="brand-text">FFSE <c:out value="${local }"/></h2></a></li>
 				<li class="nav-item hidden-md-up float-xs-right"><a
 					data-toggle="collapse" data-target="#navbar-mobile"
 					class="nav-link open-navbar-container"><i
@@ -32,21 +32,23 @@
 							<input type="text" placeholder="Explore Stack..." class="input">
 						</div></li>
 				</ul>
+			
+		
 				<ul class="nav navbar-nav float-xs-right">
 					<li class="dropdown dropdown-language nav-item"><a
 						id="dropdown-flag" href="#" data-toggle="dropdown"
 						aria-haspopup="true" aria-expanded="false"
 						class="dropdown-toggle nav-link"><i
-							class="flag-icon flag-icon-gb"></i><span
+					<c:if test="${local=='vi' }">class="flag-icon flag-icon-vn"</c:if><c:if test="${local=='en' }">class="flag-icon flag-icon-gb"</c:if><c:if test="${local=='fr' }">class="flag-icon flag-icon-fr"</c:if><c:if test="${local=='ja' }">class="flag-icon flag-icon-jp"</c:if>	 	></i><span
 							class="selected-language"></span></a>
 						<div aria-labelledby="dropdown-flag" class="dropdown-menu">
-							<a href="?language=en" class="dropdown-item"><i
-								class="flag-icon flag-icon-gb"></i> English</a><a href="?language=fr"
+							<a href="?language=vi" class="dropdown-item"><i
+								class="flag-icon flag-icon-vn"></i> Vietnamese</a><a href="?language=en"
+								class="dropdown-item"><i class="flag-icon flag-icon-gb"></i>
+								EngLish</a><a href="?language=ja" class="dropdown-item"><i
+								class="flag-icon flag-icon-jp"></i> Japan</a><a href="?language=fr"
 								class="dropdown-item"><i class="flag-icon flag-icon-fr"></i>
-								French</a><a href="?language=vi" class="dropdown-item"><i
-								class="flag-icon flag-icon-vn"></i> VietNammese</a><a href="?language=ja"
-								class="dropdown-item"><i class="flag-icon flag-icon-jp"></i>
-								Japan</a>
+								France</a>
 						</div></li>
 					<li class="dropdown dropdown-user nav-item"><a href="#"
 						data-toggle="dropdown"

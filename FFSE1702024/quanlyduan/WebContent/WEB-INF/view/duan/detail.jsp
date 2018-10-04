@@ -23,17 +23,20 @@
 					</ul>
 				</div>
 			</div>
+			
 			<div class="card-body collapse in">
 				<div class="card-block card-dashboard">
 
 					<p>
 						<span class="text-bold-600">${duan.tenDuAn }</span>
+						
 					</p>
 					<div class="table-responsive">
 						<table class="table">
 
 							<tbody>
 								<tr>
+								
 									<th><spring:message code="duan.code" /></th>
 									<td>${duan.maDuAn }</td>
 								</tr>
@@ -58,6 +61,7 @@
 									<th><spring:message code="duan.status" /></th>
 									<td>${duan.tinhTrang.tenTinhTrang }</td>
 								</tr>
+								
 								<tr>
 									<th><spring:message code="duan.framework" /></th>
 									<td><c:forEach items="${duan.framework }" var="fr">
@@ -92,20 +96,18 @@
 																code="duan.addpm" text="Add PM" /></a></c:if> --%>
 									<c:if test="${addPM==true }"><a href="${addrolelink }${duan.maDuAn }"><spring:message
 																code="duan.addpm" text="Add PM" /></a></c:if>
-									<c:forEach items="${duan.hoSoNhanVien }" var="nv">
+									
+									<c:forEach items="${phancongnhiemvu }" var="nhiemvu">
+											<c:if test="${nhiemvu.maVaiTro=='VT01' }" >
+												<c:forEach items="${duan.hoSoNhanVien }" var="nv">
 										
-										<c:forEach items="${nv.vaiTro }" var="vt">
-										
-										<c:choose>
-											<c:when test="${vt.tenVaiTro=='PM' }">
-												
-												${nv.ten },
-												
-											</c:when>
+													<c:if test="${nv.maNhanVien==nhiemvu.maNhanVien }">
+															${nv.hoDem } ${nv.ten },
+													</c:if>
+												</c:forEach>
 											
-											
-											</c:choose>
-										</c:forEach>
+											</c:if>
+									
 									</c:forEach>
 									</td>
 								</tr>
