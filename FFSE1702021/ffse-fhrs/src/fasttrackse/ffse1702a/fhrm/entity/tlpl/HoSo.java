@@ -13,104 +13,138 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.validator.constraints.Length;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
-@Table(name="ho_so")
+@Table(name = "ho_so")
 public class HoSo {
 	@Id
-	@Column(name="ma_nhan_vien")
+	@Column(name = "ma_nhan_vien")
 	private int maNhanVien;
-	
-	@Column(name="ho_ten")
+
+	@NotEmpty
+	@Length(min = 4, max = 30)
+	@Column(name = "ho_ten")
 	private String hoTen;
-	
-	@Column(name="img")
-	private String img;
-	
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-	@JoinColumn(name="ma_vai_tro",referencedColumnName="ma_vai_tro", insertable=true, updatable=true)
-	private VaiTro vaiTro;
-	
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-	@JoinColumn(name="ma_phong_ban",referencedColumnName="ma_phong_ban", insertable=true, updatable=true)
-    private PB phongBan;
-	
-	@Column(name="luong")
-	private int luong;
-	
-	@Column(name="ma_hop_dong")
-	private String maHopDong;
-	
-	@Column(name="ca_lam_viec")
-	private String caLamViec;
-	
-	@Column(name="vi_tri")
-	private String viTri;
-	
-	
-	
-	@Column(name="sdt")
-	private int sdt;
-	
-	@Column(name="so_hop_dong")
-	private String soHopDong;
-	
 
 	
-	@Column(name="ma_gioi_tinh")
+	@Column(name = "img")
+	private String img;
+
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+	@JoinColumn(name = "ma_vai_tro", referencedColumnName = "ma_vai_tro", insertable = true, updatable = true)
+	@NotNull
+	private VaiTro vaiTro;
+
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+	@JoinColumn(name = "ma_phong_ban", referencedColumnName = "ma_phong_ban", insertable = true, updatable = true)
+	@NotNull
+	private PB phongBan;
+
+	@Column(name = "luong")
+	@NotNull
+	private int luong;
+
+	@Column(name = "ma_hop_dong")
+	@NotEmpty
+	private String maHopDong;
+
+	@Column(name = "ca_lam_viec")
+	@NotEmpty
+	private String caLamViec;
+
+	@Column(name = "vi_tri")
+	@NotEmpty
+	private String viTri;
+
+	@Column(name = "sdt")
+	@NotNull
+	private int sdt;
+
+	@Column(name = "so_hop_dong")
+	@NotEmpty
+	private String soHopDong;
+
+	@NotEmpty
+	@Column(name = "ma_gioi_tinh")
 	private String maGioiTinh;
 	
-
-	
-	@Column(name="tinh_trang_hon_nhan")
+	@NotEmpty
+	@Column(name = "tinh_trang_hon_nhan")
 	private String tinhTrangHonNhan;
-	
-	@Column(name="ten_bo")
+
+	@Column(name = "ten_bo")
+	@NotEmpty
 	private String tenBo;
-	
-	@Column(name="ten_me")
+
+	@Column(name = "ten_me")
+	@NotEmpty
 	private String tenMe;
-	
-	@Column(name="trinh_do_chuyen_mon")
+
+	@Column(name = "trinh_do_chuyen_mon")
+	@NotEmpty
 	private String trinhDoChuyenMon;
-	
-	@Column(name="kinh_nghiem")
+
+	@Column(name = "kinh_nghiem")
+	@NotEmpty
 	private String kinhNghiem;
-	
-	@Column(name="note")
+
+	@Column(name = "note")
+	@NotEmpty
 	private String note;
-	
-	@Column(name="dia_chi_hien_tai")
+
+	@Column(name = "dia_chi_hien_tai")
+	@NotEmpty
 	private String diaChiHienTai;
-	
-	@Column(name="dia_chi_thuong_tru")
+
+	@Column(name = "dia_chi_thuong_tru")
+	@NotEmpty
 	private String diaChiThuongTru;
-	
-	@Column(name="lien_he_khac")
+
+	@Column(name = "lien_he_khac")
+	@NotEmpty
 	private String lienHeKhac;
-	
-	@Column(name="ten_ngan_hang")
+
+	@Column(name = "ten_ngan_hang")
+	@NotEmpty
 	private String tenNganHang;
-	
-	@Column(name="so_tai_khoan")
+
+	@Column(name = "so_tai_khoan")
+	@NotNull
 	private int soTaiKhoan;
-	
-	@Column(name="email")
+
+	@NotEmpty
+	@Email
+	@Length(min = 10, max = 30)
+	@Column(name = "email")
+
 	private String email;
-	@Column (name="ngay_tham_gia")
-	@DateTimeFormat(pattern="yyyy-MM-dd")
+	@Column(name = "ngay_tham_gia")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Temporal(TemporalType.DATE)
 	@NotNull
 	private Date ngayThamGia;
-	
-	@Column (name="ngay_sinh")
-	@DateTimeFormat(pattern="yyyy-MM-dd")
+
+	@Column(name = "ngay_sinh")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Temporal(TemporalType.DATE)
 	@NotNull
 	private Date ngaySinh;
+	@Column(name = "is_delete")
+    private int isDelete;
+	
+	public int getIsDelete() {
+		return isDelete;
+	}
+
+	public void setIsDelete(int isDelete) {
+		this.isDelete = isDelete;
+	}
+
 	public int getMaNhanVien() {
 		return maNhanVien;
 	}
@@ -135,8 +169,6 @@ public class HoSo {
 		this.img = img;
 	}
 
-
-
 	public VaiTro getVaiTro() {
 		return vaiTro;
 	}
@@ -144,8 +176,6 @@ public class HoSo {
 	public void setVaiTro(VaiTro vaiTro) {
 		this.vaiTro = vaiTro;
 	}
-
-	
 
 	public PB getPhongBan() {
 		return phongBan;
@@ -187,8 +217,6 @@ public class HoSo {
 		this.viTri = viTri;
 	}
 
-	
-
 	public int getSdt() {
 		return sdt;
 	}
@@ -205,8 +233,6 @@ public class HoSo {
 		this.soHopDong = soHopDong;
 	}
 
-
-
 	public String getMaGioiTinh() {
 		return maGioiTinh;
 	}
@@ -214,8 +240,6 @@ public class HoSo {
 	public void setMaGioiTinh(String maGioiTinh) {
 		this.maGioiTinh = maGioiTinh;
 	}
-
-	
 
 	public String geTinhTrangHonNhan() {
 		return tinhTrangHonNhan;
@@ -332,5 +356,5 @@ public class HoSo {
 	public void setSoTaiKhoan(int soTaiKhoan) {
 		this.soTaiKhoan = soTaiKhoan;
 	}
-	
+
 }

@@ -39,19 +39,24 @@ public class HoSoDaoImpl implements HoSoDao{
 	public List<HoSo> getAll() {
 		// TODO Auto-generated method stub
 		Session session=sessionFactory.getCurrentSession();
-		return session.createQuery("from HoSo",HoSo.class).list();
+		return session.createQuery("from HoSo where isDelete =0",HoSo.class).list();
 	}
 
 	@Override
 	public void update(HoSo hoso) {
 		// TODO Auto-generated method stub
-		
+		Session session = sessionFactory.getCurrentSession();
+		session.update(hoso);
+
 	}
 
 	@Override
 	public void delete(int maNhanVien) {
 		// TODO Auto-generated method stub
-		
+		Session session=sessionFactory.getCurrentSession();
+		HoSo hoso= session.get(HoSo.class, maNhanVien);
+		hoso.setIsDelete(1);
+		session.update(hoso);
 	}
 
 	@Override

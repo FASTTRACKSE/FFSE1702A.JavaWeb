@@ -10,6 +10,7 @@ import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 
 
 
@@ -21,6 +22,7 @@ public class VaiTro {
 	private String maVaiTro;
 	
 	@Column(name="ten_vai_tro")
+	@NotEmpty
 	private String tenVaiTro;
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "vaiTro",cascade=CascadeType.ALL)
 	private Set<HoSo> hoso = new HashSet<HoSo>(0);

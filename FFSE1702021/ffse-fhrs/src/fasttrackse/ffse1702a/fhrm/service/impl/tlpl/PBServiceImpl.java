@@ -37,7 +37,7 @@ public class PBServiceImpl implements PBService{
 	@Override
 	public void update(PB phongban) {
 		// TODO Auto-generated method stub
-		
+		this.phongBanDao.update(phongban);
 	}
 
 	@Override

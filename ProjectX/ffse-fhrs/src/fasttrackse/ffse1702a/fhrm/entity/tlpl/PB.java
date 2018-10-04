@@ -10,15 +10,18 @@ import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name="phong_ban")
 public class PB {
 	@Id
 	@Column(name="ma_phong_ban")
+	
 	private String maPhongBan;
 	
 	@Column(name="ten_phong_ban")
+	@NotEmpty
 	private String tenPhongBan;
 
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "phongBan",cascade=CascadeType.ALL)

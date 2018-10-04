@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <jsp:include page="/WEB-INF/view/templates/header.jsp" />
 <style>
 .tbl_actions a {
@@ -31,7 +32,6 @@
 }
 
 #datatable tr td:last-child {
-	letter-spacing: 15px;
 	min-width: 100px;
 	text-align: center !important;
 }
@@ -58,8 +58,8 @@
 				<div role="group" aria-label="Button group with nested dropdown"
 					class="btn-group float-md-right" id="add-new">
 					<a href="<c:url value = "/QuanTriHeThong/chuc_nang/add"/>"
-						class="btn btn-primary"><span class="fa fa-plus"></span> Thêm
-						mới</a>
+						class="btn btn-primary"><span class="fa fa-plus"></span> <spring:message
+							code="hoso.add"></spring:message></a>
 				</div>
 			</div>
 		</div>
@@ -72,216 +72,345 @@
 
 			<div class="row">
 				<div class="col-xs-12">
-				<form:form cssClass="form-horizontal" modelAttribute="hoso"   >
-					<div class="col-xs-4">
+					<c:url value="/quantrinhansu/update" var="update" />
+					<form:form cssClass="form-horizontal" modelAttribute="hoso"
+						method="POST" action="${update}" enctype="multipart/form-data">
+						<div class="col-xs-4">
 
-						<h4 class="card-title">Ảnh</h4>
-						<table id="datatable"
-							class="table table-striped table-bordered dataex-res-constructor">
-							<thead>
-								<tr>
-									<th>Mã Nhân Viên</th>
-									<td ><form:input readonly="true" path="maNhanVien" hiden="true"/></td>
-
-								</tr>
-								<tr>
-									<th>Vai Trò</th>
-									<td ><form:input readonly="true" path="maVaiTro" hiden="false"/></td>
-                                </tr>
-                                <tr>
-									<th>Phòng Ban</th>
-									<td ><form:input readonly="true" path="maPhongBan" hiden="false"/></td>
-                                </tr>
-                                <tr>
-									<th>Lương</th>
-									<td ><form:input readonly="true" path="luong" hiden="false"/></td>
-                                </tr>
-                                <tr>
-									<th>Loại Hợp Đồng</th>
-									<td ><form:input readonly="true" path="maHopDong" hiden="false"/></td>
-                                </tr>
-                               
-                                <tr>
-									<th>Ca Làm Việc</th>
-									<td ><form:input readonly="true" path="caLamViec" hiden="false"/></td>
-                                </tr>
-                                <tr>
-									<th>Vị Trí Làm Việc</th>
-									<td ><form:input readonly="true" path="viTri" hiden="false"/></td>
-                                </tr>
-                                <tr>
-									<th>Ngày Tham Gia</th>
-									<td ><form:input readonly="true" path="ngayThamGia" hiden="false"/></td>
-                                </tr>
-							</thead>
-							<tbody>
-							
-									
-									
-										
-									
-									
-
-							</tbody>
-						</table>
-					</div>
-					<div class="col-xs-8">
-						<div>
-							<div class="card">
-								<div class="card-header">
-									<h4 class="card-title">Hồ sơ</h4>
-									<a class="heading-elements-toggle"><i
-										class="fa fa-ellipsis-v font-medium-3"></i></a>
-
-								</div>
-								<div class="card-body collapse in">
-									<div class="card-block card-dashboard">
-										<div class="table-responsive">
-											<table id="datatable"
-												class="table table-striped table-bordered dataex-res-constructor">
-												<thead>
-													<tr>
-													<th>Phone</th>
-													<td ><form:input readonly="true" path="sdt" hiden="false"/></td>
-													</tr>
-													<tr>
-													<th>Số hợp đồng</th>
-													<td ><form:input readonly="true" path="soHopDong" hiden="false"/></td>
-													</tr>
-													<tr>
-													<th>Email</th>
-													<td ><form:input readonly="true" path="email" hiden="false"/></td>
-													</tr>
-													<tr>
-													<th>Giới tính</th>
-													<td ><form:input readonly="true" path="maGioiTinh" hiden="false"/></td>
-													</tr>
-													<tr>
-													<th>Ngày Sinh</th>
-													<td ><form:input readonly="true" path="ngaySinh" hiden="false"/></td>
-													</tr>
-													<tr>
-													<th>Tình trạng hôn nhân</th>
-													<td ><form:input readonly="true" path="tinhTrangHonNhan" hiden="false"/></td>
-													</tr>
-													<tr>
-													<th>Tên bố</th>
-													<td ><form:input readonly="true" path="tenBo" hiden="false"/></td>
-													</tr>
-													<tr>
-													<th>Tên mẹ</th>
-													<td ><form:input readonly="true" path="tenMe" hiden="false"/></td>
-													</tr>
-													<tr>
-													<th>Kinh nghiệm</th>
-													<td ><form:input readonly="true" path="kinhNghiem" hiden="false"/></td>
-													</tr>
-													<tr>
-													<th>Ghi chú</th>
-													<td ><form:input readonly="true" path="note" hiden="false"/></td>
-													</tr>
-												</thead>
-
-
-											</table>
-
-										</div>
-									</div>
-								</div>
+							<h4 class="card-title">Ảnh</h4>
+							<div class="form-group">
+								<label>Hình Ảnh:</label> <input id="imgUrl" class="form-control"
+									type="file" name="file" /> <br>  <img id="img" src="<c:url value="/uploads/${hoso.img }"/>"
+									alt="your image" width="100" height="150" /> 
 							</div>
 
 
 
-							<div class="card">
-								<div class="card-header">
-									<h4 class="card-title">Địa chỉ</h4>
-									<a class="heading-elements-toggle"><i
-										class="fa fa-ellipsis-v font-medium-3"></i></a>
+							<table id="datatable"
+								class="table table-striped table-bordered dataex-res-constructor">
+								<thead>
+									<tr>
+										<th><h5>
+												<spring:message code="hoso.code"></spring:message>
+											</h5></th>
+										<td><form:hidden path="maNhanVien" /> <form:errors
+												path="maNhanVien" cssStyle="color: red"></form:errors></td>
 
-								</div>
-								<div class="card-body collapse in">
-									<div class="card-block card-dashboard">
-										<div class="table-responsive">
-											<table id="datatable"
-												class="table table-striped table-bordered dataex-res-constructor">
-												<thead>
-													<tr>
-													<th>Địa chỉ thường trú</th>
-													<td ><form:input readonly="true" path="diaChiThuongTru" hiden="false"/></td>
-													</tr>
-													<tr>
-													<th>Địa chỉ hiện tại</th>
-													<td ><form:input readonly="true" path="diaChiHienTai" hiden="false"/></td>
-													</tr>
-												</thead>
+									</tr>
+									<tr>
+										<th><h5>
+												<spring:message code="hoso.name"></spring:message>
+											</h5></th>
+										<td><form:input path="hoTen" /> <form:errors
+												path="hoTen" cssStyle="color: red"></form:errors></td>
+									</tr>
+									<tr>
+										<th><h5>
+												<spring:message code="hoso.role"></spring:message>
+											</h5></th>
+										<td><form:select class="form-control"
+												path="vaiTro.maVaiTro">
+
+												<form:options items="${vaitro}" itemValue="maVaiTro"
+													itemLabel="tenVaiTro" />
+											</form:select> <form:errors path="vaiTro.maVaiTro" cssStyle="color: red"></form:errors>
+										</td>
+									</tr>
+									<tr>
+										<th><h5>
+												<spring:message code="hoso.room"></spring:message>
+											</h5></th>
+										<td><form:select class="form-control"
+												path="phongBan.maPhongBan">
+
+												<form:options items="${phongban}" itemValue="maPhongBan"
+													itemLabel="tenPhongBan" />
+											</form:select> <form:errors path="phongBan.maPhongBan"
+												cssStyle="color: red"></form:errors></td>
+									</tr>
+									<tr>
+										<th><h5>
+												<spring:message code="hoso.salary"></spring:message>
+											</h5></th>
+										<td><form:input path="luong" /> <form:errors
+												path="luong" cssStyle="color: red"></form:errors></td>
+									</tr>
+									<tr>
+										<th><h5>
+												<spring:message code="hoso.contracttype"></spring:message>
+											</h5></th>
+										<td><form:input path="maHopDong" /> <form:errors
+												path="maHopDong" cssStyle="color: red"></form:errors></td>
+									</tr>
+
+									<tr>
+										<th><h5>
+												<spring:message code="hoso.workshift"></spring:message>
+											</h5></th>
+										<td><form:input path="caLamViec" /> <form:errors
+												path="caLamViec" cssStyle="color: red"></form:errors></td>
+									</tr>
+									<tr>
+										<th><h5>
+												<spring:message code="hoso.location"></spring:message>
+											</h5></th>
+										<td><form:input path="viTri" /> <form:errors
+												path="viTri" cssStyle="color: red"></form:errors></td>
+									</tr>
+									<tr>
+										<th><h5>
+												<spring:message code="hoso.dateofparticipation"></spring:message>
+											</h5></th>
+										<td><form:input path="ngayThamGia"
+												cssClass="form-control round" type="date" /> <form:errors
+												path="ngayThamGia" cssStyle="color: red"></form:errors></td>
+									</tr>
+								</thead>
+								<tbody>
 
 
-											</table>
 
+
+
+
+
+								</tbody>
+							</table>
+						</div>
+						<div class="col-xs-8">
+							<div>
+								<div class="card">
+									<div class="card-header">
+										<h4 class="card-title">
+											<spring:message code="hoso.profile"></spring:message>
+										</h4>
+										<a class="heading-elements-toggle"><i
+											class="fa fa-ellipsis-v font-medium-3"></i></a>
+
+									</div>
+									<div class="card-body collapse in">
+										<div class="card-block card-dashboard">
+											<div class="table-responsive">
+												<table id="datatable"
+													class="table table-striped table-bordered dataex-res-constructor">
+													<thead>
+														<tr>
+															<th><h5>
+																	<spring:message code="hoso.phone"></spring:message>
+																</h5></th>
+															<td><form:input path="sdt" /> <form:errors
+																	path="sdt" cssStyle="color: red"></form:errors></td>
+														</tr>
+														<tr>
+															<th><h5>
+																	<spring:message code="hoso.numbercontract"></spring:message>
+																</h5></th>
+															<td><form:input path="soHopDong" /> <form:errors
+																	path="soHopDong" cssStyle="color: red"></form:errors></td>
+														</tr>
+														<tr>
+															<th><h5>
+																	<spring:message code="hoso.email"></spring:message>
+																</h5></th>
+															<td><form:input path="email" /> <form:errors
+																	path="email" cssStyle="color: red"></form:errors></td>
+
+														</tr>
+														<tr>
+															<th><h5>
+																	<spring:message code="hoso.gender"></spring:message>
+																</h5></th>
+															<td><form:radiobuttons path="maGioiTinh"
+																	items="${listgender}" /> <form:errors
+																	path="maGioiTinh" cssStyle="color: red"></form:errors>
+															</td>
+														</tr>
+														<tr>
+															<th><h5>
+																	<spring:message code="hoso.birday"></spring:message>
+																</h5></th>
+															<td><form:input path="ngaySinh"
+																	cssClass="form-control round" type="date" /> <form:errors
+																	path="ngaySinh" cssStyle="color: red"></form:errors></td>
+														</tr>
+														<tr>
+															<th><h5>
+																	<spring:message code="hoso.maritalstatus"></spring:message>
+																</h5></th>
+															<td><form:radiobuttons path="tinhTrangHonNhan"
+																	items="${marital}" /> <form:errors
+																	path="tinhTrangHonNhan" cssStyle="color: red"></form:errors>
+															</td>
+														</tr>
+														<tr>
+															<th><h5>
+																	<spring:message code="hoso.namefather"></spring:message>
+																</h5></th>
+															<td><form:input path="tenBo" /> <form:errors
+																	path="tenBo" cssStyle="color: red"></form:errors></td>
+														</tr>
+														<tr>
+															<th><h5>
+																	<spring:message code="hoso.namemother"></spring:message>
+																</h5></th>
+															<td><form:input path="tenMe" /> <form:errors
+																	path="tenMe" cssStyle="color: red"></form:errors></td>
+														</tr>
+														<tr>
+															<th><h5>
+																	<spring:message code="hoso.experience"></spring:message>
+																</h5></th>
+															<td><form:input path="kinhNghiem" /> <form:errors
+																	path="kinhNghiem" cssStyle="color: red"></form:errors>
+															</td>
+														</tr>
+														<tr>
+															<th><h5>
+																	<spring:message code="hoso.qualification"></spring:message>
+																</h5></th>
+															<td><form:input path="trinhDoChuyenMon" /> <form:errors
+																	path="trinhDoChuyenMon" cssStyle="color: red"></form:errors>
+															</td>
+														</tr>
+														<tr>
+															<th><h5>
+																	<spring:message code="hoso.note"></spring:message>
+																</h5></th>
+															<td><form:input path="note" /> <form:errors
+																	path="note" cssStyle="color: red"></form:errors></td>
+														</tr>
+													</thead>
+
+
+												</table>
+
+											</div>
 										</div>
 									</div>
 								</div>
-							</div>
-							<div class="card">
-								<div class="card-header">
-									<h4 class="card-title">Tài khoản</h4>
-									<a class="heading-elements-toggle"><i
-										class="fa fa-ellipsis-v font-medium-3"></i></a>
 
-								</div>
-								<div class="card-body collapse in">
-									<div class="card-block card-dashboard">
-										<div class="table-responsive">
-											<table id="datatable"
-												class="table table-striped table-bordered dataex-res-constructor">
-												<thead>
-													<tr>
-													<th>Tên ngân hàng</th>
-													<td ><form:input readonly="true" path="tenNganHang" hiden="false"/></td>
-													</tr>
-													<tr>
-													<th>Sô tài khoản</th>
-													<td ><form:input readonly="true" path="soTaiKhoan" hiden="false"/></td>
-													</tr>
-												</thead>
 
-											</table>
 
+								<div class="card">
+									<div class="card-header">
+										<h4 class="card-title">
+											<spring:message code="hoso.address"></spring:message>
+										</h4>
+										<a class="heading-elements-toggle"><i
+											class="fa fa-ellipsis-v font-medium-3"></i></a>
+
+									</div>
+									<div class="card-body collapse in">
+										<div class="card-block card-dashboard">
+											<div class="table-responsive">
+												<table id="datatable"
+													class="table table-striped table-bordered dataex-res-constructor">
+													<thead>
+														<tr>
+															<th><h5>
+																	<spring:message code="hoso.permanentaddress"></spring:message>
+																</h5></th>
+															<td><form:input path="diaChiThuongTru" /> <form:errors
+																	path="diaChiThuongTru" cssStyle="color: red"></form:errors>
+															</td>
+														</tr>
+														<tr>
+															<th><h5>
+																	<spring:message code="hoso.currentaddress"></spring:message>
+																</h5></th>
+															<td><form:input path="diaChiHienTai" /> <form:errors
+																	path="diaChiHienTai" cssStyle="color: red"></form:errors>
+															</td>
+														</tr>
+													</thead>
+
+
+												</table>
+
+											</div>
 										</div>
 									</div>
 								</div>
-							</div>
-							<div class="card">
-								<div class="card-header">
-									<h4 class="card-title">Liên hệ khác</h4>
-									<a class="heading-elements-toggle"><i
-										class="fa fa-ellipsis-v font-medium-3"></i></a>
+								<div class="card">
+									<div class="card-header">
+										<h4 class="card-title">
+											<spring:message code="hoso.account"></spring:message>
+										</h4>
+										<a class="heading-elements-toggle"><i
+											class="fa fa-ellipsis-v font-medium-3"></i></a>
 
+									</div>
+									<div class="card-body collapse in">
+										<div class="card-block card-dashboard">
+											<div class="table-responsive">
+												<table id="datatable"
+													class="table table-striped table-bordered dataex-res-constructor">
+													<thead>
+														<tr>
+															<th><h5>
+																	<spring:message code="hoso.bankname"></spring:message>
+																</h5></th>
+															<td><form:input path="tenNganHang" /> <form:errors
+																	path="tenNganHang" cssStyle="color: red"></form:errors>
+															</td>
+														</tr>
+														<tr>
+															<th><h5>
+																	<spring:message code="hoso.accountnumber"></spring:message>
+																</h5></th>
+															<td><form:input path="soTaiKhoan" /> <form:errors
+																	path="soTaiKhoan" cssStyle="color: red"></form:errors>
+															</td>
+														</tr>
+													</thead>
+
+												</table>
+
+											</div>
+										</div>
+									</div>
 								</div>
-								<div class="card-body collapse in">
-									<div class="card-block card-dashboard">
-										<div class="table-responsive">
-											<table id="datatable"
-												class="table table-striped table-bordered dataex-res-constructor">
-												<thead>
-													<tr>
-													<th>FaceBook</th>
-													<td ><form:input readonly="true" path="lienHeKhac" hiden="false"/></td>
-													</tr>
-												</thead>
+								<div class="card">
+									<div class="card-header">
+										<h4 class="card-title">
+											<spring:message code="hoso.othercontact"></spring:message>
+										</h4>
+										<a class="heading-elements-toggle"><i
+											class="fa fa-ellipsis-v font-medium-3"></i></a>
+
+									</div>
+									<div class="card-body collapse in">
+										<div class="card-block card-dashboard">
+											<div class="table-responsive">
+												<table id="datatable"
+													class="table table-striped table-bordered dataex-res-constructor">
+													<thead>
+														<tr>
+															<th>FaceBook</th>
+															<td><form:input path="lienHeKhac" /></td>
+														</tr>
+													</thead>
 
 
-											</table>
+												</table>
 
+											</div>
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
-					</div>
 
 
-</form:form>
+						<div class="text-xs-right">
+							<button type="submit" class="btn btn-success">
+								Submit <i class="fa fa-thumbs-o-up position-right"></i>
+							</button>
+							<button type="reset" class="btn btn-danger">
+								Reset <i class="fa fa-refresh position-right"></i>
+							</button>
+						</div>
+					</form:form>
 				</div>
 			</div>
 		</div>

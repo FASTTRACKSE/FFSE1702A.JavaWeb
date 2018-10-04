@@ -37,13 +37,14 @@ public class HoSoServiceImpl implements HoSoService{
 	@Override
 	public void update(HoSo hoso) {
 		// TODO Auto-generated method stub
-		
+		this.hoSoDao.update(hoso);
+
 	}
 
 	@Override
 	public void delete(int maNhanVien) {
 		// TODO Auto-generated method stub
-		
+		this.hoSoDao.delete(maNhanVien);
 	}
 
 	@Override
